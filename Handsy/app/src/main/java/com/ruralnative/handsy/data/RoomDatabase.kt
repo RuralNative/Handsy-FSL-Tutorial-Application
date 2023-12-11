@@ -1,5 +1,12 @@
 package com.ruralnative.handsy.data
 
+import android.app.Application
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 @Database(
     version = 1,
     entities = [
