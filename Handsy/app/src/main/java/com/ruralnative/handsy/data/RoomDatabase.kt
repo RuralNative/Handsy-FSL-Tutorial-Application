@@ -3,6 +3,9 @@ package com.ruralnative.handsy.data
 @Database(
     version = 1,
     entities = [
+        user::class,
+        alphabet_lessons::class,
+        phrases_lessons::class
     ]
 )
 abstract class Database : RoomDatabase() {
@@ -21,9 +24,9 @@ abstract class Database : RoomDatabase() {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
                             application.applicationContext,
-                            Database::class, "INSERT_DATABASE_NAME"
+                            Database::class, "application_database.db"
                         )
-                            .createFromAsset("DATABASE_FILE")
+                            .createFromAsset("database.db")
                             .build()
                     }
                 }
@@ -31,6 +34,10 @@ abstract class Database : RoomDatabase() {
             return INSTANCE!!
         }
     }
+
+    abstract fun userDao(): userDao
+    abstract fun alphabetLessonsDao: alphabetLessonsDao
+    abstract fun phrasesLessonsDao: phrasesLessonsDao
 
     fun getDatabaseWriteExecutor(): ExecutorService {
         return databaseWriteExecutor
