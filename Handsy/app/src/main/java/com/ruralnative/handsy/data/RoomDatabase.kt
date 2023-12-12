@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 @Database(
     version = 1,
     entities = [
-        user::class,
-        alphabet_lessons::class,
-        phrases_lessons::class
+        User::class,
+        AlphabetLessons::class,
+        PhrasesLesson::class
     ]
 )
 abstract class Database : RoomDatabase() {
