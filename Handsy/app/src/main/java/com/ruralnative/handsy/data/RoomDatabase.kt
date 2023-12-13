@@ -16,38 +16,7 @@ import kotlinx.coroutines.Dispatchers
     ]
 )
 abstract class Database : RoomDatabase() {
-
-    companion object {
-        @Volatile
-        private var INSTANCE: Database? = null
-
-        fun getDatabase(application: Application): Database {
-            if (INSTANCE == null) {
-                synchronized(Database::class) {
-                    if (INSTANCE == null) {
-                        INSTANCE = Room.databaseBuilder(
-                            application.applicationContext,
-                            Database::class, "application_database.db"
-                        )
-                            .createFromAsset("database.db")
-                            .build()
-                    }
-                }
-            }
-            return INSTANCE!!
-        }
-
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "database-name"
-        ).build()
-    }
-
-    fun getCoroutine(): CoroutineScope {
-        return CoroutineScope(Dispatchers.IO)
-    }
-
-    abstract fun userDao(): userDao
-    abstract fun alphabetLessonsDao(): alphabetLessonsDao
-    abstract fun phrasesLessonsDao(): phrasesLessonsDao
+    abstract fun userDao(): UserDao
+    abstract fun alphabetLessonsDao(): AlphabetLessonsDao
+    abstract fun phrasesLessonDao(): PhrasesLessonsDao
 }
