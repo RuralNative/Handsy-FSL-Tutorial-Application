@@ -9,6 +9,7 @@ plugins {
 
 android {
     namespace = "com.ruralnative.handsy"
+    testNamespace = "com.ruralnative.testhandsy"
     compileSdk = 34
 
     defaultConfig {
@@ -38,7 +39,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "21"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
