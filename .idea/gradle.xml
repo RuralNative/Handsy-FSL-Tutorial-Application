@@ -6,6 +6,12 @@
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/Handsy" />
         <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Handsy" />
+            <option value="$PROJECT_DIR$/Handsy/app" />
+          </set>
+        </option>
         <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
