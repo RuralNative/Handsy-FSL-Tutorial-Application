@@ -2,6 +2,7 @@ package com.ruralnative.handsy.data
 
 import android.app.Application
 import androidx.room.Room
+import androidx.room.RoomDatabase
 import androidx.room.Database
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,11 @@ abstract class Database : RoomDatabase() {
             }
             return INSTANCE!!
         }
+
+        val db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "database-name"
+        ).build()
     }
 
     fun getCoroutine(): CoroutineScope {
@@ -44,8 +50,4 @@ abstract class Database : RoomDatabase() {
     abstract fun userDao(): userDao
     abstract fun alphabetLessonsDao(): alphabetLessonsDao
     abstract fun phrasesLessonsDao(): phrasesLessonsDao
-
-    fun getDatabaseWriteExecutor(): ExecutorService {
-        return databaseWriteExecutor
-    }
 }
