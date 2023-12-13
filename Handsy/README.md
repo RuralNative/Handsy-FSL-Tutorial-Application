@@ -19,3 +19,5 @@ Handsy is an Android-based mobile application that aims to provide an accessible
 **Target Android SDK**: Android 14 (API 34)
 **Minimum Android SDK**: Android 8.1 (API 27)
 **Target Android SDK**: Android 14 (API 34)
+
+**Room Database**: Version 2.6.1
