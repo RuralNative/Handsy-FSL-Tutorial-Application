@@ -6,4 +6,15 @@ Handsy is an Android-based mobile application that aims to provide an accessible
 
 ## Pre-requisites
 
-The following are the necessary pre-requisites for the development environment of the Android project. Take note that the project MAY NOT be workable if the following pre-requisites are not met. Configure your Android Studio/Gradle build with the information listed below:
+*The following are the necessary pre-requisites for the development environment of the Android project. Take note that the project MAY NOT be workable if the following pre-requisites are not met. Configure your Android Studio/Gradle build with the information listed below:*
+
+**Gradle**: Version 3.5.0
+**Gradle JDK**: JetBrains Runtime Version 17.0.9
+
+**Android Gradle Plugin for Android Application**: Version 3.2.0
+**Android Gradle Plugin for Android Library**: Version 3.2.0
+**Kotlin Gradle Plugin**: Version 1.9.20
+
+**Target Android SDK**: Android 14 (API 34)
+**Minimum Android SDK**: Android 8.1 (API 27)
+**Target Android SDK**: Android 14 (API 34)
