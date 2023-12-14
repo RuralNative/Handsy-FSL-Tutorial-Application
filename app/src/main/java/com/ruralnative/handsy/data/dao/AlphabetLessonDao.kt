@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.ruralnative.handsy.data.entities.AlphabetLesson
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AlphabetLessonDao {
