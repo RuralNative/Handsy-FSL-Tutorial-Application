@@ -9,7 +9,7 @@ import androidx.room.Update
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 
 @Dao
-interface AlphabetLessonsDao {
+interface AlphabetLessonDao {
 
     @Query("SELECT * from alphabet_lessons WHERE id = :lessonID")
     fun selectLessonById(lessonID: Int): AlphabetLesson
@@ -18,10 +18,10 @@ interface AlphabetLessonsDao {
     fun selectAllLessons(): List<AlphabetLesson>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLesson(lesson: AlphabetLessonsDao)
+    fun insertLesson(lesson: AlphabetLessonDao)
 
     @Update
-    fun updateLesson(lesson: AlphabetLessonsDao)
+    fun updateLesson(lesson: AlphabetLessonDao)
 
     @Query("UPDATE alphabet_lessons SET lesson_name = :lessonName WHERE id = :lessonID")
     fun updateLessonName(lessonName: String?, lessonID: String)
@@ -33,5 +33,5 @@ interface AlphabetLessonsDao {
     fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: String)
 
     @Delete
-    fun deleteLesson(lesson: AlphabetLessonsDao)
+    fun deleteLesson(lesson: AlphabetLessonDao)
 }
