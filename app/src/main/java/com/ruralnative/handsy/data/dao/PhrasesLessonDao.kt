@@ -12,27 +12,27 @@ import com.ruralnative.handsy.data.entities.PhrasesLesson
 @Dao
 interface PhrasesLessonDao {
 
-    @Query("SELECT * from phrases_lessons WHERE id = :lessonID")
-    fun selectLessonById(lessonID: Int): PhrasesLesson
-
     @Query("SELECT * from phrases_lessons")
     fun selectAllLessons(): List<PhrasesLesson>
 
+    @Query("SELECT * from phrases_lessons WHERE id = :lessonID")
+    suspend fun selectLessonById(lessonID: Int): PhrasesLesson
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLesson(lesson: PhrasesLesson)
+    suspend fun insertLesson(lesson: PhrasesLesson)
 
     @Update
-    fun updateLesson(lesson: PhrasesLesson)
+    suspend fun updateLesson(lesson: PhrasesLesson)
 
     @Query("UPDATE phrases_lessons SET lesson_name = :lessonName WHERE id = :lessonID")
-    fun updateLessonName(lessonName: String?, lessonID: String)
+    suspend fun updateLessonName(lessonName: String?, lessonID: String)
 
     @Query("UPDATE phrases_lessons SET lesson_description = :lessonDescription WHERE id = :lessonID")
-    fun updateLessonDescription(lessonDescription: String?, lessonID: String)
+    suspend fun updateLessonDescription(lessonDescription: String?, lessonID: String)
 
     @Query("UPDATE phrases_lessons SET lesson_media_file = :lessonMediaFile WHERE id = :lessonID")
-    fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: String)
+    suspend fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: String)
 
     @Delete
-    fun deleteLesson(lesson: PhrasesLesson)
+    suspend fun deleteLesson(lesson: PhrasesLesson)
 }
