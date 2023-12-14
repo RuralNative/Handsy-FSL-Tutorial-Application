@@ -11,8 +11,6 @@ import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.entities.User
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 
 @Database(
     version = 1,
@@ -38,6 +36,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_database.db"
                 )
+                .fallbackToDestructiveMigration()
                 .createFromAsset("database.db")
                 .build()
                 INSTANCE = databaseInstance
