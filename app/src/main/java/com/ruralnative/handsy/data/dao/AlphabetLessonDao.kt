@@ -18,10 +18,10 @@ interface AlphabetLessonDao {
     fun selectAllLessons(): List<AlphabetLesson>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLesson(lesson: AlphabetLessonDao)
+    fun insertLesson(lesson: AlphabetLesson)
 
     @Update
-    fun updateLesson(lesson: AlphabetLessonDao)
+    fun updateLesson(lesson: AlphabetLesson)
 
     @Query("UPDATE alphabet_lessons SET lesson_name = :lessonName WHERE id = :lessonID")
     fun updateLessonName(lessonName: String?, lessonID: String)
@@ -33,5 +33,5 @@ interface AlphabetLessonDao {
     fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: String)
 
     @Delete
-    fun deleteLesson(lesson: AlphabetLessonDao)
+    fun deleteLesson(lesson: AlphabetLesson)
 }
