@@ -6,17 +6,16 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.ruralnative.handsy.data.entities.AlphabetLessons
-import com.ruralnative.handsy.data.entities.User
+import com.ruralnative.handsy.data.entities.AlphabetLesson
 
 @Dao
 interface AlphabetLessonsDao {
 
     @Query("SELECT * from alphabet_lessons WHERE id = :lessonID")
-    fun selectLessonById(lessonID: Int): AlphabetLessons
+    fun selectLessonById(lessonID: Int): AlphabetLesson
 
     @Query("SELECT * from alphabet_lessons")
-    fun selectAllLessons(): List<AlphabetLessons>
+    fun selectAllLessons(): List<AlphabetLesson>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLesson(lesson: AlphabetLessonsDao)
