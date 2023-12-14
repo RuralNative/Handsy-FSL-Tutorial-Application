@@ -8,15 +8,16 @@ import androidx.room.Query
 import androidx.room.Update
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.entities.User
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
 
     @Query("SELECT * from user")
-    fun selectAllUsers(): List<User>
+    fun selectAllUsers(): Flow<List<User>>
 
     @Query("SELECT * from user WHERE id = :userID")
-    suspend fun selectUserById(userID: Int): User
+    suspend fun selectUserById(userID: Int): Flow<User>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)

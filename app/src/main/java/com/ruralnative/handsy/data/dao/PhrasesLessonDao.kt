@@ -8,15 +8,16 @@ import androidx.room.Query
 import androidx.room.Update
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PhrasesLessonDao {
 
     @Query("SELECT * from phrases_lessons")
-    fun selectAllLessons(): List<PhrasesLesson>
+    fun selectAllLessons(): Flow<List<PhrasesLesson>>
 
     @Query("SELECT * from phrases_lessons WHERE id = :lessonID")
-    suspend fun selectLessonById(lessonID: Int): PhrasesLesson
+    suspend fun selectLessonById(lessonID: Int): Flow<PhrasesLesson>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLesson(lesson: PhrasesLesson)
