@@ -1,6 +1,7 @@
 package com.ruralnative.handsy.data
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.Database
@@ -22,16 +23,26 @@ import kotlinx.coroutines.Dispatchers
     ]
 )
 abstract class AppDatabase : RoomDatabase() {
-    val databaseBuilder = Room.databaseBuilder(
-        applicationContext,
-        AppDatabase::class.java, "database-name"
-    ).build()
-    Room.databaseBuilder(appContext, AppDatabase::class.java, "Sample.db")
-    .createFromAsset("database/myapp.db")
-    .build()
     abstract fun userDao(): UserDao
     abstract fun alphabetLessonsDao(): AlphabetLessonDao
     abstract fun phrasesLessonDao(): PhrasesLessonDao
-}
-{
+
+    companion object {
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+
+        fun getDatabase(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val databaseInstance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "app_database.db"
+                )
+                .createFromAsset("database.db")
+                .build()
+                INSTANCE = databaseInstance
+                databaseInstance
+            }
+        }
+    }
 }
