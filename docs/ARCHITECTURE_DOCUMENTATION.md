@@ -92,10 +92,6 @@ Our mobile application utilizes the following technologies within its Data Layer
 
 (CONTENT)
 
-## Dependency Injection/s
-
-(CONTENT)
-
 ## Diagrams
 
 (CONTENT)
