@@ -66,7 +66,27 @@ Our mobile application utilizes the following technologies within its Data Layer
 
 ## Component Descriptions
 
-(CONTENT)
+### Room Database:
+
+**AppDatabase**: This class defines your single source of truth for local data storage, housing the DAOs for each entity and managing overall database access and schema definitions. It leverages the provided code snippet and functionality.
+
+### Entities:
+
+**User**: Represents a user in the system
+**AlphabetLesson**: Represents an single alphabet lesson
+**PhrasesLesson**: Represents a single phrase lesson
+
+### Data Access Objects (DAO):
+
+**UserDao**: Provides low-leveldatabase access methods for user data
+**AlphabetLessonDao**: Provides database access methods for alphabet lesson data
+**PhrasesLessonDao**: Provides database access methods for phrases lesson data
+
+### Repositories:
+
+**UserRepository**: Encapsulates access to User data, leveraging the UserDao for retrieving, saving, and updating user information.
+**AlphabetLessonRepository**: Encapsulates access to AlphabetLesson data through the AlphabetLessonDao for retrieving, saving, and updating lesson information.
+**PhrasesLessonRepository**: Encapsulates access to PhrasesLesson data through the PhrasesLessonDao for retrieving, saving, and updating lesson information.
 
 ## Design Patterns
 
