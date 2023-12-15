@@ -1,27 +1,27 @@
-# HANDSY: ARCHITECTURE DOCUMENTATION
+# HANDSY: Architecture Documentation
 
 *Official author-based documentation for the Android application serving as a clear and comprehensive reference for the PROJECT ARCHITECTURE, ensuring convenient and easier collaboration efforts for maintenance and future development efforts.*
 
-## ARCHITECTURE OVERVIEW
+## Architecture Overview
 
 (CONTENT)
 
-## LAYER DESCRIPTIONS
+## Layer Descriptions
 
 (CONTENT)
 
-## COMPONENT DESCRIPTIONS
+## Component Descriptions
 
 (CONTENT)
 
-## DESIGN PATTERNS
+## Design Patterns
 
 (CONTENT)
 
-## DEPENDENCY INJECTION/S
+## Dependency Injection/s
 
 (CONTENT)
 
-## DIAGRAMS
+## Diagrams
 
 (CONTENT)
