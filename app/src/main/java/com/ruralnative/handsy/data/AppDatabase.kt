@@ -13,12 +13,13 @@ import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.entities.User
 
 @Database(
-    version = 1,
     entities = [
         User::class,
         AlphabetLesson::class,
         PhrasesLesson::class
-    ]
+    ],
+    version = 1,
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
@@ -31,7 +32,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
-                val databaseInstance = Room.databaseBuilder(
+                Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "app_database.db"
@@ -39,8 +40,7 @@ abstract class AppDatabase : RoomDatabase() {
                 .fallbackToDestructiveMigration()
                 .createFromAsset("database.db")
                 .build()
-                INSTANCE = databaseInstance
-                databaseInstance
+                .also {INSTANCE = it}
             }
         }
     }
