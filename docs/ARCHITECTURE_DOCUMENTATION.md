@@ -13,22 +13,56 @@ The application follows the principles of *Clean Architecture* which defines the
 - Single Source of Truth (SSOT)
 - Unidirectional Data Flow
 
-The mobile application follows the *Model-View-ViewModel (MVVM)* architectural pattern which separates the application into three main components:
-- *Model*: This represents the data and the business logic of the application. It includes the database, network calls, and other data sources.
-- *View*: This represents the user interface of the application. It includes Activities, Fragments, and other UI components.
-- *ViewModel*: This acts as a bridge between the Model and the View. It handles the business logic and updates the View based on changes in the Model.
+The mobile application follows the **Model-View-ViewModel (MVVM)** architectural pattern which separates the application into three main components:
+- **Model**: This represents the data and the business logic of the application. It includes the database, network calls, and other data sources.
+- **View**: This represents the user interface of the application. It includes Activities, Fragments, and other UI components.
+- **ViewModel**: This acts as a bridge between the Model and the View. It handles the business logic and updates the View based on changes in the Model.
 
 The mobile application is structured into two (2) distinct layers:
-- *UI Layer*: This layer is responsible for presenting information to the user and handling user interactions. It includes Activities, Fragments, and Views.
-- *Data Layer*: This layer is responsible for handling data operations. It includes Repositories, Data Sources, and Entities.
+- **UI Layer**: This layer is responsible for presenting information to the user and handling user interactions. It includes Activities, Fragments, and Views.
+- **Data Layer**: This layer is responsible for handling data operations. It includes Repositories, Data Sources, and Entities.
 
-The application uses the *Room Database* for local database storage, further utilizing other Android Architecture Components such as ViewModel and LiveData for managing and observing in a lifecycle-conscious manner.
+The application uses the **Room Database** for local database storage, further utilizing other Android Architecture Components such as ViewModel and LiveData for managing and observing in a lifecycle-conscious manner.
 
-The mobile application is designed to work *OFFLINE*. 
+The mobile application is designed to work **OFFLINE**. 
 
 ## Layer Descriptions
 
-(CONTENT)
+The application are separated into two (2) layers of separate concerns/role as discussed below.
+
+### Data Layer
+
+**Description**
+
+The Data Layer is responsible for handling all data operations, ensuring efficient and reliable access to information both online and offline. It adheres to the Single Source of Truth (SSOT) principle, guaranteeing consistency and coherence across the application.
+
+**Responsibilities**
+
+* Fetching data from application database.
+* Managing and manipulating data through persistence.
+* Exposing data to the UI Layer.
+
+**Components**
+
+* Repositories: The central point of access for data within the layer that encapsulate data sources and provide a clean and unified interface for fetching, saving, and updating data.
+* Data Access Objects (DAO): Interfaces that determines how data is accessed from the local SQLite-based database
+* Entities: Data classes representing the database tables.
+  Interactions:
+
+**Interactions**
+
+The Data Layer interacts primarily with the UI Layer through ViewModels:
+
+* Data Requests: ViewModels request data from Repositories, specifying the required entities and parameters.
+* Data Retrieval: Repositories fetch data through Data Access Objects (DAO) and may map such data to Entities.
+* Data Exposure: Repositories expose the retrieved data through observables like LiveData, allowing the ViewModel to observe and update the UI.
+
+**Technologies**
+
+Our mobile application utilizes the following technologies within its Data Layer:
+
+* Room Database: For local database implementation and persistence
+* Kotlin Coroutines and Flow: For asynchronous access, manipulation, and live observation of data
 
 ## Component Descriptions
 
