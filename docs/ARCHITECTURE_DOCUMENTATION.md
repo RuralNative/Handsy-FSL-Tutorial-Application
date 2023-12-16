@@ -78,7 +78,7 @@ Our mobile application utilizes the following technologies within its Data Layer
 
 ### Data Access Objects (DAO):
 
-**UserDao**: Provides low-leveldatabase access methods for user data
+**UserDao**: Provides low-level database access methods for user data
 **AlphabetLessonDao**: Provides database access methods for alphabet lesson data
 **PhrasesLessonDao**: Provides database access methods for phrases lesson data
 
