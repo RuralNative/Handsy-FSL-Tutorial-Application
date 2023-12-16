@@ -1,22 +1,40 @@
 package com.ruralnative.handsy.data.repository
 
+import androidx.annotation.WorkerThread
+import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.User
 import kotlinx.coroutines.flow.Flow
 
-interface UserRepository {
-    fun getAllUsers(): Flow<List<User>>
+@Suppress("RedundantSuspendModifier")
+@WorkerThread
+class UserRepository(private val dao: UserDao) {
+    val allUsers: Flow<List<User>> = dao.selectAllUsers()
 
-    fun getUserByID(userID: Int): Flow<User>
+    suspend fun getUserByID(userID: Int): Flow<User> {
+        return dao.selectUserById(userID)
+    }
 
-    fun insertUser(user: User)
+    suspend fun insertUser(user: User) {
+        dao.insertUser(user)
+    }
 
-    fun updateUser(user: User)
+    suspend fun updateUser(user: User) {
+        dao.updateUser(user)
+    }
 
-    fun updateUserNameWithID(userName: String?, userID: Int)
+    suspend fun updateUserNameWithID(userName: String?, userID: Int) {
+        dao.updateUserName(userName, userID)
+    }
 
-    fun updateUserStatusWithID(boolValue: Int, userID: Int)
+    suspend fun updateUserStatusWithID(boolValue: Int, userID: Int) {
+        dao.updateUserStatus(boolValue, userID)
+    }
 
-    fun updateUserLevelWithID(userLevel: Int, userID: Int)
+    suspend fun updateUserLevelWithID(userLevel: Int, userID: Int) {
+        dao.updateUserProgressionLevel(userLevel, userID)
+    }
 
-    fun deleteUser(user: User)
+    suspend fun deleteUser(user: User) {
+        dao.deleteUser(user)
+    }
 }
