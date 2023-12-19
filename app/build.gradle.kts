@@ -68,8 +68,8 @@ dependencies {
     androidTestImplementation(composeBom)
     implementation("androidx.activity:activity-compose:1.8.1")
     implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 
     // Material Design 3
     implementation("androidx.compose.material3:material3")
