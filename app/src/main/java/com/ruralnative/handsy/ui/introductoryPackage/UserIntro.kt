@@ -5,8 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Surface
@@ -24,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.CreateWelcomeScreen
 import com.ruralnative.handsy.ui.theme.BackgroundColor
@@ -69,13 +72,18 @@ fun ShowHeaderText() {
 
 @Composable
 fun ShowMascot() {
-    Image(
-        painter = painterResource(id = R.drawable.mascot_official),
-        contentDescription = "Cat Mascot Image for Handsy",
-        modifier = Modifier
-            .size(170.dp)
-            .padding(bottom = 16.dp)
-    )
+    Box(
+        modifier = Modifier.fillMaxWidth(),
+        contentAlignment = Alignment.Center
+    ){
+        Image(
+            painter = painterResource(id = R.drawable.mascot_official),
+            contentDescription = "Cat Mascot Image for Handsy",
+            modifier = Modifier
+                .size(170.dp)
+                .padding(bottom = 16.dp)
+        )
+    }
 }
 
 @Composable
@@ -89,11 +97,29 @@ fun ShowUserInput() {
     )
 }
 
+@Composable
+fun ConstructScreenContent() {
+    ConstraintLayout(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        val (headerContainer, mascotContainer, inputContainer) = createRefs()
+        Column(
+            modifier = Modifier.constrainAs(headerContainer) {
+                start.linkTo(parent.start, margin = 16.dp)
+                top.linkTo(parent.top, margin = 16.dp)
+            }
+        ) {
+            ShowHeaderText()
+        }
+    }
+}
+
 @Preview
 @Composable
-fun showPreview() {
-    Column {
-        ShowHeaderText()
+fun ConstructUserIntroScreen() {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
         ShowMascot()
         ShowUserInput()
     }
