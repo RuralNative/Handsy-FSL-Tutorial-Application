@@ -50,8 +50,9 @@ class UserIntro : ComponentActivity() {
 }
 
 @Composable
-fun ShowHeaderText() {
+fun ShowHeaderText(headerModifier: Modifier) {
     Column(
+        modifier = headerModifier,
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Top
     ) {
@@ -97,30 +98,19 @@ fun ShowUserInput() {
     )
 }
 
+@Preview
 @Composable
 fun ConstructScreenContent() {
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()
     ) {
         val (headerContainer, mascotContainer, inputContainer) = createRefs()
-        Column(
-            modifier = Modifier.constrainAs(headerContainer) {
+
+        ShowHeaderText(
+            Modifier.constrainAs(headerContainer) {
                 start.linkTo(parent.start, margin = 16.dp)
                 top.linkTo(parent.top, margin = 16.dp)
             }
-        ) {
-            ShowHeaderText()
-        }
-    }
-}
-
-@Preview
-@Composable
-fun ConstructUserIntroScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        ShowMascot()
-        ShowUserInput()
+        )
     }
 }
