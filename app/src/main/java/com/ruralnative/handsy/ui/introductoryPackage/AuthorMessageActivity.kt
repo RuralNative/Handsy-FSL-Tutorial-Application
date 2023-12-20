@@ -9,22 +9,30 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.BackgroundColor
+import com.ruralnative.handsy.ui.theme.DarkBackgroundColor
 import com.ruralnative.handsy.ui.theme.HandsyTheme
+import com.ruralnative.handsy.ui.theme.NunitoFontFamily
+import com.ruralnative.handsy.ui.theme.RegularColor
 
 class AuthorMessageActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,13 +69,21 @@ private fun ShowIntroMessage(modifier: Modifier) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.Top
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = "Handsy Sign Language is a mobile application with the purpose of providing an accessible platform for learning the Filipino Sign Language for users of all background, especially the deaf and the mute"
+            text = "Handsy Sign Language is a mobile application with the purpose of providing an accessible platform for learning the Filipino Sign Language for users of all background, especially the deaf and the mute",
+            color = RegularColor,
+            fontSize = 20.sp,
+            fontFamily = NunitoFontFamily,
+            fontWeight = FontWeight.Normal
         )
         Text(
-            text = "We hope you enjoy using this application"
+            text = "We hope you enjoy using this application",
+            color = RegularColor,
+            fontSize = 20.sp,
+            fontFamily = NunitoFontFamily,
+            fontWeight = FontWeight.Normal
         )
     }
 }
@@ -75,13 +91,27 @@ private fun ShowIntroMessage(modifier: Modifier) {
 @Composable
 private fun ShowAcceptButton(modifier: Modifier) {
     Box(
-        modifier = modifier
+        modifier = modifier,
+        contentAlignment = Alignment.Center
     ) {
         Button(
             onClick = {
                 print("Hi")
             },
-            content = { Text(text = "Start Your Journey")}
+            modifier = Modifier
+                .fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = RegularColor,
+                contentColor = BackgroundColor
+            ),
+            content = {
+                Text(
+                    text = "Start Your Journey",
+                    fontSize = 20.sp,
+                    fontFamily = NunitoFontFamily,
+                    fontWeight = FontWeight.ExtraBold
+                )
+            }
         )
     }
 }
@@ -110,8 +140,10 @@ private fun CreateActivityScreen() {
                     start.linkTo(parent.start)
                     top.linkTo(mascotContainer.bottom)
                     end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom)
+                    bottom.linkTo(buttonContainer.top)
                 }
+                .fillMaxWidth()
+                .height(270.dp)
                 .padding(start = 45.dp, end = 45.dp)
         )
 
@@ -119,10 +151,11 @@ private fun CreateActivityScreen() {
             Modifier
                 .constrainAs(buttonContainer) {
                     start.linkTo(parent.start)
-                    top.linkTo(messageContainer.bottom)
                     end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom)
+                    bottom.linkTo(parent.bottom, margin = 60.dp)
                 }
+                .padding(start = 45.dp, end = 45.dp)
+                .fillMaxWidth()
         )
     }
 }
