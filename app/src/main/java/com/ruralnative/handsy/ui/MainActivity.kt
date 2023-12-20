@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = BackgroundColor
                 ) {
-                    CreateWelcomeScreen()
+                    CreateDisplayIcon()
                 }
             }
         }
@@ -53,7 +53,7 @@ fun ShowMascot() {
         painter = painterResource(id = R.drawable.mascot_official),
         contentDescription = "Cat Mascot Image for Handsy",
         modifier = Modifier
-            .size(170.dp)
+            .size(250.dp)
             .padding(bottom = 16.dp)
     )
 }
@@ -68,26 +68,28 @@ fun ShowAppName() {
             text = "HANDSY",
             color = DarkBackgroundColor,
             textAlign = TextAlign.Center,
-            fontFamily = NunitoFontFamily,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.ExtraBold
+            style = TextStyle(
+                fontSize = 40.sp,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = NunitoFontFamily
+            )
         )
         Text(
-            text = "FSL Application",
+            text = "Filipino Sign Language",
             color = RegularColor,
             textAlign = TextAlign.Center,
-            fontFamily = NunitoFontFamily,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
 
         )
     }
 }
 
+@Preview
 @Composable
 fun CreateDisplayIcon() {
     ConstraintLayout (
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = BackgroundColor)
     ) {
         val container = createRef()
         Column (
@@ -107,17 +109,4 @@ fun CreateDisplayIcon() {
         }
     }
 
-}
-
-@Preview(showBackground = true)
-@Composable
-fun CreateWelcomeScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = BackgroundColor)
-    ) {
-
-    }
-    CreateDisplayIcon()
 }
