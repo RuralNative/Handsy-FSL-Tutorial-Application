@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -89,24 +90,36 @@ fun ShowMascot(modifier: Modifier) {
 
 @Composable
 fun ShowUserInput(modifier: Modifier) {
-    var text by rememberSaveable { mutableStateOf("") }
+    var userName by rememberSaveable { mutableStateOf("") }
     TextField(
-        value = text,
-        onValueChange = {text = it},
+        value = userName,
+        onValueChange = {userName = it},
         modifier = modifier,
-        label = { Text("Label")},
+        label = { Text("Name")},
+        placeholder = {Text("Juan dela Cruz")},
         singleLine = true
     )
+}
+
+@Composable
+fun ShowSubmitButton(onClick: () -> Unit, modifier: Modifier) {
+    Button(
+        onClick = { onClick() },
+        modifier = modifier
+    ) {
+        Text("Submit")
+    }
 }
 
 @Preview
 @Composable
 fun ConstructScreenContent() {
-    ConstraintLayout(z
-        Modifier.fillMaxSize()
+    ConstraintLayout(
+        Modifier
+            .fillMaxSize()
             .background(color = BackgroundColor)
     ) {
-        val (headerContainer, mascotContainer, inputContainer) = createRefs()
+        val (headerContainer, mascotContainer, inputContainer, buttonContainer) = createRefs()
 
         ShowHeaderText(
             Modifier.constrainAs(headerContainer) {
@@ -134,6 +147,16 @@ fun ConstructScreenContent() {
                     top.linkTo(mascotContainer.bottom)
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
+                }
+        )
+
+        ShowSubmitButton(
+            onClick = { print("Hi") },
+            modifier = Modifier
+                .constrainAs(buttonContainer) {
+                    start.linkTo(parent.start)
+                    top.linkTo(inputContainer.bottom, margin = 8.dp)
+                    end.linkTo(parent.end)
                 }
         )
     }
