@@ -1,7 +1,7 @@
 <resources>
     <!-- GLOBAL STRINGS -->
-    <string name="handsy_capitalized">HANDSY</string>
-    <string name="handsy_normal_case">Handsy</string>
+    <string name="handsy_capitalized" translatable="false">HANDSY</string>
+    <string name="handsy_normal_case" translatable="false">Handsy</string>
     <string name="fsl_sentence_case">Filipino Sign Language</string>
     <string name="mascot_content_description">Cat Mascot Image for Handsy</string>
 
