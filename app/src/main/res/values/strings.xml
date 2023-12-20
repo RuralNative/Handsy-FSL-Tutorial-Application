@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Handsy</string>
+    <!-- GLOBAL STRINGS -->
+    <string name="handsy_capitalized">HANDSY</string>
+    <string name="handsy_normal_case">Handsy</string>
+    <string name="fsl_sentence_case">Filipino Sign Language</string>
+    <string name="mascot_content_description">Cat Mascot Image for Handsy</string>
+
+    <!-- USER_INTRO Specific -->
+    <string name="intro_greeting">Hi from us,</string>
+    <string name="name_input_label">Insert Name</string>
+
+    <!-- AUTHOR_MESSAGE Specific -->
+    <string name="author_message_one">Handsy Sign Language is a mobile application with the purpose of providing an accessible platform for learning the Filipino Sign Language for users of all background, especially the deaf and the mute</string>
+    <string name="author_message_two">We hope you enjoy using this application</string>
+    <string name="start_journey_button_label">Start Your Journey</string>
 </resources>
