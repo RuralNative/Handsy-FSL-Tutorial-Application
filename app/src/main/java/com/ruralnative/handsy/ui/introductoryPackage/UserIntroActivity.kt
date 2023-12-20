@@ -43,6 +43,7 @@ class UserIntroActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = BackgroundColor
                 ) {
+                    ConstructScreenContent()
                 }
             }
         }
