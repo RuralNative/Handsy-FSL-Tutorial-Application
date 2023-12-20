@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -51,7 +52,7 @@ class MainActivity : ComponentActivity() {
 fun MascotIcon() {
     Image(
         painter = painterResource(id = R.drawable.mascot_official),
-        contentDescription = "Cat Mascot Image for Handsy",
+        contentDescription = stringResource(R.string.mascot_content_description),
         modifier = Modifier
             .size(250.dp)
             .padding(bottom = 16.dp)
@@ -65,7 +66,7 @@ fun HeaderText() {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "HANDSY",
+            text = stringResource(R.string.handsy_capitalized),
             color = DarkBackgroundColor,
             textAlign = TextAlign.Center,
             style = TextStyle(
@@ -75,7 +76,7 @@ fun HeaderText() {
             )
         )
         Text(
-            text = "Filipino Sign Language",
+            text = stringResource(R.string.fsl_sentence_case),
             color = RegularColor,
             textAlign = TextAlign.Center,
 

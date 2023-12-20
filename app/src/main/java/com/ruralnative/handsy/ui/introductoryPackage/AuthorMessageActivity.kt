@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -70,14 +71,14 @@ private fun IntroMessage(modifier: Modifier) {
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = "Handsy Sign Language is a mobile application with the purpose of providing an accessible platform for learning the Filipino Sign Language for users of all background, especially the deaf and the mute",
+            text = stringResource(R.string.author_message_one),
             color = RegularColor,
             fontSize = 20.sp,
             fontFamily = NunitoFontFamily,
             fontWeight = FontWeight.Normal
         )
         Text(
-            text = "We hope you enjoy using this application",
+            text = stringResource(R.string.author_message_two),
             color = RegularColor,
             fontSize = 20.sp,
             fontFamily = NunitoFontFamily,
@@ -104,7 +105,7 @@ private fun AcceptButton(modifier: Modifier) {
             ),
             content = {
                 Text(
-                    text = "Start Your Journey",
+                    text = stringResource(R.string.start_journey_button_label),
                     fontSize = 20.sp,
                     fontFamily = NunitoFontFamily,
                     fontWeight = FontWeight.ExtraBold

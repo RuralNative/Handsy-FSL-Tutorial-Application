@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -58,14 +59,14 @@ private fun HeaderText(modifier: Modifier) {
         verticalArrangement = Arrangement.Top
     ) {
         Text(
-            text = "Hi from",
+            text = stringResource(R.string.intro_greeting),
             color = RegularColor,
             fontSize = 36.sp,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
         )
         Text(
-            text = "Handsy",
+            text = stringResource(R.string.handsy_normal_case),
             color = RegularColor,
             fontSize = 45.sp,
             fontWeight = FontWeight.ExtraBold,
@@ -82,7 +83,7 @@ private fun MascotIcon(modifier: Modifier) {
     ){
         Image(
             painter = painterResource(id = R.drawable.mascot_official),
-            contentDescription = "Cat Mascot Image for Handsy",
+            contentDescription = stringResource(id = R.string.mascot_content_description),
             modifier = Modifier
                 .size(270.dp)
         )
@@ -91,14 +92,14 @@ private fun MascotIcon(modifier: Modifier) {
 
 @Composable
 private fun NameInputField(modifier: Modifier) {
-    var userName by rememberSaveable { mutableStateOf("") }
+    var userName by rememberSaveable { mutableStateOf("false") }
     TextField(
         value = userName,
         onValueChange = {userName = it},
         modifier = modifier,
         label = {
             Text(
-                text = "Insert Name",
+                text = stringResource(R.string.name_input_label),
                 color = DarkBackgroundColor,
                 fontFamily = NunitoFontFamily,
                 fontWeight = FontWeight.Bold
