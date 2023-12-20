@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -30,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.BackgroundColor
+import com.ruralnative.handsy.ui.theme.DarkBackgroundColor
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import com.ruralnative.handsy.ui.theme.RegularColor
@@ -95,20 +95,16 @@ fun ShowUserInput(modifier: Modifier) {
         value = userName,
         onValueChange = {userName = it},
         modifier = modifier,
-        label = { Text("Name")},
-        placeholder = {Text("Juan dela Cruz")},
+        label = {
+            Text(
+                text = "Insert Name",
+                color = DarkBackgroundColor,
+                fontFamily = NunitoFontFamily,
+                fontWeight = FontWeight.Bold
+            )
+        },
         singleLine = true
     )
-}
-
-@Composable
-fun ShowSubmitButton(onClick: () -> Unit, modifier: Modifier) {
-    Button(
-        onClick = { onClick() },
-        modifier = modifier
-    ) {
-        Text("Submit")
-    }
 }
 
 @Preview
@@ -119,11 +115,11 @@ fun ConstructScreenContent() {
             .fillMaxSize()
             .background(color = BackgroundColor)
     ) {
-        val (headerContainer, mascotContainer, inputContainer, buttonContainer) = createRefs()
+        val (headerContainer, mascotContainer, inputContainer) = createRefs()
 
         ShowHeaderText(
             Modifier.constrainAs(headerContainer) {
-                start.linkTo(parent.start, margin = 32.dp)
+                start.linkTo(parent.start, margin = 50.dp)
                 top.linkTo(parent.top)
                 bottom.linkTo(mascotContainer.top)
             }
@@ -147,16 +143,6 @@ fun ConstructScreenContent() {
                     top.linkTo(mascotContainer.bottom)
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
-                }
-        )
-
-        ShowSubmitButton(
-            onClick = { print("Hi") },
-            modifier = Modifier
-                .constrainAs(buttonContainer) {
-                    start.linkTo(parent.start)
-                    top.linkTo(inputContainer.bottom, margin = 8.dp)
-                    end.linkTo(parent.end)
                 }
         )
     }
