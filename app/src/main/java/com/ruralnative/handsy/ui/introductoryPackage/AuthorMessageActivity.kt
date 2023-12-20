@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
@@ -29,7 +28,6 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.BackgroundColor
-import com.ruralnative.handsy.ui.theme.DarkBackgroundColor
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import com.ruralnative.handsy.ui.theme.RegularColor
@@ -50,7 +48,7 @@ class AuthorMessageActivity : ComponentActivity() {
 }
 
 @Composable
-private fun ShowMascot(modifier: Modifier) {
+private fun MascotIcon(modifier: Modifier) {
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
@@ -65,7 +63,7 @@ private fun ShowMascot(modifier: Modifier) {
 }
 
 @Composable
-private fun ShowIntroMessage(modifier: Modifier) {
+private fun IntroMessage(modifier: Modifier) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.Start,
@@ -89,7 +87,7 @@ private fun ShowIntroMessage(modifier: Modifier) {
 }
 
 @Composable
-private fun ShowAcceptButton(modifier: Modifier) {
+private fun AcceptButton(modifier: Modifier) {
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
@@ -118,7 +116,7 @@ private fun ShowAcceptButton(modifier: Modifier) {
 
 @Preview
 @Composable
-private fun CreateActivityScreen() {
+private fun ScreenContent() {
     ConstraintLayout(
         Modifier
             .fillMaxSize()
@@ -126,7 +124,7 @@ private fun CreateActivityScreen() {
     ) {
         val (mascotContainer, messageContainer, buttonContainer) = createRefs()
 
-        ShowMascot(
+        MascotIcon(
             Modifier.constrainAs(mascotContainer) {
                 start.linkTo(parent.start)
                 top.linkTo(parent.top, margin = 100.dp)
@@ -134,7 +132,7 @@ private fun CreateActivityScreen() {
             }
         )
 
-        ShowIntroMessage(
+        IntroMessage(
             Modifier
                 .constrainAs(messageContainer) {
                     start.linkTo(parent.start)
@@ -147,7 +145,7 @@ private fun CreateActivityScreen() {
                 .padding(start = 45.dp, end = 45.dp)
         )
 
-        ShowAcceptButton(
+        AcceptButton(
             Modifier
                 .constrainAs(buttonContainer) {
                     start.linkTo(parent.start)

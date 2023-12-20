@@ -43,7 +43,7 @@ class UserIntroActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = BackgroundColor
                 ) {
-                    ConstructScreenContent()
+                    ScreenContent()
                 }
             }
         }
@@ -51,7 +51,7 @@ class UserIntroActivity : ComponentActivity() {
 }
 
 @Composable
-private fun ShowHeaderText(modifier: Modifier) {
+private fun HeaderText(modifier: Modifier) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.Start,
@@ -75,7 +75,7 @@ private fun ShowHeaderText(modifier: Modifier) {
 }
 
 @Composable
-private fun ShowMascot(modifier: Modifier) {
+private fun MascotIcon(modifier: Modifier) {
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
@@ -90,7 +90,7 @@ private fun ShowMascot(modifier: Modifier) {
 }
 
 @Composable
-private fun ShowUserInput(modifier: Modifier) {
+private fun NameInputField(modifier: Modifier) {
     var userName by rememberSaveable { mutableStateOf("") }
     TextField(
         value = userName,
@@ -110,7 +110,7 @@ private fun ShowUserInput(modifier: Modifier) {
 
 @Preview
 @Composable
-private fun ConstructScreenContent() {
+private fun ScreenContent() {
     ConstraintLayout(
         Modifier
             .fillMaxSize()
@@ -118,7 +118,7 @@ private fun ConstructScreenContent() {
     ) {
         val (headerContainer, mascotContainer, inputContainer) = createRefs()
 
-        ShowHeaderText(
+        HeaderText(
             Modifier.constrainAs(headerContainer) {
                 start.linkTo(parent.start, margin = 50.dp)
                 top.linkTo(parent.top)
@@ -126,7 +126,7 @@ private fun ConstructScreenContent() {
             }
         )
 
-        ShowMascot(
+        MascotIcon(
             Modifier
                 .constrainAs(mascotContainer) {
                     start.linkTo(parent.start)
@@ -137,7 +137,7 @@ private fun ConstructScreenContent() {
                 .fillMaxWidth()
         )
 
-        ShowUserInput(
+        NameInputField(
             Modifier
                 .constrainAs(inputContainer) {
                     start.linkTo(parent.start)

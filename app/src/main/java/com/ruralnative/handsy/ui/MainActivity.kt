@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = BackgroundColor
                 ) {
-                    CreateDisplayIcon()
+                    DisplayIcon()
                 }
             }
         }
@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ShowMascot() {
+fun MascotIcon() {
     Image(
         painter = painterResource(id = R.drawable.mascot_official),
         contentDescription = "Cat Mascot Image for Handsy",
@@ -59,7 +59,7 @@ fun ShowMascot() {
 }
 
 @Composable
-fun ShowAppName() {
+fun HeaderText() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -85,7 +85,7 @@ fun ShowAppName() {
 
 @Preview
 @Composable
-fun CreateDisplayIcon() {
+fun DisplayIcon() {
     ConstraintLayout (
         modifier = Modifier
             .fillMaxSize()
@@ -103,8 +103,8 @@ fun CreateDisplayIcon() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             HandsyTheme {
-                ShowMascot()
-                ShowAppName()
+                MascotIcon()
+                HeaderText()
             }
         }
     }
