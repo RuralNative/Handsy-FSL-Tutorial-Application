@@ -51,7 +51,7 @@ class UserIntroActivity : ComponentActivity() {
 }
 
 @Composable
-fun ShowHeaderText(modifier: Modifier) {
+private fun ShowHeaderText(modifier: Modifier) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.Start,
@@ -75,7 +75,7 @@ fun ShowHeaderText(modifier: Modifier) {
 }
 
 @Composable
-fun ShowMascot(modifier: Modifier) {
+private fun ShowMascot(modifier: Modifier) {
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
@@ -90,7 +90,7 @@ fun ShowMascot(modifier: Modifier) {
 }
 
 @Composable
-fun ShowUserInput(modifier: Modifier) {
+private fun ShowUserInput(modifier: Modifier) {
     var userName by rememberSaveable { mutableStateOf("") }
     TextField(
         value = userName,
@@ -110,7 +110,7 @@ fun ShowUserInput(modifier: Modifier) {
 
 @Preview
 @Composable
-fun ConstructScreenContent() {
+private fun ConstructScreenContent() {
     ConstraintLayout(
         Modifier
             .fillMaxSize()
