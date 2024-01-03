@@ -28,6 +28,50 @@ import com.ruralnative.handsy.ui.theme.BackgroundColor
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import com.ruralnative.handsy.ui.theme.RegularColor
 
+@Preview
+@Composable
+public fun AuthorMessageScreen() {
+    ConstraintLayout(
+        Modifier
+            .fillMaxSize()
+            .background(color = BackgroundColor)
+    ) {
+        val (mascotContainer, messageContainer, buttonContainer) = createRefs()
+
+        MascotIcon(
+            Modifier.constrainAs(mascotContainer) {
+                start.linkTo(parent.start)
+                top.linkTo(parent.top, margin = 100.dp)
+                end.linkTo(parent.end)
+            }
+        )
+
+        IntroMessage(
+            Modifier
+                .constrainAs(messageContainer) {
+                    start.linkTo(parent.start)
+                    top.linkTo(mascotContainer.bottom)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(buttonContainer.top)
+                }
+                .fillMaxWidth()
+                .height(270.dp)
+                .padding(start = 45.dp, end = 45.dp)
+        )
+
+        AcceptButton(
+            Modifier
+                .constrainAs(buttonContainer) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom, margin = 60.dp)
+                }
+                .padding(start = 45.dp, end = 45.dp)
+                .fillMaxWidth()
+        )
+    }
+}
+
 @Composable
 private fun MascotIcon(modifier: Modifier) {
     Box(
@@ -91,50 +135,6 @@ private fun AcceptButton(modifier: Modifier) {
                     fontWeight = FontWeight.ExtraBold
                 )
             }
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun ScreenContent() {
-    ConstraintLayout(
-        Modifier
-            .fillMaxSize()
-            .background(color = BackgroundColor)
-    ) {
-        val (mascotContainer, messageContainer, buttonContainer) = createRefs()
-
-        MascotIcon(
-            Modifier.constrainAs(mascotContainer) {
-                start.linkTo(parent.start)
-                top.linkTo(parent.top, margin = 100.dp)
-                end.linkTo(parent.end)
-            }
-        )
-
-        IntroMessage(
-            Modifier
-                .constrainAs(messageContainer) {
-                    start.linkTo(parent.start)
-                    top.linkTo(mascotContainer.bottom)
-                    end.linkTo(parent.end)
-                    bottom.linkTo(buttonContainer.top)
-                }
-                .fillMaxWidth()
-                .height(270.dp)
-                .padding(start = 45.dp, end = 45.dp)
-        )
-
-        AcceptButton(
-            Modifier
-                .constrainAs(buttonContainer) {
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom, margin = 60.dp)
-                }
-                .padding(start = 45.dp, end = 45.dp)
-                .fillMaxWidth()
         )
     }
 }
