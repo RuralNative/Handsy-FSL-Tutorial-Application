@@ -17,7 +17,6 @@ class LoadingScreenActivity : ComponentActivity() {
             HandsyTheme {
                 navController = rememberNavController()
                 NavGraph(navController = navController)
-                LoadingScreen(navController = navController)
             }
         }
     }
