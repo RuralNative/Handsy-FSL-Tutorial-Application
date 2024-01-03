@@ -19,7 +19,7 @@ fun NavGraph(
         composable(
             route = Screen.LoadingScreen.route
         ) {
-            LoadingScreen()
+            LoadingScreen(navController)
         }
         composable(
             route = Screen.UserIntroScreen.route
