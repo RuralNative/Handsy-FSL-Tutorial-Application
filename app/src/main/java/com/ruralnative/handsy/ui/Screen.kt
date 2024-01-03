@@ -1,4 +1,4 @@
-package com.ruralnative.handsy
+package com.ruralnative.handsy.ui
 
 /*
 This sealed class Screen represents the different Composable screens in the application, restricting the class hierarchy to what is defined here, allowing handling of navigation results to be easier.
