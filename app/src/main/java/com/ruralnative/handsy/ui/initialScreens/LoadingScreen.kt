@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.introductoryPackage
+package com.ruralnative.handsy.ui.initialScreens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
