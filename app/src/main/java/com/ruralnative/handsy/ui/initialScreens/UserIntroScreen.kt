@@ -30,6 +30,47 @@ import com.ruralnative.handsy.ui.theme.DarkBackgroundColor
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import com.ruralnative.handsy.ui.theme.RegularColor
 
+@Preview
+@Composable
+public fun UserIntroScreen() {
+    ConstraintLayout(
+        Modifier
+            .fillMaxSize()
+            .background(color = BackgroundColor)
+    ) {
+        val (headerContainer, mascotContainer, inputContainer) = createRefs()
+
+        HeaderText(
+            Modifier.constrainAs(headerContainer) {
+                start.linkTo(parent.start, margin = 50.dp)
+                top.linkTo(parent.top)
+                bottom.linkTo(mascotContainer.top)
+            }
+        )
+
+        MascotIcon(
+            Modifier
+                .constrainAs(mascotContainer) {
+                    start.linkTo(parent.start)
+                    top.linkTo(parent.top)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                }
+                .fillMaxWidth()
+        )
+
+        NameInputField(
+            Modifier
+                .constrainAs(inputContainer) {
+                    start.linkTo(parent.start)
+                    top.linkTo(mascotContainer.bottom)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                }
+        )
+    }
+}
+
 @Composable
 private fun HeaderText(modifier: Modifier) {
     Column(
@@ -86,45 +127,4 @@ private fun NameInputField(modifier: Modifier) {
         },
         singleLine = true
     )
-}
-
-@Preview
-@Composable
-private fun ScreenContent() {
-    ConstraintLayout(
-        Modifier
-            .fillMaxSize()
-            .background(color = BackgroundColor)
-    ) {
-        val (headerContainer, mascotContainer, inputContainer) = createRefs()
-
-        HeaderText(
-            Modifier.constrainAs(headerContainer) {
-                start.linkTo(parent.start, margin = 50.dp)
-                top.linkTo(parent.top)
-                bottom.linkTo(mascotContainer.top)
-            }
-        )
-
-        MascotIcon(
-            Modifier
-                .constrainAs(mascotContainer) {
-                    start.linkTo(parent.start)
-                    top.linkTo(parent.top)
-                    end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom)
-                }
-                .fillMaxWidth()
-        )
-
-        NameInputField(
-            Modifier
-                .constrainAs(inputContainer) {
-                    start.linkTo(parent.start)
-                    top.linkTo(mascotContainer.bottom)
-                    end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom)
-                }
-        )
-    }
 }
