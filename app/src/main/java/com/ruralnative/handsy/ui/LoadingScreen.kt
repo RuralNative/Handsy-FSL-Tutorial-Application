@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.initialScreens
+package com.ruralnative.handsy.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,7 +30,7 @@ import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import com.ruralnative.handsy.ui.theme.RegularColor
 
 @Composable
-public fun LoadingScreen(
+fun LoadingScreen(
     navController: NavController
 ) {
     ConstraintLayout(

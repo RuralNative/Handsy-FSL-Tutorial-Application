@@ -5,7 +5,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.ruralnative.handsy.ui.initialScreens.AuthorMessageScreen
-import com.ruralnative.handsy.ui.initialScreens.LoadingScreen
 import com.ruralnative.handsy.ui.initialScreens.UserIntroScreen
 
 @Composable
