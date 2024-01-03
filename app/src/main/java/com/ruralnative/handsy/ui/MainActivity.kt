@@ -36,78 +36,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             HandsyTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = BackgroundColor
-                ) {
-                    DisplayIcon()
-                }
+                //TODO
             }
         }
     }
-}
-
-@Composable
-fun MascotIcon() {
-    Image(
-        painter = painterResource(id = R.drawable.mascot_official),
-        contentDescription = stringResource(R.string.mascot_content_description),
-        modifier = Modifier
-            .size(250.dp)
-            .padding(bottom = 16.dp)
-    )
-}
-
-@Composable
-fun HeaderText() {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = stringResource(R.string.handsy_capitalized),
-            color = DarkBackgroundColor,
-            textAlign = TextAlign.Center,
-            style = TextStyle(
-                fontSize = 40.sp,
-                fontWeight = FontWeight.ExtraBold,
-                fontFamily = NunitoFontFamily
-            )
-        )
-        Text(
-            text = stringResource(R.string.fsl_sentence_case),
-            color = RegularColor,
-            textAlign = TextAlign.Center,
-
-        )
-    }
-}
-
-@Preview
-@Composable
-fun DisplayIcon() {
-    ConstraintLayout (
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = BackgroundColor)
-    ) {
-        val container = createRef()
-        Column (
-            modifier = Modifier.constrainAs(container) {
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-            },
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            HandsyTheme {
-                MascotIcon()
-                HeaderText()
-            }
-        }
-    }
-
 }
