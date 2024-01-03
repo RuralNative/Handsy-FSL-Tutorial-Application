@@ -97,10 +97,17 @@ The application adheres to the modern standards as stated in the Android Develop
 Information necessary to understand the UI Layer of this application is discussed in the following sub-sections.
 
 ### UI Toolkit
+The application uses **Jetpack Compose** library as its standard UI toolkit.
+It adopts a declarative programming paradigm to simplify and accelerate the UI development of the Android project, which I personally found challenging to adopt with considering how am I used with using XML layouts and Views for designing the UI of Android applications.
+Refer to the [official documentation](https://developer.android.com/jetpack/compose/documentation) for more information regarding the Jetpack Compose library.
 
-#### Design Language
+### Design Language
+The application uses **Material Design 3** library as its standard design language for the design of its components and determining the right colors, icons, theming, typographical features, and others to achieve high-quality visuals and user experience.
+Refer to the [official documentation](https://m3.material.io/) for more information regarding the Jetpack Compose library.
 
-#### Navigation
+### Navigation
+The application uses **Android Jetpack Navigation** library for handling navigation in our application, providing a simple and consistent API for navigating between different screens available in it.
+Refer to the [official documentation](https://developer.android.com/guide/navigation) for more information regarding the Navigation library.
 
 ## Design Patterns
 
