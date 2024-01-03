@@ -55,7 +55,7 @@ public fun LoadingScreen() {
 }
 
 @Composable
-fun MascotIcon() {
+private fun MascotIcon() {
     Image(
         painter = painterResource(id = R.drawable.mascot_official),
         contentDescription = stringResource(R.string.mascot_content_description),
@@ -66,7 +66,7 @@ fun MascotIcon() {
 }
 
 @Composable
-fun HeaderText() {
+private fun HeaderText() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
