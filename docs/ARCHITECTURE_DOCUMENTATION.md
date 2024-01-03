@@ -22,6 +22,8 @@ The mobile application is structured into two (2) distinct layers:
 - **UI Layer**: This layer is responsible for presenting information to the user and handling user interactions. It includes Activities, Fragments, and Views.
 - **Data Layer**: This layer is responsible for handling data operations. It includes Repositories, Data Sources, and Entities.
 
+The mobile application implements the standard **Jetpack Compose Navigation** implementation and principles to manage the navigation functionalities of the application which will be explained in depth later in the documentation.
+
 The application uses the **Room Database** for local database storage, further utilizing other Android Architecture Components such as ViewModel and LiveData for managing and observing in a lifecycle-conscious manner.
 
 The mobile application is designed to work **OFFLINE**. 
@@ -64,7 +66,7 @@ Our mobile application utilizes the following technologies within its Data Layer
 * Room Database: For local database implementation and persistence
 * Kotlin Coroutines and Flow: For asynchronous access, manipulation, and live observation of data
 
-## Component Descriptions
+## Data Layer
 
 ### Room Database:
 
@@ -87,6 +89,18 @@ Our mobile application utilizes the following technologies within its Data Layer
 **UserRepository**: Encapsulates access to User data, leveraging the UserDao for retrieving, saving, and updating user information.
 **AlphabetLessonRepository**: Encapsulates access to AlphabetLesson data through the AlphabetLessonDao for retrieving, saving, and updating lesson information.
 **PhrasesLessonRepository**: Encapsulates access to PhrasesLesson data through the PhrasesLessonDao for retrieving, saving, and updating lesson information.
+
+### User Interface Layer
+
+The application adheres to the modern standards as stated in the Android Developers documentations in building its User Interface Layer. It uses several community-supported libraries to achieve this and maintain high quality and performance of the application which this application aims to meet while being highly accessible for a variety of users.
+
+Information necessary to understand the UI Layer of this application is discussed in the following sub-sections.
+
+### UI Toolkit
+
+#### Design Language
+
+#### Navigation
 
 ## Design Patterns
 
