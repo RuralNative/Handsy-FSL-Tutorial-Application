@@ -20,6 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.BackgroundColor
 import com.ruralnative.handsy.ui.theme.DarkBackgroundColor
@@ -28,8 +30,9 @@ import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import com.ruralnative.handsy.ui.theme.RegularColor
 
 @Composable
-@Preview(showBackground = true)
-public fun LoadingScreen() {
+public fun LoadingScreen(
+    navController: NavController
+) {
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
@@ -52,6 +55,12 @@ public fun LoadingScreen() {
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewScreen() {
+    LoadingScreen(navController = rememberNavController())
 }
 
 @Composable
