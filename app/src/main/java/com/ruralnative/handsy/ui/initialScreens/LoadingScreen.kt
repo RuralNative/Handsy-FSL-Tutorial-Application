@@ -28,6 +28,33 @@ import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import com.ruralnative.handsy.ui.theme.RegularColor
 
 @Composable
+@Preview(showBackground = true)
+public fun LoadingScreen() {
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = BackgroundColor)
+    ) {
+        val container = createRef()
+        Column(
+            modifier = Modifier.constrainAs(container) {
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+            },
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            HandsyTheme {
+                MascotIcon()
+                HeaderText()
+            }
+        }
+    }
+}
+
+@Composable
 fun MascotIcon() {
     Image(
         painter = painterResource(id = R.drawable.mascot_official),
@@ -60,32 +87,5 @@ fun HeaderText() {
             textAlign = TextAlign.Center,
 
             )
-    }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun DisplayIcon() {
-    ConstraintLayout(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = BackgroundColor)
-    ) {
-        val container = createRef()
-        Column(
-            modifier = Modifier.constrainAs(container) {
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-            },
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            HandsyTheme {
-                MascotIcon()
-                HeaderText()
-            }
-        }
     }
 }
