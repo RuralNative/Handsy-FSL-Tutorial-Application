@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,15 +26,24 @@ import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
+@Preview(showBackground = true)
 @Composable
-fun LoadingScreen(
-) {
+private fun PreviewScreen(modifier: Modifier = Modifier) {
     HandsyTheme {
-        ConstraintLayout(
+        Surface(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = MaterialTheme.colorScheme.background)
         ) {
+            LoadingScreen()
+        }
+    }
+}
+
+@Composable
+fun LoadingScreen(modifier: Modifier = Modifier) {
+    HandsyTheme {
+        ConstraintLayout {
             val container = createRef()
             Column(
                 modifier = Modifier.constrainAs(container) {
@@ -55,7 +65,7 @@ fun LoadingScreen(
 }
 
 @Composable
-private fun MascotIcon() {
+private fun MascotIcon(modifier: Modifier = Modifier) {
     Image(
         painter = painterResource(id = R.drawable.mascot_official),
         contentDescription = stringResource(R.string.mascot_content_description),
@@ -66,36 +76,25 @@ private fun MascotIcon() {
 }
 
 @Composable
-private fun HeaderText() {
-    HandsyTheme {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = stringResource(R.string.handsy_capitalized),
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center,
-                style = TextStyle(
-                    fontSize = 40.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    fontFamily = NunitoFontFamily
-                )
+private fun HeaderText(modifier: Modifier = Modifier) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = stringResource(R.string.handsy_capitalized),
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center,
+            style = TextStyle(
+                fontSize = 40.sp,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = NunitoFontFamily
             )
-            Text(
-                text = stringResource(R.string.fsl_sentence_case),
-                color = MaterialTheme.colorScheme.secondary,
-                textAlign = TextAlign.Center,
-
-                )
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PreviewScreen() {
-    HandsyTheme {
-        LoadingScreen()
+        )
+        Text(
+            text = stringResource(R.string.fsl_sentence_case),
+            color = MaterialTheme.colorScheme.secondary,
+            textAlign = TextAlign.Center,
+        )
     }
 }
