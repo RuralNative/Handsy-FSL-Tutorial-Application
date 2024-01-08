@@ -4,6 +4,8 @@ import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.User
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.firstOrNull
 
 @Suppress("RedundantSuspendModifier")
 @WorkerThread
@@ -12,6 +14,19 @@ class UserRepository(private val dao: UserDao) {
 
     suspend fun getUserByID(userID: Int): Flow<User> {
         return dao.selectUserById(userID)
+    }
+
+    suspend fun isThereAUser(): Flow<Boolean> {
+        val numberOfUsers: Int = dao.countUsers().firstOrNull() ?: 0
+        var isUserEmpty: Boolean = true
+
+        if (numberOfUsers == 0) {
+            isUserEmpty = true
+        } else if (numberOfUsers != 0) {
+            isUserEmpty = false
+        }
+
+        return MutableStateFlow(isUserEmpty)
     }
 
     suspend fun insertUser(user: User) {
