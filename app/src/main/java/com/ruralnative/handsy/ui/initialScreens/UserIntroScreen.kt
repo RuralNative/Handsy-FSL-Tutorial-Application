@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -26,16 +27,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ruralnative.handsy.R
+import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Preview
 @Composable
-public fun UserIntroScreen() {
-    ConstraintLayout(
-        Modifier
-            .fillMaxSize()
-            .background(color = MaterialTheme.colorScheme.primary)
-    ) {
+private fun UserIntroPreview() {
+    HandsyTheme {
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.background)
+        ){
+            UserIntroScreen(modifier = Modifier)
+        }
+    }
+}
+
+@Composable
+fun UserIntroScreen(modifier: Modifier) {
+    ConstraintLayout {
         val (headerContainer, mascotContainer, inputContainer) = createRefs()
 
         HeaderText(
@@ -45,7 +56,6 @@ public fun UserIntroScreen() {
                 bottom.linkTo(mascotContainer.top)
             }
         )
-
         MascotIcon(
             Modifier
                 .constrainAs(mascotContainer) {
@@ -56,7 +66,6 @@ public fun UserIntroScreen() {
                 }
                 .fillMaxWidth()
         )
-
         NameInputField(
             Modifier
                 .constrainAs(inputContainer) {
@@ -78,7 +87,7 @@ private fun HeaderText(modifier: Modifier) {
     ) {
         Text(
             text = stringResource(R.string.intro_greeting),
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.secondary,
             fontSize = 36.sp,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
@@ -110,7 +119,7 @@ private fun MascotIcon(modifier: Modifier) {
 
 @Composable
 private fun NameInputField(modifier: Modifier) {
-    var userName by rememberSaveable { mutableStateOf("false") }
+    var userName by rememberSaveable { mutableStateOf(" ") }
     TextField(
         value = userName,
         onValueChange = {userName = it},
