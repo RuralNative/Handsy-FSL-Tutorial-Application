@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -25,10 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ruralnative.handsy.R
-import com.ruralnative.handsy.ui.theme.BackgroundColor
-import com.ruralnative.handsy.ui.theme.DarkBackgroundColor
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
-import com.ruralnative.handsy.ui.theme.RegularColor
 
 @Preview
 @Composable
@@ -36,7 +34,7 @@ public fun UserIntroScreen() {
     ConstraintLayout(
         Modifier
             .fillMaxSize()
-            .background(color = BackgroundColor)
+            .background(color = MaterialTheme.colorScheme.primary)
     ) {
         val (headerContainer, mascotContainer, inputContainer) = createRefs()
 
@@ -80,14 +78,14 @@ private fun HeaderText(modifier: Modifier) {
     ) {
         Text(
             text = stringResource(R.string.intro_greeting),
-            color = RegularColor,
+            color = MaterialTheme.colorScheme.primary,
             fontSize = 36.sp,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
         )
         Text(
             text = stringResource(R.string.handsy_normal_case),
-            color = RegularColor,
+            color = MaterialTheme.colorScheme.primary,
             fontSize = 45.sp,
             fontWeight = FontWeight.ExtraBold,
             fontFamily = NunitoFontFamily
@@ -120,7 +118,7 @@ private fun NameInputField(modifier: Modifier) {
         label = {
             Text(
                 text = stringResource(R.string.name_input_label),
-                color = DarkBackgroundColor,
+                color = MaterialTheme.colorScheme.primary,
                 fontFamily = NunitoFontFamily,
                 fontWeight = FontWeight.Bold
             )

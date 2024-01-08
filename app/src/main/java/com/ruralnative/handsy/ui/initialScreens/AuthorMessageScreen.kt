@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,9 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ruralnative.handsy.R
-import com.ruralnative.handsy.ui.theme.BackgroundColor
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
-import com.ruralnative.handsy.ui.theme.RegularColor
 
 @Preview
 @Composable
@@ -34,7 +33,7 @@ public fun AuthorMessageScreen() {
     ConstraintLayout(
         Modifier
             .fillMaxSize()
-            .background(color = BackgroundColor)
+            .background(color = MaterialTheme.colorScheme.background)
     ) {
         val (mascotContainer, messageContainer, buttonContainer) = createRefs()
 
@@ -96,14 +95,14 @@ private fun IntroMessage(modifier: Modifier) {
     ) {
         Text(
             text = stringResource(R.string.author_message_one),
-            color = RegularColor,
+            color = MaterialTheme.colorScheme.primary,
             fontSize = 20.sp,
             fontFamily = NunitoFontFamily,
             fontWeight = FontWeight.Normal
         )
         Text(
             text = stringResource(R.string.author_message_two),
-            color = RegularColor,
+            color = MaterialTheme.colorScheme.primary,
             fontSize = 20.sp,
             fontFamily = NunitoFontFamily,
             fontWeight = FontWeight.Normal
@@ -124,8 +123,8 @@ private fun AcceptButton(modifier: Modifier) {
             modifier = Modifier
                 .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
-                containerColor = RegularColor,
-                contentColor = BackgroundColor
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.primaryContainer
             ),
             content = {
                 Text(
