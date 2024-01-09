@@ -22,40 +22,45 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
-@Preview(showBackground = true)
 @Composable
-private fun PreviewScreen(modifier: Modifier = Modifier) {
-    HandsyTheme {
-        Surface(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = MaterialTheme.colorScheme.background)
-        ) {
-            LoadingScreen()
+private fun EntryScreen(modifier: Modifier = Modifier) {
+    val viewModel: EntryViewModel = viewModel()
+    viewModel.checkUserCountAndNavigate(
+        navigateToInitial = {
+            TODO("Add code for navigating to initial screen")
+        },
+        navigateToMain = {
+            TODO("Add code for navigating to main screen")
         }
-    }
+    )
+    EntryScreenUI(Modifier)
 }
 
+@Preview(showBackground = true)
 @Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
-    HandsyTheme {
-        ConstraintLayout {
-            val container = createRef()
-            Column(
-                modifier = Modifier.constrainAs(container) {
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                },
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+private fun EntryScreenUI(modifier: Modifier = Modifier) {
+    ConstraintLayout {
+        val container = createRef()
+        HandsyTheme {
+            Surface(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = MaterialTheme.colorScheme.background)
             ) {
-                HandsyTheme {
+                Column(
+                    modifier = Modifier.constrainAs(container) {
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom) },
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     MascotIcon()
                     HeaderText()
                 }
