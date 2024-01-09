@@ -6,7 +6,7 @@
 
     <activity
         android:id="@+id/entry_activity_start"
-        android:name="com.ruralnative.handsy.ui.entryUI.EntryActivity"
+        android:name="com.ruralnative.handsy.ui.MainActivity"
         android:label="entry_activity" />
     <activity
         android:id="@+id/user_intro_dest"
