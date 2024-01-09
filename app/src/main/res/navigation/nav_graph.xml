@@ -2,10 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/EntryActivity">
+    app:startDestination="@id/entry_activity_start">
 
     <activity
-        android:id="@+id/EntryActivity"
+        android:id="@+id/entry_activity_start"
         android:name="com.ruralnative.handsy.ui.entryUI.EntryActivity"
-        android:label="MainActivity" />
+        android:label="entry_activity" />
+    <activity
+        android:id="@+id/user_intro_dest"
+        android:name="com.ruralnative.handsy.ui.initialScreens.UserIntroActivity"
+        android:label="user_intro" />
 </navigation>
