@@ -119,6 +119,8 @@ private fun MascotIcon(modifier: Modifier) {
 
 @Composable
 private fun NameInputField(modifier: Modifier) {
+    //Hoist state of Composable to ViewModel
+    //Send text input to UserIntroViewModel upon clicking Enter in Keyboard
     var userName by rememberSaveable { mutableStateOf(" ") }
     TextField(
         value = userName,
