@@ -23,16 +23,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.ruralnative.handsy.R
+import com.ruralnative.handsy.ui.Screen
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Composable
-fun EntryScreen() {
+fun EntryScreen(navController: NavController) {
     val viewModel: EntryViewModel = viewModel()
     viewModel.checkUserCountAndNavigate(
         navigateToInitial = {
-            TODO("Add code for navigating to initial screen")
+            navController.navigate(route = Screen.UserIntro.route)
         },
         navigateToMain = {
             TODO("Add code for navigating to main screen")
