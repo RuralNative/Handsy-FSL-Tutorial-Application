@@ -32,20 +32,20 @@ import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Preview
 @Composable
-private fun UserIntroPreview() {
+fun UserIntroScreen() {
     HandsyTheme {
         Surface(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = MaterialTheme.colorScheme.background)
         ){
-            UserIntroScreen(modifier = Modifier)
+            UserIntroScreenUI(modifier = Modifier)
         }
     }
 }
 
 @Composable
-fun UserIntroScreen(modifier: Modifier) {
+private fun UserIntroScreenUI(modifier: Modifier) {
     ConstraintLayout {
         val (headerContainer, mascotContainer, inputContainer) = createRefs()
 

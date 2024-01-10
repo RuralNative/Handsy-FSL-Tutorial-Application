@@ -28,7 +28,7 @@ import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Composable
-private fun EntryScreen(modifier: Modifier = Modifier) {
+fun EntryScreen() {
     val viewModel: EntryViewModel = viewModel()
     viewModel.checkUserCountAndNavigate(
         navigateToInitial = {
