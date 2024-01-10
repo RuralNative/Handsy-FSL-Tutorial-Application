@@ -16,6 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             HandsyTheme {
                 val navController = rememberNavController()
+                NavGraph(navController = navController)
             }
         }
     }
