@@ -14,10 +14,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HandsyTheme {
-                val navController = rememberNavController()
-                NavGraph(navController = navController)
-            }
+            val navController = rememberNavController()
+            NavGraph(navController = navController)
         }
     }
 }

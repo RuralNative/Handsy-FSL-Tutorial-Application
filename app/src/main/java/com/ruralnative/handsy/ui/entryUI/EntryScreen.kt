@@ -37,7 +37,7 @@ fun EntryScreen(navController: NavController) {
             navController.navigate(route = Screen.UserIntro.route)
         },
         navigateToMain = {
-            TODO("Add code for navigating to main screen")
+            //Add code for navigating to main screen
         }
     )
     EntryScreenUI(Modifier)
@@ -46,14 +46,14 @@ fun EntryScreen(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 private fun EntryScreenUI(modifier: Modifier = Modifier) {
-    ConstraintLayout {
-        val container = createRef()
-        HandsyTheme {
-            Surface(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(color = MaterialTheme.colorScheme.background)
-            ) {
+    HandsyTheme {
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.background)
+        ) {
+            ConstraintLayout {
+                val container = createRef()
                 Column(
                     modifier = Modifier.constrainAs(container) {
                         start.linkTo(parent.start)
