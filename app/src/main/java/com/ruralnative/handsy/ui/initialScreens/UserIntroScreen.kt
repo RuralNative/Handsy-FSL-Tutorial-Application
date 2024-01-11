@@ -13,6 +13,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -32,16 +33,12 @@ import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Composable
-fun UserIntroScreen(navController: NavController) {
-    UserIntroScreenUI()
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun UserIntroScreenUI() {
-
-    var userName: String = "0"
-    var userNameState by rememberSaveable { mutableStateOf(userName) }
+private fun UserIntroScreen(
+    navController: NavController,
+    viewModel: UserIntroViewModel
+) {
+    
+    val uiState by viewModel.uiState.collectAsState(initial = "Juan")
 
     HandsyTheme {
         Surface(
@@ -70,8 +67,10 @@ private fun UserIntroScreenUI() {
                         .fillMaxWidth()
                 )
                 NameInputField(
-                    value = userNameState,
-                    onValueChange = {userNameState = it},
+                    value = uiState.userNameState,
+                    onValueChange = { newValue ->
+                        viewModel.updateUserNameState(newValue)
+                    },
                     Modifier
                         .constrainAs(inputContainer) {
                             start.linkTo(parent.start)
@@ -144,4 +143,53 @@ private fun NameInputField(
         },
         singleLine = true
     )
+}
+
+// For PREVIEW purposes ONLY
+@Preview(showBackground = true)
+@Composable
+fun UserIntroPreview() {
+    var userName: String = "0"
+    var userNameState by rememberSaveable { mutableStateOf(userName) }
+
+    HandsyTheme {
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.background)
+        ){
+            ConstraintLayout {
+                val (headerContainer, mascotContainer, inputContainer) = createRefs()
+
+                HeaderText(
+                    Modifier.constrainAs(headerContainer) {
+                        start.linkTo(parent.start, margin = 50.dp)
+                        top.linkTo(parent.top)
+                        bottom.linkTo(mascotContainer.top)
+                    }
+                )
+                MascotIcon(
+                    Modifier
+                        .constrainAs(mascotContainer) {
+                            start.linkTo(parent.start)
+                            top.linkTo(parent.top)
+                            end.linkTo(parent.end)
+                            bottom.linkTo(parent.bottom)
+                        }
+                        .fillMaxWidth()
+                )
+                NameInputField(
+                    value = userNameState,
+                    onValueChange = {userNameState = it},
+                    Modifier
+                        .constrainAs(inputContainer) {
+                            start.linkTo(parent.start)
+                            top.linkTo(mascotContainer.bottom)
+                            end.linkTo(parent.end)
+                            bottom.linkTo(parent.bottom)
+                        }
+                )
+            }
+        }
+    }
 }
