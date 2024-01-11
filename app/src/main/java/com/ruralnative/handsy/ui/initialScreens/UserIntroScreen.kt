@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardActionScope
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -15,15 +18,14 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -39,6 +41,7 @@ private fun UserIntroScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState(initial = UserIntroState())
     val userNameState = uiState.userNameState
+    val saveUserName: KeyboardActionScope.() -> Unit = { viewModel.saveUserNameInDatabase(userNameState) }
 
     HandsyTheme {
         Surface(
@@ -71,6 +74,7 @@ private fun UserIntroScreen(
                     onValueChange = { newValue ->
                         viewModel.updateUserNameState(newValue)
                     },
+                    onDone = { viewModel.saveUserNameInDatabase(it) },
                     Modifier
                         .constrainAs(inputContainer) {
                             start.linkTo(parent.start)
@@ -127,6 +131,7 @@ private fun MascotIcon(modifier: Modifier) {
 private fun NameInputField(
     value: String,
     onValueChange: (String) -> Unit,
+    onDone: (String) -> Unit,
     modifier: Modifier
 ) {
     TextField(
@@ -141,55 +146,14 @@ private fun NameInputField(
                 fontWeight = FontWeight.Bold
             )
         },
+        keyboardOptions = KeyboardOptions(
+            capitalization = KeyboardCapitalization.Words,
+            imeAction = ImeAction.Done,
+            keyboardType = KeyboardType.Text,
+        ),
+        keyboardActions = KeyboardActions(
+            onDone = { onDone(value) }
+        ),
         singleLine = true
     )
-}
-
-// For PREVIEW purposes ONLY
-@Preview(showBackground = true)
-@Composable
-fun UserIntroPreview() {
-    var userName: String = "0"
-    var userNameState by rememberSaveable { mutableStateOf(userName) }
-
-    HandsyTheme {
-        Surface(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = MaterialTheme.colorScheme.background)
-        ){
-            ConstraintLayout {
-                val (headerContainer, mascotContainer, inputContainer) = createRefs()
-
-                HeaderText(
-                    Modifier.constrainAs(headerContainer) {
-                        start.linkTo(parent.start, margin = 50.dp)
-                        top.linkTo(parent.top)
-                        bottom.linkTo(mascotContainer.top)
-                    }
-                )
-                MascotIcon(
-                    Modifier
-                        .constrainAs(mascotContainer) {
-                            start.linkTo(parent.start)
-                            top.linkTo(parent.top)
-                            end.linkTo(parent.end)
-                            bottom.linkTo(parent.bottom)
-                        }
-                        .fillMaxWidth()
-                )
-                NameInputField(
-                    value = userNameState,
-                    onValueChange = {userNameState = it},
-                    Modifier
-                        .constrainAs(inputContainer) {
-                            start.linkTo(parent.start)
-                            top.linkTo(mascotContainer.bottom)
-                            end.linkTo(parent.end)
-                            bottom.linkTo(parent.bottom)
-                        }
-                )
-            }
-        }
-    }
 }
