@@ -39,6 +39,10 @@ fun UserIntroScreen(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 private fun UserIntroScreenUI() {
+
+    var userName: String = "0"
+    var userNameState by rememberSaveable { mutableStateOf(userName) }
+
     HandsyTheme {
         Surface(
             modifier = Modifier
@@ -66,6 +70,8 @@ private fun UserIntroScreenUI() {
                         .fillMaxWidth()
                 )
                 NameInputField(
+                    value = userNameState,
+                    onValueChange = {userNameState = it},
                     Modifier
                         .constrainAs(inputContainer) {
                             start.linkTo(parent.start)
@@ -119,13 +125,14 @@ private fun MascotIcon(modifier: Modifier) {
 }
 
 @Composable
-private fun NameInputField(modifier: Modifier) {
-    //Hoist state of Composable to ViewModel
-    //Send text input to UserIntroViewModel upon clicking Enter in Keyboard
-    var userName by rememberSaveable { mutableStateOf(" ") }
+private fun NameInputField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier
+) {
     TextField(
-        value = userName,
-        onValueChange = {userName = it},
+        value = value,
+        onValueChange = onValueChange,
         modifier = modifier,
         label = {
             Text(
