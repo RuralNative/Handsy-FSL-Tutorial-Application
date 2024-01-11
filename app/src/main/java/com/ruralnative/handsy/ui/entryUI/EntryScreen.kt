@@ -22,16 +22,27 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.ruralnative.handsy.R
+import com.ruralnative.handsy.data.repository.UserRepository
 import com.ruralnative.handsy.ui.Screen
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Composable
 fun EntryScreen(navController: NavController) {
-    val viewModel: EntryViewModel = viewModel()
+    val viewModel: EntryViewModel = viewModel<EntryViewModel>(
+        factory = object : ViewModelProvider.Factory {
+            override fun <T: ViewModel> create(modelClass: Class<T>): T {
+                return EntryViewModel(
+                    TODO("Fix instantiation of Repository through DI")
+                ) as T
+            }
+        }
+    )
     viewModel.checkUserCountAndNavigate(
         navigateToInitial = {
             navController.navigate(route = Screen.UserIntro.route)

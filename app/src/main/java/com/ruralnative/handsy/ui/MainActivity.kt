@@ -28,6 +28,11 @@ class MainActivity : ComponentActivity() {
         Log.d(TAG, "OnStart() EXECUTED")
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "OnRestart() EXECUTED")
+    }
+
     override fun onStop() {
         super.onStop()
         Log.d(TAG, "OnStop() EXECUTED")
