@@ -37,8 +37,8 @@ private fun UserIntroScreen(
     navController: NavController,
     viewModel: UserIntroViewModel
 ) {
-    
-    val uiState by viewModel.uiState.collectAsState(initial = "Juan")
+    val uiState by viewModel.uiState.collectAsState(initial = UserIntroState())
+    val userNameState = uiState.userNameState
 
     HandsyTheme {
         Surface(
@@ -67,7 +67,7 @@ private fun UserIntroScreen(
                         .fillMaxWidth()
                 )
                 NameInputField(
-                    value = uiState.userNameState,
+                    value = userNameState,
                     onValueChange = { newValue ->
                         viewModel.updateUserNameState(newValue)
                     },
