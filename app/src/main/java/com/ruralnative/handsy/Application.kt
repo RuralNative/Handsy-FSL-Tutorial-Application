@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui
+package com.ruralnative.handsy
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
