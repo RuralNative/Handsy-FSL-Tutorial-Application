@@ -1,6 +1,5 @@
 package com.ruralnative.handsy.data
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase

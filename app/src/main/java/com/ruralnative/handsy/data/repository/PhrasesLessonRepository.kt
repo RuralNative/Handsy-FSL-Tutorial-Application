@@ -4,11 +4,15 @@ import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.PhrasesLessonDao
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 
-@Suppress("RedundantSuspendModifier")
 @WorkerThread
-class PhrasesLessonRepository(private val dao: PhrasesLessonDao) {
+class PhrasesLessonRepository {
+
+    @Inject
+    lateinit var dao: PhrasesLessonDao
+
     val allLessons: Flow<List<PhrasesLesson>> = dao.selectAllLessons()
 
     suspend fun getLessonByID(lessonID: Int): Flow<PhrasesLesson> {

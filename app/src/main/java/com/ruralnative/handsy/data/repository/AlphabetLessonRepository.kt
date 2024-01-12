@@ -7,9 +7,12 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
-@Suppress("RedundantSuspendModifier")
 @WorkerThread
-class AlphabetLessonRepository @Inject constructor(private val dao: AlphabetLessonDao) {
+class AlphabetLessonRepository {
+
+    @Inject
+    lateinit var dao: AlphabetLessonDao
+
     val allLessons: Flow<List<AlphabetLesson>> = dao.selectAllLessons()
 
     suspend fun getLessonByID(lessonID: Int): Flow<AlphabetLesson> {
