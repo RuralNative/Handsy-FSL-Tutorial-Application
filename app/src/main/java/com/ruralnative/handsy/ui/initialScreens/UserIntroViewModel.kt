@@ -8,9 +8,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class UserIntroViewModel(private val repository: UserRepository): ViewModel() {
+class UserIntroViewModel @Inject constructor(
+    private val repository: UserRepository
+): ViewModel() {
 
     //Mutable StateFlow for ViewModel access only
     private val _uiState = MutableStateFlow(UserIntroState())

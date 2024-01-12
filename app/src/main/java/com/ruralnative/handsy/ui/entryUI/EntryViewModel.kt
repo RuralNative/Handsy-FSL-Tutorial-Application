@@ -3,14 +3,19 @@ package com.ruralnative.handsy.ui.entryUI
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.data.repository.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EntryViewModel(private val repository: UserRepository): ViewModel() {
+@HiltViewModel
+class EntryViewModel @Inject constructor(
+    private val repository: UserRepository
+): ViewModel() {
 
     // UI State fetched for modification inside ViewModel
     private val _uiState = MutableStateFlow(EntryState())
