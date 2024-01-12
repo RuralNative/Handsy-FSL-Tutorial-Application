@@ -37,35 +37,35 @@ object AppModule {
     @Singleton
     fun provideAlphabetLessonDao(
         database: AppDatabase
-    ): AlphabetLessonDao = database.alphabetLessonsDao()
+    ): AlphabetLessonDao = database.alphabetLessonDao
 
     @Provides
     @Singleton
     fun providePhrasesLessonDao(
         database: AppDatabase
-    ): PhrasesLessonDao = database.phrasesLessonDao()
+    ): PhrasesLessonDao = database.phrasesLessonDao
 
     @Provides
     @Singleton
     fun provideUserDao(
         database: AppDatabase
-    ): UserDao = database.userDao()
+    ): UserDao = database.userDao
 
     @Provides
     @Singleton
     fun provideAlphabetLessonRepository(
         dao: AlphabetLessonDao
-    ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
+    ): AlphabetLessonRepository = AlphabetLessonRepository()
 
     @Provides
     @Singleton
     fun providePhrasesLessonRepository(
         dao: PhrasesLessonDao
-    ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
+    ): PhrasesLessonRepository = PhrasesLessonRepository()
 
     @Provides
     @Singleton
     fun provideUserRepository(
         dao: UserDao
-    ): UserRepository = UserRepository(dao)
+    ): UserRepository = UserRepository()
 }
