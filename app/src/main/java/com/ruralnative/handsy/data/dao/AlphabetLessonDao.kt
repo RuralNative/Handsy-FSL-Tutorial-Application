@@ -7,9 +7,12 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.ruralnative.handsy.data.entities.AlphabetLesson
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
 
 @Dao
+@InstallIn(SingletonComponent::class)
 interface AlphabetLessonDao {
 
     @Query("SELECT * from alphabet_lessons")
