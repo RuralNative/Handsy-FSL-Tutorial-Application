@@ -35,7 +35,7 @@ import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Composable
-private fun UserIntroScreen(
+fun UserIntroScreen(
     navController: NavController,
     viewModel: UserIntroViewModel
 ) {
