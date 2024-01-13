@@ -1,5 +1,7 @@
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain {
+        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 plugins {
@@ -51,7 +53,7 @@ android {
         }
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
     packaging {
         resources {
