@@ -16,7 +16,7 @@ fun NavGraph(
         startDestination = Screen.Entry.route
     ) {
         composable(Screen.Entry.route) { EntryScreen(navController)}
-        composable(Screen.UserIntro.route) {UserIntroScreen(navController)}
+        //composable(Screen.UserIntro.route) {UserIntroScreen(navController)}
         //Add composable() for AuthorMessageScreen
     }
 }
