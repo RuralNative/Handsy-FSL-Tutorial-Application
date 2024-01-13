@@ -12,7 +12,6 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-@InstallIn(SingletonComponent::class)
 interface AlphabetLessonDao {
 
     @Query("SELECT * from alphabet_lessons")

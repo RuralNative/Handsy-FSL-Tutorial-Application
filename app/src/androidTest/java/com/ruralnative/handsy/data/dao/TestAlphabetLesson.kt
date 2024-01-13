@@ -50,4 +50,24 @@ class TestAlphabetLesson {
         println("TESTED: insertLesson() and selectLessonByID()")
     }
 
+    fun updateLesson() = runTest {
+        println("TESTING: updateLesson()")
+
+        val lesson = AlphabetLesson(
+            1,
+            "Lesson 1",
+            "Lesson Desc 1",
+            "Lesson Media File 1"
+        )
+        dao.insertLesson(lesson)
+
+        val lesson = AlphabetLesson(
+            1,
+            "Lesson 1",
+            "Lesson Desc 1",
+            "Lesson Media File 1"
+        )
+        dao.
+    }
+
 }
