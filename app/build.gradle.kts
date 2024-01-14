@@ -34,8 +34,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = VERSION_1_8
+        targetCompatibility = VERSION_1_8
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.4"
@@ -43,7 +43,7 @@ android {
     defaultConfig {
         applicationId = "com.ruralnative.handsy"
         minSdk = 27
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -97,8 +97,8 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     //Hilt Dependency Injection
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
 
     // Room Database Dependencies
     val roomVersion = "2.6.1"
@@ -127,7 +127,7 @@ dependencies {
     androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0-beta01")
 
     // AndroidX Compose Test APIs
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.10.01"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 }
 kapt {
