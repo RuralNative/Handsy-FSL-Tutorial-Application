@@ -97,6 +97,9 @@ dependencies {
     val hiltVersion = "2.50"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
+    kspAndroidTest("com.google.dagger:hilt-android-compiler:2.44")
 
     // Room Database Dependencies
     val roomVersion = "2.6.1"
