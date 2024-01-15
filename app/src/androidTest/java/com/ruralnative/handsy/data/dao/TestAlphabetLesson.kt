@@ -63,11 +63,73 @@ class TestAlphabetLesson {
 
         val updatedLesson = AlphabetLesson(
             1,
+            "MOD Lesson 1",
+            "MOD Lesson Desc 1",
+            "MOD Lesson Media File 1"
+        )
+        dao.updateLesson(updatedLesson)
+
+        val retrievedUpdatedLesson = dao.selectLessonById(1)
+        assertEquals(retrievedUpdatedLesson.firstOrNull(), updatedLesson)
+    }
+
+    fun updateLessonName() = runTest {
+        println("TESTING: updateLessonName(), updateLessonDescription, updateLessonMediaFile")
+
+        val lesson = AlphabetLesson(
+            1,
             "Lesson 1",
             "Lesson Desc 1",
             "Lesson Media File 1"
         )
-        dao.updateLesson(updatedLesson)
+        dao.insertLesson(lesson)
+
+        dao.updateLessonName("Lesson 2", 1)
+        dao.updateLessonDescription("Lesson Desc 2", 1)
+        dao.updateLessonMediaFile("Lesson Media File 2", 1)
+
+        val comparedLesson = AlphabetLesson(
+            1,
+            "Lesson 2",
+            "Lesson Desc 2",
+            "Lesson Media File 2"
+        )
+        val updatedLesson = dao.selectLessonById(1).firstOrNull()
+
+        assertEquals(updatedLesson, comparedLesson)
     }
 
+    fun deleteAndCheckDatabaseContent() = runTest {
+        println("TESTING: deleteLesson(), selectAllLessons()")
+
+        val userOne = AlphabetLesson(
+            1,
+            "Lesson 1",
+            "Lesson Desc 1",
+            "Lesson Media 1"
+        )
+        val userTwo = AlphabetLesson(
+            2,
+            "Lesson 2",
+            "Lesson Desc 2",
+            "Lesson Media 2"
+        )
+        dao.insertLesson(userOne)
+        dao.insertLesson(userTwo)
+
+        val flowListOfUndeleted = dao.selectAllLessons()
+        var numberOfUsersUndeleted: Int = 0
+        flowListOfUndeleted.collect { users ->
+            numberOfUsersUndeleted = users.size
+        }
+        assertEquals(numberOfUsersUndeleted, 2)
+
+        dao.deleteLesson(userOne)
+        val flowListOfDeleted = dao.selectAllLessons()
+        var numberOfUsersDeleted: Int = 0
+        flowListOfDeleted.collect { users ->
+            numberOfUsersDeleted = users.size
+        }
+        assertEquals(numberOfUsersDeleted, 1)
+    }
 }
