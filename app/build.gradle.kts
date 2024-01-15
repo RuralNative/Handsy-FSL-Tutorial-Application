@@ -124,11 +124,6 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
 
-    //Robolectric Test
-    val robolectricVersion = "4.11.1"
-    testImplementation("org.robolectric:robolectric:$robolectricVersion")
-    testImplementation("org.robolectric:shadows-framework:$robolectricVersion")
-
     // AndroidX Espresso
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
