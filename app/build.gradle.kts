@@ -20,7 +20,6 @@ android {
     namespace = "com.ruralnative.handsy"
     testNamespace = "com.ruralnative.testhandsy"
     compileSdk = 34
-
     buildFeatures {
         compose = true
     }
@@ -34,8 +33,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = VERSION_1_8
-        targetCompatibility = VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.4"
@@ -43,7 +42,7 @@ android {
     defaultConfig {
         applicationId = "com.ruralnative.handsy"
         minSdk = 27
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -53,7 +52,7 @@ android {
         }
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     packaging {
         resources {
@@ -67,6 +66,12 @@ dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
+    // AndroidX Arch Core
+    val arch_version = "2.2.0"
+    testImplementation("androidx.arch.core:core-common:$arch_version")
+    testImplementation("androidx.arch.core:core-runtime:$arch_version")
+    testImplementation("androidx.arch.core:core-testing:$arch_version")
+
     // Android Compose
     val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
     implementation(composeBom)
@@ -75,14 +80,8 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-    //Navigation
-    val navVersion = "2.7.6"
-    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
-    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:$navVersion")
-    implementation("androidx.navigation:navigation-compose:$navVersion")
-    androidTestImplementation("androidx.navigation:navigation-testing:$navVersion")
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.10.01"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 
     // Material Design 3
     implementation("androidx.compose.material3:material3")
@@ -91,31 +90,31 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui")
-
-    // Android Studio Preview support
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     //Hilt Dependency Injection
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-android-compiler:2.50")
+    val hilt_version = "2.44"
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
 
     // Room Database Dependencies
-    val roomVersion = "2.6.1"
-    implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
-    testImplementation("androidx.room:room-testing:$roomVersion")
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    testImplementation("androidx.room:room-testing:$room_version")
 
-    // AndroidX JUNIT 4
-    testImplementation("junit:junit:4.13.2")
-
-    // AndroidX Arch Core
-    testImplementation("androidx.arch.core:core-common:2.2.0")
-    testImplementation("androidx.arch.core:core-runtime:2.2.0")
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    //Navigation
+    val nav_version = "2.7.6"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
 
     // AndroidX Test Library
+    testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
@@ -125,11 +124,8 @@ dependencies {
 
     // AndroidX UI Automator
     androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0-beta01")
-
-    // AndroidX Compose Test APIs
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.10.01"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 }
+
 kapt {
     correctErrorTypes = true
 }
