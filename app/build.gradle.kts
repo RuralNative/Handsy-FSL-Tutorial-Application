@@ -46,7 +46,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.ruralnative.handsy.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -65,6 +65,7 @@ dependencies {
     // Android Core Dependencies
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("com.google.ar:core:1.41.0")
 
     // AndroidX Arch Core
     val archVersion = "2.2.0"
@@ -96,10 +97,11 @@ dependencies {
     //Hilt Dependency Injection
     val hiltVersion = "2.50"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
-    ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
     androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     kspAndroidTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    androidTestAnnotationProcessor("com.google.dagger:hilt-android-compiler:2.44")
 
     // Room Database Dependencies
     val roomVersion = "2.6.1"
@@ -121,6 +123,11 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
+
+    //Robolectric Test
+    val robolectricVersion = "4.11.1"
+    testImplementation("org.robolectric:robolectric:$robolectricVersion")
+    testImplementation("org.robolectric:shadows-framework:$robolectricVersion")
 
     // AndroidX Espresso
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

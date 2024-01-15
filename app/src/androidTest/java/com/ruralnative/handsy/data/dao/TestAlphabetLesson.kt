@@ -5,12 +5,13 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.entities.AlphabetLesson
+import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.test.runTest
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import javax.inject.Inject
@@ -19,8 +20,10 @@ import javax.inject.Inject
 @HiltAndroidTest
 class TestAlphabetLesson {
 
-    @Inject
-    lateinit var database: AppDatabase
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
+    private lateinit var database: AppDatabase
     @Inject
     lateinit var dao: AlphabetLessonDao
 
@@ -32,7 +35,7 @@ class TestAlphabetLesson {
         )
             .allowMainThreadQueries()
             .build()
-        dao = database.alphabetLessonDao
+        hiltRule.inject()
     }
 
     @Test
@@ -54,6 +57,7 @@ class TestAlphabetLesson {
         println("TESTED: insertLesson() and selectLessonByID()")
     }
 
+    @Test
     fun updateLesson() = runTest {
         println("TESTING: updateLesson()")
 
@@ -77,6 +81,7 @@ class TestAlphabetLesson {
         assertEquals(retrievedUpdatedLesson.firstOrNull(), updatedLesson)
     }
 
+    @Test
     fun updateLessonName() = runTest {
         println("TESTING: updateLessonName(), updateLessonDescription, updateLessonMediaFile")
 
@@ -103,6 +108,7 @@ class TestAlphabetLesson {
         assertEquals(updatedLesson, comparedLesson)
     }
 
+    @Test
     fun deleteAndCheckDatabaseContent() = runTest {
         println("TESTING: deleteLesson(), selectAllLessons()")
 
