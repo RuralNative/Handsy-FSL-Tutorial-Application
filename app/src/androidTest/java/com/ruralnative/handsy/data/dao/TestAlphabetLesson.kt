@@ -5,8 +5,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.entities.AlphabetLesson
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.test.runTest
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -14,6 +16,7 @@ import org.junit.runner.RunWith
 import javax.inject.Inject
 
 @RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class TestAlphabetLesson {
 
     @Inject
@@ -29,6 +32,7 @@ class TestAlphabetLesson {
         )
             .allowMainThreadQueries()
             .build()
+        dao = database.alphabetLessonDao
     }
 
     @Test
@@ -118,7 +122,7 @@ class TestAlphabetLesson {
         dao.insertLesson(userTwo)
 
         val flowListOfUndeleted = dao.selectAllLessons()
-        var numberOfUsersUndeleted: Int = 0
+        var numberOfUsersUndeleted = 0
         flowListOfUndeleted.collect { users ->
             numberOfUsersUndeleted = users.size
         }
@@ -126,7 +130,7 @@ class TestAlphabetLesson {
 
         dao.deleteLesson(userOne)
         val flowListOfDeleted = dao.selectAllLessons()
-        var numberOfUsersDeleted: Int = 0
+        var numberOfUsersDeleted = 0
         flowListOfDeleted.collect { users ->
             numberOfUsersDeleted = users.size
         }
