@@ -17,25 +17,18 @@ import org.junit.runner.RunWith
 import javax.inject.Inject
 
 @RunWith(AndroidJUnit4::class)
-@HiltAndroidTest
 class TestAlphabetLesson {
 
-    @get:Rule
-    var hiltRule = HiltAndroidRule(this)
-
     private lateinit var database: AppDatabase
-    @Inject
-    lateinit var dao: AlphabetLessonDao
+    private lateinit var dao: AlphabetLessonDao
 
     @Before
     fun initDb() {
         database = Room.inMemoryDatabaseBuilder(
             InstrumentationRegistry.getInstrumentation().targetContext,
             AppDatabase::class.java
-        )
-            .allowMainThreadQueries()
-            .build()
-        hiltRule.inject()
+        ).build()
+        dao = database.alphabetLessonDao()
     }
 
     @Test
