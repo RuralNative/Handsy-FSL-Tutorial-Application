@@ -1,6 +1,6 @@
 kotlin {
     jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(17))
+        this.languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
@@ -8,7 +8,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.room")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
 
@@ -67,10 +67,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
     // AndroidX Arch Core
-    val arch_version = "2.2.0"
-    testImplementation("androidx.arch.core:core-common:$arch_version")
-    testImplementation("androidx.arch.core:core-runtime:$arch_version")
-    testImplementation("androidx.arch.core:core-testing:$arch_version")
+    val archVersion = "2.2.0"
+    testImplementation("androidx.arch.core:core-common:$archVersion")
+    testImplementation("androidx.arch.core:core-runtime:$archVersion")
+    testImplementation("androidx.arch.core:core-testing:$archVersion")
 
     // Android Compose
     val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
@@ -94,24 +94,24 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     //Hilt Dependency Injection
-    val hilt_version = "2.44"
-    implementation("com.google.dagger:hilt-android:$hilt_version")
-    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
+    val hiltVersion = "2.50"
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
     // Room Database Dependencies
-    val room_version = "2.6.1"
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    testImplementation("androidx.room:room-testing:$room_version")
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    testImplementation("androidx.room:room-testing:$roomVersion")
 
     //Navigation
-    val nav_version = "2.7.6"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
-    implementation("androidx.navigation:navigation-compose:$nav_version")
-    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+    val navVersion = "2.7.6"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$navVersion")
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+    androidTestImplementation("androidx.navigation:navigation-testing:$navVersion")
 
     // AndroidX Test Library
     testImplementation("junit:junit:4.13.2")
@@ -124,8 +124,4 @@ dependencies {
 
     // AndroidX UI Automator
     androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0-beta01")
-}
-
-kapt {
-    correctErrorTypes = true
 }
