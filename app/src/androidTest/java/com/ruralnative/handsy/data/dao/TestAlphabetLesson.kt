@@ -61,13 +61,13 @@ class TestAlphabetLesson {
         )
         dao.insertLesson(lesson)
 
-        val lesson = AlphabetLesson(
+        val updatedLesson = AlphabetLesson(
             1,
             "Lesson 1",
             "Lesson Desc 1",
             "Lesson Media File 1"
         )
-        dao.
+        dao.updateLesson(updatedLesson)
     }
 
 }
