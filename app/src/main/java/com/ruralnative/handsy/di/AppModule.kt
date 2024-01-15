@@ -37,19 +37,19 @@ object AppModule {
     @Singleton
     fun provideAlphabetLessonDao(
         database: AppDatabase
-    ): AlphabetLessonDao = database.alphabetLessonDao
+    ): AlphabetLessonDao = database.alphabetLessonDao()
 
     @Provides
     @Singleton
     fun providePhrasesLessonDao(
         database: AppDatabase
-    ): PhrasesLessonDao = database.phrasesLessonDao
+    ): PhrasesLessonDao = database.phrasesLessonDao()
 
     @Provides
     @Singleton
     fun provideUserDao(
         database: AppDatabase
-    ): UserDao = database.userDao
+    ): UserDao = database.userDao()
 
     @Provides
     @Singleton
