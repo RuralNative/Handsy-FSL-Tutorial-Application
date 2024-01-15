@@ -34,23 +34,6 @@ import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Composable
 fun EntryScreen(navController: NavController) {
-    val viewModel: EntryViewModel = viewModel<EntryViewModel>(
-        factory = object : ViewModelProvider.Factory {
-            override fun <T: ViewModel> create(modelClass: Class<T>): T {
-                return EntryViewModel(
-                    TODO("Fix instantiation of Repository through DI")
-                ) as T
-            }
-        }
-    )
-    viewModel.checkUserCountAndNavigate(
-        navigateToInitial = {
-            navController.navigate(route = Screen.UserIntro.route)
-        },
-        navigateToMain = {
-            //Add code for navigating to main screen
-        }
-    )
     EntryScreenUI(Modifier)
 }
 
