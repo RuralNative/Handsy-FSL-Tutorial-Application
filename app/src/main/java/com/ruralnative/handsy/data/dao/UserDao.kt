@@ -23,20 +23,20 @@ interface UserDao {
     fun countUsers(): Flow<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(user: User)
+    fun insertUser(user: User)
 
     @Update
-    suspend fun updateUser(user: User)
+    fun updateUser(user: User)
 
     @Query("UPDATE user SET user_name = :userName WHERE id = :userID")
-    suspend fun updateUserName(userName: String?, userID: Int)
+    fun updateUserName(userName: String?, userID: Int)
 
     @Query("UPDATE user SET is_new_user = :boolValue WHERE id = :userID")
-    suspend fun updateUserStatus(boolValue: Int, userID: Int)
+    fun updateUserStatus(boolValue: Int, userID: Int)
 
     @Query("UPDATE user SET progression_level = :userLevel WHERE id = :userID")
-    suspend fun updateUserProgressionLevel(userLevel: Int, userID: Int)
+    fun updateUserProgressionLevel(userLevel: Int, userID: Int)
 
     @Delete
-    suspend fun deleteUser(user: User)
+    fun deleteUser(user: User)
 }

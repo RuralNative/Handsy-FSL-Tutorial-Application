@@ -20,20 +20,20 @@ interface PhrasesLessonDao {
     fun selectLessonById(lessonID: Int): Flow<PhrasesLesson>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertLesson(lesson: PhrasesLesson)
+    fun insertLesson(lesson: PhrasesLesson)
 
     @Update
-    suspend fun updateLesson(lesson: PhrasesLesson)
+    fun updateLesson(lesson: PhrasesLesson)
 
     @Query("UPDATE phrases_lessons SET lesson_name = :lessonName WHERE id = :lessonID")
-    suspend fun updateLessonName(lessonName: String?, lessonID: Int)
+    fun updateLessonName(lessonName: String?, lessonID: Int)
 
     @Query("UPDATE phrases_lessons SET lesson_description = :lessonDescription WHERE id = :lessonID")
-    suspend fun updateLessonDescription(lessonDescription: String?, lessonID: Int)
+    fun updateLessonDescription(lessonDescription: String?, lessonID: Int)
 
     @Query("UPDATE phrases_lessons SET lesson_media_file = :lessonMediaFile WHERE id = :lessonID")
-    suspend fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: Int)
+    fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: Int)
 
     @Delete
-    suspend fun deleteLesson(lesson: PhrasesLesson)
+    fun deleteLesson(lesson: PhrasesLesson)
 }
