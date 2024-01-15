@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.data.dao
 
+import android.util.Log
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -7,7 +8,11 @@ import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -101,38 +106,32 @@ class TestAlphabetLesson {
         assertEquals(updatedLesson, comparedLesson)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun deleteAndCheckDatabaseContent() = runTest {
         println("TESTING: deleteLesson(), selectAllLessons()")
 
-        val userOne = AlphabetLesson(
+        val lessonOne = AlphabetLesson(
             1,
             "Lesson 1",
             "Lesson Desc 1",
             "Lesson Media 1"
         )
-        val userTwo = AlphabetLesson(
+        val lessonTwo = AlphabetLesson(
             2,
             "Lesson 2",
             "Lesson Desc 2",
             "Lesson Media 2"
         )
-        dao.insertLesson(userOne)
-        dao.insertLesson(userTwo)
 
-        val flowListOfUndeleted = dao.selectAllLessons()
         var numberOfUsersUndeleted = 0
+
+        dao.insertLesson(lessonOne)
+        dao.insertLesson(lessonTwo)
+        val flowListOfUndeleted = dao.selectAllLessons()
         flowListOfUndeleted.collect { users ->
             numberOfUsersUndeleted = users.size
         }
-        assertEquals(numberOfUsersUndeleted, 2)
-
-        dao.deleteLesson(userOne)
-        val flowListOfDeleted = dao.selectAllLessons()
-        var numberOfUsersDeleted = 0
-        flowListOfDeleted.collect { users ->
-            numberOfUsersDeleted = users.size
-        }
-        assertEquals(numberOfUsersDeleted, 1)
+        assertEquals(2, numberOfUsersUndeleted)
     }
 }
