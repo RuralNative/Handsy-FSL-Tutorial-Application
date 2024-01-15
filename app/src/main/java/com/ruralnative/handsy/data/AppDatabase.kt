@@ -23,12 +23,9 @@ import javax.inject.Inject
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    @Inject
-    lateinit var userDao: UserDao
-    @Inject
-    lateinit var alphabetLessonDao: AlphabetLessonDao
-    @Inject
-    lateinit var phrasesLessonDao: PhrasesLessonDao
+    abstract fun userDao(): UserDao
+    abstract fun alphabetLessonDao(): AlphabetLessonDao
+    abstract fun phrasesLessonDao(): PhrasesLessonDao
 
     companion object {
         @Volatile
