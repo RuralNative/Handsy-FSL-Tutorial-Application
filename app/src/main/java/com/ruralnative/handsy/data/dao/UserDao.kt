@@ -14,13 +14,13 @@ import kotlinx.coroutines.flow.Flow
 interface UserDao {
 
     @Query("SELECT * from user")
-    suspend fun selectAllUsers(): Flow<List<User>>
+    fun selectAllUsers(): Flow<List<User>>
 
     @Query("SELECT * from user WHERE id = :userID")
-    suspend fun selectUserById(userID: Int): Flow<User>
+    fun selectUserById(userID: Int): Flow<User>
 
     @Query("SELECT COUNT(*) from user")
-    suspend fun countUsers(): Flow<Int>
+    fun countUsers(): Flow<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)

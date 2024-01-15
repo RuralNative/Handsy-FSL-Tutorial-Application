@@ -26,11 +26,7 @@ object AppModule {
     fun provideLocalDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
-        return Room.databaseBuilder(
-            context,
-            AppDatabase::class.java,
-            "app_database.db"
-        ).build()
+       return AppDatabase.getDatabase(context)
     }
 
     @Provides
