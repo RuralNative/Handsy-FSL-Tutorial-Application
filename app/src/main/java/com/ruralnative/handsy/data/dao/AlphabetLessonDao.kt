@@ -18,7 +18,7 @@ interface AlphabetLessonDao {
     fun selectAllLessons(): Flow<List<AlphabetLesson>>
 
     @Query("SELECT * from alphabet_lessons WHERE id = :lessonID")
-    suspend fun selectLessonById(lessonID: Int): Flow<AlphabetLesson>
+    fun selectLessonById(lessonID: Int): Flow<AlphabetLesson>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLesson(lesson: AlphabetLesson)

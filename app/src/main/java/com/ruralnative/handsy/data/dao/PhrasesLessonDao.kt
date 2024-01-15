@@ -17,7 +17,7 @@ interface PhrasesLessonDao {
     fun selectAllLessons(): Flow<List<PhrasesLesson>>
 
     @Query("SELECT * from phrases_lessons WHERE id = :lessonID")
-    suspend fun selectLessonById(lessonID: Int): Flow<PhrasesLesson>
+    fun selectLessonById(lessonID: Int): Flow<PhrasesLesson>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLesson(lesson: PhrasesLesson)
