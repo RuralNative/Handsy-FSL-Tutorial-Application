@@ -49,19 +49,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAlphabetLessonRepository(
-        dao: AlphabetLessonDao
-    ): AlphabetLessonRepository = AlphabetLessonRepository()
+    fun provideAlphabetLessonRepository(): AlphabetLessonRepository = AlphabetLessonRepository()
 
     @Provides
     @Singleton
-    fun providePhrasesLessonRepository(
-        dao: PhrasesLessonDao
-    ): PhrasesLessonRepository = PhrasesLessonRepository()
+    fun providePhrasesLessonRepository(): PhrasesLessonRepository = PhrasesLessonRepository()
 
     @Provides
     @Singleton
-    fun provideUserRepository(
-        dao: UserDao
-    ): UserRepository = UserRepository()
+    fun provideUserRepository(): UserRepository = UserRepository()
 }
