@@ -70,4 +70,48 @@ class TestUserDAO {
         val retrievedUser = dao.selectUserById(1).firstOrNull()
         assertEquals(user, retrievedUser)
     }
+
+    @Test
+    fun updateUser() = runTest {
+        println("TESTING: insertUser(), selectUserByID() AND updateUser()")
+        val user = User(
+            1,
+            "User 1",
+            1,
+            1
+        )
+        dao.insertUser(user)
+        val updatedUser = User(
+            1,
+            "User 2",
+            2,
+            2
+        )
+        dao.updateUser(updatedUser)
+        val fetchedUser = dao.selectUserById(1).first()
+        assertEquals(updatedUser, fetchedUser)
+    }
+
+    @Test
+    fun updateUserInfo() = runTest {
+        println("TESTING: DAO Update Methods")
+        val user = User(
+            1,
+            "User 1",
+            1,
+            1
+        )
+        dao.insertUser(user)
+        val comparedUser = User(
+            1,
+            "User 2",
+            2,
+            2
+        )
+        dao.updateUserName("User 2", 1)
+        dao.updateUserStatus(2, 1)
+        dao.updateUserProgressionLevel(2, 1)
+        val updatedUser = dao.selectUserById(1).first()
+        assertEquals(comparedUser, updatedUser)
+    }
 }
