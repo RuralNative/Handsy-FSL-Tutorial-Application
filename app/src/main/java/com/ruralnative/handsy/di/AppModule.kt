@@ -52,15 +52,21 @@ object AppModule {
     @Provides
     @Singleton
     @AlphabetRepo
-    fun provideAlphabetLessonRepository(): AlphabetLessonRepository = AlphabetLessonRepository()
+    fun provideAlphabetLessonRepository(
+        @AlphabetDAO dao: AlphabetLessonDao
+    ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
 
     @Provides
     @Singleton
     @PhrasesRepo
-    fun providePhrasesLessonRepository(): PhrasesLessonRepository = PhrasesLessonRepository()
+    fun providePhrasesLessonRepository(
+        @PhrasesDAO dao: PhrasesLessonDao
+    ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
 
     @Provides
     @Singleton
     @UserRepo
-    fun provideUserRepository(): UserRepository = UserRepository()
+    fun provideUserRepository(
+        @UserDAO dao: UserDao
+    ): UserRepository = UserRepository(dao)
 }
