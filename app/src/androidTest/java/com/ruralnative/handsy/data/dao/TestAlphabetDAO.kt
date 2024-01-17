@@ -2,6 +2,7 @@ package com.ruralnative.handsy.data.dao
 
 import androidx.test.filters.SmallTest
 import com.ruralnative.handsy.data.AppDatabase
+import com.ruralnative.handsy.data.di.TestDatabase
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -24,7 +25,7 @@ class TestAlphabetDAO {
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    @Named("test_database")
+    @TestDatabase
     lateinit var database: AppDatabase
     private lateinit var dao: AlphabetLessonDao
 
