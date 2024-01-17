@@ -17,3 +17,11 @@ Happ/src/androidTest/java/com/ruralnative/handsy/data/di/FakeAppModule.kt,f\c\f
 Napp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestAlphabetLesson.kt,9\a\9a2f1fd4948211c51572140a64a51368576c53a2
 h
 8app/src/main/java/com/ruralnative/handsy/di/AppModule.kt,b\1\b17c77f8a282970974eb4e2317ba3646a10fda01
+z
+Japp/src/main/java/com/ruralnative/handsy/data/repository/UserRepository.kt,2\9\294698c79bf018288f4ff23c7e4fca7c68de8c81
+u
+Eapp/src/main/java/com/ruralnative/handsy/ui/entryUI/EntryViewModel.kt,e\4\e4d25cdc258809a14291634f1d5b15d2b7b0bf9f
+„
+Tapp/src/main/java/com/ruralnative/handsy/data/repository/AlphabetLessonRepository.kt,1\0\10b650032bf98f4b7520b01622ecc097572efb77
+m
+=app/src/main/java/com/ruralnative/handsy/di/DataQualifiers.kt,e\6\e692ce643ff3ba9bffcff9f3858dcfba64f8e800
