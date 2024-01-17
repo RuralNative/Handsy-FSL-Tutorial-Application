@@ -17,7 +17,7 @@ import javax.inject.Named
 
 @HiltAndroidTest
 @SmallTest
-class TestAlphabetLesson {
+class TestAlphabetDAO {
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)

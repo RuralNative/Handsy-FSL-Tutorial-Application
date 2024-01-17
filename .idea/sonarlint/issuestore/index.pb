@@ -33,3 +33,11 @@ Eapp/src/main/java/com/ruralnative/handsy/data/dao/PhrasesLessonDao.kt,b\e\be8d
 Sapp/src/main/java/com/ruralnative/handsy/data/repository/PhrasesLessonRepository.kt,d\4\d4b1c48b8ce56cee6b67218aa7119d0b140903bc
 }
 Mapp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestPhrasesLesson.kt,5\6\563edfa07f4fb5bbd8d9af5bf365abf9bf502232
+l
+<app/src/main/java/com/ruralnative/handsy/data/dao/UserDao.kt,7\e\7e535b78146246f539c49f63905d8616106acd06
+w
+Gapp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestUserDAO.kt,3\c\3c5fd72f35ccaeb0fe7344e2030372eee478a277
+z
+Japp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestPhrasesDAO.kt,2\0\20b10a4c0dd9042d33767ee07f959c06aaf6cc4d
+{
+Kapp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestAlphabetDAO.kt,7\f\7fe5322cf54388bbf25425f43c45f18ba0e5e87c

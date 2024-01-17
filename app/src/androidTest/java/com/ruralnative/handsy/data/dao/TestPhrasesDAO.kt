@@ -2,7 +2,6 @@ package com.ruralnative.handsy.data.dao
 
 import androidx.test.filters.SmallTest
 import com.ruralnative.handsy.data.AppDatabase
-import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -18,7 +17,7 @@ import javax.inject.Named
 
 @HiltAndroidTest
 @SmallTest
-class TestPhrasesLesson {
+class TestPhrasesDAO {
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
