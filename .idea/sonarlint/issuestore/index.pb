@@ -15,3 +15,5 @@ x
 Happ/src/androidTest/java/com/ruralnative/handsy/data/di/FakeAppModule.kt,f\c\fc96803f987777250a84a53b7530d77d61061582
 ~
 Napp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestAlphabetLesson.kt,9\a\9a2f1fd4948211c51572140a64a51368576c53a2
+h
+8app/src/main/java/com/ruralnative/handsy/di/AppModule.kt,b\1\b17c77f8a282970974eb4e2317ba3646a10fda01
