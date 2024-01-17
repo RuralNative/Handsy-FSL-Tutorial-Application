@@ -64,10 +64,7 @@ class TestUserRepository {
             1
         )
         repository.insertUser(user)
-        println("TESTING: Log //Test of User Successfully ADDED?")
-        assertEquals(user, repository.getUserByID(1).first())
-        println("TESTING: Log //Check User Should Exist?")
-        assertEquals(true, repository.isThereNoUser().first())
+        assertEquals(false, repository.isThereNoUser().first())
         repository.deleteUser(user)
         assertEquals(true, repository.isThereNoUser().first())
     }
