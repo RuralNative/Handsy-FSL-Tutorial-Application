@@ -31,3 +31,5 @@ u
 Eapp/src/main/java/com/ruralnative/handsy/data/dao/PhrasesLessonDao.kt,b\e\be8d2506e6d7329410a1a322e1eb4b72ed8a4cc2
 ƒ
 Sapp/src/main/java/com/ruralnative/handsy/data/repository/PhrasesLessonRepository.kt,d\4\d4b1c48b8ce56cee6b67218aa7119d0b140903bc
+}
+Mapp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestPhrasesLesson.kt,5\6\563edfa07f4fb5bbd8d9af5bf365abf9bf502232
