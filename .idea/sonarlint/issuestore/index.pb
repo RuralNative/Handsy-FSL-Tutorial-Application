@@ -47,3 +47,5 @@ n
 Uapp/src/androidTest/java/com/ruralnative/handsy/data/repository/TestUserRepository.kt,f\9\f96b181a5d247f6eeede7d722518ad46757e8864
 }
 Mapp/src/androidTest/java/com/ruralnative/handsy/data/di/TestDataQualifiers.kt,6\8\6892ea99667516409984c4d3a55f525b5a7d814f
+€
+Papp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserIntroViewModel.kt,4\a\4a6908d3c616735e845733c4201319394e9be44c

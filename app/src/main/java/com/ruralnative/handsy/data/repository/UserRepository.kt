@@ -12,11 +12,9 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @WorkerThread
-class UserRepository {
-
-    @Inject
-    @UserDAO
-    lateinit var dao: UserDao
+class UserRepository @Inject constructor(
+    @UserDAO private val dao : UserDao
+) {
 
     val allUsers: Flow<List<User>> = dao.selectAllUsers()
 

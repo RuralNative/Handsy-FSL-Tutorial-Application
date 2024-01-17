@@ -10,11 +10,9 @@ import javax.inject.Inject
 
 
 @WorkerThread
-class AlphabetLessonRepository {
-
-    @Inject
-    @AlphabetDAO
-    lateinit var dao: AlphabetLessonDao
+class AlphabetLessonRepository @Inject constructor(
+    @AlphabetDAO private val dao: AlphabetLessonDao
+) {
 
     val allLessons: Flow<List<AlphabetLesson>> = dao.selectAllLessons()
 
