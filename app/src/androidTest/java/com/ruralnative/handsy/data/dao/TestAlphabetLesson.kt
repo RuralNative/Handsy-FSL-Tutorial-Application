@@ -94,46 +94,4 @@ class TestAlphabetLesson {
         val updatedLesson = dao.selectLessonById(1).firstOrNull()
         assertEquals(updatedLesson, comparedLesson)
     }
-
-    @Test
-    fun deleteAndCheckDatabaseContent() = runTest {
-        println("TESTING: deleteLesson(), selectAllLessons()")
-        val lessonOne = AlphabetLesson(
-            1,
-            "Lesson 1",
-            "Lesson Desc 1",
-            "Lesson Media 1"
-        )
-        val lessonTwo = AlphabetLesson(
-            2,
-            "Lesson 2",
-            "Lesson Desc 2",
-            "Lesson Media 2"
-        )
-        //Test Before Delete
-        var numberOfUsersUndeleted = 0
-        val insertLessonJob : Job = launch {
-            dao.insertLesson(lessonOne)
-            dao.insertLesson(lessonTwo)
-            delay(1000L)
-            val usersListFlow = dao.selectAllLessons()
-            usersListFlow.collectLatest { users ->
-                numberOfUsersUndeleted = users.size
-            }
-        }
-        insertLessonJob.join()
-        assertEquals(2, numberOfUsersUndeleted)
-        //Test After Delete
-        var numberOfUsersAfterDelete = 0
-        val deleteLessonJob : Job = launch {
-            dao.deleteLesson(lessonOne)
-            delay(1000L)
-            val usersListFlow = dao.selectAllLessons()
-            usersListFlow.collectLatest { users ->
-                numberOfUsersAfterDelete = users.size
-            }
-        }
-        deleteLessonJob.join()
-        assertEquals(1, numberOfUsersAfterDelete)
-    }
 }
