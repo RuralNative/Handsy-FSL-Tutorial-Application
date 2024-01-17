@@ -23,7 +23,6 @@ import javax.inject.Singleton
 object FakeAppModule {
 
     @Provides
-    @Singleton
     @Named("test_database")
     fun provideLocalDatabase(
         @ApplicationContext context: Context
@@ -36,37 +35,19 @@ object FakeAppModule {
 
     @Provides
     @Named("test_alphabet_dao")
-    @Singleton
     fun provideAlphabetLessonDao(
         @Named("test_database") database: AppDatabase
     ): AlphabetLessonDao = database.alphabetLessonDao()
 
     @Provides
     @Named("test_phrases_dao")
-    @Singleton
     fun providePhrasesLessonDao(
         @Named("test_database") database: AppDatabase
     ): PhrasesLessonDao = database.phrasesLessonDao()
 
     @Provides
     @Named("test_user_dao")
-    @Singleton
     fun provideUserDao(
         @Named("test_database") database: AppDatabase
     ): UserDao = database.userDao()
-
-    @Provides
-    @Named("test_alphabet_repo")
-    @Singleton
-    fun provideAlphabetLessonRepository(): AlphabetLessonRepository = AlphabetLessonRepository()
-
-    @Provides
-    @Named("test_phrases_repo")
-    @Singleton
-    fun providePhrasesLessonRepository(): PhrasesLessonRepository = PhrasesLessonRepository()
-
-    @Provides
-    @Named("test_user_repo")
-    @Singleton
-    fun provideUserRepository(): UserRepository = UserRepository()
 }
