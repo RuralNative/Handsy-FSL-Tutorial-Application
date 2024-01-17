@@ -12,9 +12,7 @@ import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class EntryViewModel @Inject constructor(
-    private val repository: UserRepository
+class EntryViewModel (
 ): ViewModel() {
 
     // UI State fetched for modification inside ViewModel
@@ -24,6 +22,7 @@ class EntryViewModel @Inject constructor(
 
     private var isThereAUser: Boolean = false
 
+    /*
     fun checkUserCountAndNavigate(
         navigateToInitial: () -> Unit,
         navigateToMain: () -> Unit
@@ -40,4 +39,5 @@ class EntryViewModel @Inject constructor(
             }
         }
     }
+     */
 }
