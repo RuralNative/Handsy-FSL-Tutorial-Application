@@ -9,9 +9,13 @@ import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
 import com.ruralnative.handsy.data.repository.UserRepository
+import com.ruralnative.handsy.di.AlphabetDAO
+import com.ruralnative.handsy.di.AlphabetRepo
 import com.ruralnative.handsy.di.AppModule
 import com.ruralnative.handsy.di.PhrasesDAO
+import com.ruralnative.handsy.di.PhrasesRepo
 import com.ruralnative.handsy.di.UserDAO
+import com.ruralnative.handsy.di.UserRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -54,20 +58,23 @@ object FakeAppModule {
     ): UserDao = database.userDao()
 
     @Provides
-    @TestUserRepo
-    fun provideUserRepository(): UserRepository {
-        return UserRepository()
-    }
-
-    @Provides
+    @Singleton
     @TestAlphabetRepo
-    fun provideAlphabetRepository(): AlphabetLessonRepository {
-        return AlphabetLessonRepository()
-    }
+    fun provideAlphabetLessonRepository(
+        @TestAlphabetDAO dao: AlphabetLessonDao
+    ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
 
     @Provides
+    @Singleton
     @TestPhrasesRepo
-    fun providePhrasesRepository(): PhrasesLessonRepository {
-        return PhrasesLessonRepository()
-    }
+    fun providePhrasesLessonRepository(
+        @TestPhrasesDAO dao: PhrasesLessonDao
+    ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
+
+    @Provides
+    @Singleton
+    @TestUserRepo
+    fun provideUserRepository(
+        @TestUserDAO dao: UserDao
+    ): UserRepository = UserRepository(dao)
 }
