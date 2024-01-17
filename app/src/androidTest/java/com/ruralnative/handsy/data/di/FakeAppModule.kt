@@ -38,19 +38,19 @@ object FakeAppModule {
     @Provides
     @TestAlphabetDAO
     fun provideAlphabetLessonDao(
-        @Named("test_database") database: AppDatabase
+        @TestDatabase database: AppDatabase
     ): AlphabetLessonDao = database.alphabetLessonDao()
 
     @Provides
     @TestPhrasesDAO
     fun providePhrasesLessonDao(
-        @Named("test_database") database: AppDatabase
+        @TestDatabase database: AppDatabase
     ): PhrasesLessonDao = database.phrasesLessonDao()
 
     @Provides
     @TestUserDAO
     fun provideUserDao(
-        @Named("test_database") database: AppDatabase
+        @TestDatabase database: AppDatabase
     ): UserDao = database.userDao()
 
     @Provides
