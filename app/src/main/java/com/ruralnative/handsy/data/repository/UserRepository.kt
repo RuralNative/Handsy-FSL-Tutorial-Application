@@ -6,7 +6,9 @@ import com.ruralnative.handsy.data.entities.User
 import com.ruralnative.handsy.di.UserDAO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @WorkerThread
@@ -18,12 +20,12 @@ class UserRepository {
 
     val allUsers: Flow<List<User>> = dao.selectAllUsers()
 
-    suspend fun getUserByID(userID: Int): Flow<User> {
+    fun getUserByID(userID: Int): Flow<User> {
         return dao.selectUserById(userID)
     }
 
-    suspend fun isThereAUser(): Flow<Boolean> {
-        val numberOfUsers: Int = dao.countUsers().firstOrNull() ?: 0
+    fun isThereAUser(): Flow<Boolean> = flow {
+        val numberOfUsers: Int? = dao.countUsers().firstOrNull()
         var isUserEmpty = true
 
         if (numberOfUsers == 0) {
@@ -31,8 +33,7 @@ class UserRepository {
         } else if (numberOfUsers != 0) {
             isUserEmpty = false
         }
-
-        return MutableStateFlow(isUserEmpty)
+        emit(isUserEmpty)
     }
 
     suspend fun insertUser(user: User) {
