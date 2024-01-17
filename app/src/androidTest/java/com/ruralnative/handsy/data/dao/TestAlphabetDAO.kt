@@ -5,6 +5,7 @@ import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -36,6 +37,22 @@ class TestAlphabetDAO {
     @After
     fun tearDown() {
         database.close()
+    }
+
+    @Test
+    fun selectAllLessons() = runTest {
+        println("TESTING: selectAllLessons()")
+        for (i in 1..10) {
+            val lesson = AlphabetLesson(
+                i,
+                "Lesson $i",
+                "Lesson Desc $i",
+                "Lesson Media File $i"
+            )
+            dao.insertLesson(lesson)
+        }
+        val allLessonsList = dao.selectAllLessons().first()
+        assertEquals(10, allLessonsList.size)
     }
 
     @Test
