@@ -40,6 +40,16 @@ class UserRepository {
         dao.insertUser(user)
     }
 
+    suspend fun insertNewUser(id: Int, name: String) {
+        val user = User(
+            id,
+            name,
+            0,
+            1
+        )
+        dao.insertUser(user)
+    }
+
     suspend fun updateUser(user: User) {
         dao.updateUser(user)
     }
