@@ -25,3 +25,9 @@ Eapp/src/main/java/com/ruralnative/handsy/ui/entryUI/EntryViewModel.kt,e\4\e4d2
 Tapp/src/main/java/com/ruralnative/handsy/data/repository/AlphabetLessonRepository.kt,1\0\10b650032bf98f4b7520b01622ecc097572efb77
 m
 =app/src/main/java/com/ruralnative/handsy/di/DataQualifiers.kt,e\6\e692ce643ff3ba9bffcff9f3858dcfba64f8e800
+v
+Fapp/src/main/java/com/ruralnative/handsy/data/dao/AlphabetLessonDao.kt,a\a\aa8c535b2a98cad1b90b74c9829a1746308a5cb5
+u
+Eapp/src/main/java/com/ruralnative/handsy/data/dao/PhrasesLessonDao.kt,b\e\be8d2506e6d7329410a1a322e1eb4b72ed8a4cc2
+ƒ
+Sapp/src/main/java/com/ruralnative/handsy/data/repository/PhrasesLessonRepository.kt,d\4\d4b1c48b8ce56cee6b67218aa7119d0b140903bc

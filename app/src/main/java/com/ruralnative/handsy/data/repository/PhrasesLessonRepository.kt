@@ -3,6 +3,8 @@ package com.ruralnative.handsy.data.repository
 import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.PhrasesLessonDao
 import com.ruralnative.handsy.data.entities.PhrasesLesson
+import com.ruralnative.handsy.di.PhrasesDAO
+import com.ruralnative.handsy.di.UserDAO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -11,6 +13,7 @@ import javax.inject.Inject
 class PhrasesLessonRepository {
 
     @Inject
+    @PhrasesDAO
     lateinit var dao: PhrasesLessonDao
 
     val allLessons: Flow<List<PhrasesLesson>> = dao.selectAllLessons()

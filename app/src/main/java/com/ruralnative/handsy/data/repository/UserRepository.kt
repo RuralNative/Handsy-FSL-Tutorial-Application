@@ -3,6 +3,7 @@ package com.ruralnative.handsy.data.repository
 import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.User
+import com.ruralnative.handsy.di.UserDAO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.firstOrNull
@@ -12,6 +13,7 @@ import javax.inject.Inject
 class UserRepository {
 
     @Inject
+    @UserDAO
     lateinit var dao: UserDao
 
     val allUsers: Flow<List<User>> = dao.selectAllUsers()
