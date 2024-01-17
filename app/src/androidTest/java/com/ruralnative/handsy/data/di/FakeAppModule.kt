@@ -10,6 +10,8 @@ import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
 import com.ruralnative.handsy.data.repository.UserRepository
 import com.ruralnative.handsy.di.AppModule
+import com.ruralnative.handsy.di.PhrasesDAO
+import com.ruralnative.handsy.di.UserDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -23,7 +25,7 @@ import javax.inject.Singleton
 object FakeAppModule {
 
     @Provides
-    @Named("test_database")
+    @TestDatabase
     fun provideLocalDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
@@ -34,20 +36,38 @@ object FakeAppModule {
     }
 
     @Provides
-    @Named("test_alphabet_dao")
+    @TestAlphabetDAO
     fun provideAlphabetLessonDao(
         @Named("test_database") database: AppDatabase
     ): AlphabetLessonDao = database.alphabetLessonDao()
 
     @Provides
-    @Named("test_phrases_dao")
+    @TestPhrasesDAO
     fun providePhrasesLessonDao(
         @Named("test_database") database: AppDatabase
     ): PhrasesLessonDao = database.phrasesLessonDao()
 
     @Provides
-    @Named("test_user_dao")
+    @TestUserDAO
     fun provideUserDao(
         @Named("test_database") database: AppDatabase
     ): UserDao = database.userDao()
+
+    @Provides
+    @TestUserRepo
+    fun provideUserRepository(): UserRepository {
+        return UserRepository()
+    }
+
+    @Provides
+    @TestAlphabetRepo
+    fun provideAlphabetRepository(): AlphabetLessonRepository {
+        return AlphabetLessonRepository()
+    }
+
+    @Provides
+    @TestPhrasesRepo
+    fun providePhrasesRepository(): PhrasesLessonRepository {
+        return PhrasesLessonRepository()
+    }
 }
