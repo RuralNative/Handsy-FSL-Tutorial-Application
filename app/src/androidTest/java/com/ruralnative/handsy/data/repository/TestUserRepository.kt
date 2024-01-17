@@ -5,7 +5,6 @@ import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.di.TestDatabase
 import com.ruralnative.handsy.data.di.TestUserRepo
 import com.ruralnative.handsy.data.entities.User
-import com.ruralnative.handsy.di.UserRepo
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.flow.first
@@ -16,7 +15,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
-import javax.inject.Named
 
 @HiltAndroidTest
 @SmallTest
@@ -66,9 +64,12 @@ class TestUserRepository {
             1
         )
         repository.insertUser(user)
-        assertEquals(true, repository.isThereAUser().first())
+        println("TESTING: Log //Test of User Successfully ADDED?")
+        assertEquals(user, repository.getUserByID(1).first())
+        println("TESTING: Log //Check User Should Exist?")
+        assertEquals(true, repository.isThereNoUser().first())
         repository.deleteUser(user)
-        assertEquals(false, repository.isThereAUser().first())
+        assertEquals(true, repository.isThereNoUser().first())
     }
 
     @Test

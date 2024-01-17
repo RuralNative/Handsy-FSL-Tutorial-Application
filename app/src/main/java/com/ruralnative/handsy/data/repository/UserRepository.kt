@@ -5,8 +5,6 @@ import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.User
 import com.ruralnative.handsy.di.UserDAO
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -22,7 +20,7 @@ class UserRepository @Inject constructor(
         return dao.selectUserById(userID)
     }
 
-    fun isThereAUser(): Flow<Boolean> = flow {
+    fun isThereNoUser(): Flow<Boolean> = flow {
         val numberOfUsers: Int? = dao.countUsers().firstOrNull()
         var isUserEmpty = true
 
