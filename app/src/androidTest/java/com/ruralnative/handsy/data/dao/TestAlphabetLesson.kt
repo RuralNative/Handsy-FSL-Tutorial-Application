@@ -29,7 +29,7 @@ class TestAlphabetLesson {
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    private lateinit var dao: AlphabetLessonDao
+    lateinit var dao: AlphabetLessonDao
 
     @Before
     fun initDb() {
