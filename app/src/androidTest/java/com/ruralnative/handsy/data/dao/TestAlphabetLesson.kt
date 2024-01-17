@@ -2,10 +2,13 @@ package com.ruralnative.handsy.data.dao
 
 import android.util.Log
 import androidx.room.Room
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.entities.AlphabetLesson
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -14,22 +17,23 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
 
-@RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class TestAlphabetLesson {
 
-    private lateinit var database: AppDatabase
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
+    @Inject
     private lateinit var dao: AlphabetLessonDao
 
     @Before
     fun initDb() {
-        database = Room.inMemoryDatabaseBuilder(
-            InstrumentationRegistry.getInstrumentation().targetContext,
-            AppDatabase::class.java
-        ).build()
-        dao = database.alphabetLessonDao()
+        hiltRule.inject()
     }
 
     @Test

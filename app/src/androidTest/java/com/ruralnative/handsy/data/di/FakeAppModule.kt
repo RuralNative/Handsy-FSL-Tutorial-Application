@@ -1,6 +1,8 @@
 package com.ruralnative.handsy.data.di
 
 import android.content.Context
+import androidx.room.Room
+import androidx.test.platform.app.InstrumentationRegistry
 import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.dao.AlphabetLessonDao
 import com.ruralnative.handsy.data.dao.PhrasesLessonDao
@@ -11,6 +13,7 @@ import com.ruralnative.handsy.data.repository.UserRepository
 import com.ruralnative.handsy.di.AppModule
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
@@ -18,14 +21,17 @@ import javax.inject.Singleton
 
 @Module
 @TestInstallIn(components = [SingletonComponent::class], replaces = [AppModule::class])
-class FakeAppModule {
+object FakeAppModule {
 
     @Provides
     @Singleton
     fun provideLocalDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
-        return AppDatabase.getDatabase(context)
+        return Room.inMemoryDatabaseBuilder(
+            context,
+            AppDatabase::class.java
+        ).build()
     }
 
     @Provides
