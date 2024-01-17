@@ -41,3 +41,5 @@ z
 Japp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestPhrasesDAO.kt,2\0\20b10a4c0dd9042d33767ee07f959c06aaf6cc4d
 {
 Kapp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestAlphabetDAO.kt,7\f\7fe5322cf54388bbf25425f43c45f18ba0e5e87c
+n
+>app/src/main/java/com/ruralnative/handsy/data/entities/User.kt,2\5\251357097fae5affd426dfe2740547064e105108
