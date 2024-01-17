@@ -21,6 +21,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import javax.inject.Inject
+import javax.inject.Named
 
 @HiltAndroidTest
 class TestAlphabetLesson {
@@ -29,6 +30,7 @@ class TestAlphabetLesson {
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
+    @Named("test_user_dao")
     lateinit var dao: AlphabetLessonDao
 
     @Before
