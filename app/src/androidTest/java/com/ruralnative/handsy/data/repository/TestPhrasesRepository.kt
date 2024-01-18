@@ -2,9 +2,9 @@ package com.ruralnative.handsy.data.repository
 
 import androidx.test.filters.SmallTest
 import com.ruralnative.handsy.data.AppDatabase
-import com.ruralnative.handsy.data.di.TestAlphabetRepo
-import com.ruralnative.handsy.data.di.TestDatabase
-import com.ruralnative.handsy.data.di.TestPhrasesRepo
+import com.ruralnative.handsy.di.TestAlphabetRepo
+import com.ruralnative.handsy.di.TestDatabase
+import com.ruralnative.handsy.di.TestPhrasesRepo
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -26,10 +26,12 @@ class TestPhrasesRepository {
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    @TestDatabase lateinit var database: AppDatabase
+    @TestDatabase
+    lateinit var database: AppDatabase
 
     @Inject
-    @TestPhrasesRepo lateinit var repository: PhrasesLessonRepository
+    @TestPhrasesRepo
+    lateinit var repository: PhrasesLessonRepository
 
     @Before
     fun initDb() {

@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.data.di
+package com.ruralnative.handsy.di
 
 import android.content.Context
 import androidx.room.Room

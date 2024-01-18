@@ -57,3 +57,5 @@ x
 Happ/src/main/java/com/ruralnative/handsy/data/entities/AlphabetLesson.kt,f\0\f059ad4b48ae5a004cf07165364f22ff78e7278f
 w
 Gapp/src/main/java/com/ruralnative/handsy/data/entities/PhrasesLesson.kt,b\6\b6a8d388240d1980c387d21021858686f8e9e9e4
+s
+Capp/src/androidTest/java/com/ruralnative/handsy/CustomTestRunner.kt,a\6\a6d0f0d5555430373b2bc9b223af4f4970665368
