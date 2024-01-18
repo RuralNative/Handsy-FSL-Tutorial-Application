@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @WorkerThread
 class AlphabetLessonRepository @Inject constructor(
-    @AlphabetDAO private val dao: AlphabetLessonDao
+    private val dao: AlphabetLessonDao
 ) {
 
     val allLessons: Flow<List<AlphabetLesson>> = dao.selectAllLessons()
