@@ -59,3 +59,7 @@ w
 Gapp/src/main/java/com/ruralnative/handsy/data/entities/PhrasesLesson.kt,b\6\b6a8d388240d1980c387d21021858686f8e9e9e4
 s
 Capp/src/androidTest/java/com/ruralnative/handsy/CustomTestRunner.kt,a\6\a6d0f0d5555430373b2bc9b223af4f4970665368
+q
+Aapp/src/main/java/com/ruralnative/handsy/ui/entryUI/EntryState.kt,2\0\20e61635e3b49b5115983ed7394b9322dd01cb33
+r
+Bapp/src/main/java/com/ruralnative/handsy/ui/entryUI/EntryScreen.kt,8\6\86976628dc59d5dfbcdd1e5f25cc463b3aebd586

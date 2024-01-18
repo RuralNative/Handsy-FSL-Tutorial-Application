@@ -8,11 +8,13 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class EntryViewModel (
+@HiltViewModel
+class EntryViewModel @Inject constructor (
+    private val repository: UserRepository
 ): ViewModel() {
 
     // UI State fetched for modification inside ViewModel
@@ -20,24 +22,22 @@ class EntryViewModel (
     //Backing property for outside classes' access to data
     val uiState: StateFlow<EntryState> = _uiState.asStateFlow()
 
-    private var isThereAUser: Boolean = false
+    private var isThereNoUser: Boolean = false
 
-    /*
     fun checkUserCountAndNavigate(
         navigateToInitial: () -> Unit,
         navigateToMain: () -> Unit
     ) {
         viewModelScope.launch {
             delay(2000) // wait for 2 seconds
-            isThereAUser = repository.isThereAUser().single()
-            _uiState.value = uiState.value.copy(isThereAUserState = isThereAUser)
+            isThereNoUser = repository.isThereNoUser().first()
+            _uiState.value = uiState.value.copy(isThereAUserState = isThereNoUser)
 
-            if (isThereAUser) {
-                navigateToMain()
-            } else {
+            if (!isThereNoUser) {
                 navigateToInitial()
+            } else {
+                navigateToMain()
             }
         }
     }
-     */
 }
