@@ -23,7 +23,6 @@ class TestUserRepository {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
-
     @Inject
     @TestDatabase lateinit var database: AppDatabase
 
