@@ -16,7 +16,7 @@ class AlphabetLessonRepository @Inject constructor(
 
     val allLessons: Flow<List<AlphabetLesson>> = dao.selectAllLessons()
 
-    suspend fun getLessonByID(lessonID: Int): Flow<AlphabetLesson> {
+    fun getLessonByID(lessonID: Int): Flow<AlphabetLesson> {
         return dao.selectLessonById(lessonID)
     }
 
@@ -39,6 +39,4 @@ class AlphabetLessonRepository @Inject constructor(
     suspend fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: Int) {
         dao.updateLessonMediaFile(lessonMediaFile, lessonID)
     }
-
-
 }

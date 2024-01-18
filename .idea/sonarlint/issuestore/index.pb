@@ -53,3 +53,7 @@ Papp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserIntroViewModel.k
 Yapp/src/androidTest/java/com/ruralnative/handsy/data/repository/TestAlphabetRepository.kt,5\b\5b92afb0a5512e88590e2bf9dc5f0ed4000dee08
 ˆ
 Xapp/src/androidTest/java/com/ruralnative/handsy/data/repository/TestPhrasesRepository.kt,5\e\5e7f4a627254f795c6af1e41c25417f705e3939b
+x
+Happ/src/main/java/com/ruralnative/handsy/data/entities/AlphabetLesson.kt,f\0\f059ad4b48ae5a004cf07165364f22ff78e7278f
+w
+Gapp/src/main/java/com/ruralnative/handsy/data/entities/PhrasesLesson.kt,b\6\b6a8d388240d1980c387d21021858686f8e9e9e4
