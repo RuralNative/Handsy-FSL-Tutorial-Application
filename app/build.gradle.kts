@@ -64,28 +64,28 @@ android {
 
 dependencies {
     // Android Core Dependencies
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("com.google.ar:core:1.41.0")
-
-    // AndroidX Arch Core
-    val archVersion = "2.2.0"
-    testImplementation("androidx.arch.core:core-common:$archVersion")
-    testImplementation("androidx.arch.core:core-runtime:$archVersion")
-    testImplementation("androidx.arch.core:core-testing:$archVersion")
-
-    // Android Compose
+    val androidCore = "1.12.0"
+    val androidLifeCycle = "2.7.0"
+    val androidArchVersion = "2.2.0"
+    val googleCore = "1.41.0"
     val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
-    implementation("androidx.activity:activity-compose:1.8.2")
-    implementation("androidx.compose.runtime:runtime-livedata")
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.10.01"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    val composeActivity = "1.8.2"
+    val composeConstraintLayout = "1.0.1"
+    val hiltVersion = "2.50"
+    val hiltNavigation = "1.1.0"
+    val roomVersion = "2.6.1"
+    val navVersion = "2.7.6"
+    val junit = "4.13.2"
 
-    // Material Design 3
+    //Implementation Dependencies
+    implementation("androidx.core:core-ktx:$androidCore")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$androidLifeCycle")
+    implementation("com.google.ar:core:$googleCore")
+    implementation(composeBom)
+    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.activity:activity-compose:$composeActivity")
+    implementation("androidx.activity:activity-ktx:$composeActivity")
+    implementation("androidx.constraintlayout:constraintlayout-compose:$composeConstraintLayout")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material3:material3-window-size-class")
     implementation("androidx.compose.material:material-icons-core")
@@ -93,42 +93,40 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-
-    //Hilt Dependency Injection
-    val hiltVersion = "2.50"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
-    testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
-    ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
-    kspAndroidTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
-    val hiltNavigation = "1.1.0"
     implementation("androidx.hilt:hilt-navigation-compose:$hiltNavigation")
-
-    // Room Database Dependencies
-    val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
-    testImplementation("androidx.room:room-testing:$roomVersion")
-
-    //Navigation
-    val navVersion = "2.7.6"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$navVersion")
     implementation("androidx.navigation:navigation-compose:$navVersion")
-    androidTestImplementation("androidx.navigation:navigation-testing:$navVersion")
 
-    // AndroidX Test Library
-    testImplementation("junit:junit:4.13.2")
+    // Unit Test Implementation Dependencies
+    testImplementation("androidx.arch.core:core-common:$androidArchVersion")
+    testImplementation("androidx.arch.core:core-runtime:$androidArchVersion")
+    testImplementation("androidx.arch.core:core-testing:$androidArchVersion")
+    testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    testImplementation("androidx.room:room-testing:$roomVersion")
+    testImplementation("junit:junit:$junit")
+
+    // Debugging Implementation Dependencies
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
+    // Instrumentation Test Dependencies
+    androidTestImplementation(composeBom)
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    androidTestImplementation("androidx.navigation:navigation-testing:$navVersion")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
-
-    // AndroidX Espresso
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
-    // AndroidX UI Automator
     androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0-beta01")
+
+    //KSP-dependent Dependencies
+    ksp("androidx.room:room-compiler:$roomVersion")
+    ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    kspAndroidTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
 }
