@@ -22,6 +22,7 @@ android {
     compileSdk = 34
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     buildTypes {
         release {
@@ -101,6 +102,8 @@ dependencies {
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
     androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     kspAndroidTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    val hiltNavigation = "1.1.0"
+    implementation("androidx.hilt:hilt-navigation-compose:$hiltNavigation")
 
     // Room Database Dependencies
     val roomVersion = "2.6.1"
