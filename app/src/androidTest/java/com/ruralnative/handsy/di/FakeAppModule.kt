@@ -9,23 +9,15 @@ import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
 import com.ruralnative.handsy.data.repository.UserRepository
-import com.ruralnative.handsy.di.AlphabetDAO
-import com.ruralnative.handsy.di.AlphabetRepo
-import com.ruralnative.handsy.di.AppModule
-import com.ruralnative.handsy.di.PhrasesDAO
-import com.ruralnative.handsy.di.PhrasesRepo
-import com.ruralnative.handsy.di.UserDAO
-import com.ruralnative.handsy.di.UserRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-@TestInstallIn(components = [SingletonComponent::class], replaces = [AppModule::class])
+@TestInstallIn(components = [SingletonComponent::class], replaces = [DataModule::class])
 object FakeAppModule {
 
     @Provides
