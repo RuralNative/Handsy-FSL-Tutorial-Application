@@ -67,3 +67,7 @@ k
 ;app/src/main/java/com/ruralnative/handsy/ui/MainActivity.kt,f\3\f32e5917b16c824766e422200a95c3e4fbf08e79
 g
 7app/src/main/java/com/ruralnative/handsy/ui/NavGraph.kt,b\e\becf76de493c9ece4f0df72d06fc2fc46d4d9ee1
+n
+>app/src/main/java/com/ruralnative/handsy/navigation/NavHost.kt,0\d\0df54c0220a864865da059a1476362895fce7a10
+m
+=app/src/main/java/com/ruralnative/handsy/navigation/Screen.kt,6\5\657232412e8f592ec14b8f252c7b3322ebfb8eaf
