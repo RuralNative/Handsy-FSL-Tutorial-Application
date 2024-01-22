@@ -36,12 +36,12 @@ import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Composable
 fun UserIntroScreen(
-    navController: NavController,
+    modifier: Modifier,
+    navigateToMainScreen: () -> Unit,
     viewModel: UserIntroViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState(initial = UserIntroState())
     val userNameState = uiState.userNameState
-    val saveUserName: KeyboardActionScope.() -> Unit = { viewModel.saveUserNameInDatabase(userNameState) }
 
     HandsyTheme {
         Surface(
@@ -74,7 +74,10 @@ fun UserIntroScreen(
                     onValueChange = { newValue ->
                         viewModel.updateUserNameState(newValue)
                     },
-                    onDone = { viewModel.saveUserNameInDatabase(it) },
+                    onDone = {
+                        viewModel.saveUserNameInDatabase(it)
+                        navigateToMainScreen()
+                             },
                     Modifier
                         .constrainAs(inputContainer) {
                             start.linkTo(parent.start)
