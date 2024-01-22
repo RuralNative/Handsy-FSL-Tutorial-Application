@@ -8,6 +8,13 @@ import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
 import com.ruralnative.handsy.data.repository.UserRepository
+import com.ruralnative.handsy.di.qualifiers.AlphabetDAO
+import com.ruralnative.handsy.di.qualifiers.AlphabetRepo
+import com.ruralnative.handsy.di.qualifiers.Database
+import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
+import com.ruralnative.handsy.di.qualifiers.PhrasesRepo
+import com.ruralnative.handsy.di.qualifiers.UserDAO
+import com.ruralnative.handsy.di.qualifiers.UserRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

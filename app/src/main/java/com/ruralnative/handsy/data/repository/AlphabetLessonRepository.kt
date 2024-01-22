@@ -3,8 +3,6 @@ package com.ruralnative.handsy.data.repository
 import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.AlphabetLessonDao
 import com.ruralnative.handsy.data.entities.AlphabetLesson
-import com.ruralnative.handsy.di.AlphabetDAO
-import com.ruralnative.handsy.di.UserDAO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
