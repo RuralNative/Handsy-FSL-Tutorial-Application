@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.ruralnative.handsy.ui.entryUI.EntryScreen
 import com.ruralnative.handsy.ui.entryUI.EntryViewModel
+import com.ruralnative.handsy.ui.initialScreens.UserIntroScreen
+import com.ruralnative.handsy.ui.initialScreens.UserIntroViewModel
 
 @Composable
 fun NavGraph(
@@ -27,15 +29,18 @@ fun NavGraph(
                     navController.navigate(Screen.UserIntro.route)
                 },
                 onNavigateToMain = {
-                    navController.navigate(Screen.Author.route)
+                    //Navigate to Main
                 }
             )
         }
         composable(Screen.UserIntro.route) {
-            TODO("Add code to direct to UserIntroScreen")
-        }
-        composable(Screen.Author.route) {
-            TODO("Add code to direct to AuthorMessageScreen")
+            val viewModel = hiltViewModel<UserIntroViewModel>()
+            UserIntroScreen(
+                modifier = Modifier,
+                navigateToMainScreen = {
+                    navController.navigate(Screen.MainScreen.route)
+                },
+                viewModel = viewModel )
         }
     }
 
