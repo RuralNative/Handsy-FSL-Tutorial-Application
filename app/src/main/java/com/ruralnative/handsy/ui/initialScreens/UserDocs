@@ -1,0 +1,23 @@
+ENTRY SCREEN
+
+INTRO:
+User Intro Screen is the Composable screen after Entry Screen in the event.
+
+PURPOSE:
+Its main purpose is to direct the user to either the USER INTRO SCREEN or MAIN SCREEN depending on the type of user. For our initial case, its only concern is whether the user is NEW or OLD
+If the USER is NEW, Entry Screen will direct the user to the User Intro Screen
+If the USER is OLD, Entry Screen will direct the user to the Main Screen
+
+COMPONENTS:
+COMPOSABLE SCREEN (for the UI role)
+- Holds the composable functions responsible for displaying UI
+VIEW MODEL (for State holder roles)
+- Holds Logic
+STATE (for State)
+- Hold UI State
+
+PROCESS:
+1. Initialized upon Navigation from Entry Screen
+2. Passes Hilt-injected ViewModel and lambda function to navigate to Main Screen
+3. Composable Screen uses the ViewModel's helper function to update State for TextField user input
+4. Upon input's Done, save User with the Name and navigate to Main Screen
