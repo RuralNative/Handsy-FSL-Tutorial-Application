@@ -79,3 +79,9 @@ Lapp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserIntroState.kt,1
 Mapp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserIntroScreen.kt,3\b\3bee830ac8479d8e7d00ed2518257e2af070c47c
 s
 Capp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserDocs,3\8\38515fe42fdc9d88739b7175a97a4c16c65ffaf4
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+m
+=app/src/main/java/com/ruralnative/handsy/di/ActivityModule.kt,0\c\0c66c87e13567f91d3987985e99c8ac34d6d08fa
+}
+Mapp/src/main/java/com/ruralnative/handsy/di/qualifiers/ViewModelQualifiers.kt,c\a\ca30f287a31edc64d261e60845faf33724afa215
