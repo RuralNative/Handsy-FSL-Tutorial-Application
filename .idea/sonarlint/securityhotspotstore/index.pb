@@ -73,3 +73,9 @@ L
 docs/DESIGN_DOCUMENTATION.md,2\1\2188b561ae94fbf195c81567dacc531a684f6abc
 m
 =app/src/main/java/com/ruralnative/handsy/ui/entryUI/EntryDocs,0\d\0d1dba1fff5dc8478a5be214239ccd4e56392ec2
+|
+Lapp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserIntroState.kt,1\c\1cba33cd63363f3af508de4a091955930acc1f93
+}
+Mapp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserIntroScreen.kt,3\b\3bee830ac8479d8e7d00ed2518257e2af070c47c
+s
+Capp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserDocs,3\8\38515fe42fdc9d88739b7175a97a4c16c65ffaf4
