@@ -11,12 +11,6 @@ C
 settings.gradle.kts,7\4\749edfcc96398253e5b3416184e95c46621da850
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
-x
-Happ/src/androidTest/java/com/ruralnative/handsy/data/di/FakeAppModule.kt,f\c\fc96803f987777250a84a53b7530d77d61061582
-~
-Napp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestAlphabetLesson.kt,9\a\9a2f1fd4948211c51572140a64a51368576c53a2
-h
-8app/src/main/java/com/ruralnative/handsy/di/AppModule.kt,b\1\b17c77f8a282970974eb4e2317ba3646a10fda01
 z
 Japp/src/main/java/com/ruralnative/handsy/data/repository/UserRepository.kt,2\9\294698c79bf018288f4ff23c7e4fca7c68de8c81
 u
@@ -31,8 +25,6 @@ u
 Eapp/src/main/java/com/ruralnative/handsy/data/dao/PhrasesLessonDao.kt,b\e\be8d2506e6d7329410a1a322e1eb4b72ed8a4cc2
 ƒ
 Sapp/src/main/java/com/ruralnative/handsy/data/repository/PhrasesLessonRepository.kt,d\4\d4b1c48b8ce56cee6b67218aa7119d0b140903bc
-}
-Mapp/src/androidTest/java/com/ruralnative/handsy/data/dao/TestPhrasesLesson.kt,5\6\563edfa07f4fb5bbd8d9af5bf365abf9bf502232
 l
 <app/src/main/java/com/ruralnative/handsy/data/dao/UserDao.kt,7\e\7e535b78146246f539c49f63905d8616106acd06
 w
@@ -45,8 +37,6 @@ n
 >app/src/main/java/com/ruralnative/handsy/data/entities/User.kt,2\5\251357097fae5affd426dfe2740547064e105108
 …
 Uapp/src/androidTest/java/com/ruralnative/handsy/data/repository/TestUserRepository.kt,f\9\f96b181a5d247f6eeede7d722518ad46757e8864
-}
-Mapp/src/androidTest/java/com/ruralnative/handsy/data/di/TestDataQualifiers.kt,6\8\6892ea99667516409984c4d3a55f525b5a7d814f
 €
 Papp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserIntroViewModel.kt,4\a\4a6908d3c616735e845733c4201319394e9be44c
 ‰
@@ -65,10 +55,6 @@ r
 Bapp/src/main/java/com/ruralnative/handsy/ui/entryUI/EntryScreen.kt,8\6\86976628dc59d5dfbcdd1e5f25cc463b3aebd586
 k
 ;app/src/main/java/com/ruralnative/handsy/ui/MainActivity.kt,f\3\f32e5917b16c824766e422200a95c3e4fbf08e79
-g
-7app/src/main/java/com/ruralnative/handsy/ui/NavGraph.kt,b\e\becf76de493c9ece4f0df72d06fc2fc46d4d9ee1
-n
->app/src/main/java/com/ruralnative/handsy/navigation/NavHost.kt,0\d\0df54c0220a864865da059a1476362895fce7a10
 m
 =app/src/main/java/com/ruralnative/handsy/navigation/Screen.kt,6\5\657232412e8f592ec14b8f252c7b3322ebfb8eaf
 o
@@ -77,3 +63,11 @@ i
 9app/src/main/java/com/ruralnative/handsy/di/DataModule.kt,2\6\2662289eb9679cbd4347b8929498b9236adf8027
 o
 ?app/src/main/java/com/ruralnative/handsy/navigation/NavGraph.kt,1\5\15e40fcb4bf48635fdf1211e433a2f491e5057c5
+H
+docs/DEVELOPER_GUIDES.md,a\2\a2fdcbd562a9afd83d4da737f2de8525730eaf66
+R
+"docs/ARCHITECTURE_DOCUMENTATION.md,a\0\a0cd108f54a470ad0b84236053d793e7401bf1b7
+B
+docs/USER_GUIDE.md,2\2\22a6f3c4168bdd5c14fbe5c223fe013c82025841
+L
+docs/DESIGN_DOCUMENTATION.md,2\1\2188b561ae94fbf195c81567dacc531a684f6abc
