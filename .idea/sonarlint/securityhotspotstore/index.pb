@@ -71,3 +71,5 @@ B
 docs/USER_GUIDE.md,2\2\22a6f3c4168bdd5c14fbe5c223fe013c82025841
 L
 docs/DESIGN_DOCUMENTATION.md,2\1\2188b561ae94fbf195c81567dacc531a684f6abc
+m
+=app/src/main/java/com/ruralnative/handsy/ui/entryUI/EntryDocs,0\d\0d1dba1fff5dc8478a5be214239ccd4e56392ec2
