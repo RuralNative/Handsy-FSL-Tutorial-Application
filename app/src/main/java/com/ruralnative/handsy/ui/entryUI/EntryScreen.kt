@@ -25,6 +25,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ruralnative.handsy.R
+import com.ruralnative.handsy.navigation.Screen
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
@@ -59,15 +60,16 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
 @Composable
 fun EntryScreen(
     modifier: Modifier = Modifier,
-    navController: NavController
-    viewModel: EntryViewModel
+    viewModel: EntryViewModel,
+    onNavigateToUser: () -> Unit,
+    onNavigateToMain: () -> Unit
 ) {
     viewModel.checkUserCountAndNavigate(
         navigateToInitial = {
-            TODO("Navigate to Initial Screen")
+            onNavigateToUser()
         },
         navigateToMain = {
-            TODO("Navigate to Main Screen")
+            onNavigateToMain()
         }
     )
 
