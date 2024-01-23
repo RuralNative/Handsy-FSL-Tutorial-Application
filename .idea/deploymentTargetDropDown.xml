@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="DAO Test">
+        <State />
+      </entry>
       <entry key="TestAlphabetLesson">
         <State />
       </entry>

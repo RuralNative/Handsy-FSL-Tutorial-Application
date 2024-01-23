@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @WorkerThread
 class UserRepository @Inject constructor(
-     private val dao : UserDao
+     private val dao: UserDao
 ) {
     val allUsers: Flow<List<User>> = dao.selectAllUsers()
 
