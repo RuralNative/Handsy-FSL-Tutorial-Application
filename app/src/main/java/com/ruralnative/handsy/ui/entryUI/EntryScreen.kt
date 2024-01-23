@@ -22,10 +22,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.ruralnative.handsy.R
-import com.ruralnative.handsy.navigation.Screen
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
@@ -60,19 +58,10 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
 @Composable
 fun EntryScreen(
     modifier: Modifier = Modifier,
-    viewModel: EntryViewModel,
+    viewModel: EntryViewModel = hiltViewModel<EntryViewModel>(),
     onNavigateToUser: () -> Unit,
     onNavigateToMain: () -> Unit
 ) {
-    viewModel.checkUserCountAndNavigate(
-        navigateToInitial = {
-            onNavigateToUser()
-        },
-        navigateToMain = {
-            onNavigateToMain()
-        }
-    )
-
     HandsyTheme {
         Surface(
             modifier = Modifier
@@ -96,6 +85,14 @@ fun EntryScreen(
             }
         }
     }
+    viewModel.checkUserCountAndNavigate(
+        navigateToInitial = {
+            onNavigateToUser()
+        },
+        navigateToMain = {
+            onNavigateToMain()
+        }
+    )
 }
 
 @Composable
