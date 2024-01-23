@@ -36,42 +36,36 @@ object DataModule {
     }
 
     @Provides
-    @Singleton
     @AlphabetDAO
     fun provideAlphabetLessonDao(
         @Database database: AppDatabase
     ): AlphabetLessonDao = database.alphabetLessonDao()
 
     @Provides
-    @Singleton
     @PhrasesDAO
     fun providePhrasesLessonDao(
         @Database database: AppDatabase
     ): PhrasesLessonDao = database.phrasesLessonDao()
 
     @Provides
-    @Singleton
     @UserDAO
     fun provideUserDao(
         @Database database: AppDatabase
     ): UserDao = database.userDao()
 
     @Provides
-    @Singleton
     @AlphabetRepo
     fun provideAlphabetLessonRepository(
         @AlphabetDAO dao: AlphabetLessonDao
     ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
 
     @Provides
-    @Singleton
     @PhrasesRepo
     fun providePhrasesLessonRepository(
         @PhrasesDAO dao: PhrasesLessonDao
     ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
 
     @Provides
-    @Singleton
     @UserRepo
     fun provideUserRepository(
         @UserDAO dao: UserDao
