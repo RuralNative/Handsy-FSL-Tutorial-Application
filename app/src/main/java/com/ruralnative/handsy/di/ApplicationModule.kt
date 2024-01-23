@@ -30,50 +30,10 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideCoroutineScope(): CoroutineScope = CoroutineScope(SupervisorJob())
-
-    @Provides
-    @Singleton
     @Database
     fun provideLocalDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
        return AppDatabase.getDatabase(context)
     }
-
-    @Provides
-    @AlphabetDAO
-    fun provideAlphabetLessonDao(
-        @Database database: AppDatabase
-    ): AlphabetLessonDao = database.alphabetLessonDao()
-
-    @Provides
-    @PhrasesDAO
-    fun providePhrasesLessonDao(
-        @Database database: AppDatabase
-    ): PhrasesLessonDao = database.phrasesLessonDao()
-
-    @Provides
-    @UserDAO
-    fun provideUserDao(
-        @Database database: AppDatabase
-    ): UserDao = database.userDao()
-
-    @Provides
-    @AlphabetRepo
-    fun provideAlphabetLessonRepository(
-        @AlphabetDAO dao: AlphabetLessonDao
-    ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
-
-    @Provides
-    @PhrasesRepo
-    fun providePhrasesLessonRepository(
-        @PhrasesDAO dao: PhrasesLessonDao
-    ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
-
-    @Provides
-    @UserRepo
-    fun provideUserRepository(
-        @UserDAO dao: UserDao
-    ): UserRepository = UserRepository(dao)
 }
