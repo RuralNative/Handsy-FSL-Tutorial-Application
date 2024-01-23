@@ -81,3 +81,9 @@ l
 <app/src/main/java/com/ruralnative/handsy/data/AppDatabase.kt,d\a\dad708dcb9ab6cec40f2a692d6a489a32cfa7249
 s
 Capp/src/androidTest/java/com/ruralnative/handsy/di/FakeAppModule.kt,7\b\7b85118ff912b860a5933b84155472d309b590ca
+n
+>app/src/main/java/com/ruralnative/handsy/di/ViewModelModule.kt,9\5\952e7f63e4457df0c3c387432227ace5c3bf4501
+p
+@app/src/main/java/com/ruralnative/handsy/di/ApplicationModule.kt,a\5\a50bb45e8b8e81b1b5a1d3cdb2acd50ed101c356
+y
+Iapp/src/androidTest/java/com/ruralnative/handsy/di/FakeViewModelModule.kt,1\8\18f44785d580370f15e2fe5dc85ad6cc166139f9

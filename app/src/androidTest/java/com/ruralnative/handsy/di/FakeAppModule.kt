@@ -30,43 +30,4 @@ object FakeAppModule {
             AppDatabase::class.java
         ).build()
     }
-
-    @Provides
-    @TestAlphabetDAO
-    fun provideAlphabetLessonDao(
-        @TestDatabase database: AppDatabase
-    ): AlphabetLessonDao = database.alphabetLessonDao()
-
-    @Provides
-    @TestPhrasesDAO
-    fun providePhrasesLessonDao(
-        @TestDatabase database: AppDatabase
-    ): PhrasesLessonDao = database.phrasesLessonDao()
-
-    @Provides
-    @TestUserDAO
-    fun provideUserDao(
-        @TestDatabase database: AppDatabase
-    ): UserDao = database.userDao()
-
-    @Provides
-    @Singleton
-    @TestAlphabetRepo
-    fun provideAlphabetLessonRepository(
-        @TestAlphabetDAO dao: AlphabetLessonDao
-    ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
-
-    @Provides
-    @Singleton
-    @TestPhrasesRepo
-    fun providePhrasesLessonRepository(
-        @TestPhrasesDAO dao: PhrasesLessonDao
-    ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
-
-    @Provides
-    @Singleton
-    @TestUserRepo
-    fun provideUserRepository(
-        @TestUserDAO dao: UserDao
-    ): UserRepository = UserRepository(dao)
 }
