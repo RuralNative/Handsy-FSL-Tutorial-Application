@@ -6,6 +6,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.ruralnative.handsy.di.qualifiers.EntryScreenViewModel
+import com.ruralnative.handsy.di.qualifiers.IntroViewModel
 import com.ruralnative.handsy.ui.entryUI.EntryScreen
 import com.ruralnative.handsy.ui.entryUI.EntryViewModel
 import com.ruralnative.handsy.ui.initialScreens.UserIntroScreen
@@ -21,10 +23,8 @@ fun NavGraph(
         startDestination = "entry_screen"
     ) {
         composable(Screen.Entry.route) {
-            val viewModel = hiltViewModel<EntryViewModel>()
             EntryScreen(
                 modifier = Modifier,
-                viewModel = viewModel,
                 onNavigateToUser = {
                     navController.navigate(Screen.UserIntro.route)
                 },
@@ -34,13 +34,12 @@ fun NavGraph(
             )
         }
         composable(Screen.UserIntro.route) {
-            val viewModel = hiltViewModel<UserIntroViewModel>()
             UserIntroScreen(
                 modifier = Modifier,
                 navigateToMainScreen = {
                     navController.navigate(Screen.MainScreen.route)
-                },
-                viewModel = viewModel )
+                }
+            )
         }
         composable(Screen.MainScreen.route) {
 
