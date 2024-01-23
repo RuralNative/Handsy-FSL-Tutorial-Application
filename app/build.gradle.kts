@@ -79,7 +79,13 @@ dependencies {
 
     //Implementation Dependencies
     implementation("androidx.core:core-ktx:$androidCore")
+    implementation("androidx.lifecycle:lifecycle-common-java8:$androidLifeCycle")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$androidLifeCycle")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$androidLifeCycle")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$androidLifeCycle")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$androidLifeCycle")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$androidLifeCycle")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:$androidLifeCycle")
     implementation("com.google.ar:core:$googleCore")
     implementation(composeBom)
     implementation("androidx.compose.runtime:runtime-livedata")
@@ -128,5 +134,6 @@ dependencies {
     //KSP-dependent Dependencies
     ksp("androidx.room:room-compiler:$roomVersion")
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    ksp("androidx.lifecycle:lifecycle-compiler:$androidLifeCycle")
     kspAndroidTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
 }
