@@ -3,6 +3,7 @@ package com.ruralnative.handsy.di
 import com.ruralnative.handsy.data.repository.UserRepository
 import com.ruralnative.handsy.di.qualifiers.EntryScreenViewModel
 import com.ruralnative.handsy.di.qualifiers.IntroViewModel
+import com.ruralnative.handsy.di.qualifiers.UserRepo
 import com.ruralnative.handsy.ui.entryUI.EntryViewModel
 import com.ruralnative.handsy.ui.initialScreens.UserIntroViewModel
 import dagger.Module
@@ -17,7 +18,7 @@ object ActivityModule {
     @Provides
     @EntryScreenViewModel
     fun provideEntryViewModel(
-        repository: UserRepository
+        @UserRepo repository: UserRepository
     ): EntryViewModel {
         return EntryViewModel(repository)
     }
@@ -25,7 +26,7 @@ object ActivityModule {
     @Provides
     @IntroViewModel
     fun provideUserIntroViewModel(
-        repository: UserRepository
+        @UserRepo repository: UserRepository
     ): UserIntroViewModel {
         return UserIntroViewModel(repository)
     }
