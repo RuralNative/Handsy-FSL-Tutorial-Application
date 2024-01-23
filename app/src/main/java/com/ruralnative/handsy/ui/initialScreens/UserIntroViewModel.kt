@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserIntroViewModel @Inject constructor(
+class UserIntroViewModel @Inject constructor (
     private val repository: UserRepository
 ): ViewModel() {
 
