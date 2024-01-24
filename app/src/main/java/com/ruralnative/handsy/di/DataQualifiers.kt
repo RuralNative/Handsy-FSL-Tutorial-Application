@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.di.qualifiers
+package com.ruralnative.handsy.di
 
 import javax.inject.Qualifier
 

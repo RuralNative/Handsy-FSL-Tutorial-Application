@@ -3,13 +3,14 @@ package com.ruralnative.handsy.data.repository
 import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.PhrasesLessonDao
 import com.ruralnative.handsy.data.entities.PhrasesLesson
+import com.ruralnative.handsy.di.PhrasesDAO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
 @WorkerThread
 class PhrasesLessonRepository @Inject constructor(
-    private val dao: PhrasesLessonDao
+    @PhrasesDAO private val dao: PhrasesLessonDao
 ) {
 
     val allLessons: Flow<List<PhrasesLesson>> = dao.selectAllLessons()

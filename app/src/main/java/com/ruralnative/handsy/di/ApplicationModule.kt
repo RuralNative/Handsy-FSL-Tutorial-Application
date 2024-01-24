@@ -5,23 +5,11 @@ import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.dao.AlphabetLessonDao
 import com.ruralnative.handsy.data.dao.PhrasesLessonDao
 import com.ruralnative.handsy.data.dao.UserDao
-import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
-import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
-import com.ruralnative.handsy.data.repository.UserRepository
-import com.ruralnative.handsy.di.qualifiers.AlphabetDAO
-import com.ruralnative.handsy.di.qualifiers.AlphabetRepo
-import com.ruralnative.handsy.di.qualifiers.Database
-import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
-import com.ruralnative.handsy.di.qualifiers.PhrasesRepo
-import com.ruralnative.handsy.di.qualifiers.UserDAO
-import com.ruralnative.handsy.di.qualifiers.UserRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
 @Module
@@ -36,4 +24,22 @@ object ApplicationModule {
     ): AppDatabase {
        return AppDatabase.getDatabase(context)
     }
+
+    @Provides
+    @AlphabetDAO
+    fun provideAlphabetLessonDao(
+        @Database database: AppDatabase
+    ): AlphabetLessonDao = database.alphabetLessonDao()
+
+    @Provides
+    @PhrasesDAO
+    fun providePhrasesLessonDao(
+        @Database database: AppDatabase
+    ): PhrasesLessonDao = database.phrasesLessonDao()
+
+    @Provides
+    @UserDAO
+    fun provideUserDao(
+        @Database database: AppDatabase
+    ): UserDao = database.userDao()
 }

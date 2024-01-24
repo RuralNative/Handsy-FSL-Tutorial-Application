@@ -7,15 +7,6 @@ import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
 import com.ruralnative.handsy.data.repository.UserRepository
-import com.ruralnative.handsy.di.qualifiers.AlphabetDAO
-import com.ruralnative.handsy.di.qualifiers.AlphabetRepo
-import com.ruralnative.handsy.di.qualifiers.Database
-import com.ruralnative.handsy.di.qualifiers.EntryScreenViewModel
-import com.ruralnative.handsy.di.qualifiers.IntroViewModel
-import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
-import com.ruralnative.handsy.di.qualifiers.PhrasesRepo
-import com.ruralnative.handsy.di.qualifiers.UserDAO
-import com.ruralnative.handsy.di.qualifiers.UserRepo
 import com.ruralnative.handsy.ui.entryUI.EntryViewModel
 import com.ruralnative.handsy.ui.initialScreens.UserIntroViewModel
 import dagger.Module
@@ -26,24 +17,6 @@ import dagger.hilt.android.components.ActivityComponent
 @Module
 @InstallIn(ActivityComponent::class)
 object ViewModelModule {
-
-    @Provides
-    @AlphabetDAO
-    fun provideAlphabetLessonDao(
-        @Database database: AppDatabase
-    ): AlphabetLessonDao = database.alphabetLessonDao()
-
-    @Provides
-    @PhrasesDAO
-    fun providePhrasesLessonDao(
-        @Database database: AppDatabase
-    ): PhrasesLessonDao = database.phrasesLessonDao()
-
-    @Provides
-    @UserDAO
-    fun provideUserDao(
-        @Database database: AppDatabase
-    ): UserDao = database.userDao()
 
     @Provides
     @AlphabetRepo
