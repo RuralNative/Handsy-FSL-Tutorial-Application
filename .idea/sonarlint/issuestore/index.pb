@@ -53,8 +53,6 @@ k
 ;app/src/main/java/com/ruralnative/handsy/ui/MainActivity.kt,f\3\f32e5917b16c824766e422200a95c3e4fbf08e79
 m
 =app/src/main/java/com/ruralnative/handsy/navigation/Screen.kt,6\5\657232412e8f592ec14b8f252c7b3322ebfb8eaf
-i
-9app/src/main/java/com/ruralnative/handsy/di/DataModule.kt,2\6\2662289eb9679cbd4347b8929498b9236adf8027
 o
 ?app/src/main/java/com/ruralnative/handsy/navigation/NavGraph.kt,1\5\15e40fcb4bf48635fdf1211e433a2f491e5057c5
 H
@@ -71,10 +69,6 @@ Lapp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserIntroState.kt,1
 Mapp/src/main/java/com/ruralnative/handsy/ui/initialScreens/UserIntroScreen.kt,3\b\3bee830ac8479d8e7d00ed2518257e2af070c47c
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-m
-=app/src/main/java/com/ruralnative/handsy/di/ActivityModule.kt,0\c\0c66c87e13567f91d3987985e99c8ac34d6d08fa
-}
-Mapp/src/main/java/com/ruralnative/handsy/di/qualifiers/ViewModelQualifiers.kt,c\a\ca30f287a31edc64d261e60845faf33724afa215
 g
 7app/src/main/java/com/ruralnative/handsy/Application.kt,5\b\5b54136ece7be480c0ddd01eeca1c9f338344cfd
 l
@@ -85,7 +79,9 @@ n
 >app/src/main/java/com/ruralnative/handsy/di/ViewModelModule.kt,9\5\952e7f63e4457df0c3c387432227ace5c3bf4501
 p
 @app/src/main/java/com/ruralnative/handsy/di/ApplicationModule.kt,a\5\a50bb45e8b8e81b1b5a1d3cdb2acd50ed101c356
-y
-Iapp/src/androidTest/java/com/ruralnative/handsy/di/FakeViewModelModule.kt,1\8\18f44785d580370f15e2fe5dc85ad6cc166139f9
+m
+=app/src/main/java/com/ruralnative/handsy/di/DataQualifiers.kt,e\6\e692ce643ff3ba9bffcff9f3858dcfba64f8e800
+r
+Bapp/src/main/java/com/ruralnative/handsy/di/ViewModelQualifiers.kt,2\4\24fce015814e07cd18c6124b90a90484de67a078
 x
-Happ/src/main/java/com/ruralnative/handsy/di/qualifiers/DataQualifiers.kt,5\1\511ffa4fb5296b1b0c61d9fdcced430bbad3d91f
+Happ/src/androidTest/java/com/ruralnative/handsy/di/TestDataQualifiers.kt,e\6\e658f96f7d131ee1d3fac23636cb62b6e2b7ba21

@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @WorkerThread
 class PhrasesLessonRepository @Inject constructor(
-    @PhrasesDAO private val dao: PhrasesLessonDao
+    private val dao: PhrasesLessonDao
 ) {
 
     val allLessons: Flow<List<PhrasesLesson>> = dao.selectAllLessons()

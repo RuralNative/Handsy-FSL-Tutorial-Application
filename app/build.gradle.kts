@@ -62,6 +62,10 @@ android {
      }
 }
 
+hilt {
+    enableAggregatingTask = true
+}
+
 dependencies {
     // Android Core Dependencies
     val androidCore = "1.12.0"

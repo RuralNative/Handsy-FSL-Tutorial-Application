@@ -43,3 +43,4 @@ object ApplicationModule {
         @Database database: AppDatabase
     ): UserDao = database.userDao()
 }
+
