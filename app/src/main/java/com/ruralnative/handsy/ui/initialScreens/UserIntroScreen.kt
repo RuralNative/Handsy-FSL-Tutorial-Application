@@ -37,7 +37,7 @@ import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 fun UserIntroScreen(
     modifier: Modifier,
     navigateToMainScreen: () -> Unit,
-    viewModel: UserIntroViewModel = hiltViewModel<UserIntroViewModel>()
+    viewModel: UserIntroViewModel
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val userNameState = uiState.userNameState

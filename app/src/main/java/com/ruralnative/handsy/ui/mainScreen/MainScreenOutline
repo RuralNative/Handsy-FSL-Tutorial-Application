@@ -1,0 +1,20 @@
+List object - list of Lessons fetched from AlphabetLesson and PhrasesLesson serves as the State of the Main Screen UI
+
+LessonCardData Data Class
+- Create Data class for LessonCard named LessonCardData with String LessonTitle and String LessonResourceFile as properties
+
+LessonCard Composable
+
+- Create an empty LessonCard composable
+- Pass in LessonCardData to LessonCard
+- Nest a Column composable for LessonCard
+- Nest an Image composable and a Text composable for LessonCard
+- Pass in arguments of LessonCardData properties for the painter and contentDescription parameters of the Image composable
+- Pass in arguments of LessonCardData properties for the text parameter of the Text composable
+
+LessonColumn Composable
+- Create LessonColumn Composable that takes List from UI State as parameter, and nests a LazyColumn composable.
+- Pass in List argument from Lesson Column to LazyColumn item() data parameter
+
+MainScreenUI Composable
+- Use LessonColumn inside Main Screen Composable

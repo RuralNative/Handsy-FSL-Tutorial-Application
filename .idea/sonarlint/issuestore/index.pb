@@ -75,13 +75,13 @@ l
 <app/src/main/java/com/ruralnative/handsy/data/AppDatabase.kt,d\a\dad708dcb9ab6cec40f2a692d6a489a32cfa7249
 s
 Capp/src/androidTest/java/com/ruralnative/handsy/di/FakeAppModule.kt,7\b\7b85118ff912b860a5933b84155472d309b590ca
-n
->app/src/main/java/com/ruralnative/handsy/di/ViewModelModule.kt,9\5\952e7f63e4457df0c3c387432227ace5c3bf4501
 p
 @app/src/main/java/com/ruralnative/handsy/di/ApplicationModule.kt,a\5\a50bb45e8b8e81b1b5a1d3cdb2acd50ed101c356
 m
 =app/src/main/java/com/ruralnative/handsy/di/DataQualifiers.kt,e\6\e692ce643ff3ba9bffcff9f3858dcfba64f8e800
-r
-Bapp/src/main/java/com/ruralnative/handsy/di/ViewModelQualifiers.kt,2\4\24fce015814e07cd18c6124b90a90484de67a078
 x
 Happ/src/androidTest/java/com/ruralnative/handsy/di/TestDataQualifiers.kt,e\6\e658f96f7d131ee1d3fac23636cb62b6e2b7ba21
+y
+Iapp/src/main/java/com/ruralnative/handsy/ui/mainScreen/MainScreenState.kt,b\f\bf86d09beee94022e8a9d2064c3f715720a2c7b1
+x
+Happ/src/main/java/com/ruralnative/handsy/ui/mainScreen/MainScreenOutline,4\3\430d03eeb554066304e8726865191b5822ea8583
