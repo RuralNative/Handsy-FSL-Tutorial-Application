@@ -67,20 +67,6 @@ hilt {
 }
 
 dependencies {
-    // Android Core Dependencies
-    val androidCore = "1.12.0"
-    val androidLifeCycle = "2.7.0"
-    val androidArchVersion = "2.2.0"
-    val googleCore = "1.41.0"
-    val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
-    val composeActivity = "1.8.2"
-    val composeConstraintLayout = "1.0.1"
-    val hiltVersion = "2.50"
-    val hiltNavigation = "1.1.0"
-    val roomVersion = "2.6.1"
-    val navVersion = "2.7.6"
-    val junit = "4.13.2"
-
     //Implementation Dependencies
     implementation(libs.android.core.ktx)
     implementation(libs.android.lifecycle.common.java8)
@@ -91,20 +77,23 @@ dependencies {
     implementation(libs.android.lifecycle.runtime.ktx)
     implementation(libs.android.lifecycle.runtime.compose)
     implementation(libs.google.ar.core)
-    implementation(composeBom)
-    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation(enforcedPlatform(libs.compose.bom))
+    implementation(libs.compose.runtime.livedata)
     implementation(libs.compose.activity.compose)
     implementation(libs.compose.activity.ktx)
     implementation(libs.compose.constraintlayout.compose)
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material3:material3-window-size-class")
-    implementation("androidx.compose.material:material-icons-core")
-    implementation("androidx.compose.material:material-icons-extended")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation(libs.hilt.android)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.material.icons.core)
+    implementation(libs.compose.material.icons.extended)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.dagger.hilt)
+    implementation(libs.hilt.common)
+    implementation(libs.hilt.work)
+    implementation(libs.hilt.navigation)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.navigation.fragment)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     implementation(libs.navigation.fragment.ktx)
@@ -121,12 +110,12 @@ dependencies {
     testImplementation(libs.junit)
 
     // Debugging Implementation Dependencies
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation(libs.compose.ui.test.manifest)
+    debugImplementation(libs.compose.ui.tooling)
 
     // Instrumentation Test Dependencies
-    androidTestImplementation(composeBom)
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation(enforcedPlatform(libs.compose.bom))
+    androidTestImplementation(libs.compose.ui.test.junit4)
     androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.navigation.testing)
     androidTestImplementation(libs.ext.junit)
@@ -137,7 +126,9 @@ dependencies {
 
     //KSP-dependent Dependencies
     ksp(libs.room.compiler)
-    ksp(libs.hilt.android.compiler)
+    ksp(libs.dagger.hilt.compiler)
+    ksp(libs.hilt.compiler)
     ksp(libs.lifecycle.compiler)
-    kspAndroidTest(libs.hilt.android.compiler)
+    kspAndroidTest(libs.dagger.hilt.compiler)
+    kspAndroidTest(libs.hilt.compiler)
 }
