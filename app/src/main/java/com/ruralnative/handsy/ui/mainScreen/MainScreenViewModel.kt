@@ -2,6 +2,7 @@ package com.ruralnative.handsy.ui.mainScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
@@ -22,21 +23,39 @@ class MainScreenViewModel(
             phrasesRepository.allLessons.collect() {lessons ->
                 _uiState.value = _uiState.value.copy(phrasesLesson = setPhraseLessonCards(lessons))
             }
+            alphabetRepository.allLessons.collect() {lessons ->
+                _uiState.value = _uiState.value.copy(alphabetLessons = setAlphabetLessonCards(lessons))
+            }
         }
     }
 
-    private suspend fun setPhraseLessonCards(lessons: List<PhrasesLesson>): MutableList<LessonCardState> {
-        val phraseLessons: MutableList<LessonCardState> = mutableListOf()
+    private fun setPhraseLessonCards(lessons: List<PhrasesLesson>): MutableList<LessonCardState> {
+        val lessonsList: MutableList<LessonCardState> = mutableListOf()
         for (lesson: PhrasesLesson in lessons) {
             val lessonCard: LessonCardState
-            val lessonID = lesson.id
-            val lessonName = lesson.lessonName
-            val lessonMediaSource = lesson.lessonMediaFile
+            val lessonID: Int = lesson.id
+            val lessonName: String? = lesson.lessonName
+            val lessonResource: String? = lesson.lessonMediaFile
             lessonCard = LessonCardState(lessonID, lessonName,
-                lessonMediaSource?.toInt()
+                lessonResource
             )
-            phraseLessons.add(lessonCard)
+            lessonsList.add(lessonCard)
         }
-        return phraseLessons
+        return lessonsList
+    }
+
+    private fun setAlphabetLessonCards(lessons: List<AlphabetLesson>): MutableList<LessonCardState> {
+        val lessonsList: MutableList<LessonCardState> = mutableListOf()
+        for (lesson: AlphabetLesson in lessons) {
+            val lessonCard: LessonCardState
+            val lessonID: Int = lesson.id
+            val lessonName: String? = lesson.lessonName
+            val lessonResource: String? = lesson.lessonMediaFile
+            lessonCard = LessonCardState(lessonID, lessonName,
+                lessonResource
+            )
+            lessonsList.add(lessonCard)
+        }
+        return lessonsList
     }
 }
