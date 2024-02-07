@@ -1,5 +1,11 @@
 *.iml
-.gradle
+/.gradle/8.5
+/.gradle/buildOutputCleanup
+/.gradle/configuration-cache
+/.gradle/kotlin
+/.gradle/vcs-1
+/.gradle/config.properties
+/.gradle/file-system.probe
 /local.properties
 /.idea/caches
 /.idea/libraries
