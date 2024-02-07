@@ -15,6 +15,7 @@ class MainScreenViewModel(
     private val alphabetRepository: AlphabetLessonRepository,
     private val phrasesRepository: PhrasesLessonRepository
 ): ViewModel() {
+
     private val _uiState = MutableStateFlow(MainScreenState())
     val uiState: StateFlow<MainScreenState> = _uiState.asStateFlow()
 
