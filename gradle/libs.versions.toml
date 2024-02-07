@@ -52,6 +52,7 @@ hilt-navigation-fragment = { group = "androidx.hilt", name = "hilt-navigation-fr
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
 # Navigation
+navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navVersion" }
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navVersion" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navVersion" }
 navigation-dynamic-features-fragment = { group = "androidx.navigation", name = "navigation-dynamic-features-fragment", version.ref = "navVersion" }
