@@ -2,12 +2,12 @@ package com.ruralnative.handsy.ui.mainScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainScreenViewModel(
@@ -19,22 +19,24 @@ class MainScreenViewModel(
 
     init {
         viewModelScope.launch {
-            alphabetRepository.allLessons.collect() {lessons ->
-                _uiState.value = _uiState.value.copy(alphabetLessons = lessons)
-            }
-        }
-        viewModelScope.launch {
             phrasesRepository.allLessons.collect() {lessons ->
-                _uiState.value = _uiState.value.copy(phrasesLesson = lessons)
+                _uiState.value = _uiState.value.copy(phrasesLesson = setPhraseLessonCards(lessons))
             }
         }
+    }
 
-        viewModelScope.launch {
-            phrasesRepository.allLessons.collect() {lessons ->
-                //Iterate each AlphabetLesson from lessons
-                //For every lesson, fetch lesson.name and lesson.media and assign to a LessonCard attribute, name and mediaSource
-                //Add LessonCard to a List inside State
-            }
+    private suspend fun setPhraseLessonCards(lessons: List<PhrasesLesson>): MutableList<LessonCardState> {
+        val phraseLessons: MutableList<LessonCardState> = mutableListOf()
+        for (lesson: PhrasesLesson in lessons) {
+            val lessonCard: LessonCardState
+            val lessonID = lesson.id
+            val lessonName = lesson.lessonName
+            val lessonMediaSource = lesson.lessonMediaFile
+            lessonCard = LessonCardState(lessonID, lessonName,
+                lessonMediaSource?.toInt()
+            )
+            phraseLessons.add(lessonCard)
         }
+        return phraseLessons
     }
 }
