@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -53,6 +54,8 @@ fun LessonCard() {
                .padding(15.dp)
        ) {
            Image(
+               modifier = Modifier
+                   .aspectRatio(16f /9f),
                painter = painterResource(id = R.drawable.mascot_official),
                contentDescription = "Lesson"
            )
