@@ -28,5 +28,13 @@ class MainScreenViewModel(
                 _uiState.value = _uiState.value.copy(phrasesLesson = lessons)
             }
         }
+
+        viewModelScope.launch {
+            phrasesRepository.allLessons.collect() {lessons ->
+                //Iterate each AlphabetLesson from lessons
+                //For every lesson, fetch lesson.name and lesson.media and assign to a LessonCard attribute, name and mediaSource
+                //Add LessonCard to a List inside State
+            }
+        }
     }
 }
