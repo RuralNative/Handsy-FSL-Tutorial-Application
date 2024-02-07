@@ -1,7 +1,10 @@
 List object - list of Lessons fetched from AlphabetLesson and PhrasesLesson serves as the State of the Main Screen UI
 
-LessonCardData Data Class
-* Create Data class for LessonCard named LessonCardData with String LessonTitle and String LessonResourceFile as properties
+MainScreenState
+- Holds the list of LessonCards that can be rendered to the UI
+
+LessonCardState
+- Holds data used by LessonCard composable in UI, such as ID, LessonName, and LessonMediaResource
 
 LessonCard Composable
 
@@ -20,11 +23,9 @@ MainScreenUI Composable
 - Use LessonColumn inside Main Screen Composable
 
 FIRST
-UI State and Card State
-- UI state handles the list of lessons from Alphabet and Phrases tables
-- Card state holds the state of an individual card of the Lazy Column
-
-1. ViewModel loads a flow of data from AlphabetLessonRepository and PhrasesLessonRepository
-2. ViewModel constantly updates the attributes of UI State
-3. ViewModel fetches list from State
+Convert raw data collected from the database into a readable data for UI to compose wit
+1. ViewModel collects Flow<List> from AlphabetLessonRepository
+2. ViewModel iterates each of the Lesson inside the collected List, and assign the attributes of each Lesson to the LessonCardState. This means that each iteration creates a single instance of LessonCardState which is then stored to a MutableList<LessonCardState>
+3. Set value of the MainScreenState's AlphabetLessons property with the MutableList<LessonCardState>
+4. Do the same for PhraseLesson property of UI state
 
