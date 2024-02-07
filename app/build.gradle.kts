@@ -98,6 +98,7 @@ dependencies {
     implementation(libs.room.ktx)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
+    implementation(libs.navigation.compose)
     implementation(libs.navigation.dynamic.features.fragment)
     implementation(libs.navigation.safe.args.gradle.plugin)
 
