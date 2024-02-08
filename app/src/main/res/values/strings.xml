@@ -13,4 +13,36 @@
     <string name="author_message_one">Handsy Sign Language is a mobile application with the purpose of providing an accessible platform for learning the Filipino Sign Language for users of all background, especially the deaf and the mute</string>
     <string name="author_message_two">We hope you enjoy using this application</string>
     <string name="start_journey_button_label">Start Your Journey</string>
+
+    <!-- ALPHABET LESSONS -->
+    <string name="alphabet_a_description">Make a fist with your thumb touching the side of your index finger. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_b_description">Extend your fingers and thumb and touch them together. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_c_description">Curve your fingers and thumb to form a C shape. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_d_description">Extend your index finger and curl your other fingers and thumb. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_e_description">Curl your fingers and thumb to touch the palm of your hand. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_f_description">Extend your index finger and thumb and touch their tips together. Curl your other fingers to the palm of your hand. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_g_description">Extend your index finger and thumb and point them downward. Curl your other fingers to the palm of your hand. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_h_description">Extend your index and middle fingers and point them upward. Curl your other fingers and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_i_description">Extend your pinky finger and curl your other fingers and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_j_description">Extend your pinky finger and curl your other fingers and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing inward. Then, trace a J shape in the air with your pinky finger.</string>
+    <string name="alphabet_k_description">Extend your index and middle fingers and spread them apart. Curl your other fingers and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_l_description">Extend your index finger and thumb and touch them together. Curl your other fingers to the palm of your hand. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_m_description">Extend your thumb and touch it to the palm of your hand. Curl your index, middle, and ring fingers over your thumb. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_n_description">Extend your thumb and touch it to the palm of your hand. Curl your index and middle fingers over your thumb. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_o_description">Make a circle with your fingers and thumb. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_p_description">Extend your index and middle fingers and point them downward. Curl your other fingers and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_q_description">Extend your index finger and thumb and point them downward. Curl your other fingers to the palm of your hand. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_r_description">Cross your index and middle fingers. Curl your other fingers and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_s_description">Make a fist with your thumb across your fingers. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_t_description">Extend your thumb and touch it to the palm of your hand. Curl your other fingers over your thumb. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_u_description">Extend your index and middle fingers and point them upward. Curl your other fingers and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_v_description">Extend your index and middle fingers and spread them apart. Curl your other fingers and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_w_description">Extend your index, middle, and ring fingers and spread them apart. Curl your pinky finger and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_x_description">Curl your index finger and point it downward. Curl your other fingers and thumb to the palm of your hand. Hold your hand in front of your chest, palm facing inward.</string>
+    <string name="alphabet_y_description">Extend your thumb and pinky finger and spread them apart. Curl your other fingers to the palm of your hand. Hold your hand in front of your chest, palm facing outward.</string>
+    <string name="alphabet_z_description">Extend your index finger and point it upward. Hold your hand in front of your chest, palm facing inward. Then, trace a Z shape in the air with your index finger.
+</string>
+    <!-- PHRASES LESSONS -->
+    <string name="phrase_what_is_your_name_description">First, sign “what” by pointing your index finger upward and moving it slightly from side to side. Hold your hand in front of your chest, palm facing inward. Second, sign “name” by tapping your index and middle fingers on your opposite palm twice. Hold your hands in front of your chest, palms facing each other. Third, sign “you” by pointing your index finger at the person you are talking to. Hold your hand in front of your chest, palm facing outward.</string>
+
 </resources>
