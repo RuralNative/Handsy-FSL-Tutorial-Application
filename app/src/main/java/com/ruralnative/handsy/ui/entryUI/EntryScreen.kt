@@ -98,7 +98,7 @@ fun EntryScreen(
 @Composable
 private fun MascotIcon(modifier: Modifier = Modifier) {
     Image(
-        painter = painterResource(id = R.drawable.mascot_official),
+        painter = painterResource(id = R.drawable.mascot),
         contentDescription = stringResource(R.string.mascot_content_description),
         modifier = Modifier
             .size(250.dp)

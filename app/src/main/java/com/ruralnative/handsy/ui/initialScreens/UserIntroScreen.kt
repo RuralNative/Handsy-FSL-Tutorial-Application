@@ -121,7 +121,7 @@ private fun MascotIcon(modifier: Modifier) {
         contentAlignment = Alignment.Center
     ){
         Image(
-            painter = painterResource(id = R.drawable.mascot_official),
+            painter = painterResource(id = R.drawable.mascot),
             contentDescription = stringResource(id = R.string.mascot_content_description),
             modifier = Modifier
                 .size(270.dp)

@@ -56,7 +56,7 @@ fun LessonCard() {
            Image(
                modifier = Modifier
                    .aspectRatio(16f /9f),
-               painter = painterResource(id = R.drawable.mascot_official),
+               painter = painterResource(id = R.drawable.mascot),
                contentDescription = "Lesson"
            )
            Text(
