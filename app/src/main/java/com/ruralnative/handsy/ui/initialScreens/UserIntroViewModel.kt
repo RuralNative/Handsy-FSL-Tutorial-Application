@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
-class UserIntroViewModel (
+@HiltViewModel
+class UserIntroViewModel @Inject constructor(
     private val repository: UserRepository
 ): ViewModel() {
 
