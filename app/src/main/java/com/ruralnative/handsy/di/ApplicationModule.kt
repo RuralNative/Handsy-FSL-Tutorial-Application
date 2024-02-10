@@ -9,6 +9,7 @@ import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
 import com.ruralnative.handsy.data.repository.UserRepository
 import com.ruralnative.handsy.di.qualifiers.AlphabetDAO
+import com.ruralnative.handsy.di.qualifiers.AlphabetRepo
 import com.ruralnative.handsy.di.qualifiers.Database
 import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
 import com.ruralnative.handsy.di.qualifiers.PhrasesRepo
@@ -35,39 +36,24 @@ object ApplicationModule {
     }
 
     @Provides
+    @Singleton
     @AlphabetDAO
     fun provideAlphabetLessonDao(
         @Database database: AppDatabase
     ): AlphabetLessonDao = database.alphabetLessonDao()
 
     @Provides
+    @Singleton
     @PhrasesDAO
     fun providePhrasesLessonDao(
         @Database database: AppDatabase
     ): PhrasesLessonDao = database.phrasesLessonDao()
 
     @Provides
+    @Singleton
     @UserDAO
     fun provideUserDao(
         @Database database: AppDatabase
     ): UserDao = database.userDao()
-
-    @Provides
-    @UserRepo
-    fun provideUserRepository(
-        @UserDAO dao: UserDao
-    ): UserRepository = UserRepository(dao)
-
-    @Provides
-    @UserRepo
-    fun provideAlphabetRepository(
-        @AlphabetDAO dao: AlphabetLessonDao
-    ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
-
-    @Provides
-    @UserRepo
-    fun providePhrasesRepository(
-        @PhrasesDAO dao: PhrasesLessonDao
-    ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
 }
 
