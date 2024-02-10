@@ -5,16 +5,10 @@ import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.dao.AlphabetLessonDao
 import com.ruralnative.handsy.data.dao.PhrasesLessonDao
 import com.ruralnative.handsy.data.dao.UserDao
-import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
-import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
-import com.ruralnative.handsy.data.repository.UserRepository
 import com.ruralnative.handsy.di.qualifiers.AlphabetDAO
-import com.ruralnative.handsy.di.qualifiers.AlphabetRepo
 import com.ruralnative.handsy.di.qualifiers.Database
 import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
-import com.ruralnative.handsy.di.qualifiers.PhrasesRepo
 import com.ruralnative.handsy.di.qualifiers.UserDAO
-import com.ruralnative.handsy.di.qualifiers.UserRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,29 +46,5 @@ object ApplicationModule {
     fun provideUserDao(
         @Database database: AppDatabase
     ): UserDao = database.userDao()
-
-    @Provides
-    @UserRepo
-    fun provideUserRepository(
-        @UserDAO dao: UserDao
-    ): UserRepository {
-        return UserRepository(dao)
-    }
-
-    @Provides
-    @AlphabetRepo
-    fun provideAlphabetRepository(
-        @AlphabetDAO dao: AlphabetLessonDao
-    ): AlphabetLessonRepository {
-        return AlphabetLessonRepository(dao)
-    }
-
-    @Provides
-    @PhrasesRepo
-    fun providePhrasesRepository(
-        @PhrasesDAO dao: PhrasesLessonDao
-    ): PhrasesLessonRepository {
-        return PhrasesLessonRepository(dao)
-    }
 }
 

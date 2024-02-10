@@ -6,9 +6,8 @@ import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.di.qualifiers.AlphabetDAO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+
 @WorkerThread
 class AlphabetLessonRepository @Inject constructor(
     @AlphabetDAO private val dao: AlphabetLessonDao
