@@ -6,7 +6,6 @@ kotlin {
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.devtools.ksp)
     alias(libs.plugins.androidx.room)
@@ -39,7 +38,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.4"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
     defaultConfig {
         applicationId = "com.ruralnative.handsy"
