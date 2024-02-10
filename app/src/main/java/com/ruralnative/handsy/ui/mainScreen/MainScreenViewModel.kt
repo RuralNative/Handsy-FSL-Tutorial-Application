@@ -1,17 +1,22 @@
 package com.ruralnative.handsy.ui.mainScreen
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainScreenViewModel(
+@HiltViewModel
+class MainScreenViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val alphabetRepository: AlphabetLessonRepository,
     private val phrasesRepository: PhrasesLessonRepository
 ): ViewModel() {

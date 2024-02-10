@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.ui.entryUI
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.data.repository.UserRepository
@@ -9,8 +10,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
-class EntryViewModel (
+@HiltViewModel
+class EntryViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val repository: UserRepository
 ): ViewModel() {
 
