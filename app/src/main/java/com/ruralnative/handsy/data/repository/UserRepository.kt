@@ -3,7 +3,6 @@ package com.ruralnative.handsy.data.repository
 import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.User
-import com.ruralnative.handsy.di.UserDAO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flow
