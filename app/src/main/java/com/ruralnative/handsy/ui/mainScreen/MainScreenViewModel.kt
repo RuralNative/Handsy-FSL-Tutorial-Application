@@ -13,8 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class MainScreenViewModel @Inject constructor(
+class MainScreenViewModel (
     private val alphabetRepository: AlphabetLessonRepository,
     private val phrasesRepository: PhrasesLessonRepository
 ): ViewModel() {
