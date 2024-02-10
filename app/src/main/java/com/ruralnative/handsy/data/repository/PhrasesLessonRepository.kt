@@ -6,7 +6,9 @@ import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 @WorkerThread
 class PhrasesLessonRepository @Inject constructor(
     @PhrasesDAO private val dao: PhrasesLessonDao
