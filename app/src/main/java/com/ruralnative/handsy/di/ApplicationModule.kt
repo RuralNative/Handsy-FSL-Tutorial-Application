@@ -38,27 +38,6 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    @AlphabetDAO
-    fun provideAlphabetLessonDao(
-        @Database database: AppDatabase
-    ): AlphabetLessonDao = database.alphabetLessonDao()
-
-    @Provides
-    @Singleton
-    @PhrasesDAO
-    fun providePhrasesLessonDao(
-        @Database database: AppDatabase
-    ): PhrasesLessonDao = database.phrasesLessonDao()
-
-    @Provides
-    @Singleton
-    @UserDAO
-    fun provideUserDao(
-        @Database database: AppDatabase
-    ): UserDao = database.userDao()
-
-    @Provides
-    @Singleton
     @UserRepo
     fun provideUserRepository(
         @UserDAO dao: UserDao
@@ -77,7 +56,5 @@ object ApplicationModule {
     fun providePhrasesRepository(
         @PhrasesDAO dao: PhrasesLessonDao
     ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
-
-
 }
 

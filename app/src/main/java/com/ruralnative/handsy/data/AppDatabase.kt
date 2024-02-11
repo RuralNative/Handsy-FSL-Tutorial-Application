@@ -10,6 +10,7 @@ import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.entities.User
+import dagger.Binds
 import javax.inject.Inject
 
 @Database(
@@ -24,7 +25,9 @@ import javax.inject.Inject
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+
     abstract fun alphabetLessonDao(): AlphabetLessonDao
+
     abstract fun phrasesLessonDao(): PhrasesLessonDao
 
     companion object {
