@@ -51,6 +51,14 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                    "room.schemaLocation":"$projectDir/schemas".toString(),
+                "room.incremental":"true",
+                "room.expandProjection":"true"]
+            }
+        }
     }
     kotlinOptions {
         jvmTarget = "17"
