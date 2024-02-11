@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.devtools.ksp)
-    alias(libs.plugins.androidx.room)
     alias(libs.plugins.google.dagger.hilt.android)
 }
 
@@ -13,6 +12,26 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+    }
+    defaultConfig {
+        applicationId = "com.ruralnative.handsy"
+        minSdk = 24
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+        testInstrumentationRunner = "com.ruralnative.handsy.CustomTestRunner"
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments [
+                        "dagger.hilt.disabledModulesHaveInstallInCheck"
+                ] = "true"
+            }
+        }
     }
     buildTypes {
         release {
@@ -30,27 +49,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.7"
     }
-    defaultConfig {
-        applicationId = "com.ruralnative.handsy"
-        minSdk = 27
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
-        testInstrumentationRunner = "com.ruralnative.handsy.CustomTestRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true"
-                )
-            }
-        }
-    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
