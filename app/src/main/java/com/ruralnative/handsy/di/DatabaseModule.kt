@@ -61,26 +61,5 @@ object DatabaseModule {
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
     }
-
-    @Provides
-    @Singleton
-    @UserRepo
-    fun provideUserRepository(
-        dao: UserDao
-    ): UserRepository = UserRepository(dao)
-
-    @Provides
-    @Singleton
-    @AlphabetRepo
-    fun provideAlphabetRepository(
-        dao: AlphabetLessonDao
-    ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
-
-    @Provides
-    @Singleton
-    @PhrasesRepo
-    fun providePhrasesRepository(
-        dao: PhrasesLessonDao
-    ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
 }
 

@@ -9,6 +9,9 @@ import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
 import com.ruralnative.handsy.data.repository.UserRepository
+import com.ruralnative.handsy.di.qualifiers.AlphabetDAO
+import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
+import com.ruralnative.handsy.di.qualifiers.UserDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -32,40 +35,31 @@ object FakeAppModule {
         ).build()
     }
 
+    @Singleton
     @Provides
-    @TestAlphabetDAO
-    fun provideAlphabetLessonDao(
-        @TestDatabase database: AppDatabase
-    ): AlphabetLessonDao = database.alphabetLessonDao()
-
-    @Provides
-    @TestPhrasesDAO
-    fun providePhrasesLessonDao(
-        @TestDatabase database: AppDatabase
-    ): PhrasesLessonDao = database.phrasesLessonDao()
-
-    @Provides
-    @TestUserDAO
+    @UserDAO
     fun provideUserDao(
-        @TestDatabase database: AppDatabase
-    ): UserDao = database.userDao()
+        appDatabase: AppDatabase
+    ): UserDao {
+        return appDatabase.userDao()
+    }
 
+    @Singleton
     @Provides
-    @TestAlphabetRepo
-    fun provideAlphabetLessonRepository(
-        @TestAlphabetDAO dao: AlphabetLessonDao
-    ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
+    @AlphabetDAO
+    fun provideAlphabetDao(
+        appDatabase: AppDatabase
+    ): AlphabetLessonDao {
+        return appDatabase.alphabetLessonDao()
+    }
 
+    @Singleton
     @Provides
-    @TestPhrasesRepo
-    fun providePhrasesLessonRepository(
-        @TestPhrasesDAO dao: PhrasesLessonDao
-    ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
-
-    @Provides
-    @TestUserRepo
-    fun provideUserRepository(
-        @TestUserDAO dao: UserDao
-    ): UserRepository = UserRepository(dao)
+    @PhrasesDAO
+    fun providePhrasesDao(
+        appDatabase: AppDatabase
+    ): PhrasesLessonDao {
+        return appDatabase.phrasesLessonDao()
+    }
 }
 
