@@ -39,7 +39,7 @@ object DatabaseModule {
     @Provides
     @UserDAO
     fun provideUserDao(
-        appDatabase: AppDatabase
+        @Database appDatabase: AppDatabase
     ): UserDao {
         return appDatabase.userDao()
     }
@@ -48,7 +48,7 @@ object DatabaseModule {
     @Provides
     @AlphabetDAO
     fun provideAlphabetDao(
-        appDatabase: AppDatabase
+        @Database appDatabase: AppDatabase
     ): AlphabetLessonDao {
         return appDatabase.alphabetLessonDao()
     }
@@ -57,7 +57,7 @@ object DatabaseModule {
     @Provides
     @PhrasesDAO
     fun providePhrasesDao(
-        appDatabase: AppDatabase
+        @Database appDatabase: AppDatabase
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
     }

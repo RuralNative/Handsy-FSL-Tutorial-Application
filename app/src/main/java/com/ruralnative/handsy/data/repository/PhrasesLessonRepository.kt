@@ -4,6 +4,7 @@ import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.PhrasesLessonDao
 import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.PhrasesLesson
+import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class PhrasesLessonRepository @Inject constructor(
-    private val dao: PhrasesLessonDao
+    @PhrasesDAO private val dao: PhrasesLessonDao
 ) {
 
     val allLessons: Flow<List<PhrasesLesson>> = dao.selectAllLessons()

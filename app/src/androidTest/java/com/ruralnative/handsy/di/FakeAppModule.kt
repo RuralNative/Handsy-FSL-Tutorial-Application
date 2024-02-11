@@ -37,27 +37,27 @@ object FakeAppModule {
 
     @Singleton
     @Provides
-    @UserDAO
+    @TestUserDAO
     fun provideUserDao(
-        appDatabase: AppDatabase
+        @TestDatabase appDatabase: AppDatabase
     ): UserDao {
         return appDatabase.userDao()
     }
 
     @Singleton
     @Provides
-    @AlphabetDAO
+    @TestAlphabetDAO
     fun provideAlphabetDao(
-        appDatabase: AppDatabase
+        @TestDatabase appDatabase: AppDatabase
     ): AlphabetLessonDao {
         return appDatabase.alphabetLessonDao()
     }
 
     @Singleton
     @Provides
-    @PhrasesDAO
+    @TestPhrasesDAO
     fun providePhrasesDao(
-        appDatabase: AppDatabase
+        @TestDatabase appDatabase: AppDatabase
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
     }

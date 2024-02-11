@@ -26,9 +26,7 @@ import javax.inject.Singleton
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
-
     abstract fun alphabetLessonDao(): AlphabetLessonDao
-
     abstract fun phrasesLessonDao(): PhrasesLessonDao
 
     companion object {
