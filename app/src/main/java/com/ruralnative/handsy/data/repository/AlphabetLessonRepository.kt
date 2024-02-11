@@ -2,12 +2,14 @@ package com.ruralnative.handsy.data.repository
 
 import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.AlphabetLessonDao
+import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.AlphabetLesson
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
-@WorkerThread
+@Singleton
 class AlphabetLessonRepository @Inject constructor(
     private val dao: AlphabetLessonDao
 ) {
@@ -36,5 +38,13 @@ class AlphabetLessonRepository @Inject constructor(
 
     suspend fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: Int) {
         dao.updateLessonMediaFile(lessonMediaFile, lessonID)
+    }
+
+    companion object {
+        @Volatile private var instance: AlphabetLessonRepository? = null
+        fun getInstance(dao: AlphabetLessonDao) =
+            instance ?: synchronized(this) {
+                instance ?: AlphabetLessonRepository(dao).also { instance = it }
+            }
     }
 }

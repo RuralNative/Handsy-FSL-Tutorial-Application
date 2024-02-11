@@ -2,12 +2,14 @@ package com.ruralnative.handsy.data.repository
 
 import androidx.annotation.WorkerThread
 import com.ruralnative.handsy.data.dao.PhrasesLessonDao
+import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
-@WorkerThread
+@Singleton
 class PhrasesLessonRepository @Inject constructor(
     private val dao: PhrasesLessonDao
 ) {
@@ -38,5 +40,12 @@ class PhrasesLessonRepository @Inject constructor(
         dao.updateLessonMediaFile(lessonMediaFile, lessonID)
     }
 
+    companion object {
+        @Volatile private var instance: PhrasesLessonRepository? = null
+        fun getInstance(dao: PhrasesLessonDao) =
+            instance ?: synchronized(this) {
+                instance ?: PhrasesLessonRepository(dao).also { instance = it }
+            }
+    }
 
 }

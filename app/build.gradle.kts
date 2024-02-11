@@ -51,14 +51,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += [
-                    "room.schemaLocation":"$projectDir/schemas".toString(),
-                "room.incremental":"true",
-                "room.expandProjection":"true"]
-            }
-        }
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -102,7 +94,7 @@ dependencies {
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.navigation.fragment)
-    implementation(libs.room.runtime)
+    api(libs.room.runtime)
     implementation(libs.room.ktx)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
