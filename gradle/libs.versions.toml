@@ -54,27 +54,18 @@ compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-mani
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 # Hilt (Dagger)
-dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
+dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHilt" }
 dagger-hilt-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "daggerHilt" }
-# Hilt (AndroidX)
-hilt-common = { group = "androidx.hilt", name = "hilt-common", version.ref = "androidHilt" }
-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "androidHilt" }
-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "androidHilt" }
-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation", version.ref = "androidHilt" }
+# Hilt (AndroidX
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidHilt" }
-hilt-navigation-fragment = { group = "androidx.hilt", name = "hilt-navigation-fragment", version.ref = "androidHilt" }
-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "daggerHilt" }
 # Room Database
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "roomVersion" }
 # Navigation
 navigation-safe-args-gradle-plugin = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navVersion" }
-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navVersion" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navVersion" }
-navigation-dynamic-features-fragment = { group = "androidx.navigation", name = "navigation-dynamic-features-fragment", version.ref = "navVersion" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navVersion" }
 navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navVersion" }
 # Tests

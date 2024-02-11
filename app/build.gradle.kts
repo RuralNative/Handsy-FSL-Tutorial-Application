@@ -51,6 +51,15 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true"
+                )
+            }
+        }
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -88,7 +97,7 @@ dependencies {
     implementation(libs.compose.ui.graphics)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.dagger.hilt)
+    implementation(libs.dagger.hilt.android)
     implementation(libs.hilt.common)
     implementation(libs.hilt.work)
     implementation(libs.hilt.navigation)
