@@ -17,7 +17,7 @@ import dagger.hilt.testing.TestInstallIn
 import javax.inject.Singleton
 
 @Module
-@TestInstallIn(components = [SingletonComponent::class], replaces = [ApplicationModule::class])
+@TestInstallIn(components = [SingletonComponent::class], replaces = [DatabaseModule::class])
 object FakeAppModule {
 
     @Provides

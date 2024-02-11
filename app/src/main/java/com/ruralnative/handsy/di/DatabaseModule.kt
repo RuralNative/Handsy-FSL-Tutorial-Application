@@ -15,19 +15,16 @@ import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
 import com.ruralnative.handsy.di.qualifiers.PhrasesRepo
 import com.ruralnative.handsy.di.qualifiers.UserDAO
 import com.ruralnative.handsy.di.qualifiers.UserRepo
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-
 
     @Singleton
     @Provides
