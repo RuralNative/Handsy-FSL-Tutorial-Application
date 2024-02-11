@@ -7,9 +7,11 @@ import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
 import com.ruralnative.handsy.data.repository.UserRepository
 import com.ruralnative.handsy.di.qualifiers.AlphabetDAO
+import com.ruralnative.handsy.di.qualifiers.AlphabetRepo
 import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
 import com.ruralnative.handsy.di.qualifiers.PhrasesRepo
 import com.ruralnative.handsy.di.qualifiers.UserDAO
+import com.ruralnative.handsy.di.qualifiers.UserRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +24,7 @@ object ViewModelModule {
 
     @Provides
     @ViewModelScoped
+    @UserRepo
     fun provideUserRepository(
         @UserDAO dao: UserDao
     ): UserRepository {
@@ -30,6 +33,7 @@ object ViewModelModule {
 
     @Provides
     @ViewModelScoped
+    @AlphabetRepo
     fun provideAlphabetRepository(
         @AlphabetDAO dao: AlphabetLessonDao
     ): AlphabetLessonRepository {
@@ -38,6 +42,7 @@ object ViewModelModule {
 
     @Provides
     @ViewModelScoped
+    @PhrasesRepo
     fun providePhrasesRepository(
         @PhrasesDAO dao: PhrasesLessonDao
     ): PhrasesLessonRepository {
