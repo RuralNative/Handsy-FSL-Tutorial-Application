@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class EntryViewModel (
+@HiltViewModel
+class EntryViewModel @Inject constructor(
     private val repository: UserRepository
 ): ViewModel() {
 
