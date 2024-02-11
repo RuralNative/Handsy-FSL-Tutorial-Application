@@ -9,10 +9,6 @@ android {
     namespace = "com.ruralnative.handsy"
     testNamespace = "com.ruralnative.testhandsy"
     compileSdk = 34
-    buildFeatures {
-        compose = true
-        viewBinding = true
-    }
     defaultConfig {
         applicationId = "com.ruralnative.handsy"
         minSdk = 24
@@ -20,11 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "com.ruralnative.handsy.CustomTestRunner"
-
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-
+        vectorDrawables.useSupportLibrary = true
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments [
@@ -35,23 +27,29 @@ android {
     }
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+    buildFeatures {
+        compose = true
+        viewBinding = true
+        buildConfig = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.7"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
-
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlinx.coroutines.FlowPreview"
     }
     packaging {
         resources {
