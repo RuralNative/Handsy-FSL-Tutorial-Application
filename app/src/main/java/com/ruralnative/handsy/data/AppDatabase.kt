@@ -24,27 +24,7 @@ import javax.inject.Singleton
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun userDao(): UserDao
     abstract fun alphabetLessonDao(): AlphabetLessonDao
     abstract fun phrasesLessonDao(): PhrasesLessonDao
-
-    companion object {
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
-
-        fun getDatabase(context: Context): AppDatabase {
-            return INSTANCE ?: synchronized(this) {
-                Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "app_database.db"
-                )
-                .fallbackToDestructiveMigration()
-                .createFromAsset("database.db")
-                .build()
-                .also {INSTANCE = it}
-            }
-        }
-    }
 }

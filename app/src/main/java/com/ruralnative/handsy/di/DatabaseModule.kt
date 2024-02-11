@@ -1,6 +1,7 @@
 package com.ruralnative.handsy.di
 
 import android.content.Context
+import androidx.room.Room
 import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.dao.AlphabetLessonDao
 import com.ruralnative.handsy.data.dao.PhrasesLessonDao
@@ -31,9 +32,14 @@ object DatabaseModule {
     @Database
     fun provideLocalDatabase(
         @ApplicationContext context: Context
-    ): AppDatabase {
-       return AppDatabase.getDatabase(context)
-    }
+    ): AppDatabase = Room.databaseBuilder(
+            context.applicationContext,
+            AppDatabase::class.java,
+            "app_database.db"
+        )
+        .fallbackToDestructiveMigration()
+        .createFromAsset("database.db")
+        .build()
 
     @Singleton
     @Provides
