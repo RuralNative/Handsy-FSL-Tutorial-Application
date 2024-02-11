@@ -12,6 +12,7 @@ import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.entities.User
 import dagger.Binds
 import javax.inject.Inject
+import javax.inject.Singleton
 
 @Database(
     entities = [
@@ -22,6 +23,7 @@ import javax.inject.Inject
     version = 1,
     exportSchema = false
 )
+@Singleton
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
