@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class UserRepository @Inject constructor(
     @UserDAO private val dao: UserDao
 ) {
@@ -64,13 +63,5 @@ class UserRepository @Inject constructor(
 
     suspend fun deleteUser(user: User) {
         dao.deleteUser(user)
-    }
-
-    companion object {
-        @Volatile private var instance: UserRepository? = null
-        fun getInstance(dao: UserDao) =
-            instance ?: synchronized(this) {
-                instance ?: UserRepository(dao).also { instance = it }
-            }
     }
 }

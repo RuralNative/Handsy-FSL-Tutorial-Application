@@ -10,7 +10,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 
-@Singleton
 class PhrasesLessonRepository @Inject constructor(
     @PhrasesDAO private val dao: PhrasesLessonDao
 ) {
@@ -40,13 +39,4 @@ class PhrasesLessonRepository @Inject constructor(
     suspend fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: Int) {
         dao.updateLessonMediaFile(lessonMediaFile, lessonID)
     }
-
-    companion object {
-        @Volatile private var instance: PhrasesLessonRepository? = null
-        fun getInstance(dao: PhrasesLessonDao) =
-            instance ?: synchronized(this) {
-                instance ?: PhrasesLessonRepository(dao).also { instance = it }
-            }
-    }
-
 }
