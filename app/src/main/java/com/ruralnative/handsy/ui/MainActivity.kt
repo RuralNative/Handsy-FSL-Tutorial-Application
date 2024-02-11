@@ -14,13 +14,13 @@ private const val TAG = "MainActivity"
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    lateinit var navHostController: NavHostController
+    private lateinit var navHostController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "OnCreate() EXECUTED")
         setContent {
-            val navHostController = rememberNavController()
+            navHostController = rememberNavController()
             NavGraph(navController = navHostController)
         }
     }
