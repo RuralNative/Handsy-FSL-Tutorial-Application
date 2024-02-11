@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.ruralnative.handsy.navigation.NavGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "MainActivity"
@@ -20,6 +21,7 @@ class MainActivity : ComponentActivity() {
         Log.d(TAG, "OnCreate() EXECUTED")
         setContent {
             val navHostController = rememberNavController()
+            NavGraph(navController = navHostController)
         }
     }
 
