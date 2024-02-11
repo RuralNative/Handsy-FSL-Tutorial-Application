@@ -1,19 +1,9 @@
-kotlin {
-    jvmToolchain {
-        this.languageVersion.set(JavaLanguageVersion.of(17))
-    }
-}
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.devtools.ksp)
     alias(libs.plugins.androidx.room)
     alias(libs.plugins.google.dagger.hilt.android)
-}
-
-room {
-    schemaDirectory("$projectDir/schema")
 }
 
 android {
@@ -34,8 +24,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.7"
@@ -62,7 +52,7 @@ android {
         }
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
     packaging {
         resources {
@@ -76,20 +66,22 @@ hilt {
 }
 
 dependencies {
+    //KSP-dependent Dependencies
+    ksp(libs.room.compiler)
+    ksp(libs.dagger.hilt.compiler)
+    ksp(libs.androidx.lifecycle.compiler)
+    kspAndroidTest(libs.dagger.hilt.compiler)
+
     //Implementation Dependencies
     implementation(libs.android.core.ktx)
-    implementation(libs.android.lifecycle.common.java8)
-    implementation(libs.android.lifecycle.viewmodel.ktx)
-    implementation(libs.android.lifecycle.viewmodel.compose)
-    implementation(libs.android.lifecycle.viewmodel.savedstate)
-    implementation(libs.android.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.android.lifecycle.runtime.ktx)
     implementation(libs.android.lifecycle.runtime.compose)
+    implementation(libs.android.lifecycle.viewmodel.compose)
     implementation(libs.google.ar.core)
     implementation(enforcedPlatform(libs.compose.bom))
     implementation(libs.compose.runtime.livedata)
     implementation(libs.compose.activity.compose)
-    implementation(libs.compose.activity.ktx)
     implementation(libs.compose.constraintlayout.compose)
     implementation(libs.compose.material3)
     implementation(libs.compose.material.icons.core)
@@ -98,24 +90,14 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.dagger.hilt.android)
-    implementation(libs.hilt.common)
-    implementation(libs.hilt.work)
-    implementation(libs.hilt.navigation)
     implementation(libs.hilt.navigation.compose)
-    implementation(libs.hilt.navigation.fragment)
-    api(libs.room.runtime)
     implementation(libs.room.ktx)
-    implementation(libs.navigation.fragment.ktx)
-    implementation(libs.navigation.ui.ktx)
     implementation(libs.navigation.compose)
-    implementation(libs.navigation.dynamic.features.fragment)
-    implementation(libs.navigation.safe.args.gradle.plugin)
 
     // Unit Test Implementation Dependencies
     testImplementation(libs.core.common)
     testImplementation(libs.core.runtime)
     testImplementation(libs.core.testing)
-    testImplementation(libs.hilt.android.testing)
     testImplementation(libs.room.testing)
     testImplementation(libs.junit)
 
@@ -126,19 +108,10 @@ dependencies {
     // Instrumentation Test Dependencies
     androidTestImplementation(enforcedPlatform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.test.junit4)
-    androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.navigation.testing)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.runner)
     androidTestImplementation(libs.rules)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.uiautomator)
-
-    //KSP-dependent Dependencies
-    ksp(libs.room.compiler)
-    ksp(libs.dagger.hilt.compiler)
-    ksp(libs.hilt.compiler)
-    ksp(libs.lifecycle.compiler)
-    kspAndroidTest(libs.dagger.hilt.compiler)
-    kspAndroidTest(libs.hilt.compiler)
 }
