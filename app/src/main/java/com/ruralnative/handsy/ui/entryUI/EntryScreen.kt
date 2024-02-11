@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.ui.entryUI
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -85,6 +86,7 @@ fun EntryScreen(
             }
         }
     }
+    Log.d("ENTRY_SCREEN", "Composable() EXECUTED")
     viewModel.checkUserCountAndNavigate(
         navigateToInitial = {
             onNavigateToUser()

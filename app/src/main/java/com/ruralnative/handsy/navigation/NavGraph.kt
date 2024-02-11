@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -12,6 +13,8 @@ import com.ruralnative.handsy.ui.initialScreens.UserIntroScreen
 import com.ruralnative.handsy.ui.initialScreens.UserIntroViewModel
 import com.ruralnative.handsy.ui.mainScreen.MainScreen
 
+private const val TAG = "NavGraph"
+
 @Composable
 fun NavGraph(
     navController: NavHostController
@@ -22,6 +25,7 @@ fun NavGraph(
         startDestination = "entry_screen"
     ) {
         composable(Screen.Entry.route) {
+            Log.d(TAG, "EntryScreen INITIALIZED")
             EntryScreen(
                 modifier = Modifier,
                 viewModel = hiltViewModel<EntryViewModel>(),
@@ -34,6 +38,7 @@ fun NavGraph(
             )
         }
         composable(Screen.UserIntro.route) {
+            Log.d(TAG, "UserIntroScreen INITIALIZED")
             UserIntroScreen(
                 modifier = Modifier,
                 viewModel = hiltViewModel<UserIntroViewModel>(),
@@ -43,6 +48,7 @@ fun NavGraph(
             )
         }
         composable(Screen.MainScreen.route) {
+            Log.d(TAG, "MainScreen INITIALIZED")
             MainScreen()
         }
     }
