@@ -1,20 +1,21 @@
 [versions]
-androidPlugin = "8.2.2"
+androidArchVersion = "2.2.0"
 androidCore = "1.12.0"
 androidLifeCycle = "2.7.0"
-androidArchVersion = "2.2.0"
-espressoCoreVersion = "3.5.1"
-googleCore = "1.41.0"
+androidGradlePlugin = "8.2.2"
+androidHilt = "1.1.0"
 composeActivity = "1.8.2"
+compose-compiler = "1.5.8"
 composeConstraintLayout = "1.0.1"
 daggerHilt = "2.50"
-androidHilt = "1.1.0"
-kotlin = "1.9.21"
-ksp = "1.9.21-1.0.16"
+espressoCoreVersion = "3.5.1"
+googleCore = "1.41.0"
 junitVersion = "1.1.5"
-roomVersion = "2.6.1"
-navVersion = "2.7.6"
 junit = "4.13.2"
+kotlin = "1.9.22"
+ksp = "1.9.22-1.0.17"
+navVersion = "2.7.6"
+roomVersion = "2.6.1"
 rulesVersion = "1.5.0"
 runnerVersion = "1.5.2"
 uiautomatorVersion = "2.3.0-beta01"
@@ -74,8 +75,8 @@ runner = { module = "androidx.test:runner", version.ref = "runnerVersion" }
 uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomatorVersion" }
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "androidPlugin"}
-android-library = { id = "com.android.library", version.ref = "androidPlugin"}
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
 google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 androidx-room = { id = "androidx.room", version.ref = "roomVersion"}
