@@ -15,6 +15,7 @@ import com.ruralnative.handsy.di.qualifiers.PhrasesDAO
 import com.ruralnative.handsy.di.qualifiers.PhrasesRepo
 import com.ruralnative.handsy.di.qualifiers.UserDAO
 import com.ruralnative.handsy.di.qualifiers.UserRepo
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,10 +26,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ApplicationModule {
+object DatabaseModule {
 
-    @Provides
+
     @Singleton
+    @Provides
     @Database
     fun provideLocalDatabase(
         @ApplicationContext context: Context
@@ -36,25 +38,52 @@ object ApplicationModule {
        return AppDatabase.getDatabase(context)
     }
 
+    @Singleton
+    @Provides
+    @UserDAO
+    fun provideUserDao(
+        appDatabase: AppDatabase
+    ): UserDao {
+        return appDatabase.userDao()
+    }
+
+    @Singleton
+    @Provides
+    @AlphabetDAO
+    fun provideAlphabetDao(
+        appDatabase: AppDatabase
+    ): AlphabetLessonDao {
+        return appDatabase.alphabetLessonDao()
+    }
+
+    @Singleton
+    @Provides
+    @PhrasesDAO
+    fun providePhrasesDao(
+        appDatabase: AppDatabase
+    ): PhrasesLessonDao {
+        return appDatabase.phrasesLessonDao()
+    }
+
     @Provides
     @Singleton
     @UserRepo
     fun provideUserRepository(
-        @UserDAO dao: UserDao
+        dao: UserDao
     ): UserRepository = UserRepository(dao)
 
     @Provides
     @Singleton
     @AlphabetRepo
     fun provideAlphabetRepository(
-        @AlphabetDAO dao: AlphabetLessonDao
+        dao: AlphabetLessonDao
     ): AlphabetLessonRepository = AlphabetLessonRepository(dao)
 
     @Provides
     @Singleton
     @PhrasesRepo
     fun providePhrasesRepository(
-        @PhrasesDAO dao: PhrasesLessonDao
+        dao: PhrasesLessonDao
     ): PhrasesLessonRepository = PhrasesLessonRepository(dao)
 }
 
