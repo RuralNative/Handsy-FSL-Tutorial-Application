@@ -59,7 +59,7 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
 @Composable
 fun EntryScreen(
     modifier: Modifier = Modifier,
-    viewModel: EntryViewModel,
+    viewModel: EntryViewModel = hiltViewModel(),
     onNavigateToUser: () -> Unit,
     onNavigateToMain: () -> Unit
 ) {

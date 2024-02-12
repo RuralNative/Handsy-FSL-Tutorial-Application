@@ -41,7 +41,6 @@ fun NavGraph(
             Log.d(TAG, "UserIntroScreen INITIALIZED")
             UserIntroScreen(
                 modifier = Modifier,
-                viewModel = hiltViewModel(),
                 navigateToMainScreen = {
                     navController.navigate(Screen.MainScreen.route)
                 }

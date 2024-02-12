@@ -67,6 +67,7 @@ dependencies {
     ksp(libs.room.compiler)
     ksp(libs.dagger.hilt.compiler)
     ksp(libs.androidx.lifecycle.compiler)
+    kspTest(libs.dagger.hilt.compiler)
     kspAndroidTest(libs.dagger.hilt.compiler)
 
     //Implementation Dependencies
@@ -88,7 +89,9 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.dagger.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.navigation.fragment)
     implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
     implementation(libs.navigation.compose)
 
     // Unit Test Implementation Dependencies
@@ -97,6 +100,7 @@ dependencies {
     testImplementation(libs.core.testing)
     testImplementation(libs.room.testing)
     testImplementation(libs.junit)
+    testImplementation(libs.dagger.hilt.android.testing)
 
     // Debugging Implementation Dependencies
     debugImplementation(libs.compose.ui.test.manifest)

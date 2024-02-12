@@ -1,6 +1,6 @@
 [versions]
 androidArchVersion = "2.2.0"
-ktx = "1.7.0"
+ktx = "1.12.0"
 androidLifeCycle = "2.7.0"
 androidGradlePlugin = "8.2.2"
 androidHilt = "1.1.0"
@@ -15,7 +15,7 @@ junitVersion = "1.1.5"
 junit = "4.13.2"
 kotlin = "1.9.22"
 ksp = "1.9.22-1.0.17"
-material3 = "1.2.0-rc01"
+material3 = "1.2.0"
 navVersion = "2.7.7"
 roomVersion = "2.6.1"
 rulesVersion = "1.5.0"
@@ -55,8 +55,11 @@ compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHilt" }
 dagger-hilt-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "daggerHilt" }
+dagger-hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "daggerHilt" }
 # Hilt (AndroidX
+
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidHilt" }
+hilt-navigation-fragment = { group = "androidx.hilt", name = "hilt-navigation-fragment", version.ref = "androidHilt"}
 # Kotlinx Coroutines
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -64,6 +67,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 # Room Database
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion"}
 room-testing = { module = "androidx.room:room-testing", version.ref = "roomVersion" }
 # Navigation
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navVersion" }

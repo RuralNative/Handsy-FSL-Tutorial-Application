@@ -27,6 +27,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.HandsyTheme
@@ -36,7 +37,7 @@ import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 fun UserIntroScreen(
     modifier: Modifier,
     navigateToMainScreen: () -> Unit,
-    viewModel: UserIntroViewModel
+    viewModel: UserIntroViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val userNameState = uiState.userNameState
