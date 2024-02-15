@@ -62,32 +62,5 @@ object FakeAppModule {
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
     }
-
-    @Provides
-    @Singleton
-    @TestUserRepo
-    fun provideUserRepository(
-        @TestUserDAO dao: UserDao
-    ): UserRepository {
-        return UserRepository(dao)
-    }
-
-    @Provides
-    @Singleton
-    @TestAlphabetRepo
-    fun provideAlphabetRepository(
-        @TestAlphabetDAO dao: AlphabetLessonDao
-    ): AlphabetLessonRepository {
-        return AlphabetLessonRepository(dao)
-    }
-
-    @Provides
-    @Singleton
-    @TestPhrasesRepo
-    fun providePhrasesRepository(
-        @TestPhrasesDAO dao: PhrasesLessonDao
-    ): PhrasesLessonRepository {
-        return PhrasesLessonRepository(dao)
-    }
 }
 

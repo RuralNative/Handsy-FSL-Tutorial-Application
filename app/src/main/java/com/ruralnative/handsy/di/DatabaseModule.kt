@@ -70,32 +70,5 @@ object DatabaseModule {
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
     }
-
-    @Provides
-    @Singleton
-    @UserRepo
-    fun provideUserRepository(
-        @UserDAO dao: UserDao
-    ): UserRepository {
-        return UserRepository(dao)
-    }
-
-    @Provides
-    @Singleton
-    @AlphabetRepo
-    fun provideAlphabetRepository(
-        @AlphabetDAO dao: AlphabetLessonDao
-    ): AlphabetLessonRepository {
-        return AlphabetLessonRepository(dao)
-    }
-
-    @Provides
-    @Singleton
-    @PhrasesRepo
-    fun providePhrasesRepository(
-        @PhrasesDAO dao: PhrasesLessonDao
-    ): PhrasesLessonRepository {
-        return PhrasesLessonRepository(dao)
-    }
 }
 
