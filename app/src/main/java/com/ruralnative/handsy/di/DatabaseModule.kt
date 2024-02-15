@@ -32,14 +32,16 @@ object DatabaseModule {
     @Database
     fun provideLocalDatabase(
         @ApplicationContext context: Context
-    ): AppDatabase = Room.databaseBuilder(
+    ): AppDatabase {
+        return return Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
             "app_database.db"
         )
-        .fallbackToDestructiveMigration()
-        .createFromAsset("database.db")
-        .build()
+            .fallbackToDestructiveMigration()
+            .createFromAsset("database.db")
+            .build()
+    }
 
     @Singleton
     @Provides
