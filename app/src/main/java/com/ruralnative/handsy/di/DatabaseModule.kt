@@ -20,6 +20,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -68,6 +69,33 @@ object DatabaseModule {
         @Database appDatabase: AppDatabase
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
+    }
+
+    @Provides
+    @Singleton
+    @UserRepo
+    fun provideUserRepository(
+        @UserDAO dao: UserDao
+    ): UserRepository {
+        return UserRepository(dao)
+    }
+
+    @Provides
+    @Singleton
+    @AlphabetRepo
+    fun provideAlphabetRepository(
+        @AlphabetDAO dao: AlphabetLessonDao
+    ): AlphabetLessonRepository {
+        return AlphabetLessonRepository(dao)
+    }
+
+    @Provides
+    @Singleton
+    @PhrasesRepo
+    fun providePhrasesRepository(
+        @PhrasesDAO dao: PhrasesLessonDao
+    ): PhrasesLessonRepository {
+        return PhrasesLessonRepository(dao)
     }
 }
 

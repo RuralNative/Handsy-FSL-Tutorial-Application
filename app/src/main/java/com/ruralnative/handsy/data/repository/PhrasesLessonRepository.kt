@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 
-class PhrasesLessonRepository @Inject constructor(
+class PhrasesLessonRepository (
     private val dao: PhrasesLessonDao
 ) {
 

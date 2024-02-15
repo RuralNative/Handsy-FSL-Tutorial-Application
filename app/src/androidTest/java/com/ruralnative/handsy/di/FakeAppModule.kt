@@ -15,6 +15,7 @@ import com.ruralnative.handsy.di.qualifiers.UserDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import javax.inject.Singleton
@@ -60,6 +61,33 @@ object FakeAppModule {
         @TestDatabase appDatabase: AppDatabase
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
+    }
+
+    @Provides
+    @Singleton
+    @TestUserRepo
+    fun provideUserRepository(
+        @TestUserDAO dao: UserDao
+    ): UserRepository {
+        return UserRepository(dao)
+    }
+
+    @Provides
+    @Singleton
+    @TestAlphabetRepo
+    fun provideAlphabetRepository(
+        @TestAlphabetDAO dao: AlphabetLessonDao
+    ): AlphabetLessonRepository {
+        return AlphabetLessonRepository(dao)
+    }
+
+    @Provides
+    @Singleton
+    @TestPhrasesRepo
+    fun providePhrasesRepository(
+        @TestPhrasesDAO dao: PhrasesLessonDao
+    ): PhrasesLessonRepository {
+        return PhrasesLessonRepository(dao)
     }
 }
 

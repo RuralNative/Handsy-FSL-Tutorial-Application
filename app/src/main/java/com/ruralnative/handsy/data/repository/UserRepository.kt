@@ -10,7 +10,7 @@
     import javax.inject.Inject
     import javax.inject.Singleton
 
-    class UserRepository @Inject constructor(
+    class UserRepository (
         private val dao: UserDao
     ) {
         val allUsers: Flow<List<User>> = dao.selectAllUsers()
