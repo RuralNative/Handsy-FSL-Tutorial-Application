@@ -1,67 +1,67 @@
-package com.ruralnative.handsy.data.repository
+    package com.ruralnative.handsy.data.repository
 
-import androidx.annotation.WorkerThread
-import com.ruralnative.handsy.data.dao.UserDao
-import com.ruralnative.handsy.data.entities.User
-import com.ruralnative.handsy.di.qualifiers.UserDAO
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
-import javax.inject.Singleton
+    import androidx.annotation.WorkerThread
+    import com.ruralnative.handsy.data.dao.UserDao
+    import com.ruralnative.handsy.data.entities.User
+    import com.ruralnative.handsy.di.qualifiers.UserDAO
+    import kotlinx.coroutines.flow.Flow
+    import kotlinx.coroutines.flow.firstOrNull
+    import kotlinx.coroutines.flow.flow
+    import javax.inject.Inject
+    import javax.inject.Singleton
 
-class UserRepository @Inject constructor(
-    private val dao: UserDao
-) {
-    val allUsers: Flow<List<User>> = dao.selectAllUsers()
+    class UserRepository @Inject constructor(
+        private val dao: UserDao
+    ) {
+        val allUsers: Flow<List<User>> = dao.selectAllUsers()
 
-    fun getUserByID(userID: Int): Flow<User> {
-        return dao.selectUserById(userID)
-    }
-
-    fun isThereNoUser(): Flow<Boolean> = flow {
-        val numberOfUsers: Int? = dao.countUsers().firstOrNull()
-        var isUserEmpty = true
-
-        if (numberOfUsers == 0) {
-            isUserEmpty = true
-        } else if (numberOfUsers != 0) {
-            isUserEmpty = false
+        fun getUserByID(userID: Int): Flow<User> {
+            return dao.selectUserById(userID)
         }
-        emit(isUserEmpty)
-    }
 
-    suspend fun insertUser(user: User) {
-        dao.insertUser(user)
-    }
+        fun isThereNoUser(): Flow<Boolean> = flow {
+            val numberOfUsers: Int? = dao.countUsers().firstOrNull()
+            var isUserEmpty = true
 
-    suspend fun insertNewUser(id: Int, name: String) {
-        val user = User(
-            id,
-            name,
-            0,
-            1
-        )
-        dao.insertUser(user)
-    }
+            if (numberOfUsers == 0) {
+                isUserEmpty = true
+            } else if (numberOfUsers != 0) {
+                isUserEmpty = false
+            }
+            emit(isUserEmpty)
+        }
 
-    suspend fun updateUser(user: User) {
-        dao.updateUser(user)
-    }
+        suspend fun insertUser(user: User) {
+            dao.insertUser(user)
+        }
 
-    suspend fun updateUserNameWithID(userName: String?, userID: Int) {
-        dao.updateUserName(userName, userID)
-    }
+        suspend fun insertNewUser(id: Int, name: String) {
+            val user = User(
+                id,
+                name,
+                0,
+                1
+            )
+            dao.insertUser(user)
+        }
 
-    suspend fun updateUserStatusWithID(boolValue: Int, userID: Int) {
-        dao.updateUserStatus(boolValue, userID)
-    }
+        suspend fun updateUser(user: User) {
+            dao.updateUser(user)
+        }
 
-    suspend fun updateUserLevelWithID(userLevel: Int, userID: Int) {
-        dao.updateUserProgressionLevel(userLevel, userID)
-    }
+        suspend fun updateUserNameWithID(userName: String?, userID: Int) {
+            dao.updateUserName(userName, userID)
+        }
 
-    suspend fun deleteUser(user: User) {
-        dao.deleteUser(user)
+        suspend fun updateUserStatusWithID(boolValue: Int, userID: Int) {
+            dao.updateUserStatus(boolValue, userID)
+        }
+
+        suspend fun updateUserLevelWithID(userLevel: Int, userID: Int) {
+            dao.updateUserProgressionLevel(userLevel, userID)
+        }
+
+        suspend fun deleteUser(user: User) {
+            dao.deleteUser(user)
+        }
     }
-}

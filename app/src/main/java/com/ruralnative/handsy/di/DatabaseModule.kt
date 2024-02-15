@@ -33,7 +33,7 @@ object DatabaseModule {
     fun provideLocalDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
-        return return Room.databaseBuilder(
+        return Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
             "app_database.db"
