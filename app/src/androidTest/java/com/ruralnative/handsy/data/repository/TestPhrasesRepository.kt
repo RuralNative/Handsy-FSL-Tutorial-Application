@@ -30,7 +30,6 @@ class TestPhrasesRepository {
     lateinit var database: AppDatabase
 
     @Inject
-    @TestPhrasesRepo
     lateinit var repository: PhrasesLessonRepository
 
     @Before

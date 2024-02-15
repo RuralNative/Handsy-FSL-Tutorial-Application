@@ -28,7 +28,6 @@ class TestUserRepository {
     lateinit var database: AppDatabase
 
     @Inject
-    @TestUserRepo
     lateinit var repository: UserRepository
 
     @Before

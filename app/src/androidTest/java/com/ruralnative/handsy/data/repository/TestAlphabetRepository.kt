@@ -28,7 +28,6 @@ class TestAlphabetRepository {
     lateinit var database: AppDatabase
 
     @Inject
-    @TestAlphabetRepo
     lateinit var repository: AlphabetLessonRepository
 
     @Before
