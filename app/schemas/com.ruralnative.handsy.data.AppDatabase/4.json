@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 4,
-    "identityHash": "21e5a3c9ea6e3e2865d262bc92cae31a",
+    "identityHash": "39e4f757e542f480bbf9bfc8394b1761",
     "entities": [
       {
         "tableName": "user",
@@ -44,7 +44,7 @@
       },
       {
         "tableName": "alphabet_lessons",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `lesson_name` TEXT, `lesson_description` TEXT, `lesson_media_file` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `lesson_name` TEXT NOT NULL, `lesson_description` TEXT NOT NULL, `lesson_media_file` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -56,19 +56,19 @@
             "fieldPath": "lessonName",
             "columnName": "lesson_name",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "lessonDescription",
             "columnName": "lesson_description",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "lessonMediaFile",
             "columnName": "lesson_media_file",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -82,7 +82,7 @@
       },
       {
         "tableName": "phrases_lessons",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `lesson_name` TEXT, `lesson_description` TEXT, `lesson_media_file` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `lesson_name` TEXT NOT NULL, `lesson_description` TEXT NOT NULL, `lesson_media_file` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -94,19 +94,19 @@
             "fieldPath": "lessonName",
             "columnName": "lesson_name",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "lessonDescription",
             "columnName": "lesson_description",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "lessonMediaFile",
             "columnName": "lesson_media_file",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -122,7 +122,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '21e5a3c9ea6e3e2865d262bc92cae31a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '39e4f757e542f480bbf9bfc8394b1761')"
     ]
   }
 }

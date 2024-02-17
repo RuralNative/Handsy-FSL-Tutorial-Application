@@ -26,7 +26,7 @@ class EntryViewModel @Inject constructor(
             if (!isThereNoUser) {
                 navigateToInitial()
             } else {
-                navigateToMain()
+                navigateToInitial()
             }
         }
     }

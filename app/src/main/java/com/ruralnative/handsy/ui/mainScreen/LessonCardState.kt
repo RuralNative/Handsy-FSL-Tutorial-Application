@@ -5,5 +5,5 @@ import androidx.annotation.DrawableRes
 data class LessonCardState(
     val lessonID: Int,
     val lessonName: String?,
-    @DrawableRes val lessonMediaResource: String?
+    val lessonMediaResource: String
 )
