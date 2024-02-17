@@ -70,6 +70,8 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-testing = { module = "androidx.room:room-testing", version.ref = "roomVersion" }
 # Navigation
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navVersion" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navVersion"}
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navVersion"}
 navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navVersion" }
 # Tests
 junit = { module = "junit:junit", version.ref = "junit" }

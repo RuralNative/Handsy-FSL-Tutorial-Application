@@ -92,6 +92,8 @@ dependencies {
     implementation(libs.hilt.navigation.fragment)
     implementation(libs.room.ktx)
     implementation(libs.room.runtime)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     implementation(libs.navigation.compose)
 
     // Unit Test Implementation Dependencies
