@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.ui.mainScreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.data.entities.AlphabetLesson
@@ -19,16 +20,22 @@ class MainScreenViewModel @Inject constructor(
     private val phrasesRepository: PhrasesLessonRepository
 ): ViewModel() {
 
-    private val _uiState = MutableStateFlow(MainScreenState())
+    private val _uiState = MutableStateFlow(MainScreenState(
+        alphabetLessons = emptyList(),
+        phrasesLesson = emptyList()
+    ))
     val uiState: StateFlow<MainScreenState> = _uiState.asStateFlow()
 
     init {
+        Log.d("LessonList", "ViewModel INITIALIZED")
         viewModelScope.launch {
-            phrasesRepository.allLessons.collect {lessons ->
-                _uiState.value = _uiState.value.copy(phrasesLesson = setPhraseLessonCards(lessons))
-            }
             alphabetRepository.allLessons.collect {lessons ->
                 _uiState.value = _uiState.value.copy(alphabetLessons = setAlphabetLessonCards(lessons))
+                Log.d("LessonList", "alphabetLessons = ${lessons.size}")
+            }
+            phrasesRepository.allLessons.collect {lessons ->
+                _uiState.value = _uiState.value.copy(phrasesLesson = setPhraseLessonCards(lessons))
+                Log.d("LessonList", "phrasesLessons = ${lessons.size}")
             }
         }
     }

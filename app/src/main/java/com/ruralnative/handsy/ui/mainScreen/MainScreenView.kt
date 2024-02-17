@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.ui.mainScreen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -35,6 +36,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
+import kotlinx.coroutines.delay
 
 @Preview
 @Composable
@@ -50,12 +52,11 @@ fun MainScreen(
             bottomBar = { BottomBar(modifier = Modifier)},
             containerColor = MaterialTheme.colorScheme.background
         ) { innerPadding ->
-            if (lessons != null) {
-                LessonCardList(
-                    modifier = Modifier
-                        .padding(innerPadding),
-                    lessonList = lessons)
-            }
+            Log.d("LessonList", "Content INITIALIZED")
+            LessonCardList(
+                modifier = Modifier
+                    .padding(innerPadding),
+                lessonList = lessons)
         }
     }
 }
@@ -103,7 +104,14 @@ fun LessonCardList(
     modifier: Modifier,
     lessonList: List<LessonCardState>
 ) {
+    Log.d("LessonList", "LessonCardList START INITIALIZED")
+    if (lessonList.isEmpty()) {
+        Log.d("LessonList", "LessonCardList is EMPTY")
+    } else {
+        Log.d("LessonList", "LessonCardList is NOT EMPTY")
+    }
     LazyColumn {
+        Log.d("LessonList", "LazyColumn INITIALIZED")
         items(lessonList) {lesson ->
             LessonCard(modifier = Modifier, lesson = lesson)
         }
@@ -115,6 +123,7 @@ fun LessonCard(
     modifier: Modifier,
     lesson: LessonCardState
 ) {
+    Log.d("LessonList", "Individual Card of ${lesson.lessonName} INITIALIZED")
     Card(
         modifier = Modifier
             .fillMaxWidth()
