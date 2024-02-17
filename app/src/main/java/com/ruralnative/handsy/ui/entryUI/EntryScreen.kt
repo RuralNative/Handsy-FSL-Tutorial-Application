@@ -86,7 +86,6 @@ fun EntryScreen(
             }
         }
     }
-    Log.d("ENTRY_SCREEN", "Composable() EXECUTED")
     viewModel.checkUserCountAndNavigate(
         navigateToInitial = {
             onNavigateToUser()

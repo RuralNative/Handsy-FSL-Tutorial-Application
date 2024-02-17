@@ -21,7 +21,7 @@ class EntryViewModel @Inject constructor(
     ) {
         Log.d("ENTRY_SCREEN", "checkUserCountAndNavigate() EXECUTED")
         viewModelScope.launch {
-            delay(5000)
+            delay(100)
             val isThereNoUser: Boolean = repository.isThereNoUser().first()
             if (!isThereNoUser) {
                 navigateToInitial()
