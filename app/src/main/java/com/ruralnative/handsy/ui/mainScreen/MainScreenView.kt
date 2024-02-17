@@ -45,48 +45,6 @@ import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TopBar(
-    modifier: Modifier
-) {
-    TopAppBar(
-        title = {
-            Text(
-                text = "Handsy",
-                color = Color.White,
-                fontWeight = FontWeight.ExtraBold,
-                fontFamily = NunitoFontFamily
-            )
-        },
-        colors = TopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
-            navigationIconContentColor = Color.White,
-            titleContentColor = Color.White,
-            actionIconContentColor = Color.White
-        ),
-        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    )
-}
-
-@Composable
-fun BottomBar(
-    modifier: Modifier
-) {
-    NavigationBar(
-        modifier = Modifier,
-        containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = Color.White
-    ) {
-        Text(
-            modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            text = "Bottom app bar",
-        )
-    }
-}
 @Preview
 @Composable
 fun MainScreen(
@@ -116,8 +74,51 @@ fun MainScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LessonCardList(
+private fun TopBar(
+    modifier: Modifier
+) {
+    TopAppBar(
+        title = {
+            Text(
+                text = "Handsy",
+                color = Color.White,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = NunitoFontFamily
+            )
+        },
+        colors = TopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            navigationIconContentColor = Color.White,
+            titleContentColor = Color.White,
+            actionIconContentColor = Color.White
+        ),
+        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    )
+}
+
+@Composable
+private fun BottomBar(
+    modifier: Modifier
+) {
+    NavigationBar(
+        modifier = Modifier,
+        containerColor = MaterialTheme.colorScheme.primary,
+        contentColor = Color.White
+    ) {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            text = "Bottom app bar",
+        )
+    }
+}
+
+@Composable
+private fun LessonCardList(
     modifier: Modifier,
     lessonList: List<LessonCardState>
 ) {
@@ -130,7 +131,7 @@ fun LessonCardList(
 }
 
 @Composable
-fun LessonCard(
+private fun LessonCard(
     modifier: Modifier,
     lesson: LessonCardState
 ) {
@@ -158,20 +159,20 @@ fun LessonCard(
                contentScale = ContentScale.Fit
 
            )
-           LessonDescription("Learn Your Alphabet", lesson.lessonName)
+           LessonDescription(lesson.lessonName)
        }
     }
 }
 
 @Composable
-fun LessonDescription(lessonHeader: String, lessonName: String) {
+private fun LessonDescription(lessonName: String) {
     Column(
         modifier = Modifier,
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = lessonHeader,
+            text = "Learn Your Alphabet",
             color = MaterialTheme.colorScheme.secondary,
             fontSize = 20.sp,
             fontWeight = FontWeight.Normal,
