@@ -24,42 +24,36 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
 @InstallIn(SingletonComponent::class)
+@Module
 object DatabaseModule {
 
     @Singleton
     @Provides
-    @Database
     fun provideLocalDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
         return AppDatabase.getInstance(context)
     }
 
-    @Singleton
     @Provides
-    @UserDAO
     fun provideUserDao(
-        @Database appDatabase: AppDatabase
+        appDatabase: AppDatabase
     ): UserDao {
         return appDatabase.userDao()
     }
 
-    @Singleton
     @Provides
-    @AlphabetDAO
     fun provideAlphabetDao(
-        @Database appDatabase: AppDatabase
+        appDatabase: AppDatabase
     ): AlphabetLessonDao {
         return appDatabase.alphabetLessonDao()
     }
 
     @Singleton
     @Provides
-    @PhrasesDAO
     fun providePhrasesDao(
-        @Database appDatabase: AppDatabase
+        appDatabase: AppDatabase
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
     }
