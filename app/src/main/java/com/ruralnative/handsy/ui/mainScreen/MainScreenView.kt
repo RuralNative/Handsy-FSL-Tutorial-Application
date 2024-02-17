@@ -50,13 +50,26 @@ import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import kotlinx.coroutines.delay
 
-@Preview
+lateinit var mainNavigation: () -> Unit
+lateinit var lessonNavigation: () -> Unit
+lateinit var cameraNavigation: () -> Unit
+lateinit var statsNavigation: () -> Unit
+
 @Composable
 fun MainScreen(
+    navigateToMainScreen: () -> Unit,
+    navigateToLessonScreen: () -> Unit,
+    navigateToCameraScreen: () -> Unit,
+    navigateToStatsScreen: () -> Unit,
     viewModel: MainScreenViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lessons = uiState.alphabetLessons
+
+    mainNavigation = navigateToMainScreen
+    lessonNavigation = navigateToLessonScreen
+    cameraNavigation = navigateToCameraScreen
+    statsNavigation = navigateToStatsScreen
 
     HandsyTheme {
         Scaffold (
@@ -72,7 +85,8 @@ fun MainScreen(
                     LessonCardList(
                         modifier = Modifier
                             .fillMaxSize(),
-                        lessonList = lessons)
+                        lessonList = lessons
+                    )
                 }
             }
         )
@@ -119,7 +133,7 @@ private fun BottomBar(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = lessonNavigation ) {
                 Image(
                     modifier = Modifier
                         .size(120.dp),
@@ -127,7 +141,7 @@ private fun BottomBar(
                     contentDescription = "Lessons Icon"
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = cameraNavigation) {
                 Image(
                     modifier = Modifier
                         .size(120.dp),
@@ -135,7 +149,7 @@ private fun BottomBar(
                     contentDescription = "Camera Icon"
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = statsNavigation) {
                 Image(
                     modifier = Modifier
                         .size(120.dp),
@@ -172,7 +186,7 @@ private fun LessonCard(
             .clickable(
                 enabled = true,
                 onClickLabel = "Lesson Card",
-                onClick = { /*TODO*/ }
+                onClick = lessonNavigation
             ),
         elevation = CardDefaults.elevatedCardElevation()
     ) {
