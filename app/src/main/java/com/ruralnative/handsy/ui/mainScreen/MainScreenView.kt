@@ -1,9 +1,12 @@
 package com.ruralnative.handsy.ui.mainScreen
 
+import android.content.res.Resources
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -55,24 +59,32 @@ fun LessonCard(
             ),
         elevation = CardDefaults.elevatedCardElevation()
     ) {
-       Column(
+       Row(
            modifier = Modifier
-               .padding(15.dp)
+               .padding(15.dp),
+           horizontalArrangement = Arrangement.SpaceEvenly
        ) {
            Image(
-               modifier = Modifier
-                   .aspectRatio(16f /9f),
-               painter = painterResource(id = R.drawable.mascot),
+               painter = painterResource(id = R.drawable.mascot_teach_one),
                contentDescription = "Lesson"
            )
-           Text(
-               text = "Lesson 1"
-           )
+           LessonDescription("Learn Your Alphabet", lesson.lessonName)
        }
     }
 }
 
 @Composable
-fun LessonColumn() {
-
+fun LessonDescription(lessonHeader: String, lessonName: String) {
+    Column(
+        modifier = Modifier,
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = lessonHeader
+        )
+        Text(
+            text = lessonName
+        )
+    }
 }
