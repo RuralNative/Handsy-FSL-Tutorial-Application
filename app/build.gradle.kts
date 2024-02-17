@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.devtools.ksp)
+    alias(libs.plugins.androidx.room)
     alias(libs.plugins.google.dagger.hilt.android)
 }
 
@@ -22,9 +23,6 @@ android {
                 arguments [
                     "dagger.hilt.disabledModulesHaveInstallInCheck"
                 ] = "true"
-                arguments [
-                    "room.schemaLocation"
-                ] = "$projectDir/schemas"
             }
         }
     }
@@ -63,6 +61,10 @@ android {
 
 hilt {
     enableAggregatingTask = true
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 dependencies {
