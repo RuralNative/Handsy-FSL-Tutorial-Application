@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -27,39 +28,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 import kotlinx.coroutines.delay
-
-@Preview
-@Composable
-fun MainScreen(
-    viewModel: MainScreenViewModel = hiltViewModel()
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val lessons = uiState.alphabetLessons
-
-    HandsyTheme {
-        Scaffold (
-            topBar = {TopBar(modifier = Modifier)},
-            bottomBar = { BottomBar(modifier = Modifier)},
-            containerColor = MaterialTheme.colorScheme.background
-        ) { innerPadding ->
-            Log.d("LessonList", "Content INITIALIZED")
-            LessonCardList(
-                modifier = Modifier
-                    .padding(innerPadding),
-                lessonList = lessons)
-        }
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -98,18 +78,36 @@ fun BottomBar(
 
     }
 }
+@Preview
+@Composable
+fun MainScreen(
+    viewModel: MainScreenViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val lessons = uiState.alphabetLessons
+
+    HandsyTheme {
+        Scaffold (
+            topBar = {TopBar(modifier = Modifier)},
+            bottomBar = { BottomBar(modifier = Modifier)},
+            containerColor = MaterialTheme.colorScheme.background
+        ) { innerPadding ->
+            LessonCardList(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(
+                        top = innerPadding.calculateTopPadding(),
+                        bottom = innerPadding.calculateBottomPadding()),
+                lessonList = lessons)
+        }
+    }
+}
 
 @Composable
 fun LessonCardList(
     modifier: Modifier,
     lessonList: List<LessonCardState>
 ) {
-    Log.d("LessonList", "LessonCardList START INITIALIZED")
-    if (lessonList.isEmpty()) {
-        Log.d("LessonList", "LessonCardList is EMPTY")
-    } else {
-        Log.d("LessonList", "LessonCardList is NOT EMPTY")
-    }
     LazyColumn {
         Log.d("LessonList", "LazyColumn INITIALIZED")
         items(lessonList) {lesson ->
@@ -123,7 +121,6 @@ fun LessonCard(
     modifier: Modifier,
     lesson: LessonCardState
 ) {
-    Log.d("LessonList", "Individual Card of ${lesson.lessonName} INITIALIZED")
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -137,12 +134,16 @@ fun LessonCard(
     ) {
        Row(
            modifier = Modifier
-               .padding(15.dp),
+               .padding(10.dp),
            horizontalArrangement = Arrangement.SpaceEvenly
        ) {
            Image(
+               modifier = Modifier
+                   .size(85.dp),
                painter = painterResource(id = R.drawable.mascot_teach_one),
-               contentDescription = "Lesson"
+               contentDescription = "Lesson Mascot",
+               contentScale = ContentScale.Fit
+
            )
            LessonDescription("Learn Your Alphabet", lesson.lessonName)
        }
@@ -158,13 +159,16 @@ fun LessonDescription(lessonHeader: String, lessonName: String) {
     ) {
         Text(
             text = lessonHeader,
-            fontWeight = FontWeight.ExtraBold,
+            color = MaterialTheme.colorScheme.secondary,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
         )
-        Spacer(modifier = Modifier.size(4.dp))
+        Spacer(modifier = Modifier.size(2.dp))
         Text(
             text = lessonName,
-            fontWeight = FontWeight.Bold,
+            fontSize = 46.sp,
+            fontWeight = FontWeight.ExtraBold,
             fontFamily = NunitoFontFamily
         )
     }
