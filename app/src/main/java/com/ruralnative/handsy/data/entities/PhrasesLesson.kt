@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "phrases_lessons")
 data class PhrasesLesson (
     @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo(name = "lesson_name") val lessonName: String?,
-    @ColumnInfo(name = "lesson_description") val lessonDescription: String?,
-    @ColumnInfo(name = "lesson_media_file") val lessonMediaFile: String?
+    @ColumnInfo(name = "lesson_name") val lessonName: String,
+    @ColumnInfo(name = "lesson_description") val lessonDescription: String,
+    @ColumnInfo(name = "lesson_media_file") val lessonMediaFile: String
 )
