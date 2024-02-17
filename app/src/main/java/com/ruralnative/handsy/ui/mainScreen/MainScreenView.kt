@@ -1,15 +1,11 @@
 package com.ruralnative.handsy.ui.mainScreen
 
-import android.content.res.Resources
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -19,16 +15,18 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -45,14 +43,56 @@ fun MainScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lessons = uiState.alphabetLessons
+
     HandsyTheme {
         Scaffold (
-            content = {
-                LessonCardList(
-                    modifier = Modifier,
-                    lessonList = lessons)
-            }
-        )
+            topBar = {TopBar(modifier = Modifier)},
+            bottomBar = { BottomBar(modifier = Modifier)},
+            containerColor = MaterialTheme.colorScheme.background
+        ) { innerPadding ->
+            LessonCardList(
+            modifier = Modifier
+                .padding(innerPadding),
+            lessonList = lessons)
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar(
+    modifier: Modifier
+) {
+    TopAppBar(
+        title = {
+            Text(
+                text = "Handsy",
+                color = Color.White,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = NunitoFontFamily
+            )
+        },
+        colors = TopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            navigationIconContentColor = Color.White,
+            titleContentColor = Color.White,
+            actionIconContentColor = Color.White
+        ),
+        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    )
+}
+
+@Composable
+fun BottomBar(
+    modifier: Modifier
+) {
+    NavigationBar(
+        modifier = Modifier,
+        containerColor = MaterialTheme.colorScheme.primary,
+        contentColor = Color.White
+    ) {
+
     }
 }
 
@@ -61,7 +101,7 @@ fun LessonCardList(
     modifier: Modifier,
     lessonList: List<LessonCardState>
 ) {
-    LazyColumn() {
+    LazyColumn {
         items(lessonList) {lesson ->
             LessonCard(modifier = Modifier, lesson = lesson)
         }
