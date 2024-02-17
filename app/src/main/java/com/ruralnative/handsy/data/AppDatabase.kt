@@ -1,6 +1,7 @@
 package com.ruralnative.handsy.data
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.Database
@@ -20,7 +21,7 @@ import javax.inject.Singleton
         AlphabetLesson::class,
         PhrasesLesson::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
