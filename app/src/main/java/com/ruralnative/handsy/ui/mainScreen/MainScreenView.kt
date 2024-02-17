@@ -50,10 +50,12 @@ fun MainScreen(
             bottomBar = { BottomBar(modifier = Modifier)},
             containerColor = MaterialTheme.colorScheme.background
         ) { innerPadding ->
-            LessonCardList(
-            modifier = Modifier
-                .padding(innerPadding),
-            lessonList = lessons)
+            if (lessons != null) {
+                LessonCardList(
+                    modifier = Modifier
+                        .padding(innerPadding),
+                    lessonList = lessons)
+            }
         }
     }
 }
