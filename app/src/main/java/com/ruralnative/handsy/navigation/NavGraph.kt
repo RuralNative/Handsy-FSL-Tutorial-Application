@@ -48,7 +48,28 @@ fun NavGraph(
         }
         composable(Screen.MainScreen.route) {
             Log.d(TAG, "MainScreen INITIALIZED")
-            MainScreen()
+            MainScreen(
+                navigateToLessonScreen = {
+                    navController.navigate(Screen.LessonScreen.route)
+                },navigateToMainScreen = {
+                    navController.navigate(Screen.MainScreen.route)
+                },
+                navigateToCameraScreen = {
+                    navController.navigate(Screen.CameraScreen.route)
+                },
+                navigateToStatsScreen = {
+                    navController.navigate(Screen.StatsScreen.route)
+                }
+            )
+        }
+        composable(Screen.LessonScreen.route) {
+            Log.d(TAG, "LessonScreen INITIALIZED")
+        }
+        composable(Screen.CameraScreen.route) {
+            Log.d(TAG, "CameraScreen INITIALIZED")
+        }
+        composable(Screen.StatsScreen.route) {
+            Log.d(TAG, "StatsScreen INITIALIZED")
         }
     }
 
