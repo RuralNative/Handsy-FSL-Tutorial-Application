@@ -27,4 +27,23 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun alphabetLessonDao(): AlphabetLessonDao
     abstract fun phrasesLessonDao(): PhrasesLessonDao
+
+    companion object {
+        @Volatile private var instance: AppDatabase? = null
+        fun getInstance(context: Context): AppDatabase {
+            return instance ?: synchronized(this) {
+                instance ?: buildDatabase(context).also { instance = it }
+            }
+        }
+        private fun buildDatabase(context: Context): AppDatabase {
+            return Room.databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java,
+                "app_database.db"
+            )
+                .fallbackToDestructiveMigration()
+                .createFromAsset("database.db")
+                .build()
+        }
+    }
 }
