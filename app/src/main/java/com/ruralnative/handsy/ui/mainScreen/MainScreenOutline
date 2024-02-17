@@ -25,7 +25,7 @@ MainScreenUI Composable
 FIRST
 Convert raw data collected from the database into a readable data for UI to compose wit
 1. ViewModel collects Flow<List> from AlphabetLessonRepository
-2. ViewModel iterates each of the Lesson inside the collected List, and assign the attributes of each Lesson to the LessonCardState. This means that each iteration creates a single instance of LessonCardState which is then stored to a MutableList<LessonCardState>
+2. ViewModel iterates each of the Lesson inside the collected List, and assign the attributes of each Lesson to the LessonCardState variable. This means that each iteration creates a single instance of LessonCardState which is then stored to a MutableList<LessonCardState>
 3. Set value of the MainScreenState's AlphabetLessons property with the MutableList<LessonCardState>
 4. Do the same for PhraseLesson property of UI state
 
