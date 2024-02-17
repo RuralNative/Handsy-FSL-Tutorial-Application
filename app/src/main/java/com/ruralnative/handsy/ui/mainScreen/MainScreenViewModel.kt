@@ -24,10 +24,10 @@ class MainScreenViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            phrasesRepository.allLessons.collect() {lessons ->
+            phrasesRepository.allLessons.collect {lessons ->
                 _uiState.value = _uiState.value.copy(phrasesLesson = setPhraseLessonCards(lessons))
             }
-            alphabetRepository.allLessons.collect() {lessons ->
+            alphabetRepository.allLessons.collect {lessons ->
                 _uiState.value = _uiState.value.copy(alphabetLessons = setAlphabetLessonCards(lessons))
             }
         }
@@ -38,8 +38,8 @@ class MainScreenViewModel @Inject constructor(
         for (lesson: PhrasesLesson in lessons) {
             val lessonCard: LessonCardState
             val lessonID: Int = lesson.id
-            val lessonName: String? = lesson.lessonName
-            val lessonResource: String? = lesson.lessonMediaFile
+            val lessonName: String = lesson.lessonName
+            val lessonResource: String = lesson.lessonMediaFile
             lessonCard = LessonCardState(lessonID, lessonName,
                 lessonResource
             )
@@ -53,8 +53,8 @@ class MainScreenViewModel @Inject constructor(
         for (lesson: AlphabetLesson in lessons) {
             val lessonCard: LessonCardState
             val lessonID: Int = lesson.id
-            val lessonName: String? = lesson.lessonName
-            val lessonResource: String? = lesson.lessonMediaFile
+            val lessonName: String = lesson.lessonName
+            val lessonResource: String = lesson.lessonMediaFile
             lessonCard = LessonCardState(lessonID, lessonName,
                 lessonResource
             )
