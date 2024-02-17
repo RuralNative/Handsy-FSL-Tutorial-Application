@@ -34,14 +34,7 @@ object DatabaseModule {
     fun provideLocalDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
-        return Room.databaseBuilder(
-            context.applicationContext,
-            AppDatabase::class.java,
-            "app_database.db"
-        )
-            .fallbackToDestructiveMigration()
-            .createFromAsset("database.db")
-            .build()
+        return AppDatabase.getInstance(context)
     }
 
     @Singleton
