@@ -19,7 +19,7 @@ import com.ruralnative.handsy.data.entities.User
         AlphabetLesson::class,
         PhrasesLesson::class
     ],
-    version = 2,
+    version = 4,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -30,33 +30,6 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
 
         @Volatile private var instance: AppDatabase? = null
-
-        private val MIGRATION_1_2 = object : Migration(1, 2) {
-            override fun migrate(db: SupportSQLiteDatabase) {
-                // Create a new table with the correct schema
-                db.execSQL("""
-            CREATE TABLE user_new (
-                id INTEGER PRIMARY KEY,
-                progression_level INTEGER NOT NULL,
-                user_name TEXT,
-                is_new_user INTEGER NOT NULL
-            )
-        """)
-
-                // Copy the data from the old table to the new one
-                db.execSQL("""
-            INSERT INTO user_new (id, progression_level, user_name, is_new_user)
-            SELECT id, progression_level, user_name, is_new_user FROM user
-        """)
-
-                // Remove the old table
-                db.execSQL("DROP TABLE user")
-
-                // Rename the new table to the correct name
-                db.execSQL("ALTER TABLE user_new RENAME TO user")
-            }
-        }
-
         fun getInstance(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also { instance = it }
@@ -68,7 +41,7 @@ abstract class AppDatabase : RoomDatabase() {
                 AppDatabase::class.java,
                 "app_database.db"
             )
-                .addMigrations(MIGRATION_1_2)
+                .fallbackToDestructiveMigration()
                 .createFromAsset("database.db")
                 .build()
         }
