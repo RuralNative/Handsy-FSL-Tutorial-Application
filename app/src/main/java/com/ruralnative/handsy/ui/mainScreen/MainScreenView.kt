@@ -2,9 +2,11 @@ package com.ruralnative.handsy.ui.mainScreen
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -15,9 +17,12 @@ import androidx.compose.foundation.layout.safeContent
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
@@ -103,17 +108,42 @@ private fun TopBar(
 private fun BottomBar(
     modifier: Modifier
 ) {
-    NavigationBar(
-        modifier = Modifier,
+    BottomAppBar(
         containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = Color.White
+        contentColor = Color.White,
+        contentPadding = PaddingValues(5.dp)
     ) {
-        Text(
+        Row (
             modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            text = "Bottom app bar",
-        )
+                .fillMaxSize(1F),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(onClick = { /*TODO*/ }) {
+                Image(
+                    modifier = Modifier
+                        .size(120.dp),
+                    painter = painterResource(id = R.drawable.icon_lessons),
+                    contentDescription = "Lessons Icon"
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Image(
+                    modifier = Modifier
+                        .size(120.dp),
+                    painter = painterResource(id = R.drawable.icon_camera),
+                    contentDescription = "Camera Icon"
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Image(
+                    modifier = Modifier
+                        .size(120.dp),
+                    painter = painterResource(id = R.drawable.icon_stats),
+                    contentDescription = "User Stats Icon"
+                )
+            }
+        }
     }
 }
 
