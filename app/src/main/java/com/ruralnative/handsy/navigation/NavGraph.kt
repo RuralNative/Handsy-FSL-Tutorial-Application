@@ -14,6 +14,7 @@ import com.ruralnative.handsy.ui.entryUI.EntryScreen
 import com.ruralnative.handsy.ui.entryUI.EntryViewModel
 import com.ruralnative.handsy.ui.initialScreens.UserIntroScreen
 import com.ruralnative.handsy.ui.initialScreens.UserIntroViewModel
+import com.ruralnative.handsy.ui.lessonScreen.LessonScreen
 import com.ruralnative.handsy.ui.mainScreen.MainScreen
 
 private const val TAG = "NavGraph"
@@ -74,8 +75,8 @@ fun NavGraph(
                     type = NavType.IntType
                 }
             )
-        ) {
-            Log.d(TAG, "LessonScreen INITIALIZED")
+        ) {navBackStackEntry ->  
+            TODO("Fetch Args for Nav")
         }
         composable(Screen.CameraScreen.route) {
             Log.d(TAG, "CameraScreen INITIALIZED")
