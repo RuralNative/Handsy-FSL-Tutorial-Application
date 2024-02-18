@@ -1,6 +1,8 @@
 package com.ruralnative.handsy.ui.lessonScreen
 
 import android.content.Context
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
@@ -26,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Composable
@@ -34,11 +37,13 @@ fun LessonScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
-    LessonScaffold(
-        modifier = Modifier,
-        state = uiState,
-        context = context
-    )
+    HandsyTheme {
+        LessonScaffold(
+            modifier = Modifier,
+            state = uiState,
+            context = context
+        )
+    }
 }
 
 @Composable
@@ -99,25 +104,53 @@ private fun LessonColumn(
     Column(
         modifier = Modifier
     ) {
+        lessonHeader(modifier = Modifier, lesson = state.lessonName)
+
         val image = context.resources.getIdentifier(
             state.lessonMediaResource,
             "drawable",
             context.packageName
         )
+        lessonImage(modifier = modifier, imageResource = image, imageDescription = state.lessonName)
+
         val description = context.resources.getIdentifier(
             state.lessonDescription,
             "string",
             context.packageName
         )
-        Text(
-            text = state.lessonName
-        )
-        Image(
-            painter = painterResource(id = image),
-            contentDescription = "Hand Sign for Letter ${state.lessonName}"
-        )
-        Text(
-            text = stringResource(description)
-        )
+        lessonDescription(modifier = modifier, descriptionResource = description)
     }
+}
+
+@Composable
+fun lessonHeader(
+    modifier: Modifier,
+    lesson: String
+) {
+    Text(
+        text = lesson
+    )
+}
+
+@Composable
+fun lessonImage(
+    modifier: Modifier,
+    @DrawableRes imageResource: Int,
+    imageDescription: String
+) {
+    Image(
+        painter = painterResource(id = imageResource),
+        contentDescription = "Hand Sign for Letter $imageDescription"
+    )
+
+}
+
+@Composable
+fun lessonDescription(
+    modifier: Modifier,
+    @StringRes descriptionResource: Int
+) {
+    Text(
+        text = stringResource(descriptionResource)
+    )
 }
