@@ -30,7 +30,7 @@ import com.ruralnative.handsy.ui.theme.NunitoFontFamily
 
 @Composable
 fun LessonScreen(
-    viewModel: LessonViewModel = hiltViewModel()
+    viewModel: LessonViewModel
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current

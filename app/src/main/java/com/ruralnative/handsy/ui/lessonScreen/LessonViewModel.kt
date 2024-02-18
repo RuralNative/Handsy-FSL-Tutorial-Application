@@ -18,12 +18,14 @@ class LessonViewModel @Inject constructor(
     private val repository: AlphabetLessonRepository
 ): ViewModel() {
 
+    val lessonID: Int = savedStateHandle["userId"]!!
+
     private val _uiState = MutableStateFlow(LessonState())
     val uiState: StateFlow<LessonState> = _uiState.asStateFlow()
 
     init {
         viewModelScope.launch {
-            repository.getLessonByID(1).collect {lesson ->
+            repository.getLessonByID(lessonID).collect {lesson ->
                 _uiState.value = _uiState.value.copy(
                     lessonName = lesson.lessonName,
                     lessonDescription = lesson.lessonDescription,
