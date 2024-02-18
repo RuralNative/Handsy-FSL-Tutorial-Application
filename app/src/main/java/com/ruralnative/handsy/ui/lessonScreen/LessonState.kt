@@ -1,7 +1,7 @@
 package com.ruralnative.handsy.ui.lessonScreen
 
 data class LessonState(
-    val lessonName: String,
-    val lessonDescription: String,
-    val lessonMediaResource: String
+    val lessonName: String = "Name",
+    val lessonDescription: String = "Desc",
+    val lessonMediaResource: String = "0"
 )
