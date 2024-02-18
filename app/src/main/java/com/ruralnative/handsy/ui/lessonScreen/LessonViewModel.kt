@@ -18,7 +18,7 @@ class LessonViewModel @Inject constructor(
     private val repository: AlphabetLessonRepository
 ): ViewModel() {
 
-    val lessonID: Int = savedStateHandle["userId"]!!
+    val lessonID = savedStateHandle.get<Int>("lessonID")!!
 
     private val _uiState = MutableStateFlow(LessonState())
     val uiState: StateFlow<LessonState> = _uiState.asStateFlow()
