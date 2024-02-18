@@ -2,7 +2,6 @@ package com.ruralnative.handsy.ui.mainScreen
 
 import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,10 +20,8 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -39,8 +36,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -48,17 +43,16 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
-import kotlinx.coroutines.delay
 
 lateinit var mainNavigation: () -> Unit
-lateinit var lessonNavigation: () -> Unit
+lateinit var lessonNavigation: (id: Int) -> Unit
 lateinit var cameraNavigation: () -> Unit
 lateinit var statsNavigation: () -> Unit
 
 @Composable
 fun MainScreen(
     navigateToMainScreen: () -> Unit,
-    navigateToLessonScreen: () -> Unit,
+    navigateToLessonScreen: (id: Int) -> Unit,
     navigateToCameraScreen: () -> Unit,
     navigateToStatsScreen: () -> Unit,
     viewModel: MainScreenViewModel = hiltViewModel()
@@ -186,7 +180,7 @@ private fun LessonCard(
             .clickable(
                 enabled = true,
                 onClickLabel = "Lesson Card",
-                onClick = lessonNavigation
+                onClick = lessonNavigation(lesson.lessonID)
             ),
         elevation = CardDefaults.elevatedCardElevation()
     ) {

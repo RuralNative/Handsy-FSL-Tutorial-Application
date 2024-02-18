@@ -3,10 +3,13 @@ package com.ruralnative.handsy.navigation
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.core.os.bundleOf
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.ruralnative.handsy.ui.entryUI.EntryScreen
 import com.ruralnative.handsy.ui.entryUI.EntryViewModel
 import com.ruralnative.handsy.ui.initialScreens.UserIntroScreen
@@ -62,7 +65,11 @@ fun NavGraph(
                 }
             )
         }
-        composable(Screen.LessonScreen.route) {
+        composable(
+            Screen.LessonScreen.route,
+            arguments = listOf(navArgument("lessonID") {type = NavType.StringType}
+            )
+        ) {
             Log.d(TAG, "LessonScreen INITIALIZED")
         }
         composable(Screen.CameraScreen.route) {
