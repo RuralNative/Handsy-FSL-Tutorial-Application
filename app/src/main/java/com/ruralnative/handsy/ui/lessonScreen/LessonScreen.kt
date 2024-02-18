@@ -34,11 +34,18 @@ fun LessonScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    LessonScaffold(
+        modifier = Modifier,
+        state = uiState,
+        context = context
+    )
 }
 
 @Composable
 private fun LessonScaffold(
-    modifier: Modifier
+    modifier: Modifier,
+    state: LessonState,
+    context: Context
 ) {
     Scaffold (
         topBar = { TopBar(modifier = Modifier) },
@@ -49,7 +56,11 @@ private fun LessonScaffold(
                 modifier = Modifier
                     .padding(top = innerPadding.calculateTopPadding())
             ) {
-                TODO("Show Composables for Lesson")
+                LessonColumn(
+                    modifier = modifier,
+                    state = state,
+                    context = context
+                )
             }
         }
     }
