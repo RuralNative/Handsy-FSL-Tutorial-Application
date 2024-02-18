@@ -1,6 +1,7 @@
 package com.ruralnative.handsy.ui.mainScreen
 
 import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.data.entities.AlphabetLesson
@@ -16,6 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val alphabetRepository: AlphabetLessonRepository,
     private val phrasesRepository: PhrasesLessonRepository
 ): ViewModel() {
