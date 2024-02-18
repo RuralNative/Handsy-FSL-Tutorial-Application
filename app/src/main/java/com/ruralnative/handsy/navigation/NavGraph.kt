@@ -52,9 +52,10 @@ fun NavGraph(
         composable(Screen.MainScreen.route) {
             Log.d(TAG, "MainScreen INITIALIZED")
             MainScreen(
-                navigateToLessonScreen = {
-                    navController.navigate(Screen.LessonScreen.route)
-                },navigateToMainScreen = {
+                navigateToLessonScreen = { id ->
+                    navController.navigate("lesson_screen/$id")
+                },
+                navigateToMainScreen = {
                     navController.navigate(Screen.MainScreen.route)
                 },
                 navigateToCameraScreen = {
@@ -66,8 +67,12 @@ fun NavGraph(
             )
         }
         composable(
-            Screen.LessonScreen.route,
-            arguments = listOf(navArgument("lessonID") {type = NavType.StringType}
+            "lesson_screen/{lessonID}",
+            arguments = listOf(
+                navArgument("lessonID") {
+                    defaultValue = 1
+                    type = NavType.IntType
+                }
             )
         ) {
             Log.d(TAG, "LessonScreen INITIALIZED")

@@ -127,7 +127,7 @@ private fun BottomBar(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(onClick = lessonNavigation ) {
+            IconButton(onClick = mainNavigation ) {
                 Image(
                     modifier = Modifier
                         .size(120.dp),
@@ -180,7 +180,7 @@ private fun LessonCard(
             .clickable(
                 enabled = true,
                 onClickLabel = "Lesson Card",
-                onClick = lessonNavigation(lesson.lessonID)
+                onClick = { lessonNavigation(lesson.lessonID) }
             ),
         elevation = CardDefaults.elevatedCardElevation()
     ) {
