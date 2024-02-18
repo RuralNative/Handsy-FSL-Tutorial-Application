@@ -4,10 +4,14 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContent
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,6 +34,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -51,29 +56,7 @@ fun LessonScreen(
     }
 }
 
-@Composable
-private fun LessonScaffold(
-    modifier: Modifier,
-    state: LessonState,
-    context: Context
-) {
-    Scaffold (
-        topBar = { TopBar(modifier = Modifier) },
-        containerColor = MaterialTheme.colorScheme.background,
-        contentWindowInsets = WindowInsets.safeContent
-    ) { innerPadding ->
-            Surface(
-                modifier = Modifier
-                    .padding(top = innerPadding.calculateTopPadding())
-            ) {
-                LessonColumn(
-                    modifier = modifier,
-                    state = state,
-                    context = context
-                )
-            }
-        }
-    }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -81,6 +64,7 @@ private fun TopBar(
     modifier: Modifier
 ) {
     TopAppBar(
+        modifier = modifier,
         title = {
             Text(
                 text = "Handsy",
@@ -101,6 +85,34 @@ private fun TopBar(
 }
 
 @Composable
+private fun LessonScaffold(
+    modifier: Modifier,
+    state: LessonState,
+    context: Context
+) {
+    Scaffold (
+        modifier = modifier,
+        topBar = { TopBar(modifier = Modifier) },
+        containerColor = MaterialTheme.colorScheme.background,
+        contentWindowInsets = WindowInsets.safeContent
+    ) { innerPadding ->
+            Surface(
+                modifier = Modifier
+                    .padding(top = innerPadding.calculateTopPadding())
+            ) {
+                LessonColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.background)
+                        .padding(24.dp),
+                    state = state,
+                    context = context
+                )
+            }
+    }
+}
+
+@Composable
 private fun LessonColumn(
     modifier: Modifier,
     state: LessonState,
@@ -109,13 +121,19 @@ private fun LessonColumn(
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly
+        verticalArrangement = Arrangement.Top
     ) {
         LessonHeader(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally),
             lesson = state.lessonName
+        )
+
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(30.dp)
         )
 
         val image = context.resources.getIdentifier(
@@ -126,9 +144,16 @@ private fun LessonColumn(
         LessonImage(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(12.dp)),
+                .clip(RoundedCornerShape(12.dp))
+                .background(MaterialTheme.colorScheme.secondary),
             imageResource = image,
             imageDescription = state.lessonName)
+
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(30.dp)
+        )
 
         val description = context.resources.getIdentifier(
             state.lessonDescription,
@@ -151,10 +176,11 @@ fun LessonHeader(
     Text(
         modifier = modifier,
         color = MaterialTheme.colorScheme.primary,
-        fontSize = 32.sp,
         fontWeight = FontWeight.ExtraBold,
         fontFamily = NunitoFontFamily,
-        text = lesson
+        text = lesson,
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.displayLarge
     )
 }
 
@@ -181,9 +207,10 @@ fun LessonDescription(
     Text(
         modifier = modifier,
         color = Color.Black,
-        fontSize = 16.sp,
         fontWeight = FontWeight.Normal,
         fontFamily = NunitoFontFamily,
-        text = stringResource(descriptionResource)
+        textAlign = TextAlign.Justify,
+        text = stringResource(descriptionResource),
+        style = MaterialTheme.typography.bodyLarge
     )
 }
