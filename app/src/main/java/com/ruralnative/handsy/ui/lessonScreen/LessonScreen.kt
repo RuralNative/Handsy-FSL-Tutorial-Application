@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContent
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,14 +21,17 @@ import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.Lifecycle
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.ui.theme.HandsyTheme
 import com.ruralnative.handsy.ui.theme.NunitoFontFamily
@@ -102,55 +107,83 @@ private fun LessonColumn(
     context: Context
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
-        lessonHeader(modifier = Modifier, lesson = state.lessonName)
+        LessonHeader(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.CenterHorizontally),
+            lesson = state.lessonName
+        )
 
         val image = context.resources.getIdentifier(
             state.lessonMediaResource,
             "drawable",
             context.packageName
         )
-        lessonImage(modifier = modifier, imageResource = image, imageDescription = state.lessonName)
+        LessonImage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(12.dp)),
+            imageResource = image,
+            imageDescription = state.lessonName)
 
         val description = context.resources.getIdentifier(
             state.lessonDescription,
             "string",
             context.packageName
         )
-        lessonDescription(modifier = modifier, descriptionResource = description)
+        LessonDescription(
+            modifier = Modifier
+                .fillMaxWidth(),
+            descriptionResource = description
+        )
     }
 }
 
 @Composable
-fun lessonHeader(
+fun LessonHeader(
     modifier: Modifier,
     lesson: String
 ) {
     Text(
+        modifier = modifier,
+        color = MaterialTheme.colorScheme.primary,
+        fontSize = 32.sp,
+        fontWeight = FontWeight.ExtraBold,
+        fontFamily = NunitoFontFamily,
         text = lesson
     )
 }
 
 @Composable
-fun lessonImage(
+fun LessonImage(
     modifier: Modifier,
     @DrawableRes imageResource: Int,
     imageDescription: String
 ) {
     Image(
         painter = painterResource(id = imageResource),
-        contentDescription = "Hand Sign for Letter $imageDescription"
+        contentDescription = "Hand Sign for Letter $imageDescription",
+        modifier = modifier,
+        contentScale = ContentScale.Crop
     )
 
 }
 
 @Composable
-fun lessonDescription(
+fun LessonDescription(
     modifier: Modifier,
     @StringRes descriptionResource: Int
 ) {
     Text(
+        modifier = modifier,
+        color = Color.Black,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Normal,
+        fontFamily = NunitoFontFamily,
         text = stringResource(descriptionResource)
     )
 }
