@@ -105,6 +105,7 @@ dependencies {
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     implementation(libs.navigation.compose)
+    implementation(libs.window)
 
     // Unit Test Implementation Dependencies
     testImplementation(libs.core.common)
