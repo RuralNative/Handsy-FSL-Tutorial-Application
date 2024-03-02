@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,9 +20,11 @@ class CameraViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(CameraState())
     val uiState: StateFlow<CameraState> = _uiState.asStateFlow()
 
-    fun requestPermission(context: Context) {
+    fun checkAndUpdatePermission(context: Context) {
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             _uiState.value = _uiState.value.copy(cameraPermissionGranted = true)
+        } else if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+            _uiState.value = _uiState.value.copy(cameraPermissionGranted = false)
         }
     }
 }
