@@ -76,6 +76,7 @@ dependencies {
     kspAndroidTest(libs.dagger.hilt.compiler)
 
     //Implementation Dependencies
+    implementation(libs.accompanist.permissions)
     implementation(libs.android.core.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.android.lifecycle.runtime.ktx)
