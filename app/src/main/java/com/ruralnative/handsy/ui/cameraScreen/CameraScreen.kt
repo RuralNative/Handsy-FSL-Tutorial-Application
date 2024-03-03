@@ -5,12 +5,17 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.PreviewView
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -38,11 +43,15 @@ fun CameraScreen(
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 private fun CameraPermission(
-    permissionState: PermissionState,
+    permissionState: PermissionState
 ) {
     PermissionRequired(
         permissionState = permissionState,
-        permissionNotGrantedContent = { /* ... */ },
+        permissionNotGrantedContent = {
+            SideEffect {
+                permissionState.launchPermissionRequest()
+            }
+        },
         permissionNotAvailableContent = { /* ... */ }
     ) {
         CameraComponent()
