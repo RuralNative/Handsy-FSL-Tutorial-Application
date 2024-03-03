@@ -10,6 +10,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.ruralnative.handsy.ui.cameraScreen.CameraScreen
 import com.ruralnative.handsy.ui.entryUI.EntryScreen
 import com.ruralnative.handsy.ui.entryUI.EntryViewModel
 import com.ruralnative.handsy.ui.initialScreens.UserIntroScreen
@@ -82,6 +83,7 @@ fun NavGraph(
         }
         composable(Screen.CameraScreen.route) {
             Log.d(TAG, "CameraScreen INITIALIZED")
+            CameraScreen()
         }
         composable(Screen.StatsScreen.route) {
             Log.d(TAG, "StatsScreen INITIALIZED")
