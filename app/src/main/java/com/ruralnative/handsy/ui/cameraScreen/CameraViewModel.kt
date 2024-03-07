@@ -19,12 +19,4 @@ class CameraViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(CameraState())
     val uiState: StateFlow<CameraState> = _uiState.asStateFlow()
-
-    fun checkAndUpdatePermission(context: Context) {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            _uiState.value = _uiState.value.copy(cameraPermissionGranted = true)
-        } else if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-            _uiState.value = _uiState.value.copy(cameraPermissionGranted = false)
-        }
-    }
 }
