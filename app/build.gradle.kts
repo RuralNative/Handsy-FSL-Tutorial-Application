@@ -78,6 +78,7 @@ dependencies {
     //Implementation Dependencies
     implementation(libs.accompanist.permissions)
     implementation(libs.android.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.android.lifecycle.runtime.ktx)
     implementation(libs.android.lifecycle.runtime.compose)
