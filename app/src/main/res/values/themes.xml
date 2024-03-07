@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Handsy" parent="android:Theme.Material.Light.NoActionBar" />
-    
-    <style name="Theme.App.Splash" parent="AdjustedTheme.Splash">
-        <item name="android:windowSplashScreenBackground" tools>@color/background_color</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_icon</item>
-        <item name="android:windowSplashScreenIconBackgroundColor">@color/primary_container</item>
-        <item name="android:windowSplashScreenBehavior">icon_preferred</item>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/background_color</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen_icon</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/primary_container</item>
+        <item name="postSplashScreenTheme">@style/Theme.Handsy</item>
     </style>
 </resources>
