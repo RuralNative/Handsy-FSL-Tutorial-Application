@@ -4,6 +4,7 @@ import  android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.ruralnative.handsy.navigation.NavGraph
@@ -17,6 +18,8 @@ class MainActivity : ComponentActivity() {
     private lateinit var navHostController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+
         super.onCreate(savedInstanceState)
         Log.d(TAG, "OnCreate() EXECUTED")
         setContent {
