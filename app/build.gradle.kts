@@ -9,11 +9,11 @@ plugins {
 android {
     namespace = "com.ruralnative.handsy"
     testNamespace = "com.ruralnative.testhandsy"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "com.ruralnative.handsy"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "com.ruralnative.handsy.CustomTestRunner"
