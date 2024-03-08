@@ -107,6 +107,8 @@ dependencies {
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     implementation(libs.navigation.compose)
+    implementation(libs.tensorflow.lite.task.vision.play.services)
+    implementation(libs.play.services.tflite.gpu)
     implementation(libs.window)
 
     // Unit Test Implementation Dependencies
