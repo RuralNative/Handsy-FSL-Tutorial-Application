@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.cameraScreen
+package com.ruralnative.handsy.ai
 
 import android.content.Context
 import android.graphics.Bitmap
