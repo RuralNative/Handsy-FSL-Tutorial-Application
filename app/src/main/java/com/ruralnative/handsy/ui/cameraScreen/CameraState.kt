@@ -1,6 +1,6 @@
 package com.ruralnative.handsy.ui.cameraScreen
 
-import com.ruralnative.handsy.ai.GestureRecognizerHelper
+import com.ruralnative.handsy.mediapipe.GestureRecognizerHelper
 
 data class CameraState (
     val delegate: Int = GestureRecognizerHelper.DELEGATE_CPU,

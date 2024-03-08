@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ai
+package com.ruralnative.handsy.mediapipe
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -16,15 +16,14 @@ import com.google.mediapipe.tasks.core.Delegate
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizer
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
-import com.ruralnative.handsy.ai.GestureRecognizerConstants.DEFAULT_HAND_DETECTION_CONFIDENCE
-import com.ruralnative.handsy.ai.GestureRecognizerConstants.DEFAULT_HAND_PRESENCE_CONFIDENCE
-import com.ruralnative.handsy.ai.GestureRecognizerConstants.DEFAULT_HAND_TRACKING_CONFIDENCE
-import com.ruralnative.handsy.ai.GestureRecognizerConstants.DELEGATE_CPU
-import com.ruralnative.handsy.ai.GestureRecognizerConstants.DELEGATE_GPU
-import com.ruralnative.handsy.ai.GestureRecognizerConstants.GPU_ERROR
-import com.ruralnative.handsy.ai.GestureRecognizerConstants.MP_RECOGNIZER_TASK
-import com.ruralnative.handsy.ai.GestureRecognizerConstants.OTHER_ERROR
-import com.ruralnative.handsy.ai.GestureRecognizerConstants.TAG
+import com.ruralnative.handsy.mediapipe.GestureRecognizerConstants.DEFAULT_HAND_DETECTION_CONFIDENCE
+import com.ruralnative.handsy.mediapipe.GestureRecognizerConstants.DEFAULT_HAND_PRESENCE_CONFIDENCE
+import com.ruralnative.handsy.mediapipe.GestureRecognizerConstants.DEFAULT_HAND_TRACKING_CONFIDENCE
+import com.ruralnative.handsy.mediapipe.GestureRecognizerConstants.DELEGATE_CPU
+import com.ruralnative.handsy.mediapipe.GestureRecognizerConstants.DELEGATE_GPU
+import com.ruralnative.handsy.mediapipe.GestureRecognizerConstants.GPU_ERROR
+import com.ruralnative.handsy.mediapipe.GestureRecognizerConstants.MP_RECOGNIZER_TASK
+import com.ruralnative.handsy.mediapipe.GestureRecognizerConstants.TAG
 
 class GestureRecognizerHelper(
     private var minHandDetectionConfidence: Float = DEFAULT_HAND_DETECTION_CONFIDENCE,
@@ -311,9 +310,5 @@ class GestureRecognizerHelper(
         gestureRecognizerListener?.onError(
             error.message ?: "An unknown error has occurred"
         )
-    }
-    interface GestureRecognizerListener {
-        fun onError(error: String, errorCode: Int = OTHER_ERROR)
-        fun onResults(resultBundle: ResultBundle)
     }
 }

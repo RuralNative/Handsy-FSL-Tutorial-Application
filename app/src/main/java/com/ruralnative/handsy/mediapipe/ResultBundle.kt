@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ai
+package com.ruralnative.handsy.mediapipe
 
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
 
