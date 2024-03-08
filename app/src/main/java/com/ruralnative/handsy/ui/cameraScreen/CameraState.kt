@@ -1,5 +1,7 @@
 package com.ruralnative.handsy.ui.cameraScreen
 
+import com.ruralnative.handsy.ai.GestureRecognizerHelper
+
 data class CameraState (
     val delegate: Int = GestureRecognizerHelper.DELEGATE_CPU,
     val minimumHandDetectionConfidence: Float = GestureRecognizerHelper.DEFAULT_HAND_DETECTION_CONFIDENCE,

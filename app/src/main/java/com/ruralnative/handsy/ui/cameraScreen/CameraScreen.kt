@@ -28,6 +28,10 @@ import com.google.accompanist.permissions.PermissionRequired
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.rememberPermissionState
 
+/**
+ * Builds a Composable Screen with a built-in CameraX object and MediaPipe integration
+ * @param viewModel Hilt-injected ViewModel object responsible for preparing and managing the data for the Composable screen
+ */
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun CameraScreen(
@@ -40,6 +44,10 @@ fun CameraScreen(
     }
 }
 
+/**
+ * Initializes permission request event for camera use and creates and builds a CameraX composable. Depending on whether the application is granted permission to use the device camera by the user, the CameraX can either show or instead revert to a black screen
+ * @param permissionState PermissionState object hoisted to observe permission status provided by user
+ */
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 private fun CameraPermission(
@@ -54,12 +62,20 @@ private fun CameraPermission(
         },
         permissionNotAvailableContent = { /* ... */ }
     ) {
-        CameraComponent()
+        CameraComponent(
+            modifier = Modifier.fillMaxSize()
+        )
     }
 }
 
+/**
+ * Creates a Compose-compatible CameraX object. Note that the Camera only uses the front camera
+ * @param modifier Modifier object that determines the style and design of the CameraX composable container
+ */
 @Composable
-private fun CameraComponent() {
+private fun CameraComponent(
+    modifier: Modifier
+) {
     val context = LocalContext.current
     val previewView: PreviewView = remember { PreviewView(context) }
     val cameraController = remember { LifecycleCameraController(context) }
@@ -68,7 +84,7 @@ private fun CameraComponent() {
     cameraController.cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
     previewView.controller = cameraController
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier) {
         AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
     }
 }
