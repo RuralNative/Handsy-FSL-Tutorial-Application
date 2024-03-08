@@ -16,15 +16,24 @@ import com.google.mediapipe.tasks.core.Delegate
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizer
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
+import com.ruralnative.handsy.ai.GestureRecognizerConstants.DEFAULT_HAND_DETECTION_CONFIDENCE
+import com.ruralnative.handsy.ai.GestureRecognizerConstants.DEFAULT_HAND_PRESENCE_CONFIDENCE
+import com.ruralnative.handsy.ai.GestureRecognizerConstants.DEFAULT_HAND_TRACKING_CONFIDENCE
+import com.ruralnative.handsy.ai.GestureRecognizerConstants.DELEGATE_CPU
+import com.ruralnative.handsy.ai.GestureRecognizerConstants.DELEGATE_GPU
+import com.ruralnative.handsy.ai.GestureRecognizerConstants.GPU_ERROR
+import com.ruralnative.handsy.ai.GestureRecognizerConstants.MP_RECOGNIZER_TASK
+import com.ruralnative.handsy.ai.GestureRecognizerConstants.OTHER_ERROR
+import com.ruralnative.handsy.ai.GestureRecognizerConstants.TAG
 
 class GestureRecognizerHelper(
-    var minHandDetectionConfidence: Float = DEFAULT_HAND_DETECTION_CONFIDENCE,
-    var minHandTrackingConfidence: Float = DEFAULT_HAND_TRACKING_CONFIDENCE,
-    var minHandPresenceConfidence: Float = DEFAULT_HAND_PRESENCE_CONFIDENCE,
-    var currentDelegate: Int = DELEGATE_CPU,
-    var runningMode: RunningMode = RunningMode.IMAGE,
-    val context: Context,
-    val gestureRecognizerListener: GestureRecognizerListener? = null
+    private var minHandDetectionConfidence: Float = DEFAULT_HAND_DETECTION_CONFIDENCE,
+    private var minHandTrackingConfidence: Float = DEFAULT_HAND_TRACKING_CONFIDENCE,
+    private var minHandPresenceConfidence: Float = DEFAULT_HAND_PRESENCE_CONFIDENCE,
+    private var currentDelegate: Int = DELEGATE_CPU,
+    private var runningMode: RunningMode = RunningMode.IMAGE,
+    private val context: Context,
+    private val gestureRecognizerListener: GestureRecognizerListener? = null
 ) {
 
     // For this example this needs to be a var so it can be reset on changes. If the GestureRecognizer
@@ -44,7 +53,7 @@ class GestureRecognizerHelper(
     // thread that is using it. CPU can be used with recognizers
     // that are created on the main thread and used on a background thread, but
     // the GPU delegate needs to be used on the thread that initialized the recognizer
-    fun setupGestureRecognizer() {
+    private fun setupGestureRecognizer() {
         // Set general recognition options, including number of used threads
         val baseOptionBuilder = BaseOptions.builder()
 
@@ -302,19 +311,6 @@ class GestureRecognizerHelper(
         gestureRecognizerListener?.onError(
             error.message ?: "An unknown error has occurred"
         )
-    }
-
-    companion object {
-        val TAG = "GestureRecognizerHelper ${this.hashCode()}"
-        private const val MP_RECOGNIZER_TASK = "gesture_recognizer.task"
-
-        const val DELEGATE_CPU = 0
-        const val DELEGATE_GPU = 1
-        const val DEFAULT_HAND_DETECTION_CONFIDENCE = 0.5F
-        const val DEFAULT_HAND_TRACKING_CONFIDENCE = 0.5F
-        const val DEFAULT_HAND_PRESENCE_CONFIDENCE = 0.5F
-        const val OTHER_ERROR = 0
-        const val GPU_ERROR = 1
     }
 
     data class ResultBundle(
