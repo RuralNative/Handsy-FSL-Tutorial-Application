@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.mediapipe
+package com.ruralnative.handsy.ai.mediapipe
 
 interface GestureRecognizerListener {
     fun onError(error: String, errorCode: Int = GestureRecognizerConstants.OTHER_ERROR)

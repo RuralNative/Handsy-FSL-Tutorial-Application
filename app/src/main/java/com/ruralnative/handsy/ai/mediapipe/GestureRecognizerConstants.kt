@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.mediapipe
+package com.ruralnative.handsy.ai.mediapipe
 
 object GestureRecognizerConstants {
     val TAG = "GestureRecognizerHelper ${this.hashCode()}"
