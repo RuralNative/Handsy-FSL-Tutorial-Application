@@ -312,14 +312,6 @@ class GestureRecognizerHelper(
             error.message ?: "An unknown error has occurred"
         )
     }
-
-    data class ResultBundle(
-        val results: List<GestureRecognizerResult>,
-        val inferenceTime: Long,
-        val inputImageHeight: Int,
-        val inputImageWidth: Int,
-    )
-
     interface GestureRecognizerListener {
         fun onError(error: String, errorCode: Int = OTHER_ERROR)
         fun onResults(resultBundle: ResultBundle)
