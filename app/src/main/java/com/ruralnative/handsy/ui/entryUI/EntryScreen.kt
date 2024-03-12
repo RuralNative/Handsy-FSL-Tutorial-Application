@@ -48,7 +48,6 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    MascotIcon()
                     HeaderText()
                 }
             }
@@ -80,7 +79,6 @@ fun EntryScreen(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    MascotIcon()
                     HeaderText()
                 }
             }
@@ -93,17 +91,6 @@ fun EntryScreen(
         navigateToMain = {
             onNavigateToMain()
         }
-    )
-}
-
-@Composable
-private fun MascotIcon(modifier: Modifier = Modifier) {
-    Image(
-        painter = painterResource(id = R.drawable.mascot),
-        contentDescription = stringResource(R.string.mascot_content_description),
-        modifier = Modifier
-            .size(250.dp)
-            .padding(bottom = 16.dp)
     )
 }
 
