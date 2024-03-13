@@ -1,8 +1,15 @@
 package com.ruralnative.handsy.compose.components
 
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.navigationBarsIgnoringVisibility
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContent
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.tappableElement
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -25,6 +32,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.NunitoFontFamily
 
+@OptIn(ExperimentalLayoutApi::class)
 @Preview
 @Composable
 fun BottomBar(
@@ -33,11 +41,11 @@ fun BottomBar(
 
     NavigationBar(
         modifier = Modifier
-            .height(80.dp),
+            .height(110.dp),
         containerColor = MaterialTheme.colorScheme.surface,
         contentColor = Color.White,
         tonalElevation = 3.dp,
-        windowInsets = WindowInsets(WindowInsetsCompat.Type.navigationBars()),
+        windowInsets = WindowInsets.navigationBars
     ) {
         NavigationBarItem(
             selected = selectedItem == 1,
