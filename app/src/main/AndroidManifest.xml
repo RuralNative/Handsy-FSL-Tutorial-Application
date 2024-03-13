@@ -16,7 +16,7 @@
         android:label="@string/handsy_normal_case"
         android:roundIcon="@mipmap/handsy_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App.Starting"
+        android:theme="@style/Theme.Handsy"
         tools:targetApi="31">
 
         <activity
