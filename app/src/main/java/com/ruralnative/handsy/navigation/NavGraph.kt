@@ -30,7 +30,6 @@ fun NavGraph(
         composable(Screen.Entry.route) {
             Log.d(TAG, "EntryScreen INITIALIZED")
             EntryScreen(
-                modifier = Modifier,
                 viewModel = hiltViewModel(),
                 onNavigateToUser = {
                     navController.navigate(Screen.UserIntro.route)
