@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
+import com.ruralnative.handsy.compose.components.BottomBar
 import com.ruralnative.handsy.viewmodel.state.LessonCardState
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
@@ -89,74 +90,6 @@ fun MainScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun TopBar(
-    modifier: Modifier
-) {
-    TopAppBar(
-        title = {
-            Text(
-                text = "Handsy",
-                color = Color.White,
-                fontWeight = FontWeight.ExtraBold,
-                fontFamily = NunitoFontFamily
-            )
-        },
-        colors = TopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
-            navigationIconContentColor = Color.White,
-            titleContentColor = Color.White,
-            actionIconContentColor = Color.White
-        ),
-        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    )
-}
-
-@Composable
-private fun BottomBar(
-    modifier: Modifier
-) {
-    BottomAppBar(
-        containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = Color.White,
-        contentPadding = PaddingValues(5.dp)
-    ) {
-        Row (
-            modifier = Modifier
-                .fillMaxSize(1F),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            IconButton(onClick = mainNavigation ) {
-                Image(
-                    modifier = Modifier
-                        .size(120.dp),
-                    painter = painterResource(id = R.drawable.icon_lessons),
-                    contentDescription = "Lessons Icon"
-                )
-            }
-            IconButton(onClick = cameraNavigation) {
-                Image(
-                    modifier = Modifier
-                        .size(120.dp),
-                    painter = painterResource(id = R.drawable.icon_camera),
-                    contentDescription = "Camera Icon"
-                )
-            }
-            IconButton(onClick = statsNavigation) {
-                Image(
-                    modifier = Modifier
-                        .size(120.dp),
-                    painter = painterResource(id = R.drawable.icon_stats),
-                    contentDescription = "User Stats Icon"
-                )
-            }
-        }
-    }
-}
-
 @Composable
 private fun LessonCardList(
     modifier: Modifier,
@@ -164,7 +97,7 @@ private fun LessonCardList(
 ) {
     LazyColumn {
         Log.d("LessonList", "LazyColumn INITIALIZED")
-        items(lessonList) {lesson ->
+        items(lessonList, key = {lesson -> lesson.lessonID}) {lesson ->
             LessonCard(modifier = Modifier, lesson = lesson)
         }
     }
