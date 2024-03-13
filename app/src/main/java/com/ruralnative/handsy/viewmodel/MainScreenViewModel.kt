@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.mainScreen
+package com.ruralnative.handsy.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
@@ -8,6 +8,8 @@ import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
+import com.ruralnative.handsy.viewmodel.state.LessonCardState
+import com.ruralnative.handsy.viewmodel.state.MainScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,10 +24,12 @@ class MainScreenViewModel @Inject constructor(
     private val phrasesRepository: PhrasesLessonRepository
 ): ViewModel() {
 
-    private val _uiState = MutableStateFlow(MainScreenState(
+    private val _uiState = MutableStateFlow(
+        MainScreenState(
         alphabetLessons = emptyList(),
         phrasesLesson = emptyList()
-    ))
+    )
+    )
     val uiState: StateFlow<MainScreenState> = _uiState.asStateFlow()
 
     init {

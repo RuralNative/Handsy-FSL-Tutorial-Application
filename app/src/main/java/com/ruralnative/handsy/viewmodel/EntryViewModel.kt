@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.entryUI
+package com.ruralnative.handsy.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -21,7 +21,7 @@ class EntryViewModel @Inject constructor(
     ) {
         Log.d("ENTRY_SCREEN", "checkUserCountAndNavigate() EXECUTED")
         viewModelScope.launch {
-            delay(100)
+            delay(1000)
             val isThereNoUser: Boolean = repository.isThereNoUser().first()
             if (!isThereNoUser) {
                 navigateToInitial()

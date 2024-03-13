@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui
+package com.ruralnative.handsy
 
 import  android.os.Bundle
 import android.util.Log

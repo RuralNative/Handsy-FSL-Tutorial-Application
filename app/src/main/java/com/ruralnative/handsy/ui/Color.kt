@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.theme
+package com.ruralnative.handsy.ui
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF406835)

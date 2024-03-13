@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.lessonScreen
+package com.ruralnative.handsy.compose
 
 import android.content.Context
 import androidx.annotation.DrawableRes
@@ -36,10 +36,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.ruralnative.handsy.ui.theme.HandsyTheme
-import com.ruralnative.handsy.ui.theme.NunitoFontFamily
+import com.ruralnative.handsy.viewmodel.state.LessonState
+import com.ruralnative.handsy.ui.HandsyTheme
+import com.ruralnative.handsy.ui.NunitoFontFamily
+import com.ruralnative.handsy.viewmodel.LessonViewModel
 
 @Composable
 fun LessonScreen(

@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.theme
+package com.ruralnative.handsy.ui
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

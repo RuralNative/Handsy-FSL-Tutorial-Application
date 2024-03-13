@@ -3,21 +3,18 @@ package com.ruralnative.handsy.navigation
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.core.os.bundleOf
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.ruralnative.handsy.ui.cameraScreen.CameraScreen
-import com.ruralnative.handsy.ui.entryUI.EntryScreen
-import com.ruralnative.handsy.ui.entryUI.EntryViewModel
-import com.ruralnative.handsy.ui.initialScreens.UserIntroScreen
-import com.ruralnative.handsy.ui.initialScreens.UserIntroViewModel
-import com.ruralnative.handsy.ui.lessonScreen.LessonScreen
-import com.ruralnative.handsy.ui.lessonScreen.LessonViewModel
-import com.ruralnative.handsy.ui.mainScreen.MainScreen
+import com.ruralnative.handsy.compose.CameraScreen
+import com.ruralnative.handsy.compose.EntryScreen
+import com.ruralnative.handsy.compose.UserIntroScreen
+import com.ruralnative.handsy.compose.LessonScreen
+import com.ruralnative.handsy.viewmodel.LessonViewModel
+import com.ruralnative.handsy.compose.MainScreen
 
 private const val TAG = "NavGraph"
 

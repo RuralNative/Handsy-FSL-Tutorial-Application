@@ -1,9 +1,10 @@
-package com.ruralnative.handsy.ui.initialScreens
+package com.ruralnative.handsy.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.data.entities.User
 import com.ruralnative.handsy.data.repository.UserRepository
+import com.ruralnative.handsy.viewmodel.state.UserIntroState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

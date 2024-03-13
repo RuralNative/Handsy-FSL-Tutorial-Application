@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.theme
+package com.ruralnative.handsy.ui
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

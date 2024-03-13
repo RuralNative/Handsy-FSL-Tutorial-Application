@@ -1,11 +1,8 @@
-package com.ruralnative.handsy.ui.cameraScreen
+package com.ruralnative.handsy.viewmodel
 
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.ruralnative.handsy.viewmodel.state.CameraState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

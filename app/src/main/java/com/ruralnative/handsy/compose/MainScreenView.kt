@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.mainScreen
+package com.ruralnative.handsy.compose
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -41,8 +41,10 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
-import com.ruralnative.handsy.ui.theme.HandsyTheme
-import com.ruralnative.handsy.ui.theme.NunitoFontFamily
+import com.ruralnative.handsy.viewmodel.state.LessonCardState
+import com.ruralnative.handsy.ui.HandsyTheme
+import com.ruralnative.handsy.ui.NunitoFontFamily
+import com.ruralnative.handsy.viewmodel.MainScreenViewModel
 
 lateinit var mainNavigation: () -> Unit
 lateinit var lessonNavigation: (id: Int) -> Unit
@@ -67,8 +69,8 @@ fun MainScreen(
 
     HandsyTheme {
         Scaffold (
-            topBar = {TopBar(modifier = Modifier)},
-            bottomBar = { BottomBar(modifier = Modifier)},
+            topBar = { TopBar(modifier = Modifier) },
+            bottomBar = { BottomBar(modifier = Modifier) },
             containerColor = MaterialTheme.colorScheme.background,
             contentWindowInsets = WindowInsets.safeContent,
             content = { innerPadding ->

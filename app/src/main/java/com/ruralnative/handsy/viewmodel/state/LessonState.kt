@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.lessonScreen
+package com.ruralnative.handsy.viewmodel.state
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

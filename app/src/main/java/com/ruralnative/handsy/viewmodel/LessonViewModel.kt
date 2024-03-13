@@ -1,10 +1,10 @@
-package com.ruralnative.handsy.ui.lessonScreen
+package com.ruralnative.handsy.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
+import com.ruralnative.handsy.viewmodel.state.LessonState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
