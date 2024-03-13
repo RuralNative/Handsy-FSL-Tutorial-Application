@@ -17,9 +17,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ruralnative.handsy.R
+import com.ruralnative.handsy.ui.NunitoFontFamily
 
 @Preview
 @Composable
@@ -40,7 +43,7 @@ fun BottomBar(
             onClick = { selectedItem = 1 },
             icon = { LessonIcon(modifier = Modifier) },
             enabled = true,
-            label = { Text(text = "Lessons") },
+            label = { TextLabel(label = "Lesson", modifier = Modifier) },
             alwaysShowLabel = false,
             colors = NavigationBarItemDefaults.colors(),
         )
@@ -49,7 +52,7 @@ fun BottomBar(
             onClick = { selectedItem = 2 },
             icon = { HomeIcon(modifier = Modifier) },
             enabled = true,
-            label = { Text(text = "Home") },
+            label = { TextLabel(label = "Home", modifier = Modifier) },
             alwaysShowLabel = false,
             colors = NavigationBarItemDefaults.colors(),
         )
@@ -58,7 +61,7 @@ fun BottomBar(
             onClick = { selectedItem = 3 },
             icon = { CameraIcon(modifier = Modifier) },
             enabled = true,
-            label = { Text(text = "Camera") },
+            label = { TextLabel(label = "Camera", modifier = Modifier) },
             alwaysShowLabel = false,
             colors = NavigationBarItemDefaults.colors(),
         )
@@ -74,6 +77,21 @@ private fun HomeIcon(
         contentDescription = "Navigation Button for Home Screen",
         modifier = modifier,
         tint = Color.Unspecified
+    )
+}
+
+@Composable
+private fun TextLabel(
+    label: String,
+    modifier: Modifier
+) {
+    Text(
+        text = label,
+        modifier = modifier,
+        fontSize = 12.sp,
+        fontWeight = FontWeight(500),
+        fontFamily = NunitoFontFamily,
+        lineHeight = 16.sp,
     )
 }
 
