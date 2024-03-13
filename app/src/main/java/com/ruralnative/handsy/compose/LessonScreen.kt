@@ -61,7 +61,7 @@ fun LessonScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(
+private fun TopBar(
     modifier: Modifier
 ) {
     TopAppBar(

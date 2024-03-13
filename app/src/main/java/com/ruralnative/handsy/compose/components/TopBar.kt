@@ -14,9 +14,7 @@ import com.ruralnative.handsy.ui.NunitoFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(
-    modifier: Modifier
-) {
+fun TopBar() {
     TopAppBar(
         title = {
             Text(

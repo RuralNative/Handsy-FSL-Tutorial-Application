@@ -14,20 +14,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.compose.cameraNavigation
 import com.ruralnative.handsy.compose.mainNavigation
 import com.ruralnative.handsy.compose.statsNavigation
 
+@Preview
 @Composable
-public fun BottomBar(
-    modifier: Modifier
+fun BottomBar(
 ) {
     BottomAppBar(
         containerColor = MaterialTheme.colorScheme.primary,
         contentColor = Color.White,
-        contentPadding = PaddingValues(5.dp)
+        contentPadding = PaddingValues(2.dp)
     ) {
         Row (
             modifier = Modifier
@@ -38,7 +39,7 @@ public fun BottomBar(
             IconButton(onClick = mainNavigation ) {
                 Image(
                     modifier = Modifier
-                        .size(120.dp),
+                        .size(100.dp),
                     painter = painterResource(id = R.drawable.icon_lessons),
                     contentDescription = "Lessons Icon"
                 )
@@ -46,7 +47,7 @@ public fun BottomBar(
             IconButton(onClick = cameraNavigation) {
                 Image(
                     modifier = Modifier
-                        .size(120.dp),
+                        .size(100.dp),
                     painter = painterResource(id = R.drawable.icon_camera),
                     contentDescription = "Camera Icon"
                 )
@@ -54,7 +55,7 @@ public fun BottomBar(
             IconButton(onClick = statsNavigation) {
                 Image(
                     modifier = Modifier
-                        .size(120.dp),
+                        .size(100.dp),
                     painter = painterResource(id = R.drawable.icon_stats),
                     contentDescription = "User Stats Icon"
                 )
