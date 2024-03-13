@@ -4,10 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,14 +34,16 @@ fun EntryScreen(
     onNavigateToMain: () -> Unit
 ) {
     EntryScreenUI()
-    viewModel.checkUserCountAndNavigate(
-        navigateToInitial = {
-            onNavigateToUser()
-        },
-        navigateToMain = {
-            onNavigateToMain()
-        }
-    )
+    LaunchedEffect(Unit) {
+        viewModel.checkUserCountAndNavigate(
+            navigateToInitial = {
+                onNavigateToUser()
+            },
+            navigateToMain = {
+                onNavigateToMain()
+            }
+        )
+    }
 }
 
 @Preview(showBackground = true)
@@ -66,10 +69,11 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .background(color = backgroundColor)
                         .constrainAs(container) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        top.linkTo(parent.top)
-                        bottom.linkTo(parent.bottom) },
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                            top.linkTo(parent.top)
+                            bottom.linkTo(parent.bottom)
+                        },
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
