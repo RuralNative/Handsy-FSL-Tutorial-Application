@@ -5,7 +5,10 @@
       <entry key="All Tests">
         <State />
       </entry>
-      <entry key="app">
+      <entry key="App">
+        <State />
+      </entry>
+      <entry key="DAO Test">
         <State />
       </entry>
     </value>

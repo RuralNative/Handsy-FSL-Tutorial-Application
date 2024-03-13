@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowInsetsCompat
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.NunitoFontFamily
 
@@ -36,7 +37,7 @@ fun BottomBar(
         containerColor = MaterialTheme.colorScheme.surface,
         contentColor = Color.White,
         tonalElevation = 3.dp,
-        windowInsets = WindowInsets.navigationBars,
+        windowInsets = WindowInsets(WindowInsetsCompat.Type.navigationBars()),
     ) {
         NavigationBarItem(
             selected = selectedItem == 1,

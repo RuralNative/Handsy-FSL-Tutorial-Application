@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContent
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.lazy.LazyColumn
@@ -66,10 +67,7 @@ fun MainScreen(
 
     HandsyTheme {
         Scaffold (
-            modifier = Modifier
-                .fillMaxSize()
-                .windowInsetsTopHeight(WindowInsets.navigationBars)
-                .windowInsetsBottomHeight(WindowInsets.navigationBars),
+            modifier = Modifier,
             topBar = { TopBar() },
             bottomBar = { BottomBar() },
             containerColor = MaterialTheme.colorScheme.background,
