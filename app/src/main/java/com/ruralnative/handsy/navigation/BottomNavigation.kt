@@ -9,24 +9,8 @@ import androidx.compose.material.icons.outlined.Camera
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 
-sealed class BottomNavigation(
+data class BottomNavigation(
     val title: String,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
-) {
-    data object Lesson: BottomNavigation(
-        title = "Lessons",
-        selectedIcon = Icons.Filled.Home,
-        unselectedIcon = Icons.Outlined.Home
-    )
-    data object Home: BottomNavigation(
-        title = "Lessons",
-        selectedIcon = Icons.Filled.Book,
-        unselectedIcon = Icons.Outlined.Book
-    )
-    data object Camera: BottomNavigation(
-        title = "Camera",
-        selectedIcon = Icons.Filled.Camera,
-        unselectedIcon = Icons.Outlined.Camera
-    )
-}
+)

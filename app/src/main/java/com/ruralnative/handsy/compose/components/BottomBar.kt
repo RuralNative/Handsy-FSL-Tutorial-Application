@@ -10,6 +10,13 @@ import androidx.compose.foundation.layout.safeContent
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.tappableElement
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.filled.Camera
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.outlined.Book
+import androidx.compose.material.icons.outlined.Camera
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -30,7 +37,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowInsetsCompat
 import com.ruralnative.handsy.R
+import com.ruralnative.handsy.navigation.BottomNavigation
 import com.ruralnative.handsy.ui.NunitoFontFamily
+
+val navigationItems = listOf<BottomNavigation>(
+    BottomNavigation(
+        title = "Lessons",
+        selectedIcon = Icons.Filled.Book,
+        unselectedIcon = Icons.Outlined.Book
+    ),
+    BottomNavigation(
+        title = "Home",
+        selectedIcon = Icons.Filled.Home,
+        unselectedIcon = Icons.Outlined.Home
+    ),
+    BottomNavigation(
+        title = "Camera",
+        selectedIcon = Icons.Filled.Camera,
+        unselectedIcon = Icons.Outlined.Camera
+    )
+)
 
 @OptIn(ExperimentalLayoutApi::class)
 @Preview
