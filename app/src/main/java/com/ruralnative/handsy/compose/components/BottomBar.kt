@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.compose.components
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.height
@@ -66,22 +67,58 @@ fun BottomBar(
     ) {
         val navigationItems = listOf(
             BottomNavigation(
-                title = "Main",
+                title = "Lesson",
                 route = Screen.MainScreen.route,
-                selectedIcon = { LessonIcon(modifier = Modifier) },
-                unselectedIcon = { LessonIcon(modifier = Modifier) }
+                selectedIcon = {
+                    SelectedIcon(
+                        modifier = Modifier,
+                        resourceID = R.drawable.icon_lesson,
+                        contentDescription = "Lesson Navigation Button"
+                    )
+                },
+                unselectedIcon = {
+                    UnselectedIcon(
+                        modifier = Modifier,
+                        resourceID = R.drawable.icon_lesson,
+                        contentDescription = "Lesson Navigation Button"
+                    )
+                }
             ),
             BottomNavigation(
                 title = "Home",
                 route = Screen.MainScreen.route,
-                selectedIcon = { HomeIcon(modifier = Modifier) },
-                unselectedIcon = { HomeIcon(modifier = Modifier) }
+                selectedIcon = {
+                    SelectedIcon(
+                        modifier = Modifier,
+                        resourceID = R.drawable.icon_home,
+                        contentDescription = "Home Navigation Button"
+                    )
+                },
+                unselectedIcon = {
+                    UnselectedIcon(
+                        modifier = Modifier,
+                        resourceID = R.drawable.icon_home,
+                        contentDescription = "Home Navigation Button"
+                    )
+                }
             ),
             BottomNavigation(
                 title = "Camera",
                 route = Screen.CameraScreen.route,
-                selectedIcon = { CameraIcon(modifier = Modifier) },
-                unselectedIcon = { CameraIcon(modifier = Modifier) }
+                selectedIcon = {
+                    SelectedIcon(
+                        modifier = Modifier,
+                        resourceID = R.drawable.icon_camera,
+                        contentDescription = "Camera Navigation Button"
+                    )
+                },
+                unselectedIcon = {
+                    UnselectedIcon(
+                        modifier = Modifier,
+                        resourceID = R.drawable.icon_camera,
+                        contentDescription = "Camera Navigation Button"
+                    )
+                }
             )
         )
 
@@ -117,14 +154,30 @@ fun BottomBar(
 }
 
 @Composable
-private fun Icon(
-    modifier: Modifier
+private fun SelectedIcon(
+    modifier: Modifier,
+    @DrawableRes resourceID: Int,
+    contentDescription: String,
 ) {
     Icon(
-        painter = painterResource(id = R.drawable.icon_home),
-        contentDescription = "Navigation Button for Home Screen",
+        painter = painterResource(id = resourceID),
+        contentDescription = contentDescription,
         modifier = modifier,
-        tint = Color.Unspecified
+        tint = MaterialTheme.colorScheme.secondaryContainer
+    )
+}
+
+@Composable
+private fun UnselectedIcon(
+    modifier: Modifier,
+    @DrawableRes resourceID: Int,
+    contentDescription: String,
+) {
+    Icon(
+        painter = painterResource(id = resourceID),
+        contentDescription = contentDescription,
+        modifier = modifier,
+        tint = MaterialTheme.colorScheme.onSecondaryContainer
     )
 }
 
