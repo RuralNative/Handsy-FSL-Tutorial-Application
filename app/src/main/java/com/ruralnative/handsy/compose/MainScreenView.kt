@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.compose.components.BottomBar
 import com.ruralnative.handsy.compose.components.TopBar
@@ -51,19 +52,14 @@ lateinit var statsNavigation: () -> Unit
 
 @Composable
 fun MainScreen(
-    navigateToMainScreen: () -> Unit,
     navigateToLessonScreen: (id: Int) -> Unit,
-    navigateToCameraScreen: () -> Unit,
-    navigateToStatsScreen: () -> Unit,
+    navigationController: NavHostController,
     viewModel: MainScreenViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lessons = uiState.alphabetLessons
 
-    mainNavigation = navigateToMainScreen
     lessonNavigation = navigateToLessonScreen
-    cameraNavigation = navigateToCameraScreen
-    statsNavigation = navigateToStatsScreen
 
     HandsyTheme {
         Scaffold (
@@ -71,8 +67,7 @@ fun MainScreen(
             topBar = { TopBar() },
             bottomBar = {
                 BottomBar(
-                navigateToMainScreen,
-                navigateToCameraScreen
+                    navigationController
             ) },
             containerColor = MaterialTheme.colorScheme.background,
             contentWindowInsets = WindowInsets.safeContent,

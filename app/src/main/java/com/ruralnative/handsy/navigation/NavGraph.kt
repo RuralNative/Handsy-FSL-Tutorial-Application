@@ -115,15 +115,7 @@ fun NavGraph(
                 navigateToLessonScreen = { id ->
                     navController.navigate("lesson_screen/$id")
                 },
-                navigateToMainScreen = {
-                    navController.navigate(Screen.MainScreen.route)
-                },
-                navigateToCameraScreen = {
-                    navController.navigate(Screen.CameraScreen.route)
-                },
-                navigateToStatsScreen = {
-                    navController.navigate(Screen.StatsScreen.route)
-                }
+                navController
             )
         }
 

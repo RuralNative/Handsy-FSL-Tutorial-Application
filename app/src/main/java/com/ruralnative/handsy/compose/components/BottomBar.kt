@@ -40,87 +40,84 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.navigation.BottomNavigation
 import com.ruralnative.handsy.navigation.Screen
 import com.ruralnative.handsy.ui.NunitoFontFamily
 
-val navigationItems = listOf(
-    BottomNavigation(
-        title = "Main",
-        route = Screen.MainScreen.route,
-        selectedIcon = { LessonIcon(modifier = Modifier) },
-        unselectedIcon = { LessonIcon(modifier = Modifier) }
-    ),
-    BottomNavigation(
-        title = "Home",
-        route = Screen.MainScreen.route,
-        selectedIcon = { HomeIcon(modifier = Modifier) },
-        unselectedIcon = { HomeIcon(modifier = Modifier) }
-    ),
-    BottomNavigation(
-        title = "Camera",
-        route = Screen.CameraScreen.route,
-        selectedIcon = { CameraIcon(modifier = Modifier) },
-        unselectedIcon = { CameraIcon(modifier = Modifier) }
-    )
-)
 
-lateinit var mainScreenNavigation: () -> Unit
-lateinit var cameraScreenNavigation: () -> Unit
 
 @Composable
 fun BottomBar(
-    navigateToMainScreen: () -> Unit,
-    navigateToCameraScreen: () -> Unit
+    navigationController: NavHostController
 ) {
+    val navController = navigationController
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
 
     var selectedItemIndex by rememberSaveable {
         mutableIntStateOf(1)
     }
 
-    LaunchedEffect(Unit) {
-        mainScreenNavigation = navigateToMainScreen
-        cameraScreenNavigation = navigateToCameraScreen
-    }
-
     NavigationBar(
     ) {
-        navigationItems.forEachIndexed { index, item ->
+        val navigationItems = listOf(
+            BottomNavigation(
+                title = "Main",
+                route = Screen.MainScreen.route,
+                selectedIcon = { LessonIcon(modifier = Modifier) },
+                unselectedIcon = { LessonIcon(modifier = Modifier) }
+            ),
+            BottomNavigation(
+                title = "Home",
+                route = Screen.MainScreen.route,
+                selectedIcon = { HomeIcon(modifier = Modifier) },
+                unselectedIcon = { HomeIcon(modifier = Modifier) }
+            ),
+            BottomNavigation(
+                title = "Camera",
+                route = Screen.CameraScreen.route,
+                selectedIcon = { CameraIcon(modifier = Modifier) },
+                unselectedIcon = { CameraIcon(modifier = Modifier) }
+            )
+        )
+
+        val selectionMap = remember(currentDestination) {
+            navigationItems.associateWith { item ->
+                currentDestination?.hierarchy?.any { it.route == item.route } == true
+            }
+        }
+
+        navigationItems.forEach { item ->
+            val selected = selectionMap.getOrDefault(item, false)
             NavigationBarItem(
-                selected = selectedItemIndex == index,
-                onClick = {
-                    selectedItemIndex = index
-                    if (selectedItemIndex == 0) {
-                        mainScreenNavigation()
-                    } else if (selectedItemIndex == 1) {
-                        mainScreenNavigation()
-                    } else if (selectedItemIndex == 2) {
-                        cameraScreenNavigation()
+                selected = selected,
+                onClick = { navController.navigate(item.route) },
+                icon = {
+                    if (selected) {
+                        item.selectedIcon()
+                    } else  {
+                        item.unselectedIcon()
                     }
                 },
-                icon = {
-                       if (selectedItemIndex == index) {
-                           item.selectedIcon
-                       } else  {
-                            item.unselectedIcon
-                       }
-                },
                 label = {
-                    TextLabel(
-                        label = item.title,
-                        modifier = Modifier
+                    Text(
+                        item.title,
+                        fontWeight =
+                            if (selected) FontWeight.Bold
+                            else FontWeight.Normal
                     )
-                },
-                alwaysShowLabel = false
+                }
             )
         }
     }
 }
 
 @Composable
-private fun HomeIcon(
+private fun Icon(
     modifier: Modifier
 ) {
     Icon(
@@ -132,17 +129,14 @@ private fun HomeIcon(
 }
 
 @Composable
-private fun TextLabel(
-    label: String,
+private fun HomeIcon(
     modifier: Modifier
 ) {
-    Text(
-        text = label,
+    Icon(
+        painter = painterResource(id = R.drawable.icon_home),
+        contentDescription = "Navigation Button for Home Screen",
         modifier = modifier,
-        fontSize = 12.sp,
-        fontWeight = FontWeight(500),
-        fontFamily = NunitoFontFamily,
-        lineHeight = 16.sp,
+        tint = Color.Unspecified
     )
 }
 
