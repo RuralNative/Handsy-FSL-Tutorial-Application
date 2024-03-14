@@ -48,20 +48,20 @@ val navigationItems = listOf(
     BottomNavigation(
         title = "Main",
         route = Screen.MainScreen.route,
-        selectedIcon = Icons.Filled.Book,
-        unselectedIcon = Icons.Outlined.Book
+        selectedIcon = { LessonIcon(modifier = Modifier) },
+        unselectedIcon = { LessonIcon(modifier = Modifier) }
     ),
     BottomNavigation(
         title = "Home",
         route = Screen.MainScreen.route,
-        selectedIcon = Icons.Filled.Home,
-        unselectedIcon = Icons.Outlined.Home
+        selectedIcon = { HomeIcon(modifier = Modifier) },
+        unselectedIcon = { HomeIcon(modifier = Modifier) }
     ),
     BottomNavigation(
         title = "Camera",
         route = Screen.CameraScreen.route,
-        selectedIcon = Icons.Filled.Camera,
-        unselectedIcon = Icons.Outlined.Camera
+        selectedIcon = { CameraIcon(modifier = Modifier) },
+        unselectedIcon = { CameraIcon(modifier = Modifier) }
     )
 )
 
@@ -82,12 +82,20 @@ fun BottomBar(
                     selectedItemIndex = index
                     navController.navigate(item.route)
                 },
-                icon = {},
-                modifier = ,
-                enabled = ,
-                label = {},
-                alwaysShowLabel = ,
-                colors = ,
+                icon = {
+                       if (selectedItemIndex == index) {
+                           item.selectedIcon
+                       } else  {
+                            item.unselectedIcon
+                       }
+                },
+                label = {
+                    TextLabel(
+                        label = item.title,
+                        modifier = Modifier
+                    )
+                },
+                alwaysShowLabel = false
             )
         }
     }
