@@ -40,7 +40,7 @@ import com.ruralnative.handsy.R
 import com.ruralnative.handsy.navigation.BottomNavigation
 import com.ruralnative.handsy.ui.NunitoFontFamily
 
-val navigationItems = listOf<BottomNavigation>(
+val navigationItems = listOf(
     BottomNavigation(
         title = "Lessons",
         selectedIcon = Icons.Filled.Book,
@@ -67,33 +67,7 @@ fun BottomBar(
 
     NavigationBar(
     ) {
-        NavigationBarItem(
-            selected = selectedItem == 1,
-            onClick = { selectedItem = 1 },
-            icon = { LessonIcon(modifier = Modifier) },
-            enabled = true,
-            label = { TextLabel(label = "Lesson", modifier = Modifier) },
-            alwaysShowLabel = false,
-            colors = NavigationBarItemDefaults.colors(),
-        )
-        NavigationBarItem(
-            selected = selectedItem == 2,
-            onClick = { selectedItem = 2 },
-            icon = { HomeIcon(modifier = Modifier) },
-            enabled = true,
-            label = { TextLabel(label = "Home", modifier = Modifier) },
-            alwaysShowLabel = false,
-            colors = NavigationBarItemDefaults.colors(),
-        )
-        NavigationBarItem(
-            selected = selectedItem == 3,
-            onClick = { selectedItem = 3 },
-            icon = { CameraIcon(modifier = Modifier) },
-            enabled = true,
-            label = { TextLabel(label = "Camera", modifier = Modifier) },
-            alwaysShowLabel = false,
-            colors = NavigationBarItemDefaults.colors(),
-        )
+        
     }
 }
 
