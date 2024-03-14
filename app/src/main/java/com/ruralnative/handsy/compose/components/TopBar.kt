@@ -1,5 +1,11 @@
 package com.ruralnative.handsy.compose.components
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -10,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowInsetsCompat
 import com.ruralnative.handsy.ui.NunitoFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -18,19 +26,15 @@ fun TopBar() {
     TopAppBar(
         title = {
             Text(
-                text = "Handsy",
-                color = Color.White,
-                fontWeight = FontWeight.ExtraBold,
-                fontFamily = NunitoFontFamily
+                text = "Handsy"
             )
         },
-        colors = TopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
-            navigationIconContentColor = Color.White,
-            titleContentColor = Color.White,
-            actionIconContentColor = Color.White
-        ),
+        modifier = Modifier
+            .height(64.dp)
+            .fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp),
+        windowInsets = WindowInsets.statusBars,
+        colors = TopAppBarDefaults.topAppBarColors(),
         scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     )
 }
