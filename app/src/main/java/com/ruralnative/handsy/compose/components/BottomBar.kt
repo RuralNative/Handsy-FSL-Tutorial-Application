@@ -40,8 +40,7 @@ fun BottomBar(
     var selectedItem by remember {mutableIntStateOf(2)}
 
     NavigationBar(
-        modifier = Modifier
-            .height(110.dp),
+        modifier = Modifier,
         containerColor = MaterialTheme.colorScheme.surface,
         contentColor = Color.White,
         tonalElevation = 3.dp,
