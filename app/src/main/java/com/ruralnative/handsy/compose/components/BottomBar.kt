@@ -24,8 +24,10 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -65,12 +67,22 @@ val navigationItems = listOf(
     )
 )
 
+lateinit var mainScreenNavigation: () -> Unit
+lateinit var cameraScreenNavigation: () -> Unit
+
 @Composable
 fun BottomBar(
-    navController: NavHostController
+    navigateToMainScreen: () -> Unit,
+    navigateToCameraScreen: () -> Unit
 ) {
+
     var selectedItemIndex by rememberSaveable {
         mutableIntStateOf(1)
+    }
+
+    LaunchedEffect(Unit) {
+        mainScreenNavigation = navigateToMainScreen
+        cameraScreenNavigation = navigateToCameraScreen
     }
 
     NavigationBar(
@@ -80,7 +92,13 @@ fun BottomBar(
                 selected = selectedItemIndex == index,
                 onClick = {
                     selectedItemIndex = index
-                    navController.navigate(item.route)
+                    if (selectedItemIndex == 0) {
+                        mainScreenNavigation()
+                    } else if (selectedItemIndex == 1) {
+                        mainScreenNavigation()
+                    } else if (selectedItemIndex == 2) {
+                        cameraScreenNavigation()
+                    }
                 },
                 icon = {
                        if (selectedItemIndex == index) {

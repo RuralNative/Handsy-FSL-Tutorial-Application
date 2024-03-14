@@ -69,7 +69,11 @@ fun MainScreen(
         Scaffold (
             modifier = Modifier,
             topBar = { TopBar() },
-            bottomBar = { BottomBar() },
+            bottomBar = {
+                BottomBar(
+                navigateToMainScreen,
+                navigateToCameraScreen
+            ) },
             containerColor = MaterialTheme.colorScheme.background,
             contentWindowInsets = WindowInsets.safeContent,
             content = { innerPadding ->
