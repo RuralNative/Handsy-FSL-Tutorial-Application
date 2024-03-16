@@ -52,7 +52,7 @@ espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref =
 ext-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
 google-ar-core = { group = "com.google.ar", name = "core", version.ref = "googleCore" }
 # Jetpack Compose
-compose-animation = { group = "androidx.compose", name = "animation", version.ref = "composeAnimation"}
+compose-animation = { group = "androidx.compose.animation", name = "animation"}
 compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.02.02" }
 compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 compose-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }

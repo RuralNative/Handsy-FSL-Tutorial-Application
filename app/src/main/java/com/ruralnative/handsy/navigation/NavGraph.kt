@@ -41,6 +41,20 @@ fun NavGraph(
         // Entry Screen Composable
         composable(
             route = Screen.Entry.route,
+            enterTransition = {
+                fadeIn(
+                    animationSpec = tween(
+                        150, easing = LinearEasing
+                    )
+                )
+            },
+            exitTransition = {
+                fadeOut(
+                    animationSpec = tween(
+                        150, easing = LinearEasing
+                    ),
+                )
+            }
         ) {
             EntryScreen(
                 viewModel = hiltViewModel(),
@@ -59,31 +73,30 @@ fun NavGraph(
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        150, easing = LinearEasing
                     )
                 ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
+                    animationSpec = tween(150, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        75, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
+                    animationSpec = tween(75, easing = EaseOut),
                     towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
         ) {
             Log.d(TAG, "UserIntroScreen INITIALIZED")
             UserIntroScreen(
-                /*modifier = Modifier,
+                modifier = Modifier,
                 navigateToMainScreen = {
                     navController.navigate(Screen.MainScreen.route)
                 }
-                */
             )
         }
 
@@ -95,9 +108,6 @@ fun NavGraph(
                     animationSpec = tween(
                         300, easing = LinearEasing
                     )
-                ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             exitTransition = {
@@ -105,9 +115,6 @@ fun NavGraph(
                     animationSpec = tween(
                         300, easing = LinearEasing
                     )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
         ) {
