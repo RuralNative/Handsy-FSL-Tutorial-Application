@@ -67,6 +67,7 @@ fun UserIntroScreen(
 
             HeaderText(
                 Modifier
+                    .fillMaxWidth()
                     .constrainAs(headerContainer) {
                         start.linkTo(parent.start, margin = 16.dp)
                         top.linkTo(parent.top)
@@ -117,14 +118,14 @@ private fun HeaderText(modifier: Modifier) {
         Text(
             text = stringResource(R.string.intro_greeting_header),
             color = MaterialTheme.colorScheme.primary,
-            fontSize = 45.sp,
+            fontSize = 36.sp,
             fontWeight = FontWeight.ExtraBold,
             fontFamily = NunitoFontFamily
         )
         Text(
             text = stringResource(R.string.intro_greeting_subtitle),
             color = MaterialTheme.colorScheme.secondary,
-            fontSize = 36.sp,
+            fontSize = 22.sp,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
         )
