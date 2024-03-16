@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.data.entities.User
@@ -9,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,6 +32,7 @@ class UserIntroViewModel @Inject constructor(
     //Receive String from TextField and send to Database, then Navigate to Main Screen
     fun saveUserNameInDatabase(nameInput: String) {
         viewModelScope.launch {
+            Log.d("CheckUserTable", "Before Save ${repository.isThereNoUser()}")
             repository.insertUser(
                 User(
                     id = 1,
