@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.compose.components
+package com.ruralnative.handsy.ui.compose.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material3.Icon

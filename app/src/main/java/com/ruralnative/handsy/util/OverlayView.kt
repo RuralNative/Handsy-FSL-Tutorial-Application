@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.util.ai
+package com.ruralnative.handsy.util
 
 import android.content.Context
 import android.graphics.Canvas

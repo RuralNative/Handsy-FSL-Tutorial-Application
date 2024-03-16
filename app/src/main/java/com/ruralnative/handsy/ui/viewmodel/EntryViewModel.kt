@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.viewmodel
+package com.ruralnative.handsy.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

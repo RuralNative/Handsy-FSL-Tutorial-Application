@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.compose
+package com.ruralnative.handsy.ui.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,7 +32,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
-import com.ruralnative.handsy.viewmodel.UserIntroViewModel
+import com.ruralnative.handsy.ui.viewmodel.UserIntroViewModel
 
 @Composable
 fun UserIntroScreen(

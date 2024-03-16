@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.compose
+package com.ruralnative.handsy.ui.compose
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -38,12 +38,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.ruralnative.handsy.R
-import com.ruralnative.handsy.compose.components.BottomBar
-import com.ruralnative.handsy.compose.components.TopBar
-import com.ruralnative.handsy.viewmodel.state.LessonCardState
+import com.ruralnative.handsy.ui.compose.components.BottomBar
+import com.ruralnative.handsy.ui.compose.components.TopBar
+import com.ruralnative.handsy.ui.state.LessonCardState
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
-import com.ruralnative.handsy.viewmodel.MainScreenViewModel
+import com.ruralnative.handsy.ui.viewmodel.MainScreenViewModel
 
 lateinit var mainNavigation: () -> Unit
 lateinit var lessonNavigation: (id: Int) -> Unit

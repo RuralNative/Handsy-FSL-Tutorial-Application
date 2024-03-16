@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.compose.components
+package com.ruralnative.handsy.ui.compose.components
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth

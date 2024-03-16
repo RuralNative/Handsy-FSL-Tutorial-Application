@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.compose
+package com.ruralnative.handsy.ui.compose
 
 import android.Manifest
 import androidx.camera.core.CameraSelector
@@ -23,7 +23,7 @@ import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
-import com.ruralnative.handsy.viewmodel.CameraViewModel
+import com.ruralnative.handsy.ui.viewmodel.CameraViewModel
 
 /**
  * Builds a Composable Screen with a built-in CameraX object and MediaPipe integration

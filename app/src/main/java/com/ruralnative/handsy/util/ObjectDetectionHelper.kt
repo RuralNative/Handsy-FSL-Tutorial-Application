@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.util.ai
+package com.ruralnative.handsy.util
 /*
  * Copyright 2022 The TensorFlow Authors. All Rights Reserved.
  *

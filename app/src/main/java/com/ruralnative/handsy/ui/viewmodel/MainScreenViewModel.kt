@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.viewmodel
+package com.ruralnative.handsy.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
@@ -8,8 +8,8 @@ import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
-import com.ruralnative.handsy.viewmodel.state.LessonCardState
-import com.ruralnative.handsy.viewmodel.state.MainScreenState
+import com.ruralnative.handsy.ui.state.LessonCardState
+import com.ruralnative.handsy.ui.state.MainScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

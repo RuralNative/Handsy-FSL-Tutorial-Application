@@ -1,8 +1,8 @@
-package com.ruralnative.handsy.viewmodel
+package com.ruralnative.handsy.ui.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.ruralnative.handsy.viewmodel.state.CameraState
+import com.ruralnative.handsy.ui.state.CameraState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
