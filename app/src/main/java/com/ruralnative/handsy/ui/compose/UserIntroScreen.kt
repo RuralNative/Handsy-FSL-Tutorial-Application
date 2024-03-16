@@ -1,11 +1,13 @@
 package com.ruralnative.handsy.ui.compose
 
+import android.view.Window
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -54,52 +56,53 @@ fun UserIntroScreen(
      */
 
     HandsyTheme {
-        Surface(
+        ConstraintLayout(
             modifier = Modifier
-                .fillMaxSize()
-                .windowInsetsPadding(WindowInsets.safeDrawing)
-                .background(color = MaterialTheme.colorScheme.background)
-        ){
-            ConstraintLayout {
-                val (headerContainer, mascotContainer, inputContainer) = createRefs()
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(16.dp)
+        ) {
+            val (headerContainer, mascotContainer, inputContainer) = createRefs()
 
-                HeaderText(
-                    Modifier.constrainAs(headerContainer) {
-                        start.linkTo(parent.start, margin = 50.dp)
+            HeaderText(
+                Modifier
+                    .constrainAs(headerContainer) {
+                        start.linkTo(parent.start, margin = 16.dp)
                         top.linkTo(parent.top)
+                        end.linkTo(parent.end, margin = 16.dp)
                         bottom.linkTo(mascotContainer.top)
                     }
-                )
-                MascotIcon(
-                    Modifier
-                        .constrainAs(mascotContainer) {
-                            start.linkTo(parent.start)
-                            top.linkTo(parent.top)
-                            end.linkTo(parent.end)
-                            bottom.linkTo(parent.bottom)
-                        }
-                        .fillMaxWidth()
-                )
-                /*
-                NameInputField(
-                    value = userNameState,
-                    onValueChange = { newValue ->
-                        viewModel.updateUserNameState(newValue)
-                    },
-                    onDone = {
-                        viewModel.saveUserNameInDatabase(it)
-                        navigateToMainScreen()
-                             },
-                    Modifier
-                        .constrainAs(inputContainer) {
-                            start.linkTo(parent.start)
-                            top.linkTo(mascotContainer.bottom)
-                            end.linkTo(parent.end)
-                            bottom.linkTo(parent.bottom)
-                        }
-                )
-                 */
-            }
+            )
+            MascotIcon(
+                Modifier
+                    .constrainAs(mascotContainer) {
+                        start.linkTo(parent.start)
+                        top.linkTo(parent.top)
+                        end.linkTo(parent.end)
+                        bottom.linkTo(parent.bottom)
+                    }
+                    .fillMaxWidth()
+            )
+            /*
+            NameInputField(
+                value = userNameState,
+                onValueChange = { newValue ->
+                    viewModel.updateUserNameState(newValue)
+                },
+                onDone = {
+                    viewModel.saveUserNameInDatabase(it)
+                    navigateToMainScreen()
+                         },
+                Modifier
+                    .constrainAs(inputContainer) {
+                        start.linkTo(parent.start)
+                        top.linkTo(mascotContainer.bottom)
+                        end.linkTo(parent.end)
+                        bottom.linkTo(parent.bottom)
+                    }
+            )
+             */
         }
     }
 }
@@ -113,16 +116,16 @@ private fun HeaderText(modifier: Modifier) {
     ) {
         Text(
             text = stringResource(R.string.intro_greeting_header),
-            color = MaterialTheme.colorScheme.secondary,
-            fontSize = 36.sp,
-            fontWeight = FontWeight.Normal,
+            color = MaterialTheme.colorScheme.primary,
+            fontSize = 45.sp,
+            fontWeight = FontWeight.ExtraBold,
             fontFamily = NunitoFontFamily
         )
         Text(
             text = stringResource(R.string.intro_greeting_subtitle),
-            color = MaterialTheme.colorScheme.primary,
-            fontSize = 45.sp,
-            fontWeight = FontWeight.ExtraBold,
+            color = MaterialTheme.colorScheme.secondary,
+            fontSize = 36.sp,
+            fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
         )
     }
