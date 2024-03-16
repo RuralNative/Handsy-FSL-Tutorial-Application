@@ -6,7 +6,8 @@
     <string name="mascot_content_description">Cat Mascot Image for Handsy</string>
 
     <!-- USER_INTRO Specific -->
-    <string name="intro_greeting">Greetings from us,</string>
+    <string name="intro_greeting_header">Hello Stranger,</string>
+    <string name="intro_greeting_subtitle">May I know your name?</string>
     <string name="name_input_label">Insert Name</string>
 
     <!-- AUTHOR_MESSAGE Specific -->

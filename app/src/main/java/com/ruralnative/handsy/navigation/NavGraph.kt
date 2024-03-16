@@ -79,10 +79,11 @@ fun NavGraph(
         ) {
             Log.d(TAG, "UserIntroScreen INITIALIZED")
             UserIntroScreen(
-                modifier = Modifier,
+                /*modifier = Modifier,
                 navigateToMainScreen = {
                     navController.navigate(Screen.MainScreen.route)
                 }
+                */
             )
         }
 

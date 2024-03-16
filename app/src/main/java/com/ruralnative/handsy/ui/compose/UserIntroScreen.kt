@@ -5,9 +5,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -34,19 +39,25 @@ import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
 import com.ruralnative.handsy.ui.viewmodel.UserIntroViewModel
 
+@Preview
 @Composable
 fun UserIntroScreen(
+) {
+    /*
     modifier: Modifier,
     navigateToMainScreen: () -> Unit,
     viewModel: UserIntroViewModel = hiltViewModel()
-) {
+    */
+    /*
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val userNameState = uiState.userNameState
+     */
 
     HandsyTheme {
         Surface(
             modifier = Modifier
                 .fillMaxSize()
+                .windowInsetsPadding(WindowInsets.safeDrawing)
                 .background(color = MaterialTheme.colorScheme.background)
         ){
             ConstraintLayout {
@@ -69,6 +80,7 @@ fun UserIntroScreen(
                         }
                         .fillMaxWidth()
                 )
+                /*
                 NameInputField(
                     value = userNameState,
                     onValueChange = { newValue ->
@@ -86,6 +98,7 @@ fun UserIntroScreen(
                             bottom.linkTo(parent.bottom)
                         }
                 )
+                 */
             }
         }
     }
@@ -99,14 +112,14 @@ private fun HeaderText(modifier: Modifier) {
         verticalArrangement = Arrangement.Top
     ) {
         Text(
-            text = stringResource(R.string.intro_greeting),
+            text = stringResource(R.string.intro_greeting_header),
             color = MaterialTheme.colorScheme.secondary,
             fontSize = 36.sp,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
         )
         Text(
-            text = stringResource(R.string.handsy_normal_case),
+            text = stringResource(R.string.intro_greeting_subtitle),
             color = MaterialTheme.colorScheme.primary,
             fontSize = 45.sp,
             fontWeight = FontWeight.ExtraBold,
