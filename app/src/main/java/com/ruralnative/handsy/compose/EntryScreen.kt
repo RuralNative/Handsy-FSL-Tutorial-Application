@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.compose
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,16 +33,18 @@ fun EntryScreen(
     onNavigateToUser: () -> Unit,
     onNavigateToMain: () -> Unit
 ) {
-    EntryScreenUI()
-    LaunchedEffect(Unit) {
-        viewModel.checkUserCountAndNavigate(
-            navigateToInitial = {
-                onNavigateToUser()
-            },
-            navigateToMain = {
-                onNavigateToMain()
-            }
-        )
+    HandsyTheme {
+        EntryScreenUI()
+        LaunchedEffect(Unit) {
+            viewModel.checkUserCountAndNavigate(
+                navigateToInitial = {
+                    onNavigateToUser()
+                },
+                navigateToMain = {
+                    onNavigateToMain()
+                }
+            )
+        }
     }
 }
 
@@ -53,35 +56,32 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
     val backgroundColor = Color(ContextCompat.getColor(context, R.color.primary_light))
     val headerColor = Color(ContextCompat.getColor(context, R.color.white))
 
-    HandsyTheme {
-        Surface(
+    BackHandler (enabled = true) {
+        // Renders System Back Button unusable for the user during Screen duration
+    }
+    ConstraintLayout (
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = backgroundColor)
+    ) {
+        val container = createRef()
+        Column(
             modifier = Modifier
-                .fillMaxSize()
+                .background(color = backgroundColor)
+                .constrainAs(container) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                },
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ConstraintLayout (
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(color = backgroundColor)
-            ) {
-                val container = createRef()
-                Column(
-                    modifier = Modifier
-                        .background(color = backgroundColor)
-                        .constrainAs(container) {
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                            top.linkTo(parent.top)
-                            bottom.linkTo(parent.bottom)
-                        },
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    HeaderText(Modifier, headerColor)
-                }
-            }
+            HeaderText(Modifier, headerColor)
         }
     }
 }
+
 
 @Composable
 private fun HeaderText(
@@ -98,7 +98,7 @@ private fun HeaderText(
             color = fontColor,
             textAlign = TextAlign.Center,
             style = TextStyle(
-                fontSize = 40.sp,
+                fontSize = 45.sp,
                 fontWeight = FontWeight.ExtraBold,
                 fontFamily = NunitoFontFamily
             )
@@ -107,6 +107,11 @@ private fun HeaderText(
             text = stringResource(R.string.fsl_sentence_case),
             color = fontColor,
             textAlign = TextAlign.Center,
+            style = TextStyle(
+                fontSize = 17.7.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = NunitoFontFamily
+            )
         )
     }
 }
