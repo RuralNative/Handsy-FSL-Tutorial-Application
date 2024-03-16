@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.android.lifecycle.runtime.compose)
     implementation(libs.android.lifecycle.viewmodel.compose)
     implementation(enforcedPlatform(libs.compose.bom))
+    implementation(libs.compose.animation)
     implementation(libs.compose.runtime.livedata)
     implementation(libs.compose.activity.compose)
     implementation(libs.compose.constraintlayout.compose)
