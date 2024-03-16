@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ai.mediapipe
+package com.ruralnative.handsy.util.ai.mediapipe
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -16,14 +16,14 @@ import com.google.mediapipe.tasks.core.Delegate
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizer
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
-import com.ruralnative.handsy.ai.mediapipe.GestureRecognizerConstants.DEFAULT_HAND_DETECTION_CONFIDENCE
-import com.ruralnative.handsy.ai.mediapipe.GestureRecognizerConstants.DEFAULT_HAND_PRESENCE_CONFIDENCE
-import com.ruralnative.handsy.ai.mediapipe.GestureRecognizerConstants.DEFAULT_HAND_TRACKING_CONFIDENCE
-import com.ruralnative.handsy.ai.mediapipe.GestureRecognizerConstants.DELEGATE_CPU
-import com.ruralnative.handsy.ai.mediapipe.GestureRecognizerConstants.DELEGATE_GPU
-import com.ruralnative.handsy.ai.mediapipe.GestureRecognizerConstants.GPU_ERROR
-import com.ruralnative.handsy.ai.mediapipe.GestureRecognizerConstants.MP_RECOGNIZER_TASK
-import com.ruralnative.handsy.ai.mediapipe.GestureRecognizerConstants.TAG
+import com.ruralnative.handsy.util.ai.mediapipe.GestureRecognizerConstants.DEFAULT_HAND_DETECTION_CONFIDENCE
+import com.ruralnative.handsy.util.ai.mediapipe.GestureRecognizerConstants.DEFAULT_HAND_PRESENCE_CONFIDENCE
+import com.ruralnative.handsy.util.ai.mediapipe.GestureRecognizerConstants.DEFAULT_HAND_TRACKING_CONFIDENCE
+import com.ruralnative.handsy.util.ai.mediapipe.GestureRecognizerConstants.DELEGATE_CPU
+import com.ruralnative.handsy.util.ai.mediapipe.GestureRecognizerConstants.DELEGATE_GPU
+import com.ruralnative.handsy.util.ai.mediapipe.GestureRecognizerConstants.GPU_ERROR
+import com.ruralnative.handsy.util.ai.mediapipe.GestureRecognizerConstants.MP_RECOGNIZER_TASK
+import com.ruralnative.handsy.util.ai.mediapipe.GestureRecognizerConstants.TAG
 
 class GestureRecognizerHelper(
     private var minHandDetectionConfidence: Float = DEFAULT_HAND_DETECTION_CONFIDENCE,
