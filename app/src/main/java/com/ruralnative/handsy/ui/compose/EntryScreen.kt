@@ -29,7 +29,7 @@ import com.ruralnative.handsy.ui.viewmodel.EntryViewModel
 @Composable
 fun EntryScreen(
     viewModel: EntryViewModel = hiltViewModel(),
-    onNavigateToUser: () -> Unit,
+    onNavigateToUserIntro: () -> Unit,
     onNavigateToMain: () -> Unit
 ) {
     HandsyTheme {
@@ -37,7 +37,7 @@ fun EntryScreen(
         LaunchedEffect(Unit) {
             viewModel.checkUserCountAndNavigate(
                 navigateToInitial = {
-                    onNavigateToUser()
+                    onNavigateToUserIntro()
                 },
                 navigateToMain = {
                     onNavigateToMain()
