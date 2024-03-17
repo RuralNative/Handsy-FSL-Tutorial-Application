@@ -19,11 +19,6 @@ import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.compose.components.LessonCardList
 import com.ruralnative.handsy.ui.viewmodel.MainScreenViewModel
 
-lateinit var mainNavigation: () -> Unit
-lateinit var lessonNavigation: (id: Int) -> Unit
-lateinit var cameraNavigation: () -> Unit
-lateinit var statsNavigation: () -> Unit
-
 @Composable
 fun MainScreen(
     navigateToLessonScreen: (id: Int) -> Unit,
@@ -32,7 +27,6 @@ fun MainScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lessons = uiState.alphabetLessons
-
     HandsyTheme {
         Scaffold (
             modifier = Modifier,

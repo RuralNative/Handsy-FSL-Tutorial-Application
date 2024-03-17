@@ -36,7 +36,6 @@ private const val TAG = "NavGraph"
 fun NavGraph(
     navController: NavHostController
 ) {
-
     NavHost(
         navController = navController,
         startDestination = "entry_screen",

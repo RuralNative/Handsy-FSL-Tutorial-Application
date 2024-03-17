@@ -1,6 +1,8 @@
 package com.ruralnative.handsy.ui.compose.components
 
 import android.util.Log
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -8,6 +10,7 @@ import androidx.compose.foundation.gestures.snapping.SnapFlingBehavior
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,7 +22,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,11 +36,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.NunitoFontFamily
-import com.ruralnative.handsy.ui.compose.lessonNavigation
 import com.ruralnative.handsy.ui.state.LessonCardState
 
 /**
- * Displays a LazyColumn of lessons
+ * Displays a LazyColumn of clickable Cards containing description of Lesson.
+ * Clicking a Card navigates with a passed ID integer to LessonScreen based from its LessonCardState ID.
  * @param modifier modifier used for LazyColumn
  * @param lessonHeader header description for the lesson
  * @param lessonList list of LessonCardState to display in LazyColumn
@@ -50,44 +55,46 @@ fun LessonCardList(
     onLessonCardClicked: (id: Int) -> Unit
 ) {
     val state: LazyListState = rememberLazyListState()
-
     LazyColumn(
         modifier = modifier,
         state = state,
+        contentPadding = PaddingValues(top = 24.dp, bottom = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         flingBehavior = rememberSnapFlingBehavior(state)
     ) {
-        Log.d("LessonList", "LazyColumn INITIALIZED")
         items(lessonList, key = {lesson -> lesson.lessonID}) {lesson ->
-            LessonCard(lessonHeader, lesson, onLessonCardClicked)
+            LessonCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(15.dp)
+                    .animateItemPlacement(
+                        tween(durationMillis = 150)
+                    )
+                    .clickable(
+                        enabled = true,
+                        onClick = { onLessonCardClicked(lesson.lessonID) }
+                    ),
+                lessonHeader,
+                lesson
+            )
         }
     }
 }
 
-
-
 /**
  * Displays a single Lesson as a Card composable
+ * @param modifier modifier used for the Card composable
  * @param lessonHeader header description for display
  * @param lesson fetched lesson to display
- * @param onLessonCardClicked lambda expression used by Card to navigate to Lesson screen
  */
 @Composable
 private fun LessonCard(
+    modifier: Modifier,
     lessonHeader: String,
-    lesson: LessonCardState,
-    onLessonCardClicked: (id: Int) -> Unit
+    lesson: LessonCardState
 ) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(15.dp)
-            .clickable(
-                enabled = true,
-                onClickLabel = "Lesson Card",
-                onClick = { onLessonCardClicked(lesson.lessonID) }
-            ),
-        elevation = CardDefaults.elevatedCardElevation()
+    ElevatedCard(
+        modifier = modifier,
     ) {
         Row(
             modifier = Modifier
@@ -130,7 +137,7 @@ private fun LessonDescription(
     ) {
         Text(
             text = lessonHeader,
-            color = MaterialTheme.colorScheme.secondary,
+            color = MaterialTheme.colorScheme.primary,
             fontSize = 20.sp,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
