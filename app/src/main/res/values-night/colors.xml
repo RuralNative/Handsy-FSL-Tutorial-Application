@@ -3,7 +3,37 @@
     <!-- Default Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="material_dynamic_background">#FFF8FBF0</color>
+    <color name="material_dynamic_background">#FF11140F</color>
+
+    <!-- Light Mode Colors -->
+    <color name="primary_light">#FF406835</color>
+    <color name="on_primary_light">#FFFFFFFF</color>
+    <color name="primary_container_light">#FFC1EFAF</color>
+    <color name="on_primary_container_light">#FF012200</color>
+    <color name="secondary_light">#FF54634D</color>
+    <color name="on_secondary_light">#FFFFFFFF</color>
+    <color name="secondary_container_light">#FFD7E8CC</color>
+    <color name="on_secondary_container_light">#FF121F0E</color>
+    <color name="tertiary_light">#FF386668</color>
+    <color name="on_tertiary_light">#FFFFFFFF</color>
+    <color name="tertiary_container_light">#FFBCEBEE</color>
+    <color name="on_tertiary_container_light">#FF002021</color>
+    <color name="error_light">#FFBA1A1A</color>
+    <color name="on_error_light">#FFFFFFFF</color>
+    <color name="error_container_light">#FFFFDAD6</color>
+    <color name="on_error_container_light">#FF410002</color>
+    <color name="background_light">#FFF8FBF0</color>
+    <color name="on_background_light">#FF191D17</color>
+    <color name="surface_light">#FFF8FBF0</color>
+    <color name="on_surface_light">#FF191D17</color>
+    <color name="surface_variant_light">#FFDFE4D7</color>
+    <color name="on_surface_variant_light">#FF43483F</color>
+    <color name="outline_light">#FF73796E</color>
+    <color name="outline_variant_light">#FFC3C8BC</color>
+    <color name="scrim_light">#FF000000</color>
+    <color name="inverse_surface_light">#FF2E322B</color>
+    <color name="inverse_on_surface_light">#FFEFF2E8</color>
+    <color name="inverse_primary_light">#FFA5D395</color>
 
     <!-- Dark Mode Colors -->
     <color name="primary_dark">#FFA5D395</color>
