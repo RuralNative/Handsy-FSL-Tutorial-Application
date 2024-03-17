@@ -70,7 +70,8 @@ fun NavGraph(
                     navController.navigate(Screen.UserIntro.route)
                 },
                 onNavigateToMain = {
-                    navController.navigate(Screen.MainScreen.route)
+                    navController.navigate(Screen.UserIntro.route)
+                    //navController.navigate(Screen.MainScreen.route)
                 }
             )
         }
@@ -83,7 +84,7 @@ fun NavGraph(
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        150, easing = LinearEasing
+                        450, easing = LinearEasing
                     )
                 ) + slideIntoContainer(
                     animationSpec = tween(150, easing = EaseIn),
@@ -93,7 +94,7 @@ fun NavGraph(
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        75, easing = LinearEasing
+                        225, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
                     animationSpec = tween(75, easing = EaseOut),
@@ -117,7 +118,7 @@ fun NavGraph(
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        150, easing = LinearEasing
+                        450, easing = LinearEasing
                     )
                 ) + slideIntoContainer(
                     animationSpec = tween(150, easing = EaseIn),
@@ -127,7 +128,7 @@ fun NavGraph(
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        75, easing = LinearEasing
+                        225, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
                     animationSpec = tween(75, easing = EaseOut),

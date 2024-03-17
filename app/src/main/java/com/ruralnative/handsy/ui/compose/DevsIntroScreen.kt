@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -51,7 +52,7 @@ fun DevsIntroScreen(
             modifier = Modifier
                 .fillMaxHeight()
                 .fillMaxWidth()
-                .safeContentPadding()
+                .systemBarsPadding()
                 .background(MaterialTheme.colorScheme.background)
         ) {
             val (headerContainer, imageContainer, buttonContainer) = createRefs()
@@ -77,12 +78,12 @@ fun DevsIntroScreen(
             HeaderText(
                 modifier = Modifier
                     .constrainAs(headerContainer) {
-                        start.linkTo(parent.start, margin = 16.dp)
-                        top.linkTo(parent.top, margin = 16.dp)
-                        end.linkTo(parent.end, margin = 16.dp)
+                        start.linkTo(parent.start)
+                        top.linkTo(parent.top)
+                        end.linkTo(parent.end)
                         bottom.linkTo(imageContainer.top)
                     }
-                    .padding(16.dp)
+                    .padding(32.dp)
                     .graphicsLayer { alpha = headerAnimation.value }
             )
             DevsIntroImage(
