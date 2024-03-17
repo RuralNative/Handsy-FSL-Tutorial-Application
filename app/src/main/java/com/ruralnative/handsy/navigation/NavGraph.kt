@@ -27,6 +27,11 @@ import com.ruralnative.handsy.ui.compose.MainScreen
 
 private const val TAG = "NavGraph"
 
+/**
+ * Composable function for the main navigation graph.
+ * This composable defines the navigation graph for the application, including the entry screen, user intro screen, main screen, lesson screen, camera screen, and stats screen.
+ * @param navController tThe NavHostController for this navigation graph.
+ */
 @Composable
 fun NavGraph(
     navController: NavHostController
@@ -38,27 +43,29 @@ fun NavGraph(
         exitTransition = { ExitTransition.None }
     ) {
 
-        // Entry Screen Composable
+        /**
+         * Entry Screen
+         */
         composable(
             route = Screen.Entry.route,
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        150, easing = LinearEasing
+                        300, easing = LinearEasing
                     )
                 )
             },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        150, easing = LinearEasing
+                        300, easing = LinearEasing
                     ),
                 )
             }
         ) {
             EntryScreen(
                 viewModel = hiltViewModel(),
-                onNavigateToUser = {
+                onNavigateToUserIntro = {
                     navController.navigate(Screen.UserIntro.route)
                 },
                 onNavigateToMain = {
@@ -67,7 +74,9 @@ fun NavGraph(
             )
         }
 
-        // User Intro Screen Composable
+        /**
+         * User Intro
+         */
         composable(
             route = Screen.UserIntro.route,
             enterTransition = {
@@ -94,10 +103,38 @@ fun NavGraph(
             Log.d(TAG, "UserIntroScreen INITIALIZED")
             UserIntroScreen(
                 modifier = Modifier,
-                navigateToMainScreen = {
-                    navController.navigate(Screen.MainScreen.route)
+                onNavigateToDevsIntro = {
+                    navController.navigate(Screen.DevsIntro.route)
                 }
             )
+        }
+
+        /**
+         * Devs Intro composable
+         */
+        composable(
+            route = Screen.DevsIntro.route,
+            enterTransition = {
+                fadeIn(
+                    animationSpec = tween(
+                        150, easing = LinearEasing
+                    )
+                ) + slideIntoContainer(
+                    animationSpec = tween(150, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Start
+                )
+            },
+            exitTransition = {
+                fadeOut(
+                    animationSpec = tween(
+                        75, easing = LinearEasing
+                    )
+                ) + slideOutOfContainer(
+                    animationSpec = tween(75, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
+                )
+            }
+        ) {
         }
 
         // Main Screen Composable
