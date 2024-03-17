@@ -1,5 +1,7 @@
 package com.ruralnative.handsy.ui.compose
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +16,11 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -27,6 +32,8 @@ import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
 import com.ruralnative.handsy.ui.viewmodel.DevsIntroViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun DevsIntroScreen(
@@ -48,6 +55,25 @@ fun DevsIntroScreen(
                 .background(MaterialTheme.colorScheme.background)
         ) {
             val (headerContainer, imageContainer, buttonContainer) = createRefs()
+
+            val headerAnimation = remember { Animatable(0f) }
+            val imageAnimation = remember { Animatable(0f) }
+            val buttonAnimation = remember { Animatable(0f) }
+            LaunchedEffect("animationKey") {
+                launch {
+                    delay(600)
+                    headerAnimation.animateTo(1f, animationSpec = tween(1000))
+                }
+                launch {
+                    delay(300)
+                    imageAnimation.animateTo(1f, animationSpec = tween(1500))
+                }
+                launch {
+                    delay(3000)
+                    buttonAnimation.animateTo(1f, animationSpec = tween(1000))
+                }
+            }
+
             HeaderText(
                 modifier = Modifier
                     .constrainAs(headerContainer) {
@@ -57,6 +83,7 @@ fun DevsIntroScreen(
                         bottom.linkTo(imageContainer.top)
                     }
                     .padding(16.dp)
+                    .graphicsLayer { alpha = headerAnimation.value }
             )
             DevsIntroImage(
                 modifier = Modifier
@@ -66,6 +93,7 @@ fun DevsIntroScreen(
                         end.linkTo(parent.end)
                         bottom.linkTo(parent.bottom)
                     }
+                    .graphicsLayer { alpha = imageAnimation.value }
             )
             MainScreenButton(
                 modifier = Modifier
@@ -75,7 +103,8 @@ fun DevsIntroScreen(
                         top.linkTo(imageContainer.bottom)
                         end.linkTo(parent.end)
                         bottom.linkTo(parent.bottom)
-                    },
+                    }
+                    .graphicsLayer { alpha = buttonAnimation.value },
                 onStartButtonClick
             )
         }
