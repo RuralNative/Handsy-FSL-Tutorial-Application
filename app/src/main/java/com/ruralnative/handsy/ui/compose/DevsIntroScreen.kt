@@ -11,6 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults.shape
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -102,4 +105,14 @@ private fun DevsIntroImage(modifier: Modifier) {
                 .size(360.dp)
         )
     }
+}
+
+@Preview
+@Composable
+private fun MainScreenButton() {
+    ExtendedFloatingActionButton(
+        onClick = { TODO() },
+        modifier = Modifier,
+        content = { TODO() }
+    )
 }
