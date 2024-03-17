@@ -43,6 +43,7 @@ import com.ruralnative.handsy.ui.compose.components.TopBar
 import com.ruralnative.handsy.ui.state.LessonCardState
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
+import com.ruralnative.handsy.ui.compose.components.LessonCardList
 import com.ruralnative.handsy.ui.viewmodel.MainScreenViewModel
 
 lateinit var mainNavigation: () -> Unit
@@ -83,77 +84,6 @@ fun MainScreen(
                     )
                 }
             }
-        )
-    }
-}
-
-@Composable
-private fun LessonCardList(
-    modifier: Modifier,
-    lessonList: List<LessonCardState>
-) {
-    LazyColumn {
-        Log.d("LessonList", "LazyColumn INITIALIZED")
-        items(lessonList, key = {lesson -> lesson.lessonID}) {lesson ->
-            LessonCard(modifier = Modifier, lesson = lesson)
-        }
-    }
-}
-
-@Composable
-private fun LessonCard(
-    modifier: Modifier,
-    lesson: LessonCardState
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(15.dp)
-            .clickable(
-                enabled = true,
-                onClickLabel = "Lesson Card",
-                onClick = { lessonNavigation(lesson.lessonID) }
-            ),
-        elevation = CardDefaults.elevatedCardElevation()
-    ) {
-       Row(
-           modifier = Modifier
-               .padding(10.dp),
-           horizontalArrangement = Arrangement.SpaceEvenly
-       ) {
-           Image(
-               modifier = Modifier
-                   .size(85.dp),
-               painter = painterResource(id = R.drawable.mascot_teach_one),
-               contentDescription = "Lesson Mascot",
-               contentScale = ContentScale.Fit
-
-           )
-           LessonDescription(lesson.lessonName)
-       }
-    }
-}
-
-@Composable
-private fun LessonDescription(lessonName: String) {
-    Column(
-        modifier = Modifier,
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = "Learn Your Alphabet",
-            color = MaterialTheme.colorScheme.secondary,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Normal,
-            fontFamily = NunitoFontFamily
-        )
-        Spacer(modifier = Modifier.size(2.dp))
-        Text(
-            text = lessonName,
-            fontSize = 46.sp,
-            fontWeight = FontWeight.ExtraBold,
-            fontFamily = NunitoFontFamily
         )
     }
 }
