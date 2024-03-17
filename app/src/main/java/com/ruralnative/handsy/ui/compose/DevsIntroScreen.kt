@@ -47,7 +47,7 @@ fun DevsIntroScreen(
             .safeContentPadding()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        val (headerContainer, imageContainer) = createRefs()
+        val (headerContainer, imageContainer, buttonContainer) = createRefs()
         HeaderText(
             modifier = Modifier
                 .constrainAs(headerContainer) {
@@ -63,6 +63,16 @@ fun DevsIntroScreen(
                 .constrainAs(imageContainer) {
                     start.linkTo(parent.start)
                     top.linkTo(parent.top)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                }
+        )
+        MainScreenButton(
+            modifier = Modifier
+                .fillMaxWidth(0.8f)
+                .constrainAs(buttonContainer) {
+                    start.linkTo(parent.start)
+                    top.linkTo(imageContainer.bottom)
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
                 }
@@ -88,7 +98,7 @@ private fun HeaderText(modifier: Modifier) {
             modifier = Modifier
                 .padding(top = 8.dp),
             text = stringResource(R.string.author_message_two),
-            color = MaterialTheme.colorScheme.secondary,
+            color = MaterialTheme.colorScheme.onBackground,
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
@@ -113,10 +123,10 @@ private fun DevsIntroImage(modifier: Modifier) {
 @Composable
 private fun MainScreenButton(
     modifier: Modifier,
-    onButtonClick: () -> Unit
+    //onButtonClick: () -> Unit
 ) {
     ExtendedFloatingActionButton(
-        onClick = { onButtonClick() },
+        onClick = { TODO("Integrate Nav Function") },
         modifier = modifier,
         content = {
             Text(
