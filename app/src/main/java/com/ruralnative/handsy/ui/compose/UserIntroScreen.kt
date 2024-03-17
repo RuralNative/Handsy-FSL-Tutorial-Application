@@ -46,7 +46,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun UserIntroScreen(
     modifier: Modifier,
-    navigateToMainScreen: () -> Unit,
+    onNavigateToDevsIntro: () -> Unit,
     viewModel: UserIntroViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -110,7 +110,7 @@ fun UserIntroScreen(
                 },
                 onDone = {
                     viewModel.saveUserNameInDatabase(it)
-                    navigateToMainScreen()
+                    onNavigateToDevsIntro()
                          },
                 Modifier
                     .height(56.dp)
