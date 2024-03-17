@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardActions
@@ -57,33 +59,33 @@ fun UserIntroScreen(
                 .fillMaxHeight()
                 .background(MaterialTheme.colorScheme.background)
                 .padding(16.dp)
+                .imePadding()
         ) {
             val (headerContainer, mascotContainer, inputContainer) = createRefs()
             val headerAnimation = remember { Animatable(0f) }
             val mascotAnimation = remember { Animatable(0f) }
-            val textboxAnimation = remember { Animatable(0f) }
+            val textBoxAnimation = remember { Animatable(0f) }
 
             LaunchedEffect("animationKey") {
                 launch {
-                    delay(450)
+                    delay(600)
                     headerAnimation.animateTo(1f, animationSpec = tween(1000))
                 }
                 launch {
-                    delay(150)
+                    delay(300)
                     mascotAnimation.animateTo(1f, animationSpec = tween(1500))
                 }
                 launch {
-                    delay(700)
-                    textboxAnimation.animateTo(1f, animationSpec = tween(1000))
+                    delay(900)
+                    textBoxAnimation.animateTo(1f, animationSpec = tween(1000))
                 }
             }
 
             HeaderText(
                 Modifier
-                    .fillMaxWidth()
                     .constrainAs(headerContainer) {
                         start.linkTo(parent.start, margin = 16.dp)
-                        top.linkTo(parent.top)
+                        top.linkTo(parent.top, margin = 16.dp)
                         end.linkTo(parent.end, margin = 16.dp)
                         bottom.linkTo(mascotContainer.top)
                     }
@@ -92,13 +94,13 @@ fun UserIntroScreen(
             )
             MascotIcon(
                 Modifier
+                    .fillMaxWidth()
                     .constrainAs(mascotContainer) {
                         start.linkTo(parent.start)
                         top.linkTo(parent.top)
                         end.linkTo(parent.end)
                         bottom.linkTo(parent.bottom)
                     }
-                    .fillMaxWidth()
                     .graphicsLayer { alpha = mascotAnimation.value }
             )
             NameInputField(
@@ -111,13 +113,15 @@ fun UserIntroScreen(
                     navigateToMainScreen()
                          },
                 Modifier
+                    .height(56.dp)
                     .constrainAs(inputContainer) {
-                        start.linkTo(parent.start)
+                        start.linkTo(parent.start, margin = 32.dp)
                         top.linkTo(mascotContainer.bottom)
-                        end.linkTo(parent.end)
+                        end.linkTo(parent.end, margin = 32.dp)
                         bottom.linkTo(parent.bottom)
                     }
-                    .graphicsLayer { alpha = textboxAnimation.value }
+                    .background(color = MaterialTheme.colorScheme.surface)
+                    .graphicsLayer { alpha = textBoxAnimation.value }
             )
         }
     }
@@ -178,9 +182,7 @@ private fun NameInputField(
         label = {
             Text(
                 text = stringResource(R.string.name_input_label),
-                color = MaterialTheme.colorScheme.primary,
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Bold
+                fontFamily = NunitoFontFamily
             )
         },
         keyboardOptions = KeyboardOptions(
