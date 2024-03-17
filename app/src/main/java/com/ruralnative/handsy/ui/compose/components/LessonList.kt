@@ -34,49 +34,49 @@ import com.ruralnative.handsy.ui.NunitoFontFamily
 import com.ruralnative.handsy.ui.compose.lessonNavigation
 import com.ruralnative.handsy.ui.state.LessonCardState
 
-private operator fun LazyListState.getValue(nothing: Nothing?, property: KProperty<*>): Any {
-
-}
-
 /**
  * Displays a LazyColumn of lessons
  * @param modifier modifier used for LazyColumn
  * @param lessonHeader header description for the lesson
  * @param lessonList list of LessonCardState to display in LazyColumn
+ * @param onLessonCardClicked lambda expression used by Card to navigate to Lesson screen
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LessonCardList(
     modifier: Modifier,
     lessonHeader: String,
-    lessonList: List<LessonCardState>
+    lessonList: List<LessonCardState>,
+    onLessonCardClicked: (id: Int) -> Unit
 ) {
     val state: LazyListState = rememberLazyListState()
-    val flingBehavior = rememberSnapFlingBehavior(lazyListState = lazyColumnState)
 
     LazyColumn(
         modifier = modifier,
         state = state,
-        contentPadding = ,
         horizontalAlignment = Alignment.CenterHorizontally,
-        flingBehavior = rememberSnapFlingBehavior(lazyListState = ),
-        userScrollEnabled: Boolean = true
+        flingBehavior = rememberSnapFlingBehavior(state)
     ) {
         Log.d("LessonList", "LazyColumn INITIALIZED")
         items(lessonList, key = {lesson -> lesson.lessonID}) {lesson ->
-            LessonCard(lessonHeader, lesson)
+            LessonCard(lessonHeader, lesson, onLessonCardClicked)
         }
     }
 }
 
+
+
 /**
  * Displays a single Lesson as a Card composable
+ * @param lessonHeader header description for display
  * @param lesson fetched lesson to display
+ * @param onLessonCardClicked lambda expression used by Card to navigate to Lesson screen
  */
 @Composable
 private fun LessonCard(
     lessonHeader: String,
-    lesson: LessonCardState
+    lesson: LessonCardState,
+    onLessonCardClicked: (id: Int) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -85,7 +85,7 @@ private fun LessonCard(
             .clickable(
                 enabled = true,
                 onClickLabel = "Lesson Card",
-                onClick = { lessonNavigation(lesson.lessonID) }
+                onClick = { onLessonCardClicked(lesson.lessonID) }
             ),
         elevation = CardDefaults.elevatedCardElevation()
     ) {

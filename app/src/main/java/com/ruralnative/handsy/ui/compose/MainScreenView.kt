@@ -33,8 +33,6 @@ fun MainScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lessons = uiState.alphabetLessons
 
-    lessonNavigation = navigateToLessonScreen
-
     HandsyTheme {
         Scaffold (
             modifier = Modifier,
@@ -53,7 +51,9 @@ fun MainScreen(
                     LessonCardList(
                         modifier = Modifier
                             .fillMaxSize(),
-                        lessonList = lessons
+                        lessonHeader = "Know Your Alphabet",
+                        lessonList = lessons,
+                        navigateToLessonScreen
                     )
                 }
             }
