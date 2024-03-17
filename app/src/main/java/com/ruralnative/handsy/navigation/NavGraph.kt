@@ -66,8 +66,7 @@ fun NavGraph(
                     navController.navigate(Screen.UserIntro.route)
                 },
                 onNavigateToMain = {
-                    navController.navigate(Screen.UserIntro.route)
-                    //navController.navigate(Screen.MainScreen.route)
+                    navController.navigate(Screen.MainScreen.route)
                 }
             )
         }

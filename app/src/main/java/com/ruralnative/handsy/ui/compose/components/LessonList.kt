@@ -1,8 +1,11 @@
 package com.ruralnative.handsy.ui.compose.components
 
 import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.snapping.SnapFlingBehavior
+import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,7 +14,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -29,22 +34,48 @@ import com.ruralnative.handsy.ui.NunitoFontFamily
 import com.ruralnative.handsy.ui.compose.lessonNavigation
 import com.ruralnative.handsy.ui.state.LessonCardState
 
+private operator fun LazyListState.getValue(nothing: Nothing?, property: KProperty<*>): Any {
+
+}
+
+/**
+ * Displays a LazyColumn of lessons
+ * @param modifier modifier used for LazyColumn
+ * @param lessonHeader header description for the lesson
+ * @param lessonList list of LessonCardState to display in LazyColumn
+ */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LessonCardList(
     modifier: Modifier,
+    lessonHeader: String,
     lessonList: List<LessonCardState>
 ) {
-    LazyColumn {
+    val state: LazyListState = rememberLazyListState()
+    val flingBehavior = rememberSnapFlingBehavior(lazyListState = lazyColumnState)
+
+    LazyColumn(
+        modifier = modifier,
+        state = state,
+        contentPadding = ,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        flingBehavior = rememberSnapFlingBehavior(lazyListState = ),
+        userScrollEnabled: Boolean = true
+    ) {
         Log.d("LessonList", "LazyColumn INITIALIZED")
         items(lessonList, key = {lesson -> lesson.lessonID}) {lesson ->
-            LessonCard(modifier = Modifier, lesson = lesson)
+            LessonCard(lessonHeader, lesson)
         }
     }
 }
 
+/**
+ * Displays a single Lesson as a Card composable
+ * @param lesson fetched lesson to display
+ */
 @Composable
 private fun LessonCard(
-    modifier: Modifier,
+    lessonHeader: String,
     lesson: LessonCardState
 ) {
     Card(
@@ -71,20 +102,34 @@ private fun LessonCard(
                 contentScale = ContentScale.Fit
 
             )
-            LessonDescription(lesson.lessonName)
+            LessonDescription(
+                modifier = Modifier,
+                lessonHeader,
+                lesson.lessonName
+            )
         }
     }
 }
 
+/**
+ * Displays the description of a lesson as a Column of two Text composables.
+ * @param modifier modifier for the Column container
+ * @param lessonHeader header description for the lesson
+ * @param lessonName name of the lesson
+ */
 @Composable
-private fun LessonDescription(lessonName: String) {
+private fun LessonDescription(
+    modifier: Modifier,
+    lessonHeader: String,
+    lessonName: String
+) {
     Column(
-        modifier = Modifier,
+        modifier = modifier,
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Learn Your Alphabet",
+            text = lessonHeader,
             color = MaterialTheme.colorScheme.secondary,
             fontSize = 20.sp,
             fontWeight = FontWeight.Normal,
