@@ -11,7 +11,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -37,6 +36,7 @@ private const val TAG = "NavGraph"
 fun NavGraph(
     navController: NavHostController
 ) {
+
     NavHost(
         navController = navController,
         startDestination = "entry_screen",
@@ -52,8 +52,11 @@ fun NavGraph(
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        75, easing = LinearEasing
-                    ),
+                        150, easing = LinearEasing
+                    )
+                ) + slideOutOfContainer(
+                    animationSpec = tween(150, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
         ) {
@@ -77,10 +80,10 @@ fun NavGraph(
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        150, easing = LinearEasing
+                        300, easing = LinearEasing
                     )
                 ) + slideIntoContainer(
-                    animationSpec = tween(150, easing = EaseIn),
+                    animationSpec = tween(300, easing = EaseIn),
                     towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
@@ -142,15 +145,21 @@ fun NavGraph(
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        150, easing = LinearEasing
                     )
+                ) + slideIntoContainer(
+                    animationSpec = tween(150, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        75, easing = LinearEasing
                     )
+                ) + slideOutOfContainer(
+                    animationSpec = tween(75, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
         ) {
