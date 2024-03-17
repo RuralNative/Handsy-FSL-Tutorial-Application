@@ -17,6 +17,7 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -29,13 +30,15 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.NunitoFontFamily
+import com.ruralnative.handsy.ui.viewmodel.DevsIntroViewModel
 import com.ruralnative.handsy.ui.viewmodel.UserIntroViewModel
 
 @Preview
 @Composable
 fun DevsIntroScreen(
+    viewModel: DevsIntroViewModel = hiltViewModel()
 ) {
-    //onNavigateToMainScreen: () -> Unit
+    val onButtonClick: () -> Unit
 
     ConstraintLayout(
         modifier = Modifier
@@ -107,12 +110,19 @@ private fun DevsIntroImage(modifier: Modifier) {
     }
 }
 
-@Preview
 @Composable
-private fun MainScreenButton() {
+private fun MainScreenButton(
+    modifier: Modifier,
+    onButtonClick: () -> Unit
+) {
     ExtendedFloatingActionButton(
-        onClick = { TODO() },
-        modifier = Modifier,
-        content = { TODO() }
+        onClick = { onButtonClick() },
+        modifier = modifier,
+        content = {
+            Text(
+                text = "Start Journey",
+                modifier = Modifier
+            )
+        }
     )
 }
