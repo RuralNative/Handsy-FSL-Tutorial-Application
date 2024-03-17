@@ -45,7 +45,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun UserIntroScreen(
-    modifier: Modifier,
     onNavigateToDevsIntro: () -> Unit,
     viewModel: UserIntroViewModel = hiltViewModel()
 ) {
@@ -145,7 +144,7 @@ private fun HeaderText(
         )
         Text(
             text = stringResource(R.string.intro_greeting_subtitle),
-            color = MaterialTheme.colorScheme.secondary,
+            color = MaterialTheme.colorScheme.onBackground,
             fontSize = 22.sp,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily
@@ -181,8 +180,7 @@ private fun NameInputField(
         modifier = modifier,
         label = {
             Text(
-                text = stringResource(R.string.name_input_label),
-                fontFamily = NunitoFontFamily
+                text = stringResource(R.string.name_input_label)
             )
         },
         keyboardOptions = KeyboardOptions(

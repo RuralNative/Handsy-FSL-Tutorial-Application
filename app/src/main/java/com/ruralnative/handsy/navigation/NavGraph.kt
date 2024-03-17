@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.ruralnative.handsy.ui.compose.CameraScreen
+import com.ruralnative.handsy.ui.compose.DevsIntroScreen
 import com.ruralnative.handsy.ui.compose.EntryScreen
 import com.ruralnative.handsy.ui.compose.UserIntroScreen
 import com.ruralnative.handsy.ui.compose.LessonScreen
@@ -102,7 +103,6 @@ fun NavGraph(
         ) {
             Log.d(TAG, "UserIntroScreen INITIALIZED")
             UserIntroScreen(
-                modifier = Modifier,
                 onNavigateToDevsIntro = {
                     navController.navigate(Screen.DevsIntro.route)
                 }
@@ -135,7 +135,11 @@ fun NavGraph(
                 )
             }
         ) {
-
+            DevsIntroScreen(
+                onButtonClick = {
+                    navController.navigate(Screen.MainScreen.route)
+                }
+            )
         }
 
         // Main Screen Composable
