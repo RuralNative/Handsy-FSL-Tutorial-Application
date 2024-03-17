@@ -49,17 +49,10 @@ fun NavGraph(
          */
         composable(
             route = Screen.Entry.route,
-            enterTransition = {
-                fadeIn(
-                    animationSpec = tween(
-                        300, easing = LinearEasing
-                    )
-                )
-            },
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        300, easing = LinearEasing
+                        75, easing = LinearEasing
                     ),
                 )
             }
@@ -84,7 +77,7 @@ fun NavGraph(
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        500, easing = LinearEasing
+                        150, easing = LinearEasing
                     )
                 ) + slideIntoContainer(
                     animationSpec = tween(150, easing = EaseIn),
@@ -94,7 +87,7 @@ fun NavGraph(
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        500, easing = LinearEasing
+                        75, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
                     animationSpec = tween(75, easing = EaseOut),
@@ -118,7 +111,7 @@ fun NavGraph(
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        500, easing = LinearEasing
+                        150, easing = LinearEasing
                     )
                 ) + slideIntoContainer(
                     animationSpec = tween(150, easing = EaseIn),
@@ -128,7 +121,7 @@ fun NavGraph(
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        500, easing = LinearEasing
+                        75, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
                     animationSpec = tween(75, easing = EaseOut),
