@@ -11,8 +11,8 @@
     <string name="name_input_label">Insert Name</string>
 
     <!-- AUTHOR_MESSAGE Specific -->
-    <string name="author_message_one">Handsy Sign Language is a mobile application with the purpose of providing an accessible platform for learning the Filipino Sign Language for users of all background, especially the deaf and the mute</string>
-    <string name="author_message_two">We hope you enjoy using this application</string>
+    <string name="author_message_one">Welcome to Handsy</string>
+    <string name="author_message_two">Made with passion, this app aims to become a reliable reference for learning Filipino Sign Language. We hope you enjoy this as much as I did during its development.</string>
     <string name="start_journey_button_label">Start Your Journey</string>
 
     <!-- ALPHABET LESSONS -->
