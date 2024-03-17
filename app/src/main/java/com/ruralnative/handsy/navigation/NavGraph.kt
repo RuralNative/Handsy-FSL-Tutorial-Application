@@ -84,7 +84,7 @@ fun NavGraph(
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        450, easing = LinearEasing
+                        500, easing = LinearEasing
                     )
                 ) + slideIntoContainer(
                     animationSpec = tween(150, easing = EaseIn),
@@ -94,7 +94,7 @@ fun NavGraph(
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        225, easing = LinearEasing
+                        500, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
                     animationSpec = tween(75, easing = EaseOut),
@@ -118,7 +118,7 @@ fun NavGraph(
             enterTransition = {
                 fadeIn(
                     animationSpec = tween(
-                        450, easing = LinearEasing
+                        500, easing = LinearEasing
                     )
                 ) + slideIntoContainer(
                     animationSpec = tween(150, easing = EaseIn),
@@ -128,7 +128,7 @@ fun NavGraph(
             exitTransition = {
                 fadeOut(
                     animationSpec = tween(
-                        225, easing = LinearEasing
+                        500, easing = LinearEasing
                     )
                 ) + slideOutOfContainer(
                     animationSpec = tween(75, easing = EaseOut),
