@@ -9,6 +9,12 @@ import javax.inject.Singleton
 
 /**
  * Repository for interacting with alphabet lessons in the database.
+ *
+ * This class provides methods to perform CRUD operations on alphabet lessons.
+ * It uses a [AlphabetLessonDao] to interact with the database.
+ *
+ * @property dao The Data Access Object for accessing alphabet lesson data.
+ * @constructor Creates a new instance of AlphabetLessonRepository.
  */
 @Singleton
 @WorkerThread
