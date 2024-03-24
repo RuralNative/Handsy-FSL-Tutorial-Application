@@ -10,6 +10,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -37,6 +38,7 @@ object DatabaseModule {
      */
     @Singleton
     @Provides
+    @Named("database")
     fun provideLocalDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
@@ -53,7 +55,7 @@ object DatabaseModule {
      */
     @Provides
     fun provideUserDao(
-        appDatabase: AppDatabase
+        @Named("database") appDatabase: AppDatabase
     ): UserDao {
         return appDatabase.userDao()
     }
@@ -68,7 +70,7 @@ object DatabaseModule {
      */
     @Provides
     fun provideAlphabetDao(
-        appDatabase: AppDatabase
+        @Named("database") appDatabase: AppDatabase
     ): AlphabetLessonDao {
         return appDatabase.alphabetLessonDao()
     }
@@ -83,7 +85,7 @@ object DatabaseModule {
      */
     @Provides
     fun providePhrasesDao(
-        appDatabase: AppDatabase
+        @Named("database") appDatabase: AppDatabase
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
     }
