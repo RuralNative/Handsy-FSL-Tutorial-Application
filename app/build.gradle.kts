@@ -130,6 +130,7 @@ dependencies {
     // Instrumentation Test Dependencies
     androidTestImplementation(enforcedPlatform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.core.testing)
     androidTestImplementation(libs.navigation.testing)
     androidTestImplementation(libs.dagger.hilt.android.testing)
     androidTestImplementation(libs.ext.junit)

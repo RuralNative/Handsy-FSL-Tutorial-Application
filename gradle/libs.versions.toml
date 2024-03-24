@@ -32,7 +32,6 @@ uiautomatorVersion = "2.3.0"
 windowManager = "1.2.0"
 
 [libraries]
-
 android-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashScreen"}
 
