@@ -1,14 +1,10 @@
     package com.ruralnative.handsy.data.repository
 
-    import android.util.Log
     import androidx.annotation.WorkerThread
     import com.ruralnative.handsy.data.dao.UserDao
     import com.ruralnative.handsy.data.entities.User
     import kotlinx.coroutines.flow.Flow
-    import kotlinx.coroutines.flow.count
     import kotlinx.coroutines.flow.first
-    import kotlinx.coroutines.flow.firstOrNull
-    import kotlinx.coroutines.flow.flow
     import javax.inject.Inject
     import javax.inject.Singleton
 

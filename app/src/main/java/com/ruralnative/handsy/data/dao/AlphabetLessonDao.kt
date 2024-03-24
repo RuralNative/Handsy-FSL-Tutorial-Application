@@ -7,9 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.ruralnative.handsy.data.entities.AlphabetLesson
-import com.ruralnative.handsy.data.entities.User
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
 
 /**
