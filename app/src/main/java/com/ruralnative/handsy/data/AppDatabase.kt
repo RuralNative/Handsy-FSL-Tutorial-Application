@@ -36,16 +36,22 @@ abstract class AppDatabase : RoomDatabase() {
 
     /**
      * Accessor for the UserDao.
+     *
+     * @return An instance of UserDao.
      */
     abstract fun userDao(): UserDao
 
     /**
      * Accessor for the AlphabetLessonDao.
+     *
+     * @return An instance of AlphabetLessonDao.
      */
     abstract fun alphabetLessonDao(): AlphabetLessonDao
 
     /**
      * Accessor for the PhrasesLessonDao.
+     *
+     * @return An instance of PhrasesLessonDao.
      */
     abstract fun phrasesLessonDao(): PhrasesLessonDao
 
@@ -58,6 +64,9 @@ abstract class AppDatabase : RoomDatabase() {
 
         /**
          * Returns a singleton instance of the database.
+         *
+         * This method ensures that only one instance of the database is created and used throughout the application.
+         * It uses the application context to initialize the database.
          *
          * @param context The application context.
          * @return The singleton instance of AppDatabase.
@@ -72,7 +81,28 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         /**
+         * Returns a singleton instance of the database for testing purposes.
+         *
+         * This method is similar to getInstance but is designed for use in testing environments.
+         * It creates an in-memory database instance, which is useful for testing without affecting the actual database.
+         *
+         * @param context The application context.
+         * @return The singleton instance of AppDatabase for testing.
+         */
+        fun getTestInstance(context: Context): AppDatabase {
+            if (instance == null) {
+                synchronized(this) {
+                    instance = buildInMemoryDatabase(context)
+                }
+            }
+            return instance!!
+        }
+
+        /**
          * Builds the database instance.
+         *
+         * This method constructs the database instance using Room's database builder.
+         * It specifies the database name and allows the database to be created from an asset file.
          *
          * @param context The application context.
          * @return The built instance of AppDatabase.
@@ -86,5 +116,26 @@ abstract class AppDatabase : RoomDatabase() {
                 .createFromAsset("database.db")
                 .build()
         }
+
+        /**
+         * Builds an in-memory database instance for testing.
+         *
+         * This method constructs an in-memory database instance, which is useful for testing database operations without persisting data.
+         * It allows main thread queries for testing purposes.
+         *
+         * @param context The application context.
+         * @return The built in-memory instance of AppDatabase.
+         */
+        private fun buildInMemoryDatabase(context: Context): AppDatabase {
+            return Room.inMemoryDatabaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java
+            )
+                .createFromAsset("database.db")
+                .allowMainThreadQueries()
+                .build()
+        }
     }
+}
+
 }
