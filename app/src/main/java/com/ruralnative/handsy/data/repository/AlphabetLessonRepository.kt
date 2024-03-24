@@ -7,34 +7,36 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Repository for interacting with alphabet lessons in the database.
+ */
 @Singleton
 @WorkerThread
 class AlphabetLessonRepository @Inject constructor(
     private val dao: AlphabetLessonDao
 ) {
 
+    /**
+     * Flow of all alphabet lessons in the database.
+     */
     val allLessons: Flow<List<AlphabetLesson>> = dao.selectAllLessons()
 
+    /**
+     * Returns a flow of the alphabet lesson with the given ID.
+     *
+     * @param lessonID The ID of the alphabet lesson.
+     * @return A flow of the alphabet lesson.
+     */
     fun getLessonByID(lessonID: Int): Flow<AlphabetLesson> {
         return dao.selectLessonById(lessonID)
     }
 
-    suspend fun insertLesson(lesson: AlphabetLesson) {
-        dao.insertLesson(lesson)
-    }
-
-    suspend fun updateLesson(lesson: AlphabetLesson) {
-        dao.updateLesson(lesson)
-    }
-
-    suspend fun updateLessonName(lessonName: String?, lessonID: Int) {
-        dao.updateLessonName(lessonName, lessonID)
-    }
-
-    suspend fun updateLessonDescription(lessonDescription: String?, lessonID: Int) {
-        dao.updateLessonDescription(lessonDescription, lessonID)
-    }
-
+    /**
+     * Updates the media file of an alphabet lesson in the database.
+     *
+     * @param lessonMediaFile The new media file for the alphabet lesson.
+     * @param lessonID The ID of the alphabet lesson to update.
+     */
     suspend fun updateLessonMediaFile(lessonMediaFile: String?, lessonID: Int) {
         dao.updateLessonMediaFile(lessonMediaFile, lessonID)
     }
