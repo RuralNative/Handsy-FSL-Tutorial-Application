@@ -74,6 +74,7 @@ dependencies {
     ksp(libs.dagger.hilt.compiler)
     ksp(libs.androidx.lifecycle.compiler)
     kspTest(libs.dagger.hilt.android.testing)
+    kspTest(libs.room.compiler)
     kspAndroidTest(libs.dagger.hilt.compiler)
 
     //Implementation Dependencies
@@ -119,6 +120,7 @@ dependencies {
     testImplementation(libs.core.runtime)
     testImplementation(libs.core.testing)
     testImplementation(libs.room.testing)
+    testImplementation(libs.dagger.hilt.android.testing)
     testImplementation(libs.junit)
 
     // Debugging Implementation Dependencies

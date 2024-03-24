@@ -32,8 +32,10 @@ uiautomatorVersion = "2.3.0"
 windowManager = "1.2.0"
 
 [libraries]
+
 android-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashScreen"}
+
 # AndroidX Lifecycle
 androidx-fragment-ktx = { module = "androidx.fragment:fragment", version.ref = "fragment"}
 androidx-lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "androidLifeCycle" }
@@ -41,9 +43,11 @@ androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifec
 android-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidLifeCycle" }
 android-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidLifeCycle" }
 android-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidLifeCycle" }
+
 # Accompanist
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist"}
 accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist"}
+
 # Google Core
 core-common = { module = "androidx.arch.core:core-common", version.ref = "androidArchVersion" }
 core-runtime = { module = "androidx.arch.core:core-runtime", version.ref = "androidArchVersion" }
@@ -51,9 +55,10 @@ core-testing = { module = "androidx.arch.core:core-testing", version.ref = "andr
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
 ext-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
 google-ar-core = { group = "com.google.ar", name = "core", version.ref = "googleCore" }
+
 # Jetpack Compose
 compose-animation = { group = "androidx.compose.animation", name = "animation"}
-compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.02.02" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version = "2024.03.00" }
 compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 compose-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
 compose-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraintLayout" }
@@ -66,14 +71,16 @@ compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling
 compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-# Hilt (Dagger)
-dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHilt" }
-dagger-hilt-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "daggerHilt" }
-dagger-hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "daggerHilt" }
-# Hilt (AndroidX
+
+# Hilt (AndroidX)
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidHilt" }
 hilt-navigation-fragment = { group = "androidx.hilt", name = "hilt-navigation-fragment", version.ref = "androidHilt"}
+# Hilt (Dagger)
+dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
+dagger-hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "daggerHilt" }
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHilt" }
+dagger-hilt-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "daggerHilt" }
+
 # Kotlinx Coroutines
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
