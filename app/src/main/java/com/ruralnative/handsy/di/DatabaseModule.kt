@@ -12,10 +12,29 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Hilt module for providing database dependencies.
+ *
+ * This module is responsible for providing instances of the database and its DAOs.
+ * It uses Hilt's dependency injection mechanism to ensure that these instances are
+ * available throughout the application where needed.
+ *
+ * @constructor Creates a new instance of DatabaseModule.
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 object DatabaseModule {
 
+    /**
+     * Provides an instance of the local database.
+     *
+     * This method is annotated with `@Singleton` to ensure that only one instance of the
+     * database is created and used throughout the application. It uses the application context
+     * to initialize the database.
+     *
+     * @param context The application context.
+     * @return An instance of [AppDatabase].
+     */
     @Singleton
     @Provides
     fun provideLocalDatabase(
@@ -24,6 +43,14 @@ object DatabaseModule {
         return AppDatabase.getInstance(context)
     }
 
+    /**
+     * Provides an instance of the [UserDao].
+     *
+     * This method retrieves the [UserDao] from the [AppDatabase] instance.
+     *
+     * @param appDatabase The instance of [AppDatabase].
+     * @return An instance of [UserDao].
+     */
     @Provides
     fun provideUserDao(
         appDatabase: AppDatabase
@@ -31,6 +58,14 @@ object DatabaseModule {
         return appDatabase.userDao()
     }
 
+    /**
+     * Provides an instance of the [AlphabetLessonDao].
+     *
+     * This method retrieves the [AlphabetLessonDao] from the [AppDatabase] instance.
+     *
+     * @param appDatabase The instance of [AppDatabase].
+     * @return An instance of [AlphabetLessonDao].
+     */
     @Provides
     fun provideAlphabetDao(
         appDatabase: AppDatabase
@@ -38,6 +73,14 @@ object DatabaseModule {
         return appDatabase.alphabetLessonDao()
     }
 
+    /**
+     * Provides an instance of the [PhrasesLessonDao].
+     *
+     * This method retrieves the [PhrasesLessonDao] from the [AppDatabase] instance.
+     *
+     * @param appDatabase The instance of [AppDatabase].
+     * @return An instance of [PhrasesLessonDao].
+     */
     @Singleton
     @Provides
     fun providePhrasesDao(
@@ -46,4 +89,5 @@ object DatabaseModule {
         return appDatabase.phrasesLessonDao()
     }
 }
+
 
