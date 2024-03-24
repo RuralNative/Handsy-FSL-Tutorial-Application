@@ -7,7 +7,6 @@ import com.ruralnative.handsy.data.dao.PhrasesLessonDao
 import com.ruralnative.handsy.data.dao.UserDao
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
@@ -15,13 +14,13 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 /**
- * Hilt module for providing database dependencies.
+ * Hilt module for providing test database dependencies.
  *
- * This module is responsible for providing instances of the database and its DAOs.
- * It uses Hilt's dependency injection mechanism to ensure that these instances are
- * available throughout the application where needed.
+ * This module is designed to provide instances of the test database and its DAOs for testing purposes.
+ * It uses Hilt's dependency injection mechanism to ensure that these instances are available throughout the application where needed, specifically for testing.
+ * It replaces the production database module to inject test instances of the database and DAOs.
  *
- * @constructor Creates a new instance of DatabaseModule.
+ * @constructor Creates a new instance of TestDatabaseModule.
  */
 @Module
 @TestInstallIn(
@@ -31,14 +30,14 @@ import javax.inject.Singleton
 object TestDatabaseModule {
 
     /**
-     * Provides an instance of the local database.
+     * Provides an instance of the test database.
      *
-     * This method is annotated with `@Singleton` to ensure that only one instance of the
-     * database is created and used throughout the application. It uses the application context
-     * to initialize the database.
+     * This method is annotated with `@Singleton` and `@Named("test_db")` to ensure that only one instance of the
+     * test database is created and used throughout the application for testing. It uses the application context
+     * to initialize the test database.
      *
      * @param context The application context.
-     * @return An instance of [AppDatabase].
+     * @return An instance of [AppDatabase] for testing.
      */
     @Singleton
     @Provides
@@ -46,18 +45,19 @@ object TestDatabaseModule {
     fun provideInMemoryDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
-        return AppDatabase.getInstance(context)
+        return AppDatabase.getTestInstance(context)
     }
 
     /**
-     * Provides an instance of the [UserDao].
+     * Provides an instance of the [UserDao] for testing.
      *
-     * This method retrieves the [UserDao] from the [AppDatabase] instance.
+     * This method retrieves the [UserDao] from the test [AppDatabase] instance.
      *
-     * @param appDatabase The instance of [AppDatabase].
-     * @return An instance of [UserDao].
+     * @param appDatabase The test instance of [AppDatabase].
+     * @return An instance of [UserDao] for testing.
      */
     @Provides
+    @Named("test_user_dao")
     fun provideUserDao(
         appDatabase: AppDatabase
     ): UserDao {
@@ -65,14 +65,15 @@ object TestDatabaseModule {
     }
 
     /**
-     * Provides an instance of the [AlphabetLessonDao].
+     * Provides an instance of the [AlphabetLessonDao] for testing.
      *
-     * This method retrieves the [AlphabetLessonDao] from the [AppDatabase] instance.
+     * This method retrieves the [AlphabetLessonDao] from the test [AppDatabase] instance.
      *
-     * @param appDatabase The instance of [AppDatabase].
-     * @return An instance of [AlphabetLessonDao].
+     * @param appDatabase The test instance of [AppDatabase].
+     * @return An instance of [AlphabetLessonDao] for testing.
      */
     @Provides
+    @Named("test_alphabet_dao")
     fun provideAlphabetDao(
         appDatabase: AppDatabase
     ): AlphabetLessonDao {
@@ -80,15 +81,15 @@ object TestDatabaseModule {
     }
 
     /**
-     * Provides an instance of the [PhrasesLessonDao].
+     * Provides an instance of the [PhrasesLessonDao] for testing.
      *
-     * This method retrieves the [PhrasesLessonDao] from the [AppDatabase] instance.
+     * This method retrieves the [PhrasesLessonDao] from the test [AppDatabase] instance.
      *
-     * @param appDatabase The instance of [AppDatabase].
-     * @return An instance of [PhrasesLessonDao].
+     * @param appDatabase The test instance of [AppDatabase].
+     * @return An instance of [PhrasesLessonDao] for testing.
      */
-    @Singleton
     @Provides
+    @Named("test_phrases_dao")
     fun providePhrasesDao(
         appDatabase: AppDatabase
     ): PhrasesLessonDao {

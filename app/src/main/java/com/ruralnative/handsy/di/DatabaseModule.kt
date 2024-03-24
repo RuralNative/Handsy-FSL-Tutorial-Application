@@ -81,7 +81,6 @@ object DatabaseModule {
      * @param appDatabase The instance of [AppDatabase].
      * @return An instance of [PhrasesLessonDao].
      */
-    @Singleton
     @Provides
     fun providePhrasesDao(
         appDatabase: AppDatabase
