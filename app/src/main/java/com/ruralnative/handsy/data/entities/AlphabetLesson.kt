@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Entity class used to represent an alphabet lesson in the database
+ */
 @Entity(tableName = "alphabet_lessons")
 data class AlphabetLesson (
     @PrimaryKey(autoGenerate = true) val id: Int,

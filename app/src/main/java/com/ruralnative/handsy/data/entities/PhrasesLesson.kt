@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Entity class used to represent an phrase lesson in the database
+ */
 @Entity(tableName = "phrases_lessons")
 data class PhrasesLesson (
     @PrimaryKey(autoGenerate = true) val id: Int,

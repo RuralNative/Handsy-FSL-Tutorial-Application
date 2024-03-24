@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Entity class used to represent a user in the database
+ */
 @Entity(
     tableName = "user"
 )
