@@ -12,6 +12,7 @@ import javax.inject.Singleton
  */
 @Singleton
 @WorkerThread
+@JvmSuppressWildcards
 class AlphabetLessonRepository @Inject constructor(
     private val dao: AlphabetLessonDao
 ) {
