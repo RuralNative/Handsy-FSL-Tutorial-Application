@@ -22,21 +22,10 @@ fun BackButtonHandler(
     val activity = LocalContext.current as ComponentActivity
     val onBackPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
-    DisposableEffect(Unit) {
-        val backHandler = onBackPressedDispatcher?.addCallback(
-            ExitConfirmationDialog(
-                onConfirm = { /*TODO*/ })
-        )
-        onDispose {
-
-        }
-    }
-
     if (showDialog) {
         ExitConfirmationDialog(
             onConfirm = {
-                onExit()
-                LocalContext.current as ComponentActivity
+                TODO("Hi")
             },
             onDismiss = {
                 showDialog = false
