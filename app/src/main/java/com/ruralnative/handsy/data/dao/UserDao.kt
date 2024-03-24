@@ -10,6 +10,9 @@ import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.entities.User
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * The Data Access Object for the [User] class as an Interface.
+ */
 @Dao
 interface UserDao {
 
