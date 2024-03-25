@@ -90,12 +90,7 @@ abstract class AppDatabase : RoomDatabase() {
          * @return The singleton instance of AppDatabase for testing.
          */
         fun getTestInstance(context: Context): AppDatabase {
-            if (instance == null) {
-                synchronized(this) {
-                    instance = buildInMemoryDatabase(context)
-                }
-            }
-            return instance!!
+            return buildInMemoryDatabase(context)
         }
 
         /**
@@ -131,7 +126,6 @@ abstract class AppDatabase : RoomDatabase() {
                 context.applicationContext,
                 AppDatabase::class.java
             )
-                .createFromAsset("database.db")
                 .allowMainThreadQueries()
                 .build()
         }

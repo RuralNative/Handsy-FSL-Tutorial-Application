@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.data
 
+import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
 import com.ruralnative.handsy.data.dao.UserDao
@@ -24,20 +25,11 @@ import javax.inject.Named
 @SmallTest
 class TestUserDao {
 
-    @get:Rule
-    var hiltRule = HiltAndroidRule(this) {
-        // Callback to be notified when injection is complete
-        callback = object : HiltAndroidRule.Callback {
-            override fun onProvideAndroidEnvironmentAfterInjection() {
-                initializationLatch.countDown()
-            }
-        }
-    }
+    @get:Rule(order = 0)
+    var hiltRule = HiltAndroidRule(this)
 
-    @get:Rule
+    @get:Rule(order = 1)
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-
-    private val initializationLatch = CountDownLatch(1)
 
     @Inject
     @Named("test_db")
@@ -48,17 +40,20 @@ class TestUserDao {
     @Before
     fun setup() {
         hiltRule.inject()
-        initializationLatch.await()
+        Log.d("TestUserDao", "Database Injected")
         userDao = database.userDao()
+        Log.d("TestUserDao", "UserDAO Injected")
     }
 
     @After
     fun tearDown() {
         database.close()
+        Log.d("TestUserDao", "Database Closed")
     }
 
     @Test
     fun insertAndRetrieveUser() = runTest {
+        Log.d("TestUserDao", "insertAndRetrieveUser INIT")
         val testUser = User(
             id = 1,
             userName = "TestUser",
@@ -68,6 +63,7 @@ class TestUserDao {
         userDao.insertUser(testUser)
         val retrievedUser = userDao.selectUserById(testUser.id).first()
         assertThat(retrievedUser.userName, equalTo(testUser.userName))
+        Log.d("TestUserDao", "insertAndRetrieveUser FINISHED")
     }
 
     @Test
