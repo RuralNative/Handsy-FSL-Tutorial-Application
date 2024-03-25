@@ -7,6 +7,7 @@ import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.dao.UserDao
 import com.ruralnative.handsy.data.entities.User
 import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.equalTo
@@ -20,7 +21,7 @@ import org.junit.runner.RunWith
 import javax.inject.Inject
 import javax.inject.Named
 
-@RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 @SmallTest
 class TestUserRepository {
 
