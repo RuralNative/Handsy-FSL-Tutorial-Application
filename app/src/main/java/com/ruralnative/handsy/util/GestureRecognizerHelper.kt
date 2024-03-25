@@ -359,6 +359,12 @@ class GestureRecognizerHelper(
         )
     }
 
+    /**
+     * Companion object containing constants and utility methods for the GestureRecognizerHelper class.
+     *
+     * This object defines constants for delegate types, default confidence thresholds, error codes, and the tag used for logging.
+     * It also initializes the `TAG` with a unique identifier based on the hash code of the companion object itself.
+     */
     companion object {
         val TAG = "GestureRecognizerHelper ${this.hashCode()}"
         private const val MP_RECOGNIZER_TASK = "gesture_recognizer.task"
@@ -370,17 +376,5 @@ class GestureRecognizerHelper(
         const val DEFAULT_HAND_PRESENCE_CONFIDENCE = 0.5F
         const val OTHER_ERROR = 0
         const val GPU_ERROR = 1
-    }
-
-    data class ResultBundle(
-        val results: List<GestureRecognizerResult>,
-        val inferenceTime: Long,
-        val inputImageHeight: Int,
-        val inputImageWidth: Int,
-    )
-
-    interface GestureRecognizerListener {
-        fun onError(error: String, errorCode: Int = OTHER_ERROR)
-        fun onResults(resultBundle: ResultBundle)
     }
 }
