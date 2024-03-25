@@ -70,7 +70,6 @@ class TestUserDao {
      */
     @Test
     fun insertAndRetrieveUser() = runTest {
-        Log.d("TestUserDao", "insertAndRetrieveUser INIT")
         val testUser = User(
             id = 1,
             userName = "TestUser",
@@ -80,7 +79,6 @@ class TestUserDao {
         userDao.insertUser(testUser)
         val retrievedUser = userDao.selectUserById(testUser.id).first()
         assertThat(retrievedUser.userName, equalTo(testUser.userName))
-        Log.d("TestUserDao", "insertAndRetrieveUser FINISHED")
     }
 
     /**
