@@ -48,50 +48,23 @@ object TestDatabaseModule {
         return AppDatabase.getTestInstance(context)
     }
 
-    /**
-     * Provides an instance of the [UserDao] for testing.
-     *
-     * This method retrieves the [UserDao] from the test [AppDatabase] instance.
-     *
-     * @param appDatabase The test instance of [AppDatabase].
-     * @return An instance of [UserDao] for testing.
-     */
     @Provides
-    @Named("test_user_dao")
     fun provideUserDao(
-        appDatabase: AppDatabase
+        @Named("test_db") appDatabase: AppDatabase
     ): UserDao {
         return appDatabase.userDao()
     }
 
-    /**
-     * Provides an instance of the [AlphabetLessonDao] for testing.
-     *
-     * This method retrieves the [AlphabetLessonDao] from the test [AppDatabase] instance.
-     *
-     * @param appDatabase The test instance of [AppDatabase].
-     * @return An instance of [AlphabetLessonDao] for testing.
-     */
     @Provides
-    @Named("test_alphabet_dao")
     fun provideAlphabetDao(
-        appDatabase: AppDatabase
+        @Named("test_db") appDatabase: AppDatabase
     ): AlphabetLessonDao {
         return appDatabase.alphabetLessonDao()
     }
 
-    /**
-     * Provides an instance of the [PhrasesLessonDao] for testing.
-     *
-     * This method retrieves the [PhrasesLessonDao] from the test [AppDatabase] instance.
-     *
-     * @param appDatabase The test instance of [AppDatabase].
-     * @return An instance of [PhrasesLessonDao] for testing.
-     */
     @Provides
-    @Named("test_phrases_dao")
     fun providePhrasesDao(
-        appDatabase: AppDatabase
+        @Named("test_db") appDatabase: AppDatabase
     ): PhrasesLessonDao {
         return appDatabase.phrasesLessonDao()
     }

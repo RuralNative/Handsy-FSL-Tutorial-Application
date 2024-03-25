@@ -69,6 +69,8 @@ room {
 }
 
 dependencies {
+    implementation(libs.cronet.embedded)
+    androidTestImplementation(libs.testng)
     //KSP-dependent Dependencies
     ksp(libs.room.compiler)
     ksp(libs.dagger.hilt.compiler)

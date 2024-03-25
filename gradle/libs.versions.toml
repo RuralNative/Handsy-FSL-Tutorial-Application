@@ -26,10 +26,12 @@ navVersion = "2.7.7"
 roomVersion = "2.6.1"
 rulesVersion = "1.5.0"
 runnerVersion = "1.5.2"
+testng = "6.9.6"
 tfLite = "0.4.4"
 tflitePlayServices = "16.2.0"
 uiautomatorVersion = "2.3.0"
 windowManager = "1.2.0"
+cronetEmbedded = "119.6045.31"
 
 [libraries]
 android-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
@@ -90,6 +92,7 @@ camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cam
 camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camerax"}
 camera-view = { module = "androidx.camera:camera-view", version.ref = "camerax"}
 mediapipe-tasks-vision = { module = "com.google.mediapipe:tasks-vision", version.ref = "mediapipeTasksVision"}
+testng = { module = "org.testng:testng", version.ref = "testng" }
 window = { module = "androidx.window:window", version.ref = "windowManager"}
 # Room Database
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
@@ -109,6 +112,7 @@ junit = { module = "junit:junit", version.ref = "junit" }
 rules = { module = "androidx.test:rules", version.ref = "rulesVersion" }
 runner = { module = "androidx.test:runner", version.ref = "runnerVersion" }
 uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomatorVersion" }
+cronet-embedded = { group = "org.chromium.net", name = "cronet-embedded", version.ref = "cronetEmbedded" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
