@@ -48,6 +48,14 @@ object TestDatabaseModule {
         return AppDatabase.getTestInstance(context)
     }
 
+    /**
+     * Provides an instance of [UserDao] for testing.
+     *
+     * This method is used to inject a test instance of [UserDao] into the application.
+     *
+     * @param appDatabase The test instance of [AppDatabase].
+     * @return An instance of [UserDao].
+     */
     @Provides
     fun provideUserDao(
         @Named("test_db") appDatabase: AppDatabase
@@ -55,6 +63,14 @@ object TestDatabaseModule {
         return appDatabase.userDao()
     }
 
+    /**
+     * Provides an instance of [AlphabetLessonDao] for testing.
+     *
+     * This method is used to inject a test instance of [AlphabetLessonDao] into the application.
+     *
+     * @param appDatabase The test instance of [AppDatabase].
+     * @return An instance of [AlphabetLessonDao].
+     */
     @Provides
     fun provideAlphabetDao(
         @Named("test_db") appDatabase: AppDatabase
@@ -62,6 +78,14 @@ object TestDatabaseModule {
         return appDatabase.alphabetLessonDao()
     }
 
+    /**
+     * Provides an instance of [PhrasesLessonDao] for testing.
+     *
+     * This method is used to inject a test instance of [PhrasesLessonDao] into the application.
+     *
+     * @param appDatabase The test instance of [AppDatabase].
+     * @return An instance of [PhrasesLessonDao].
+     */
     @Provides
     fun providePhrasesDao(
         @Named("test_db") appDatabase: AppDatabase
@@ -69,3 +93,4 @@ object TestDatabaseModule {
         return appDatabase.phrasesLessonDao()
     }
 }
+
