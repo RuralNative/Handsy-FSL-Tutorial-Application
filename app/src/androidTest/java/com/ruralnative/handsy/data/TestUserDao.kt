@@ -21,6 +21,14 @@ import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 import javax.inject.Named
 
+/**
+ * Test class for verifying the functionality of [UserDao] operations.
+ *
+ * This class uses Hilt for dependency injection to provide a test instance of [AppDatabase]
+ * and tests the operations of [UserDao] such as insertion, retrieval, updating, and deletion of users.
+ *
+ * @constructor Creates a new instance of TestUserDao.
+ */
 @HiltAndroidTest
 @SmallTest
 class TestUserDao {
@@ -37,20 +45,31 @@ class TestUserDao {
 
     private lateinit var userDao: UserDao
 
+    /**
+     * Sets up the test environment before each test.
+     *
+     * This method injects the test instance of [AppDatabase] and initializes the [UserDao].
+     */
     @Before
     fun setup() {
         hiltRule.inject()
-        Log.d("TestUserDao", "Database Injected")
         userDao = database.userDao()
-        Log.d("TestUserDao", "UserDAO Injected")
     }
 
+    /**
+     * Closes the database after each test.
+     */
     @After
     fun tearDown() {
         database.close()
-        Log.d("TestUserDao", "Database Closed")
     }
 
+    /**
+     * Tests the insertion and retrieval of a user.
+     *
+     * This test verifies that a user can be inserted into the database and then retrieved
+     * by its ID, ensuring that the insertion operation was successful.
+     */
     @Test
     fun insertAndRetrieveUser() = runTest {
         Log.d("TestUserDao", "insertAndRetrieveUser INIT")
@@ -66,6 +85,11 @@ class TestUserDao {
         Log.d("TestUserDao", "insertAndRetrieveUser FINISHED")
     }
 
+    /**
+     * Tests the update of a user's name.
+     *
+     * This test verifies that the name of a user can be updated in the database.
+     */
     @Test
     fun updateUserName() = runTest {
         val testUser = User(
@@ -80,6 +104,11 @@ class TestUserDao {
         assertThat(updatedUser.userName, equalTo("NewName"))
     }
 
+    /**
+     * Tests the update of a user's status.
+     *
+     * This test verifies that the status of a user can be updated in the database.
+     */
     @Test
     fun updateUserStatus() = runTest {
         val testUser = User(
@@ -94,6 +123,11 @@ class TestUserDao {
         assertThat(updatedUser.isNewUser, equalTo(0))
     }
 
+    /**
+     * Tests the update of a user's progression level.
+     *
+     * This test verifies that the progression level of a user can be updated in the database.
+     */
     @Test
     fun updateUserProgressionLevel() = runTest {
         val testUser = User(
@@ -108,6 +142,11 @@ class TestUserDao {
         assertThat(updatedUser.progressionLevel, equalTo(2))
     }
 
+    /**
+     * Tests the deletion of a user.
+     *
+     * This test verifies that a user can be deleted from the database.
+     */
     @Test
     fun deleteUser() = runTest {
         val testUser = User(
