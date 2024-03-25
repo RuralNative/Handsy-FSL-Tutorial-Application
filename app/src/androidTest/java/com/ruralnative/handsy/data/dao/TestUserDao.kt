@@ -1,15 +1,14 @@
-package com.ruralnative.handsy.data
+package com.ruralnative.handsy.data.dao
 
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
-import com.ruralnative.handsy.data.dao.UserDao
+import com.ruralnative.handsy.data.AppDatabase
 import com.ruralnative.handsy.data.entities.User
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.chromium.base.Callback
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.hasSize
@@ -17,7 +16,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 import javax.inject.Named
 

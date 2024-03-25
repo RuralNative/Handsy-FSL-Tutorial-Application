@@ -1,16 +1,12 @@
-package com.ruralnative.handsy.data
+package com.ruralnative.handsy.data.dao
 
-import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
-import com.ruralnative.handsy.data.dao.PhrasesLessonDao
-import com.ruralnative.handsy.data.dao.UserDao
-import com.ruralnative.handsy.data.entities.PhrasesLesson
-import com.ruralnative.handsy.data.entities.User
+import com.ruralnative.handsy.data.AppDatabase
+import com.ruralnative.handsy.data.entities.AlphabetLesson
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
@@ -32,7 +28,7 @@ import javax.inject.Named
  */
 @HiltAndroidTest
 @SmallTest
-class TestPhrasesLessonDao {
+class TestAlphabetLessonDao {
 
     @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
@@ -44,7 +40,7 @@ class TestPhrasesLessonDao {
     @Named("test_db")
     lateinit var database: AppDatabase
 
-    private lateinit var phrasesLessonDao: PhrasesLessonDao
+    private lateinit var dao: AlphabetLessonDao
 
     /**
      * Sets up the test environment before each test.
@@ -54,7 +50,7 @@ class TestPhrasesLessonDao {
     @Before
     fun setup() {
         hiltRule.inject()
-        phrasesLessonDao = database.phrasesLessonDao()
+        dao = database.alphabetLessonDao()
     }
 
     /**
@@ -67,70 +63,70 @@ class TestPhrasesLessonDao {
 
     @Test
     fun insertAndRetrieveLesson() = runTest {
-        val testLesson = PhrasesLesson(
+        val testLesson = AlphabetLesson(
             id = 1,
             lessonName = "TestLesson",
             lessonDescription = "Test Description",
             lessonMediaFile = "test_media_file"
         )
-        phrasesLessonDao.insertLesson(testLesson)
-        val retrievedLesson = phrasesLessonDao.selectLessonById(testLesson.id).first()
+        dao.insertLesson(testLesson)
+        val retrievedLesson = dao.selectLessonById(testLesson.id).first()
         assertThat(retrievedLesson.lessonName, equalTo(testLesson.lessonName))
     }
 
     @Test
     fun updateLessonName() = runTest {
-        val testLesson = PhrasesLesson(
+        val testLesson = AlphabetLesson(
             id = 1,
             lessonName = "OldName",
             lessonDescription = "Test Description",
             lessonMediaFile = "test_media_file"
         )
-        phrasesLessonDao.insertLesson(testLesson)
-        phrasesLessonDao.updateLessonName("NewName", testLesson.id)
-        val updatedLesson = phrasesLessonDao.selectLessonById(testLesson.id).first()
+        dao.insertLesson(testLesson)
+        dao.updateLessonName("NewName", testLesson.id)
+        val updatedLesson = dao.selectLessonById(testLesson.id).first()
         assertThat(updatedLesson.lessonName, equalTo("NewName"))
     }
 
     @Test
     fun updateLessonDescription() = runTest {
-        val testLesson = PhrasesLesson(
+        val testLesson = AlphabetLesson(
             id = 1,
             lessonName = "TestLesson",
             lessonDescription = "Old Description",
             lessonMediaFile = "test_media_file"
         )
-        phrasesLessonDao.insertLesson(testLesson)
-        phrasesLessonDao.updateLessonDescription("New Description", testLesson.id)
-        val updatedLesson = phrasesLessonDao.selectLessonById(testLesson.id).first()
+        dao.insertLesson(testLesson)
+        dao.updateLessonDescription("New Description", testLesson.id)
+        val updatedLesson = dao.selectLessonById(testLesson.id).first()
         assertThat(updatedLesson.lessonDescription, equalTo("New Description"))
     }
 
     @Test
     fun updateLessonMediaFile() = runTest {
-        val testLesson = PhrasesLesson(
+        val testLesson = AlphabetLesson(
             id = 1,
             lessonName = "TestLesson",
             lessonDescription = "Test Description",
             lessonMediaFile = "old_media_file"
         )
-        phrasesLessonDao.insertLesson(testLesson)
-        phrasesLessonDao.updateLessonMediaFile("new_media_file", testLesson.id)
-        val updatedLesson = phrasesLessonDao.selectLessonById(testLesson.id).first()
+        dao.insertLesson(testLesson)
+        dao.updateLessonMediaFile("new_media_file", testLesson.id)
+        val updatedLesson = dao.selectLessonById(testLesson.id).first()
         assertThat(updatedLesson.lessonMediaFile, equalTo("new_media_file"))
     }
 
     @Test
     fun deleteLesson() = runTest {
-        val testLesson = PhrasesLesson(
+        val testLesson = AlphabetLesson(
             id = 1,
             lessonName = "TestLesson",
             lessonDescription = "Test Description",
             lessonMediaFile = "test_media_file"
         )
-        phrasesLessonDao.insertLesson(testLesson)
-        phrasesLessonDao.deleteLesson(testLesson)
-        val lessons = phrasesLessonDao.selectAllLessons().first()
+        dao.insertLesson(testLesson)
+        dao.deleteLesson(testLesson)
+        val lessons = dao.selectAllLessons().first()
         assertThat(lessons, hasSize(0))
     }
 }
