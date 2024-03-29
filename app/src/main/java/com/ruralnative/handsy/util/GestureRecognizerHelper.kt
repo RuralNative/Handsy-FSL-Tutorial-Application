@@ -35,14 +35,34 @@ import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResu
 
 class GestureRecognizerHelper(
     val context: Context,
+    val runningMode: RunningMode = RunningMode.LIVE_STREAM
 ) {
+
+    /**
+     * Companion object containing constants and utility methods for the GestureRecognizerHelper class.
+     *
+     * This object defines constants for delegate types, default confidence thresholds, error codes, and the tag used for logging.
+     * It also initializes the `TAG` with a unique identifier based on the hash code of the companion object itself.
+     */
+    companion object {
+        val TAG = "GestureRecognizerHelper ${this.hashCode()}"
+        private const val MP_RECOGNIZER_TASK = "gesture_recognizer.task"
+
+        const val DELEGATE_CPU = 0
+        const val DELEGATE_GPU = 1
+        const val DEFAULT_HAND_DETECTION_CONFIDENCE = 0.5F
+        const val DEFAULT_HAND_TRACKING_CONFIDENCE = 0.5F
+        const val DEFAULT_HAND_PRESENCE_CONFIDENCE = 0.5F
+        const val OTHER_ERROR = 0
+        const val GPU_ERROR = 1
+    }
 
     private var minHandDetectionConfidence: Float = DEFAULT_HAND_DETECTION_CONFIDENCE
     private var minHandTrackingConfidence: Float = DEFAULT_HAND_TRACKING_CONFIDENCE
     private var minHandPresenceConfidence: Float = DEFAULT_HAND_PRESENCE_CONFIDENCE
     private val gestureRecognizerListener: GestureRecognizerListener? = null
     private var currentDelegate: Int = DELEGATE_CPU
-    private var runningMode: RunningMode = RunningMode.IMAGE
+    private val currentRunningMode: RunningMode = runningMode
     // For this example this needs to be a var so it can be reset on changes. If the GestureRecognizer
     // will not change, a lazy val would be preferable.
     private var gestureRecognizer: GestureRecognizer? = null
@@ -67,7 +87,7 @@ class GestureRecognizerHelper(
      * @throws RuntimeException if the gesture recognizer fails to initialize due to a runtime error,
      * especially relevant when using the GPU delegate.
      */
-    fun setupGestureRecognizer() {
+    private fun setupGestureRecognizer() {
         val baseOptionBuilder = BaseOptions.builder()
         when (currentDelegate) {
             DELEGATE_CPU -> {
@@ -86,9 +106,9 @@ class GestureRecognizerHelper(
                     .setMinHandDetectionConfidence(minHandDetectionConfidence)
                     .setMinTrackingConfidence(minHandTrackingConfidence)
                     .setMinHandPresenceConfidence(minHandPresenceConfidence)
-                    .setRunningMode(runningMode)
+                    .setRunningMode(currentRunningMode)
 
-            if (runningMode == RunningMode.LIVE_STREAM) {
+            if (currentRunningMode == RunningMode.LIVE_STREAM) {
                 optionsBuilder
                     .setResultListener(this::returnLivestreamResult)
                     .setErrorListener(this::returnLivestreamError)
@@ -126,7 +146,7 @@ class GestureRecognizerHelper(
      * @throws IllegalArgumentException if the running mode is not set to `RunningMode.IMAGE`.
      */
     fun recognizeImage(image: Bitmap): ResultBundle? {
-        if (runningMode != RunningMode.IMAGE) {
+        if (currentRunningMode != RunningMode.IMAGE) {
             throw IllegalArgumentException(
                 "Attempting to call detectImage" +
                         " while not using RunningMode.IMAGE"
@@ -260,21 +280,32 @@ class GestureRecognizerHelper(
     }
 
     /**
-     * Companion object containing constants and utility methods for the GestureRecognizerHelper class.
+     * Interface for listening to gesture recognition results and errors.
      *
-     * This object defines constants for delegate types, default confidence thresholds, error codes, and the tag used for logging.
-     * It also initializes the `TAG` with a unique identifier based on the hash code of the companion object itself.
+     * Implement this interface to receive gesture recognition results and errors from the GestureRecognizerHelper.
+     * The `onResults` method is called with a `ResultBundle` containing the recognition results, inference time, and input image dimensions.
+     * The `onError` method is called when an error occurs during the recognition process, providing an error message and an optional error code.
      */
-    companion object {
-        val TAG = "GestureRecognizerHelper ${this.hashCode()}"
-        private const val MP_RECOGNIZER_TASK = "gesture_recognizer.task"
-
-        const val DELEGATE_CPU = 0
-        const val DELEGATE_GPU = 1
-        const val DEFAULT_HAND_DETECTION_CONFIDENCE = 0.5F
-        const val DEFAULT_HAND_TRACKING_CONFIDENCE = 0.5F
-        const val DEFAULT_HAND_PRESENCE_CONFIDENCE = 0.5F
-        const val OTHER_ERROR = 0
-        const val GPU_ERROR = 1
+    interface GestureRecognizerListener {
+        fun onError(error: String, errorCode: Int = GestureRecognizerHelper.OTHER_ERROR)
+        fun onResults(resultBundle: ResultBundle)
     }
+
+    /**
+     * A data class encapsulating the results of gesture recognition.
+     *
+     * This class contains the list of `GestureRecognizerResult` objects, the inference time, and the dimensions of the input image.
+     * It is used to deliver the results of gesture recognition to the caller of the GestureRecognizerHelper.
+     *
+     * @property results A list of `GestureRecognizerResult` objects representing the recognized gestures.
+     * @property inferenceTime The time taken for inference, in milliseconds.
+     * @property inputImageHeight The height of the input image, in pixels.
+     * @property inputImageWidth The width of the input image, in pixels.
+     */
+    data class ResultBundle(
+        val results: List<GestureRecognizerResult>,
+        val inferenceTime: Long,
+        val inputImageHeight: Int,
+        val inputImageWidth: Int,
+    )
 }
