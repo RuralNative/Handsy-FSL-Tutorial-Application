@@ -17,5 +17,5 @@ data class ResultBundle(
     val results: List<GestureRecognizerResult>,
     val inferenceTime: Long,
     val inputImageHeight: Int,
-    val inputImageWidth: Int,
+    val inputImageWidth: Int
 )
