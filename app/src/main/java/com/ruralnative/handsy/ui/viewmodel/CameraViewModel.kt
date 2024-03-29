@@ -16,4 +16,6 @@ class CameraViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(CameraState())
     val uiState: StateFlow<CameraState> = _uiState.asStateFlow()
+
+
 }
