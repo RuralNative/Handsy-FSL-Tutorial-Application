@@ -238,6 +238,18 @@ class GestureRecognizerHelper(
     }
 
     /**
+     * Checks if the gesture recognizer helper is closed.
+     *
+     * This function returns `true` if the gesture recognizer has been closed, indicating that it is no longer available for use.
+     * It is useful for determining the current state of the gesture recognizer and ensuring that operations are not attempted on a closed recognizer.
+     *
+     * @return `true` if the gesture recognizer is closed, `false` otherwise.
+     */
+    fun isClosed(): Boolean {
+        return gestureRecognizer == null
+    }
+
+    /**
      * Returns the recognition result to the caller of the GestureRecognizerHelper.
      *
      * This private function is used to deliver the results of gesture recognition from a live stream to the listener
@@ -248,19 +260,23 @@ class GestureRecognizerHelper(
      * @param result The `GestureRecognizerResult` containing the gesture recognition result.
      * @param input The `MPImage` object representing the input image for which the recognition was performed.
      */
-    fun returnLivestreamResult(
+    private fun returnLivestreamResult(
         result: GestureRecognizerResult, input: MPImage
-    ) : ResultBundle {
+    ) {
         val finishTimeMs = SystemClock.uptimeMillis()
         val inferenceTime = finishTimeMs - result.timestampMs()
 
-        return ResultBundle(
-            listOf(result), inferenceTime, input.height, input.width
+        gestureRecognizerListener?.onResults(
+            ResultBundle(
+                listOf(result), inferenceTime, input.height, input.width
+            )
         )
     }
 
-    private fun returnLivestreamError(error: RuntimeException): RuntimeException {
-        return error
+    private fun returnLivestreamError(error: RuntimeException) {
+        gestureRecognizerListener?.onError(
+            error.message ?: "An unknown error has occurred"
+        )
     }
 
     /**
@@ -274,4 +290,22 @@ class GestureRecognizerHelper(
         fun onError(error: String, errorCode: Int = GestureRecognizerHelper.OTHER_ERROR)
         fun onResults(resultBundle: ResultBundle)
     }
+
+    /**
+     * A data class encapsulating the results of gesture recognition.
+     *
+     * This class contains the list of `GestureRecognizerResult` objects, the inference time, and the dimensions of the input image.
+     * It is used to deliver the results of gesture recognition to the caller of the GestureRecognizerHelper.
+     *
+     * @property results A list of `GestureRecognizerResult` objects representing the recognized gestures.
+     * @property inferenceTime The time taken for inference, in milliseconds.
+     * @property inputImageHeight The height of the input image, in pixels.
+     * @property inputImageWidth The width of the input image, in pixels.
+     */
+    data class ResultBundle(
+        val results: List<GestureRecognizerResult>,
+        val inferenceTime: Long,
+        val inputImageHeight: Int,
+        val inputImageWidth: Int,
+    )
 }
