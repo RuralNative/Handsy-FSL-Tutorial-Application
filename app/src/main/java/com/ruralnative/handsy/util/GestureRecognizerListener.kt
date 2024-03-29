@@ -9,5 +9,5 @@ package com.ruralnative.handsy.util
  */
 interface GestureRecognizerListener {
     fun onError(error: String, errorCode: Int = GestureRecognizerHelper.OTHER_ERROR)
-    fun onResults(resultBundle: GestureRecognizerHelper.ResultBundle)
+    fun onResults(resultBundle: ResultBundle)
 }
