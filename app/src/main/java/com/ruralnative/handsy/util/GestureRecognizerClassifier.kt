@@ -5,7 +5,7 @@ import androidx.camera.core.ImageProxy
 import java.util.concurrent.Executor
 
 class GestureRecognizerClassifier(context: Context) :
-    GestureRecognizerHelper.GestureRecognizerListener
+    GestureRecognizerListener
 {
 
     private lateinit var backgroundExecutor: Executor
@@ -20,7 +20,7 @@ class GestureRecognizerClassifier(context: Context) :
     }
 
     override fun onResults(
-        resultBundle: GestureRecognizerHelper.ResultBundle
+        resultBundle: ResultBundle
     ) {
         val gestureResults = resultBundle.results.first().gestures()
         if (gestureResults.isNotEmpty()) {

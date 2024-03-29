@@ -6,7 +6,7 @@ import androidx.camera.core.ImageProxy
 
 class GestureAnalysisAnalyzer (
     private val gestureRecognizerHelper: GestureRecognizerHelper,
-    private val onResults: (GestureRecognizerHelper.ResultBundle) -> Unit
+    private val onResults: (ResultBundle) -> Unit
 ) : ImageAnalysis.Analyzer {
 
     override fun analyze(imageProxy: ImageProxy) {
