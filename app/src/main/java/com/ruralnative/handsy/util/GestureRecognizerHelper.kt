@@ -34,8 +34,7 @@ import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizer
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
 
 class GestureRecognizerHelper(
-    val context: Context,
-    val runningMode: RunningMode
+    val context: Context
 ) {
 
     /**
@@ -62,9 +61,7 @@ class GestureRecognizerHelper(
     private var minHandPresenceConfidence: Float = DEFAULT_HAND_PRESENCE_CONFIDENCE
     private val gestureRecognizerListener: GestureRecognizerListener? = null
     private var currentDelegate: Int = DELEGATE_CPU
-    private val currentRunningMode: RunningMode = runningMode
-    // For this example this needs to be a var so it can be reset on changes. If the GestureRecognizer
-    // will not change, a lazy val would be preferable.
+    private val currentRunningMode: RunningMode = RunningMode.LIVE_STREAM
     private var gestureRecognizer: GestureRecognizer? = null
 
     init {
