@@ -21,6 +21,7 @@ import com.ruralnative.handsy.util.GestureRecognizerHelper
 fun CameraLiveStream(
     modifier: Modifier = Modifier
 ) {
+    /*
     var classifications by remember {
         mutableStateOf(emptyList<GestureRecognizerResult>())
     }
@@ -54,4 +55,5 @@ fun CameraLiveStream(
         },
         modifier = modifier
     )
+    */
 }
