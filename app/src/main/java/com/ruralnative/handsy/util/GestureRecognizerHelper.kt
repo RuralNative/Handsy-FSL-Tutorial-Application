@@ -116,6 +116,27 @@ class GestureRecognizerHelper(
         }
     }
 
+
+
+    /**
+     * Asynchronously runs hand gesture recognition using the MediaPipe Gesture Recognition API.
+     *
+     * This method is designed for use in live stream mode, where the recognition result will be returned
+     * via the `returnLivestreamResult` function. It takes an `MPImage` object and a frame time as input,
+     * and initiates the gesture recognition process asynchronously.
+     *
+     * @param mpImage The `MPImage` object containing the image data to be analyzed.
+     * @param frameTime The timestamp of the frame being analyzed, in milliseconds.
+     * @throws IllegalStateException if the gesture recognizer is not properly initialized or if the
+     * recognition process encounters an illegal state.
+     */
+    @VisibleForTesting
+    fun recognizeAsync(mpImage: MPImage, frameTime: Long) {
+        // As we're using running mode LIVE_STREAM, the recognition result will
+        // be returned in returnLivestreamResult function
+        gestureRecognizer?.recognizeAsync(mpImage, frameTime)
+    }
+
     /**
      * Converts an `ImageProxy` to an `MPImage` and feeds it to the GestureRecognizer for live stream gesture recognition.
      *
@@ -157,117 +178,6 @@ class GestureRecognizerHelper(
         // Convert the input Bitmap object to an MPImage object to run inference
         val mpImage = BitmapImageBuilder(rotatedBitmap).build()
         recognizeAsync(mpImage, frameTime)
-    }
-
-    /**
-     * Asynchronously runs hand gesture recognition using the MediaPipe Gesture Recognition API.
-     *
-     * This method is designed for use in live stream mode, where the recognition result will be returned
-     * via the `returnLivestreamResult` function. It takes an `MPImage` object and a frame time as input,
-     * and initiates the gesture recognition process asynchronously.
-     *
-     * @param mpImage The `MPImage` object containing the image data to be analyzed.
-     * @param frameTime The timestamp of the frame being analyzed, in milliseconds.
-     * @throws IllegalStateException if the gesture recognizer is not properly initialized or if the
-     * recognition process encounters an illegal state.
-     */
-    @VisibleForTesting
-    fun recognizeAsync(mpImage: MPImage, frameTime: Long) {
-        // As we're using running mode LIVE_STREAM, the recognition result will
-        // be returned in returnLivestreamResult function
-        gestureRecognizer?.recognizeAsync(mpImage, frameTime)
-    }
-
-    /**
-     * Runs gesture recognition on a video file loaded from the user's gallery.
-     *
-     * This function evaluates every frame in the video and attaches the results to a bundle that is returned.
-     * It requires the running mode to be set to `RunningMode.VIDEO`. The process involves loading frames from the video,
-     * converting them to the required format, and running the gesture recognizer on these frames. The results are collected
-     * and returned as a `ResultBundle`.
-     *
-     * @param videoUri The URI for the video file loaded from the user's gallery.
-     * @param inferenceIntervalMs The interval in milliseconds at which frames should be evaluated for gesture recognition.
-     * @return A `ResultBundle` containing the recognition results for each frame, or `null` if an error occurs or if the video is invalid.
-     * @throws IllegalArgumentException if the running mode is not set to `RunningMode.VIDEO`.
-     */
-    fun recognizeVideoFile(
-        videoUri: Uri,
-        inferenceIntervalMs: Long
-    ): ResultBundle? {
-        if (runningMode != RunningMode.VIDEO) {
-            throw IllegalArgumentException(
-                "Attempting to call recognizeVideoFile" +
-                        " while not using RunningMode.VIDEO"
-            )
-        }
-        // Inference time is the difference between the system time at the start and finish of the
-        // process
-        val startTime = SystemClock.uptimeMillis()
-        var didErrorOccurred = false
-        // Load frames from the video and run the gesture recognizer.
-        val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(context, videoUri)
-        val videoLengthMs =
-            retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
-                ?.toLong()
-        // Note: We need to read width/height from frame instead of getting the width/height
-        // of the video directly because MediaRetriever returns frames that are smaller than the
-        // actual dimension of the video file.
-        val firstFrame = retriever.getFrameAtTime(0)
-        val width = firstFrame?.width
-        val height = firstFrame?.height
-        // If the video is invalid, returns a null recognition result
-        if ((videoLengthMs == null) || (width == null) || (height == null)) return null
-        // Next, we'll get one frame every frameInterval ms, then run recognizer
-        // on these frames.
-        val resultList = mutableListOf<GestureRecognizerResult>()
-        val numberOfFrameToRead = videoLengthMs.div(inferenceIntervalMs)
-        for (i in 0..numberOfFrameToRead) {
-            val timestampMs = i * inferenceIntervalMs // ms
-            retriever
-                .getFrameAtTime(
-                    timestampMs * 1000, // convert from ms to micro-s
-                    MediaMetadataRetriever.OPTION_CLOSEST
-                )
-                ?.let { frame ->
-                    // Convert the video frame to ARGB_8888 which is required by the MediaPipe
-                    val argb8888Frame =
-                        if (frame.config == Bitmap.Config.ARGB_8888) frame
-                        else frame.copy(Bitmap.Config.ARGB_8888, false)
-
-                    // Convert the input Bitmap object to an MPImage object to run inference
-                    val mpImage = BitmapImageBuilder(argb8888Frame).build()
-
-                    // Run gesture recognizer using MediaPipe Gesture Recognizer
-                    // API
-                    gestureRecognizer?.recognizeForVideo(mpImage, timestampMs)
-                        ?.let { recognizerResult ->
-                            resultList.add(recognizerResult)
-                        } ?: {
-                        didErrorOccurred = true
-                        gestureRecognizerListener?.onError(
-                            "ResultBundle could not be returned" +
-                                    " in recognizeVideoFile"
-                        )
-                    }
-                }
-                ?: run {
-                    didErrorOccurred = true
-                    gestureRecognizerListener?.onError(
-                        "Frame at specified time could not be" +
-                                " retrieved when recognition in video."
-                    )
-                }
-        }
-        retriever.release()
-        val inferenceTimePerFrameMs =
-            (SystemClock.uptimeMillis() - startTime).div(numberOfFrameToRead)
-        return if (didErrorOccurred) {
-            null
-        } else {
-            ResultBundle(resultList, inferenceTimePerFrameMs, height, width)
-        }
     }
 
     /**
@@ -322,12 +232,15 @@ class GestureRecognizerHelper(
     }
 
     /**
-     * Checks if the gesture recognizer helper is closed.
+     * Returns the recognition result to the caller of the GestureRecognizerHelper.
      *
-     * This function returns `true` if the gesture recognizer has been closed, indicating that it is no longer available for use.
-     * It is useful for determining the current state of the gesture recognizer and ensuring that operations are not attempted on a closed recognizer.
+     * This private function is used to deliver the results of gesture recognition from a live stream to the listener
+     * set in the GestureRecognizerHelper. It calculates the inference time and constructs a `ResultBundle` with
+     * the recognition result, inference time, and dimensions of the input image. This bundle is then passed to the
+     * listener's `onResults` method.
      *
-     * @return `true` if the gesture recognizer is closed, `false` otherwise.
+     * @param result The `GestureRecognizerResult` containing the gesture recognition result.
+     * @param input The `MPImage` object representing the input image for which the recognition was performed.
      */
     private fun returnLivestreamResult(
         result: GestureRecognizerResult, input: MPImage
@@ -342,17 +255,6 @@ class GestureRecognizerHelper(
         )
     }
 
-    /**
-     * Returns the recognition result to the caller of the GestureRecognizerHelper.
-     *
-     * This private function is used to deliver the results of gesture recognition from a live stream to the listener
-     * set in the GestureRecognizerHelper. It calculates the inference time and constructs a `ResultBundle` with
-     * the recognition result, inference time, and dimensions of the input image. This bundle is then passed to the
-     * listener's `onResults` method.
-     *
-     * @param result The `GestureRecognizerResult` containing the gesture recognition result.
-     * @param input The `MPImage` object representing the input image for which the recognition was performed.
-     */
     private fun returnLivestreamError(error: RuntimeException) {
         gestureRecognizerListener?.onError(
             error.message ?: "An unknown error has occurred"
