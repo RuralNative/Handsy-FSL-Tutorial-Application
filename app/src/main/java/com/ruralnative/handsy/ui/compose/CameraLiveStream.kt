@@ -39,7 +39,7 @@ fun CameraLiveStream(
             setEnabledUseCases(CameraController.IMAGE_ANALYSIS)
             setImageAnalysisAnalyzer(
                 ContextCompat.getMainExecutor(context),
-                TODO("Complete ImageAnalysisAnalyzer")
+                analyzer
         }
     }
     controller.cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
