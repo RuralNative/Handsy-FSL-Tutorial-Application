@@ -2,8 +2,14 @@ package com.ruralnative.handsy.util
 
 import android.content.Context
 import androidx.camera.core.ImageProxy
+import java.util.concurrent.Executor
 
-class GestureRecognizerClassifier(context: Context) : GestureRecognizerListener {
+class GestureRecognizerClassifier(context: Context) :
+    GestureRecognizerHelper.GestureRecognizerListener
+{
+
+    private lateinit var backgroundExecutor: Executor
+
 
     private val gestureRecognizerHelper: GestureRecognizerHelper = GestureRecognizerHelper(context)
 
@@ -14,7 +20,7 @@ class GestureRecognizerClassifier(context: Context) : GestureRecognizerListener 
     }
 
     override fun onResults(
-        resultBundle: ResultBundle
+        resultBundle: GestureRecognizerHelper.ResultBundle
     ) {
         val gestureResults = resultBundle.results.first().gestures()
         if (gestureResults.isNotEmpty()) {

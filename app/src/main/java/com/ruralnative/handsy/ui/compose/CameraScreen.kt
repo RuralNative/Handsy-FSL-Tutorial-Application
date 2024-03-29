@@ -24,6 +24,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import com.ruralnative.handsy.ui.viewmodel.CameraViewModel
+import com.ruralnative.handsy.util.GestureRecognizerClassifier
 
 /**
  * Builds a Composable Screen with a built-in CameraX object and MediaPipe integration
@@ -82,6 +83,7 @@ private fun CameraComponent(
     modifier: Modifier
 ) {
     val context = LocalContext.current
+    val gestureRecognizerClassifier = GestureRecognizerClassifier(context)
     val previewView: PreviewView = remember { PreviewView(context) }
     val cameraController = remember { LifecycleCameraController(context) }
     val lifecycleOwner = LocalLifecycleOwner.current

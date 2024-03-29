@@ -35,7 +35,7 @@ import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResu
 
 class GestureRecognizerHelper(
     val context: Context,
-    val runningMode: RunningMode = RunningMode.LIVE_STREAM
+    val runningMode: RunningMode
 ) {
 
     /**
