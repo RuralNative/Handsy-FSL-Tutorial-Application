@@ -11,7 +11,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+<<<<<<< HEAD
 import androidx.compose.runtime.LaunchedEffect
+=======
+import androidx.compose.runtime.DisposableEffect
+>>>>>>> 85db1ba006d0a9d3a522b6d660105189f6ecbc3c
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -54,7 +58,16 @@ fun CameraLiveStream(
     val controller = viewModel.initializeCameraController(context, gestureAnalyzer)
     val lifecycleOwner = LocalLifecycleOwner.current
 
+<<<<<<< HEAD
     TopBar()
+=======
+    DisposableEffect(Unit) {
+        onDispose {
+            controller.unbind()
+        }
+    }
+
+>>>>>>> 85db1ba006d0a9d3a522b6d660105189f6ecbc3c
     AndroidView(
         factory = {
             createPreviewView(
