@@ -1,6 +1,10 @@
 package com.ruralnative.handsy.ui.viewmodel
 
 import android.content.Context
+import androidx.camera.core.CameraSelector
+import androidx.camera.view.CameraController
+import androidx.camera.view.LifecycleCameraController
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -43,5 +47,17 @@ class CameraLiveStreamViewModel @Inject constructor(
         return GestureAnalysisAnalyzer(
             GestureRecognizerHelper(context)
         )
+    }
+
+    fun initializeCameraController(context: Context, gestureAnalyzer: GestureAnalysisAnalyzer): LifecycleCameraController {
+        val controller = LifecycleCameraController(context).apply {
+            setEnabledUseCases(CameraController.IMAGE_ANALYSIS)
+            setImageAnalysisAnalyzer(
+                ContextCompat.getMainExecutor(context),
+                gestureAnalyzer
+            )
+        }
+        controller.cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+        return controller
     }
 }
