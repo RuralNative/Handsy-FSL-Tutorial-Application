@@ -1,9 +1,12 @@
 package com.ruralnative.handsy.ui.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.ui.state.CameraLiveStreamState
+import com.ruralnative.handsy.util.GestureAnalysisAnalyzer
+import com.ruralnative.handsy.util.GestureRecognizerHelper
 import com.ruralnative.handsy.util.GestureRecognizerListener
 import com.ruralnative.handsy.util.ResultBundle
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,5 +37,11 @@ class CameraLiveStreamViewModel @Inject constructor(
                 inputImageWidth = resultBundle.inputImageWidth
             )
         }
+    }
+
+    fun initializeAnalyzer(context: Context): GestureAnalysisAnalyzer {
+        return GestureAnalysisAnalyzer(
+            GestureRecognizerHelper(context)
+        )
     }
 }

@@ -14,33 +14,29 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
+import com.ruralnative.handsy.ui.viewmodel.CameraLiveStreamViewModel
 import com.ruralnative.handsy.util.GestureRecognizerHelper
 
 @Composable
 fun CameraLiveStream(
-    modifier: Modifier = Modifier
+    viewModel: CameraLiveStreamViewModel = hiltViewModel()
 ) {
-    /*
-    var classifications by remember {
-        mutableStateOf(emptyList<GestureRecognizerResult>())
-    }
-    val analyzer = remember {
-        GestureRecognizerHelper(
-            context = LocalContext.current,
-            onResults = {
-                classifications = it
-            }
-        )
-    }
 
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
+
+    val gestureAnalyzer = viewModel.initializeAnalyzer(context)
+
     val controller = remember {
         LifecycleCameraController(context).apply {
             setEnabledUseCases(CameraController.IMAGE_ANALYSIS)
             setImageAnalysisAnalyzer(
                 ContextCompat.getMainExecutor(context),
-                analyzer
+                gestureAnalyzer
+            )
         }
     }
     controller.cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
@@ -52,8 +48,6 @@ fun CameraLiveStream(
                 this.controller = controller
                 controller.bindToLifecycle(lifecycleOwner)
             }
-        },
-        modifier = modifier
+        }
     )
-    */
 }
