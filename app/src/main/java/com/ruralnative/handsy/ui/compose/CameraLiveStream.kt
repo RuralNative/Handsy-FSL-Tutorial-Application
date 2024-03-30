@@ -1,5 +1,7 @@
 package com.ruralnative.handsy.ui.compose
 
+import android.content.Context
+import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.PreviewView
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -7,6 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.ui.viewmodel.CameraLiveStreamViewModel
 
@@ -24,10 +27,22 @@ fun CameraLiveStream(
 
     AndroidView(
         factory = {
-            PreviewView(it).apply {
-                this.controller = controller
-                controller.bindToLifecycle(lifecycleOwner)
-            }
+            createPreviewView(
+                context = it,
+                controller = controller,
+                lifecycleOwner = lifecycleOwner
+            )
         }
     )
+}
+
+private fun createPreviewView(
+    context: Context,
+    controller: LifecycleCameraController,
+    lifecycleOwner: LifecycleOwner
+): PreviewView {
+    return PreviewView(context).apply {
+        this.controller = controller
+        controller.bindToLifecycle(lifecycleOwner)
+    }
 }
