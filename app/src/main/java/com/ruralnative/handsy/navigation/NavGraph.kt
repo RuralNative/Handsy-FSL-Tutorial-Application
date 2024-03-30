@@ -17,6 +17,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.ruralnative.handsy.ui.compose.CameraLiveStream
 import com.ruralnative.handsy.ui.compose.CameraScreen
 import com.ruralnative.handsy.ui.compose.DevsIntroScreen
 import com.ruralnative.handsy.ui.compose.EntryScreen
@@ -229,7 +230,7 @@ fun NavGraph(
             }
         ) {
             Log.d(TAG, "CameraScreen INITIALIZED")
-            CameraScreen()
+            CameraLiveStream()
         }
 
         // Stats Screen Composable
