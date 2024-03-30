@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.PreviewView
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -24,6 +25,12 @@ fun CameraLiveStream(
     val gestureAnalyzer = viewModel.initializeAnalyzer(context)
     val controller = viewModel.initializeCameraController(context, gestureAnalyzer)
     val lifecycleOwner = LocalLifecycleOwner.current
+
+    DisposableEffect(Unit) {
+        onDispose {
+            controller.unbind()
+        }
+    }
 
     AndroidView(
         factory = {
