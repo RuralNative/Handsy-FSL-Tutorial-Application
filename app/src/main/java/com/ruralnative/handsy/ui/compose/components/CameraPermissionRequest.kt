@@ -2,8 +2,10 @@ package com.ruralnative.handsy.ui.compose.components
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
+import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
@@ -19,13 +21,19 @@ private fun CameraPermissionRequest(
         android.Manifest.permission.CAMERA
     )
 
-    if (cameraPermissionState.status.isGranted) {
-        cameraScreen()
-    } else {
-        TODO("Implement UI For Rationale")
-        TODO("Request Camera Permission with different Use Cases")
-        TODO("If Request returns Yes, show cameraScreen()")
-        TODO("If Request returns No, show CameraPermissionDenied()")
+    LaunchedEffect(cameraPermissionState) {
+        when (cameraPermissionState.status) {
+            is PermissionStatus.Granted -> {
+                TODO("Run Passed Composables")
+            }
+            is PermissionStatus.Denied -> {
+                if (cameraPermissionState.status.shouldShowRationale) {
+                    TODO("Show Rationale through Composable ()")
+                } else {
+                    TODO("Show Scaffold UI with Direction to Settings")
+                }
+            }
+        }
     }
 }
 
