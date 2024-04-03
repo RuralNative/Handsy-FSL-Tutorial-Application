@@ -34,3 +34,19 @@ These are requirement constrains for design and implementation decisions for the
 * Operates on an Android OS with a minimum version of 8.1
 * Offline-first operation with no support for online utilization
 
+## Solution Strategy 
+
+The architectural design and development of the application is built in a philosophy that focuses towards functionality, maintainability, and readability, rather than the inclusion of modern technologies or tools for the sake of it.
+
+Due to this, the project will utilize the standards, libraries, and frameworks stipulated within the Modern Android Development of Google as the following offer long-term support and extensive documentation and examples future development efforts can rely upon. 
+
+Below are its specifics:
+
+* **Keras and MediaPipe** as preferred tools for AI gesture recognition model
+* **Room Database** as preferred library for data management, persistence, and storage
+* **Dagger Hilt** as preferred library for automated dependency injection
+* **CameraX** as preferred API for utilzing native camera functionality
+* **Jetpack Compose** as preferred libraries for building user interface
+* **Material Design 3** as preferred primary design language for UI/UX design 
+* **Compose Navigation** as preferred library for navigating between screens
+* **Accompanist** as preferred library to complement Android functionalities non-existent for Jetpack Compose - such as requesting permissions
