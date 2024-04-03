@@ -27,4 +27,10 @@ Application has an accessible and quality user interface and user experience.
 
 Application utilizes the available resources offer by the native device to the best of its ability to ensure acceptable performance at worst for the end users.
 
+## Architectural Constraints
+
+These are requirement constrains for design and implementation decisions for the application.
+
+* Operates on an Android OS with a minimum version of 8.1
+* Offline-first operation with no support for online utilization
 
