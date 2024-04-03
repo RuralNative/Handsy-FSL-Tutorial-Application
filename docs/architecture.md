@@ -1,6 +1,6 @@
 # Architectural Documentation
 
-This documentation is a compiled information of the architecture of the Handsy application for the benefit of development and maintenance efforts, formatted based from [arc42 template](https://www.workingsoftware.dev/software-architecture-documentation-the-ultimate-guide/) standards and principles.
+This documentation is a compiled information of the architecture of the Handsy application for the benefit of development and maintenance efforts, formatted based from [arc42 template](https://www.workingsoftware.dev/software-architecture-documentation-the-ultimate-guide/) standards, complemented with guidelines provided by [c4 model](https://c4model.com/?ref=workingsoftware.dev) for abstraction visualization.
 
 ## Introduction
 
@@ -52,3 +52,15 @@ Below are the technological solutions utilized for the various application funct
 * **Accompanist** as preferred library to complement Android functionalities non-existent for Jetpack Compose - such as requesting permissions
 
 This architectural approaches and solutions are also effectively utilized to achieved the stipulated quality goals stated on the [Introduction](#quality-goals) section.
+
+## Building Blocks
+
+This section describes the abstract and visualized decomposition of the project codebase, as represented by the packaging within. 
+
+### Architectural Overview
+
+![High Level Architecture](media/high-level-architecture.svg)
+
+The codebase is categorically divided into two layers: the **Data Layer** and the **UI Layer**. 
+
+The Data Layer is responsible for handling all data operations, specifically the lessons and the end user's information necessary for the proper performance of the application, and exposes such data to the UI Layer for display
