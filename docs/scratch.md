@@ -38,9 +38,9 @@ These are requirement constrains for design and implementation decisions for the
 
 The architectural design and development of the application is built in a philosophy that focuses towards functionality, maintainability, and readability, rather than the inclusion of modern technologies or tools for the sake of it.
 
-Due to this, the project will utilize the standards, libraries, and frameworks stipulated within the Modern Android Development of Google as the following offer long-term support and extensive documentation and examples future development efforts can rely upon. 
+Due to this, the project will utilize the standards, libraries, and frameworks stipulated within the [Modern Android Development](https://developer.android.com/topic/architecture/intro) built by Google as it offers long-term support and extensive documentation and examples future development efforts can rely upon. 
 
-Below are its specifics:
+Below are the technological solutions utilized for the various application functionality:
 
 * **Keras and MediaPipe** as preferred tools for AI gesture recognition model
 * **Room Database** as preferred library for data management, persistence, and storage
@@ -50,3 +50,5 @@ Below are its specifics:
 * **Material Design 3** as preferred primary design language for UI/UX design 
 * **Compose Navigation** as preferred library for navigating between screens
 * **Accompanist** as preferred library to complement Android functionalities non-existent for Jetpack Compose - such as requesting permissions
+
+This architectural approaches and solutions are also effectively utilized to achieved the stipulated quality goals stated on the [Introduction](#quality-goals) section.
