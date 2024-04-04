@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.compose
+package com.ruralnative.handsy.ui.user_intro
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -39,7 +39,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
-import com.ruralnative.handsy.ui.viewmodel.UserIntroViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.viewmodel
+package com.ruralnative.handsy.ui.camera_screen
 
 import android.content.Context
 import androidx.camera.core.CameraSelector
@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ruralnative.handsy.ui.state.CameraLiveStreamState
 import com.ruralnative.handsy.util.GestureAnalysisAnalyzer
 import com.ruralnative.handsy.util.GestureRecognizerHelper
 import com.ruralnative.handsy.util.GestureRecognizerListener

@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.state
+package com.ruralnative.handsy.ui.main_screen
 
 import androidx.annotation.DrawableRes
 

@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.compose.components
+package com.ruralnative.handsy.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row

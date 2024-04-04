@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.compose
+package com.ruralnative.handsy.ui.dev_intro
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.ExtendedFloatingActionButton
@@ -32,7 +31,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
-import com.ruralnative.handsy.ui.viewmodel.DevsIntroViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

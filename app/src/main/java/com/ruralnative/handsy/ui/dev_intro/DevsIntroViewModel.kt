@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.viewmodel
+package com.ruralnative.handsy.ui.dev_intro
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

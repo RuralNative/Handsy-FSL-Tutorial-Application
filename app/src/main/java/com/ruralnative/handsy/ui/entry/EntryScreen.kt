@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.compose
+package com.ruralnative.handsy.ui.entry
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -24,7 +24,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
-import com.ruralnative.handsy.ui.viewmodel.EntryViewModel
 
 @Composable
 fun EntryScreen(

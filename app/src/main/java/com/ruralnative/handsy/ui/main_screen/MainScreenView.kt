@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.compose
+package com.ruralnative.handsy.ui.main_screen
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,11 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.ruralnative.handsy.ui.compose.components.BottomBar
-import com.ruralnative.handsy.ui.compose.components.TopBar
+import com.ruralnative.handsy.ui.components.BottomBar
+import com.ruralnative.handsy.ui.components.TopBar
 import com.ruralnative.handsy.ui.HandsyTheme
-import com.ruralnative.handsy.ui.compose.components.LessonCardList
-import com.ruralnative.handsy.ui.viewmodel.MainScreenViewModel
+import com.ruralnative.handsy.ui.components.LessonCardList
 
 @Composable
 fun MainScreen(

@@ -1,8 +1,7 @@
-package com.ruralnative.handsy.ui.compose.components
+package com.ruralnative.handsy.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text

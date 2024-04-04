@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.state
+package com.ruralnative.handsy.ui.camera_screen
 
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
 import com.ruralnative.handsy.util.GestureRecognizerHelper
