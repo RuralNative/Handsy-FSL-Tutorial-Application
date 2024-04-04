@@ -63,4 +63,28 @@ This section describes the abstract and visualized decomposition of the project 
 
 The codebase is categorically divided into two layers: the **Data Layer** and the **UI Layer**. 
 
-The Data Layer is responsible for handling all data operations, specifically the lessons and the end user's information necessary for the proper performance of the application, and exposes such data to the UI Layer for display
+#### Data Layer
+
+The Data Layer is responsible for handling all data operations, specifically the lessons and the end user's information necessary for the proper performance of the application, and exposes such data to the UI Layer for display.
+
+Below are its categorical components:
+
+* Room Database : Single source of truth for local data storage and responsible for management of overall database access and schema definitions.
+
+* Entities : Representation of a table within the Room Database
+
+* Data Access Object (DAO) : Interface that provides database access methods for each Entity
+
+* Repository : Encapsulates access and modification of Entity data through DAO interfaces, and is the component directly used by the UI Layer.
+
+#### UI Layer
+
+The UI Layer is responsible for providing the necesary functionalities to provide an interactible display on screen, either by utilizing data from the Data Layer or through its own.
+
+Below are its categorical components:
+
+* State : Data classes containing the state of the Composables.
+
+* ViewModel : Handles logic of the UI Layer. It leverages the Data Layer and state (and in some occassion, Utility classes within the UI Layer) to ensure they are stateless and focused on UI render roles.
+
+* Composables : Composable functions responsible for rendering UI to screen
