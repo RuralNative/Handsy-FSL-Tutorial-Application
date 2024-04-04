@@ -17,14 +17,13 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.ruralnative.handsy.ui.compose.CameraLiveStream
-import com.ruralnative.handsy.ui.compose.CameraScreen
-import com.ruralnative.handsy.ui.compose.DevsIntroScreen
-import com.ruralnative.handsy.ui.compose.EntryScreen
-import com.ruralnative.handsy.ui.compose.UserIntroScreen
-import com.ruralnative.handsy.ui.compose.LessonScreen
-import com.ruralnative.handsy.ui.viewmodel.LessonViewModel
-import com.ruralnative.handsy.ui.compose.MainScreen
+import com.ruralnative.handsy.ui.camera_screen.CameraLiveStream
+import com.ruralnative.handsy.ui.dev_intro.DevsIntroScreen
+import com.ruralnative.handsy.ui.entry.EntryScreen
+import com.ruralnative.handsy.ui.user_intro.UserIntroScreen
+import com.ruralnative.handsy.ui.lesson_screen.LessonScreen
+import com.ruralnative.handsy.ui.lesson_screen.LessonViewModel
+import com.ruralnative.handsy.ui.main_screen.MainScreen
 
 private const val TAG = "NavGraph"
 
