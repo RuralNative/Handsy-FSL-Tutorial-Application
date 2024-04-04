@@ -57,6 +57,7 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
     BackHandler (enabled = true) {
         // Renders System Back Button unusable for the user during Screen duration
     }
+
     ConstraintLayout (
         modifier = Modifier
             .fillMaxSize()
