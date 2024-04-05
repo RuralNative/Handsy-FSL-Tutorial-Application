@@ -8,8 +8,6 @@ import com.ruralnative.handsy.data.entities.AlphabetLesson
 import com.ruralnative.handsy.data.entities.PhrasesLesson
 import com.ruralnative.handsy.data.repository.AlphabetLessonRepository
 import com.ruralnative.handsy.data.repository.PhrasesLessonRepository
-import com.ruralnative.handsy.ui.main_screen.LessonCardState
-import com.ruralnative.handsy.ui.main_screen.MainScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,19 +16,19 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(
+class LessonListViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val alphabetRepository: AlphabetLessonRepository,
     private val phrasesRepository: PhrasesLessonRepository
 ): ViewModel() {
 
     private val _uiState = MutableStateFlow(
-        MainScreenState(
+        LessonListState(
         alphabetLessons = emptyList(),
         phrasesLesson = emptyList()
     )
     )
-    val uiState: StateFlow<MainScreenState> = _uiState.asStateFlow()
+    val uiState: StateFlow<LessonListState> = _uiState.asStateFlow()
 
     init {
         Log.d("LessonList", "ViewModel INITIALIZED")

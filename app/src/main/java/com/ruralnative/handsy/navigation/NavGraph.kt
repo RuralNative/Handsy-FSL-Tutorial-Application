@@ -10,7 +10,11 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -18,12 +22,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.ruralnative.handsy.ui.camera_screen.components.CameraLiveStream
+import com.ruralnative.handsy.ui.components.HandsyScaffold
 import com.ruralnative.handsy.ui.dev_intro.DevsIntroScreen
 import com.ruralnative.handsy.ui.entry.EntryScreen
 import com.ruralnative.handsy.ui.user_intro.UserIntroScreen
 import com.ruralnative.handsy.ui.lesson_screen.LessonScreen
 import com.ruralnative.handsy.ui.lesson_screen.LessonViewModel
-import com.ruralnative.handsy.ui.main_screen.MainScreen
+import com.ruralnative.handsy.ui.main_screen.LessonListScreen
 
 private const val TAG = "NavGraph"
 
@@ -162,12 +167,19 @@ fun NavGraph(
             }
         ) {
             Log.d(TAG, "MainScreen INITIALIZED")
-            MainScreen(
-                navigateToLessonScreen = { id ->
-                    navController.navigate("lesson_screen/$id")
-                },
-                navController
-            )
+            HandsyScaffold(navigationController = navController) {
+                Surface(
+                    modifier = Modifier
+                        .consumeWindowInsets(it)
+                        .fillMaxSize()
+                ) {
+                    LessonListScreen(
+                        navigateToLessonScreen = { id ->
+                            navController.navigate("lesson_screen/$id")
+                        }
+                    )
+                }
+            }
         }
 
         // Lesson Screen Composable
