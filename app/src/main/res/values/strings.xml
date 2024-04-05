@@ -15,6 +15,9 @@
     <string name="author_message_two">Made with passion, this app aims to become a reliable reference for learning Filipino Sign Language. We hope you enjoy this as much as I did during its development.</string>
     <string name="start_journey_button_label">Start Your Journey</string>
 
+    <!-- CAMERA_SCREEN Specific -->
+    <string name="camera_permission_init">Setting up Camera</string>
+
     <!-- ALPHABET LESSONS -->
     <string name="alphabet_a_description">Make a fist with your thumb touching the side of your index finger. Hold your hand in front of your chest, palm facing inward.</string>
     <string name="alphabet_b_description">Extend your fingers and thumb and touch them together. Hold your hand in front of your chest, palm facing outward.</string>
@@ -43,6 +46,7 @@
     <string name="alphabet_y_description">Extend your thumb and pinky finger and spread them apart. Curl your other fingers to the palm of your hand. Hold your hand in front of your chest, palm facing outward.</string>
     <string name="alphabet_z_description">Extend your index finger and point it upward. Hold your hand in front of your chest, palm facing inward. Then, trace a Z shape in the air with your index finger.
 </string>
+
     <!-- PHRASES LESSONS -->
     <string name="phrase_what_is_your_name_description">First, sign “what” by pointing your index finger upward and moving it slightly from side to side. Hold your hand in front of your chest, palm facing inward. Second, sign “name” by tapping your index and middle fingers on your opposite palm twice. Hold your hands in front of your chest, palms facing each other. Third, sign “you” by pointing your index finger at the person you are talking to. Hold your hand in front of your chest, palm facing outward.</string>
 
