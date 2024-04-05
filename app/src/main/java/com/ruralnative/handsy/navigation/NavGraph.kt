@@ -17,7 +17,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.ruralnative.handsy.ui.camera_screen.CameraLiveStream
+import com.ruralnative.handsy.ui.camera_screen.components.CameraLiveStream
 import com.ruralnative.handsy.ui.dev_intro.DevsIntroScreen
 import com.ruralnative.handsy.ui.entry.EntryScreen
 import com.ruralnative.handsy.ui.user_intro.UserIntroScreen
