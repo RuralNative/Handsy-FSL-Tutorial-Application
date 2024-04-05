@@ -24,7 +24,10 @@ import com.ruralnative.handsy.navigation.Screen
 
 @Composable
 fun BottomBar(
-    currentDestination: NavDestination?
+    currentDestination: NavDestination?,
+    onNavigateToLessonListScreen: () -> Unit,
+    onNavigateToHomeScreen: () -> Unit,
+    onNavigateToCameraSetupScreen: () -> Unit
 ) {
     NavigationBar {
         val navigationItems = listOf(
@@ -94,7 +97,13 @@ fun BottomBar(
             val selected = selectionMap.getOrDefault(item, false)
             NavigationBarItem(
                 selected = selected,
-                onClick = { navigate(item.route) },
+                onClick = {
+                    when (item.route) {
+                        Screen.HomeScreen.route -> onNavigateToHomeScreen()
+                        Screen.LessonListScreen.route -> onNavigateToLessonListScreen()
+                        Screen.CameraSetupScreen.route -> onNavigateToCameraSetupScreen()
+                    }
+                },
                 icon = {
                     if (selected) {
                         item.selectedIcon()
