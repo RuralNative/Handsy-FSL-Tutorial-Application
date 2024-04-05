@@ -119,7 +119,10 @@ fun NavGraph(
         ) {
             Log.d(TAG, "LessonListScreen INITIALIZED")
             HandsyScaffold(
-                navController.currentBackStackEntryAsState().value?.destination
+                navController.currentBackStackEntryAsState().value?.destination,
+                { navController.navigate(Screen.LessonListScreen.route) },
+                { navController.navigate(Screen.HomeScreen.route) },
+                { navController.navigate(Screen.CameraSetupScreen.route) }
             ) {
                 Surface(
                     modifier = Modifier
