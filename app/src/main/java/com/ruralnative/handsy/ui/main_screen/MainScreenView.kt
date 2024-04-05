@@ -1,6 +1,7 @@
 package com.ruralnative.handsy.ui.main_screen
 
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContent
@@ -39,7 +40,7 @@ fun MainScreen(
             content = { innerPadding ->
                 Surface(
                     modifier = Modifier
-                        .padding(innerPadding)
+                        .consumeWindowInsets(innerPadding)
                 ) {
                     LessonCardList(
                         modifier = Modifier
