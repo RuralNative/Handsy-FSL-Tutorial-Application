@@ -2,18 +2,12 @@ package com.ruralnative.handsy.ui.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
-import androidx.navigation.NavHostController
 import com.ruralnative.handsy.ui.HandsyTheme
 
 /**
@@ -22,11 +16,13 @@ import com.ruralnative.handsy.ui.HandsyTheme
  * This scaffold includes a top bar, a bottom bar, and a content area that adapts to the safe content window insets.
  * It uses the [HandsyTheme] to apply a consistent theme across the application.
  *
- * @param navigationController The [NavHostController] used for navigation within the application.
+ * @param currentDestination The current navigation destination. Used to determine which navigation item is currently selected.
+ * @param onNavigateToLessonListScreen A lambda function to navigate to the Lesson List screen.
+ * @param onNavigateToHomeScreen A lambda function to navigate to the Home screen.
+ * @param onNavigateToCameraSetupScreen A lambda function to navigate to the Camera Setup screen.
  * @param composableContent A lambda function that defines the content of the scaffold. It receives [PaddingValues]
  * which can be used to adjust the padding of the content according to the scaffold's layout
- * through Modifier.consumeWindowsInset()
- *
+ * through Modifier.consumeWindowsInset().
  */
 @Composable
 fun HandsyScaffold(
