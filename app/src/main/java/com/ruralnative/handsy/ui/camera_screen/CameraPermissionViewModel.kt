@@ -12,6 +12,14 @@ class CameraPermissionViewModel @Inject constructor() : ViewModel() {
     private val _uiState = MutableStateFlow(CameraPermissionState())
     val uiState = _uiState.asStateFlow()
 
+    /**
+     * Updates the camera permission state with the given key.
+     *
+     * @param key The key representing the new camera permission state.
+     * - `0`: Permission is denied and requires no rationale.
+     * - `1`: Permission is denied and requires rationale.
+     * - `2`: Permission is granted.
+     */
     fun setCameraPermissionKey(key: Int) {
         _uiState.value = CameraPermissionState(key)
     }

@@ -9,7 +9,7 @@ package com.ruralnative.handsy.ui.camera_screen
  * - `2`: Permission is granted.
  */
 data class CameraPermissionState(
-    
+
     /**
      * An integer key representing the camera permission status.
      * - `0` (default key): Permission is denied and requires no rationale.
