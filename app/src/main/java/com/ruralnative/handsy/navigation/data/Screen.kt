@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.navigation
+package com.ruralnative.handsy.navigation.data
 
 /**
  * Type-safe object containing String-typed routes which serves as unique identifiers for each Composable screens in the Navigation Graph

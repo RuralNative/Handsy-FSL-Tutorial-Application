@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.navigation
+package com.ruralnative.handsy.navigation.data
 
 import androidx.compose.runtime.Composable
 

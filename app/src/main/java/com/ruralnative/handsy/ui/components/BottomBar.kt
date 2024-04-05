@@ -14,8 +14,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.ruralnative.handsy.R
-import com.ruralnative.handsy.navigation.BottomNavigation
-import com.ruralnative.handsy.navigation.Screen
+import com.ruralnative.handsy.navigation.data.BottomNavigation
+import com.ruralnative.handsy.navigation.data.Screen
 
 /**
  * A composable function that displays a bottom navigation bar.
