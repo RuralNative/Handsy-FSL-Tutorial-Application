@@ -1,8 +1,11 @@
-package com.ruralnative.handsy.ui.components
+package com.ruralnative.handsy.ui.camera_screen
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.PermissionStatus
@@ -17,6 +20,8 @@ private fun CameraPermissionRequest(
     cameraScreen: @Composable () -> Unit
 ) {
 
+    val cameraPermissionKey by rememberSaveable(mutableIntStateOf(0))
+
     val cameraPermissionState = rememberPermissionState(
         android.Manifest.permission.CAMERA
     )
@@ -24,7 +29,9 @@ private fun CameraPermissionRequest(
     LaunchedEffect(cameraPermissionState) {
         when (cameraPermissionState.status) {
             is PermissionStatus.Granted -> {
-                TODO("Run Passed Composables")
+                LaunchedEffect(Unit) {
+                    cameraScreen()
+                }
             }
             is PermissionStatus.Denied -> {
                 if (cameraPermissionState.status.shouldShowRationale) {
