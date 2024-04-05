@@ -10,18 +10,18 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.navigation.compose.composable
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.ruralnative.handsy.ui.camera_screen.components.CameraLiveStream
 import com.ruralnative.handsy.ui.components.HandsyScaffold
 import com.ruralnative.handsy.ui.dev_intro.DevsIntroScreen
 import com.ruralnative.handsy.ui.entry.EntryScreen
@@ -31,6 +31,69 @@ import com.ruralnative.handsy.ui.lesson_screen.LessonViewModel
 import com.ruralnative.handsy.ui.main_screen.LessonListScreen
 
 private const val TAG = "NavGraph"
+private val PRELIMINARY_ENTER_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
+    fadeIn(
+        animationSpec = tween(
+            150, easing = LinearEasing
+        )
+    ) + slideIntoContainer(
+        animationSpec = tween(150, easing = EaseIn),
+        towards = AnimatedContentTransitionScope.SlideDirection.Start
+    )
+}
+private val PRELIMINARY_EXIT_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() ->
+    ExitTransition = {
+    fadeOut(
+        animationSpec = tween(
+            150, easing = LinearEasing
+        )
+    ) + slideOutOfContainer(
+        animationSpec = tween(150, easing = EaseOut),
+        towards = AnimatedContentTransitionScope.SlideDirection.End
+    )
+}
+private val SCAFFOLD_ENTER_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
+    fadeIn(
+        animationSpec = tween(
+            150, easing = LinearEasing
+        )
+    ) + slideIntoContainer(
+        animationSpec = tween(150, easing = EaseIn),
+        towards = AnimatedContentTransitionScope.SlideDirection.Start
+    )
+}
+private val SCAFFOLD_EXIT_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() ->
+ExitTransition = {
+    fadeOut(
+        animationSpec = tween(
+            75, easing = LinearEasing
+        )
+    ) + slideOutOfContainer(
+        animationSpec = tween(75, easing = EaseOut),
+        towards = AnimatedContentTransitionScope.SlideDirection.End
+    )
+}
+private val MISCELLANEOUS_ENTER_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
+    fadeIn(
+        animationSpec = tween(
+            150, easing = LinearEasing
+        )
+    ) + slideIntoContainer(
+        animationSpec = tween(150, easing = EaseIn),
+        towards = AnimatedContentTransitionScope.SlideDirection.Start
+    )
+}
+private val MISCELLANEOUS_EXIT_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() ->
+ExitTransition = {
+    fadeOut(
+        animationSpec = tween(
+            150, easing = LinearEasing
+        )
+    ) + slideOutOfContainer(
+        animationSpec = tween(150, easing = EaseOut),
+        towards = AnimatedContentTransitionScope.SlideDirection.End
+    )
+}
 
 /**
  * Composable function for the main navigation graph.
@@ -53,16 +116,7 @@ fun NavGraph(
          */
         composable(
             route = Screen.Entry.route,
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        150, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(150, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
+            exitTransition = PRELIMINARY_EXIT_TRANSITION
         ) {
             EntryScreen(
                 viewModel = hiltViewModel(),
@@ -70,7 +124,7 @@ fun NavGraph(
                     navController.navigate(Screen.UserIntro.route)
                 },
                 onNavigateToMain = {
-                    navController.navigate(Screen.MainScreen.route)
+                    navController.navigate(Screen.LessonListScreen.route)
                 }
             )
         }
@@ -80,26 +134,8 @@ fun NavGraph(
          */
         composable(
             route = Screen.UserIntro.route,
-            enterTransition = {
-                fadeIn(
-                    animationSpec = tween(
-                        300, easing = LinearEasing
-                    )
-                ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        75, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(75, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
+            enterTransition = PRELIMINARY_ENTER_TRANSITION,
+            exitTransition = PRELIMINARY_EXIT_TRANSITION
         ) {
             Log.d(TAG, "UserIntroScreen INITIALIZED")
             UserIntroScreen(
@@ -114,59 +150,36 @@ fun NavGraph(
          */
         composable(
             route = Screen.DevsIntro.route,
-            enterTransition = {
-                fadeIn(
-                    animationSpec = tween(
-                        150, easing = LinearEasing
-                    )
-                ) + slideIntoContainer(
-                    animationSpec = tween(150, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        75, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(75, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
+            enterTransition = PRELIMINARY_ENTER_TRANSITION,
+            exitTransition = PRELIMINARY_EXIT_TRANSITION
         ) {
             DevsIntroScreen(
                 onButtonClick = {
-                    navController.navigate(Screen.MainScreen.route)
+                    navController.navigate(Screen.LessonListScreen.route)
                 }
             )
         }
 
-        // Main Screen Composable
+        /*
+         * Home Screen
+         */
         composable(
-            route = Screen.MainScreen.route,
-            enterTransition = {
-                fadeIn(
-                    animationSpec = tween(
-                        150, easing = LinearEasing
-                    )
-                ) + slideIntoContainer(
-                    animationSpec = tween(150, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        75, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(75, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
+            route = Screen.HomeScreen.route,
+            enterTransition = SCAFFOLD_ENTER_TRANSITION,
+            exitTransition = SCAFFOLD_EXIT_TRANSITION
         ) {
-            Log.d(TAG, "MainScreen INITIALIZED")
+            Log.d(TAG, "HomeScreen INITIALIZED")
+        }
+
+        /*
+         * LessonList Screen
+         */
+        composable(
+            route = Screen.LessonListScreen.route,
+            enterTransition = SCAFFOLD_ENTER_TRANSITION,
+            exitTransition = SCAFFOLD_EXIT_TRANSITION
+        ) {
+            Log.d(TAG, "LessonListScreen INITIALIZED")
             HandsyScaffold(navigationController = navController) {
                 Surface(
                     modifier = Modifier
@@ -182,7 +195,9 @@ fun NavGraph(
             }
         }
 
-        // Lesson Screen Composable
+        /*
+         * Lesson Screen
+         */
         composable(
             "lesson_screen/{lessonID}",
             arguments = listOf(
@@ -191,85 +206,55 @@ fun NavGraph(
                     type = NavType.IntType
                 }
             ),
-            enterTransition = {
-                fadeIn(
-                    animationSpec = tween(
-                        300, easing = LinearEasing
-                    )
-                ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        300, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
-        ) {backStackEntry ->
+            enterTransition = MISCELLANEOUS_ENTER_TRANSITION,
+            exitTransition = MISCELLANEOUS_EXIT_TRANSITION
+        ) { backStackEntry ->
             val viewModel: LessonViewModel = hiltViewModel(backStackEntry)
             LessonScreen(viewModel)
         }
 
-        // Camera Screen Composable
+        /*
+         * CameraSetup Screen
+         */
         composable(
-            route = Screen.CameraScreen.route,
-            enterTransition = {
-                fadeIn(
-                    animationSpec = tween(
-                        300, easing = LinearEasing
-                    )
-                ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        300, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
+            route = Screen.CameraSetupScreen.route,
+            enterTransition = SCAFFOLD_ENTER_TRANSITION,
+            exitTransition = SCAFFOLD_EXIT_TRANSITION
         ) {
-            Log.d(TAG, "CameraScreen INITIALIZED")
-            CameraLiveStream()
+            Log.d(TAG, "CameraSetup Screen INITIALIZED")
         }
 
-        // Stats Screen Composable
+        /*
+         * DefaultCamera Screen
+         */
         composable(
-            route = Screen.StatsScreen.route,
-            enterTransition = {
-                fadeIn(
-                    animationSpec = tween(
-                        300, easing = LinearEasing
-                    )
-                ) + slideIntoContainer(
-                    animationSpec = tween(300, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
-                )
-            },
-            exitTransition = {
-                fadeOut(
-                    animationSpec = tween(
-                        300, easing = LinearEasing
-                    )
-                ) + slideOutOfContainer(
-                    animationSpec = tween(300, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
-                )
-            }
+            route = Screen.DefaultCameraScreen.route,
+            enterTransition = MISCELLANEOUS_ENTER_TRANSITION,
+            exitTransition = MISCELLANEOUS_EXIT_TRANSITION
         ) {
-            Log.d(TAG, "StatsScreen INITIALIZED")
+            Log.d(TAG, "DefaultCamera Screen INITIALIZED")
+        }
+
+        /*
+         * CameraRationale Screen
+         */
+        composable(
+            route = Screen.CameraRationaleScreen.route,
+            enterTransition = MISCELLANEOUS_ENTER_TRANSITION,
+            exitTransition = MISCELLANEOUS_EXIT_TRANSITION
+        ) {
+            Log.d(TAG, "CameraRationale Screen INITIALIZED")
+        }
+
+        /*
+         * LiveStreamCamera Screen
+         */
+        composable(
+            route = Screen.LiveStreamCameraScreen.route,
+            enterTransition = MISCELLANEOUS_ENTER_TRANSITION,
+            exitTransition = MISCELLANEOUS_EXIT_TRANSITION
+        ) {
+            Log.d(TAG, "LiveStreamCamera Screen INITIALIZED")
         }
     }
-
 }
