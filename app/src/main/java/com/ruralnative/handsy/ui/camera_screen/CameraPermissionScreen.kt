@@ -6,21 +6,20 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.PermissionStatus
-import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 
-
 @Composable
 @OptIn(ExperimentalPermissionsApi::class)
-private fun CameraPermissionRequest(
+fun CameraPermissionRequest(
+    viewModel: CameraPermissionViewModel,
     cameraScreen: @Composable () -> Unit
 ) {
 
-    val cameraPermissionKey by rememberSaveable(mutableIntStateOf(0))
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val cameraPermissionState = rememberPermissionState(
         android.Manifest.permission.CAMERA
