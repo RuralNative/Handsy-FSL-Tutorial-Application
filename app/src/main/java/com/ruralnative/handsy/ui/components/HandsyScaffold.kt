@@ -31,13 +31,23 @@ import com.ruralnative.handsy.ui.HandsyTheme
 @Composable
 fun HandsyScaffold(
     currentDestination: NavDestination?,
+    onNavigateToLessonListScreen: () -> Unit,
+    onNavigateToHomeScreen: () -> Unit,
+    onNavigateToCameraSetupScreen: () -> Unit,
     composableContent: @Composable (PaddingValues) -> Unit
 ) {
     HandsyTheme {
         Scaffold (
             modifier = Modifier,
             topBar = { TopBar() },
-            bottomBar = { BottomBar(currentDestination) },
+            bottomBar = {
+                BottomBar(
+                    currentDestination,
+                    onNavigateToLessonListScreen,
+                    onNavigateToHomeScreen,
+                    onNavigateToCameraSetupScreen
+                )
+            },
             containerColor = MaterialTheme.colorScheme.background,
             contentWindowInsets = WindowInsets.safeContent,
             content = { innerPadding ->
