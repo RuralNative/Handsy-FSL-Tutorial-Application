@@ -6,12 +6,15 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -21,11 +24,8 @@ import com.ruralnative.handsy.navigation.Screen
 
 @Composable
 fun BottomBar(
-    navigationController: NavHostController
+    currentDestination: NavDestination?
 ) {
-    val navBackStackEntry by navigationController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-
     NavigationBar {
         val navigationItems = listOf(
             BottomNavigation(
@@ -94,7 +94,7 @@ fun BottomBar(
             val selected = selectionMap.getOrDefault(item, false)
             NavigationBarItem(
                 selected = selected,
-                onClick = { navigationController.navigate(item.route) },
+                onClick = { navigate(item.route) },
                 icon = {
                     if (selected) {
                         item.selectedIcon()

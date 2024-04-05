@@ -13,6 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.ruralnative.handsy.navigation.NavGraphTransitions.MISCELLANEOUS_ENTER_TRANSITION
 import com.ruralnative.handsy.navigation.NavGraphTransitions.MISCELLANEOUS_EXIT_TRANSITION
@@ -117,7 +118,9 @@ fun NavGraph(
             exitTransition = SCAFFOLD_EXIT_TRANSITION
         ) {
             Log.d(TAG, "LessonListScreen INITIALIZED")
-            HandsyScaffold(navigationController = navController) {
+            HandsyScaffold(
+                navController.currentBackStackEntryAsState().value?.destination
+            ) {
                 Surface(
                     modifier = Modifier
                         .consumeWindowInsets(it)

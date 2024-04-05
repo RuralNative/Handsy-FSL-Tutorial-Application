@@ -9,7 +9,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import com.ruralnative.handsy.ui.HandsyTheme
 
@@ -27,14 +30,14 @@ import com.ruralnative.handsy.ui.HandsyTheme
  */
 @Composable
 fun HandsyScaffold(
-    navigationController: NavHostController,
+    currentDestination: NavDestination?,
     composableContent: @Composable (PaddingValues) -> Unit
 ) {
     HandsyTheme {
         Scaffold (
             modifier = Modifier,
             topBar = { TopBar() },
-            bottomBar = { BottomBar(navigationController) },
+            bottomBar = { BottomBar(currentDestination) },
             containerColor = MaterialTheme.colorScheme.background,
             contentWindowInsets = WindowInsets.safeContent,
             content = { innerPadding ->
