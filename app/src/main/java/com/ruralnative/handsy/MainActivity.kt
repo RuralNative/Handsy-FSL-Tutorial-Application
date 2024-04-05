@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             navHostController = rememberNavController()
             NavGraph(navController = navHostController)
-
         }
     }
 

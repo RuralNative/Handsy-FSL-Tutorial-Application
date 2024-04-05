@@ -31,6 +31,11 @@ import com.ruralnative.handsy.ui.lesson_screen.LessonViewModel
 import com.ruralnative.handsy.ui.main_screen.LessonListScreen
 
 private const val TAG = "NavGraph"
+
+/**
+ * Preliminary enter transition for screens.
+ * This transition fades in the screen while sliding it into the container from the start.
+ */
 private val PRELIMINARY_ENTER_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
     fadeIn(
         animationSpec = tween(
@@ -41,6 +46,11 @@ private val PRELIMINARY_ENTER_TRANSITION: AnimatedContentTransitionScope<NavBack
         towards = AnimatedContentTransitionScope.SlideDirection.Start
     )
 }
+
+/**
+ * Preliminary exit transition for screens.
+ * This transition fades out the screen while sliding it out of the container to the end.
+ */
 private val PRELIMINARY_EXIT_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() ->
     ExitTransition = {
     fadeOut(
@@ -52,6 +62,11 @@ private val PRELIMINARY_EXIT_TRANSITION: AnimatedContentTransitionScope<NavBackS
         towards = AnimatedContentTransitionScope.SlideDirection.End
     )
 }
+
+/**
+ * Scaffold enter transition for screens.
+ * This transition fades in the screen while sliding it into the container from the start.
+ */
 private val SCAFFOLD_ENTER_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
     fadeIn(
         animationSpec = tween(
@@ -62,6 +77,11 @@ private val SCAFFOLD_ENTER_TRANSITION: AnimatedContentTransitionScope<NavBackSta
         towards = AnimatedContentTransitionScope.SlideDirection.Start
     )
 }
+
+/**
+ * Scaffold exit transition for screens.
+ * This transition fades out the screen while sliding it out of the container to the end.
+ */
 private val SCAFFOLD_EXIT_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() ->
 ExitTransition = {
     fadeOut(
@@ -73,6 +93,11 @@ ExitTransition = {
         towards = AnimatedContentTransitionScope.SlideDirection.End
     )
 }
+
+/**
+ * Miscellaneous enter transition for screens.
+ * This transition fades in the screen while sliding it into the container from the start.
+ */
 private val MISCELLANEOUS_ENTER_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
     fadeIn(
         animationSpec = tween(
@@ -83,6 +108,11 @@ private val MISCELLANEOUS_ENTER_TRANSITION: AnimatedContentTransitionScope<NavBa
         towards = AnimatedContentTransitionScope.SlideDirection.Start
     )
 }
+
+/**
+ * Miscellaneous exit transition for screens.
+ * This transition fades out the screen while sliding it out of the container to the end.
+ */
 private val MISCELLANEOUS_EXIT_TRANSITION: AnimatedContentTransitionScope<NavBackStackEntry>.() ->
 ExitTransition = {
     fadeOut(
@@ -97,8 +127,11 @@ ExitTransition = {
 
 /**
  * Composable function for the main navigation graph.
- * This composable defines the navigation graph for the application, including the entry screen, user intro screen, main screen, lesson screen, camera screen, and stats screen.
- * @param navController tThe NavHostController for this navigation graph.
+ * This composable defines the navigation graph for the application.
+ * This function is used to set the proper UI content through the ComponentActivity.setContent{},
+ * initializing first through the EntryScreen as its starting destination.
+ *
+ * @param navController The NavHostController for this navigation graph.
  */
 @Composable
 fun NavGraph(
