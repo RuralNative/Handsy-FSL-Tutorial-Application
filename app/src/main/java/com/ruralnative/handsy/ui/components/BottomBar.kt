@@ -30,7 +30,7 @@ fun BottomBar(
         val navigationItems = listOf(
             BottomNavigation(
                 title = "Lesson",
-                route = Screen.MainScreen.route,
+                route = Screen.LessonListScreen.route,
                 selectedIcon = {
                     SelectedIcon(
                         modifier = Modifier,
@@ -48,7 +48,7 @@ fun BottomBar(
             ),
             BottomNavigation(
                 title = "Home",
-                route = Screen.MainScreen.route,
+                route = Screen.HomeScreen.route,
                 selectedIcon = {
                     SelectedIcon(
                         modifier = Modifier,
@@ -66,7 +66,7 @@ fun BottomBar(
             ),
             BottomNavigation(
                 title = "Camera",
-                route = Screen.CameraScreen.route,
+                route = Screen.CameraSetupScreen.route,
                 selectedIcon = {
                     SelectedIcon(
                         modifier = Modifier,
