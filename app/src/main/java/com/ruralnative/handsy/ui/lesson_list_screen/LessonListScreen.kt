@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.main_screen
+package com.ruralnative.handsy.ui.lesson_list_screen
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable

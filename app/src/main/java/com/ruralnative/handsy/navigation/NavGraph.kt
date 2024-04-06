@@ -29,7 +29,7 @@ import com.ruralnative.handsy.ui.entry.EntryScreen
 import com.ruralnative.handsy.ui.user_intro.UserIntroScreen
 import com.ruralnative.handsy.ui.lesson_screen.LessonScreen
 import com.ruralnative.handsy.ui.lesson_screen.LessonViewModel
-import com.ruralnative.handsy.ui.main_screen.LessonListScreen
+import com.ruralnative.handsy.ui.lesson_list_screen.LessonListScreen
 
 /**
  * Composable function for the main navigation graph.

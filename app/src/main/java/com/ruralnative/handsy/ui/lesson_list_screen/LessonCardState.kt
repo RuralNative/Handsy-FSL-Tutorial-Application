@@ -1,6 +1,4 @@
-package com.ruralnative.handsy.ui.main_screen
-
-import androidx.annotation.DrawableRes
+package com.ruralnative.handsy.ui.lesson_list_screen
 
 data class LessonCardState(
     val lessonID: Int,
