@@ -60,10 +60,18 @@ fun NavGraph(
             EntryScreen(
                 viewModel = hiltViewModel(),
                 onNavigateToUserIntro = {
-                    navController.navigate(Screen.UserIntro.route)
+                    navController.navigate(Screen.UserIntro.route) {
+                        popUpTo(Screen.Entry.route) {
+                            inclusive = true
+                        }
+                    }
                 },
                 onNavigateToMain = {
-                    navController.navigate(Screen.LessonListScreen.route)
+                    navController.navigate(Screen.LessonListScreen.route) {
+                        popUpTo(Screen.Entry.route) {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
@@ -79,7 +87,11 @@ fun NavGraph(
             Log.d(TAG, "UserIntroScreen INITIALIZED")
             UserIntroScreen(
                 onNavigateToDevsIntro = {
-                    navController.navigate(Screen.DevsIntro.route)
+                    navController.navigate(Screen.DevsIntro.route) {
+                        popUpTo(Screen.UserIntro.route) {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
@@ -94,7 +106,11 @@ fun NavGraph(
         ) {
             DevsIntroScreen(
                 onButtonClick = {
-                    navController.navigate(Screen.LessonListScreen.route)
+                    navController.navigate(Screen.LessonListScreen.route) {
+                        popUpTo(Screen.DevsIntro.route) {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
