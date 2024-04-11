@@ -4,6 +4,10 @@
     <string name="handsy_normal_case" translatable="false">Handsy</string>
     <string name="fsl_sentence_case">Filipino Sign Language</string>
     <string name="mascot_content_description">Cat Mascot Image for Handsy</string>
+    <string name="dialog_confirm">Confirm</string>
+    <string name="dialog_dismiss">Dismiss</string>
+    <string name="default_dialog_title">Is this a Goodbye?</string>
+    <string name="default_dialog_description">We\'re sorry to see you go! Remember, learning sign language is a journey. You may choose to resume or exit the application.</string>
 
     <!-- USER_INTRO Specific -->
     <string name="intro_greeting_header">Hello Stranger,</string>
