@@ -7,11 +7,20 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * DevsIntroViewModel manages the logic for the [DevsIntroScreen].
+ * It handles navigation to the main screen.
+ */
 @HiltViewModel
 class DevsIntroViewModel @Inject constructor(
 ): ViewModel() {
 
-    fun navigateToMain(
+    /**
+     * Navigates to the HomeScreen after a specified delay.
+     *
+     * @param onNavigateToMain A lambda function to be called after the delay, which performs the navigation.
+     */
+    fun navigateToHome(
         onNavigateToMain: () -> Unit
     ) {
         viewModelScope.launch {

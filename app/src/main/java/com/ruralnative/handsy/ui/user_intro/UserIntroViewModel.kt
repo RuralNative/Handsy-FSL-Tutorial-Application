@@ -40,7 +40,7 @@ class UserIntroViewModel @Inject constructor(
      */
     fun saveUserNameInDatabase(
         nameInput: String,
-        onNavigateToHome: () -> Unit
+        onNavigateToDevsIntro: () -> Unit
         ) {
         viewModelScope.launch {
             repository.insertUser(
@@ -51,7 +51,7 @@ class UserIntroViewModel @Inject constructor(
                     progressionLevel = 1
                 )
             )
-            onNavigateToHome()
+            onNavigateToDevsIntro()
         }
     }
 }
