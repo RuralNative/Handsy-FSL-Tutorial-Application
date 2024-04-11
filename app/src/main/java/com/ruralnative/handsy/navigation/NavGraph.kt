@@ -24,9 +24,11 @@ import com.ruralnative.handsy.navigation.data.NavGraphTransitions.SCAFFOLD_EXIT_
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.TAG
 import com.ruralnative.handsy.navigation.data.Screen
 import com.ruralnative.handsy.ui.HandsyTheme
+import com.ruralnative.handsy.ui.camera_screen.components.CameraScreen
 import com.ruralnative.handsy.ui.components.HandsyScaffold
 import com.ruralnative.handsy.ui.dev_intro.DevsIntroScreen
 import com.ruralnative.handsy.ui.entry.EntryScreen
+import com.ruralnative.handsy.ui.home_screen.HomeScreen
 import com.ruralnative.handsy.ui.user_intro.UserIntroScreen
 import com.ruralnative.handsy.ui.lesson_screen.LessonScreen
 import com.ruralnative.handsy.ui.lesson_screen.LessonViewModel
@@ -123,6 +125,20 @@ fun NavGraph(
             enterTransition = SCAFFOLD_ENTER_TRANSITION,
             exitTransition = SCAFFOLD_EXIT_TRANSITION
         ) {
+            HandsyScaffold(
+                navController.currentBackStackEntryAsState().value?.destination,
+                { navController.navigate(Screen.LessonListScreen.route) },
+                { navController.navigate(Screen.HomeScreen.route) },
+                { navController.navigate(Screen.CameraSetupScreen.route) }
+            ) {
+                Surface(
+                    modifier = Modifier
+                        .consumeWindowInsets(it)
+                        .fillMaxSize()
+                ) {
+                    HomeScreen()
+                }
+            }
         }
 
         // LessonListScreen
@@ -131,7 +147,6 @@ fun NavGraph(
             enterTransition = SCAFFOLD_ENTER_TRANSITION,
             exitTransition = SCAFFOLD_EXIT_TRANSITION
         ) {
-            Log.d(TAG, "LessonListScreen INITIALIZED")
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
                 { navController.navigate(Screen.LessonListScreen.route) },
@@ -160,7 +175,20 @@ fun NavGraph(
             enterTransition = SCAFFOLD_ENTER_TRANSITION,
             exitTransition = SCAFFOLD_EXIT_TRANSITION
         ) {
-            Log.d(TAG, "CameraSetup Screen INITIALIZED")
+            HandsyScaffold(
+                navController.currentBackStackEntryAsState().value?.destination,
+                { navController.navigate(Screen.LessonListScreen.route) },
+                { navController.navigate(Screen.HomeScreen.route) },
+                { navController.navigate(Screen.CameraSetupScreen.route) }
+            ) {
+                Surface(
+                    modifier = Modifier
+                        .consumeWindowInsets(it)
+                        .fillMaxSize()
+                ) {
+                    CameraScreen()
+                }
+            }
         }
 
         /*
