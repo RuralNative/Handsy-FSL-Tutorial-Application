@@ -48,12 +48,14 @@ fun NavGraph(
 ) {
 
     val poppedOriginAndNavigateTo: (
-        currentRoute: String,
+        currentRoute: String?,
         destinationRoute: String
-            ) -> Unit = { current: String, destination: String ->
+            ) -> Unit = { current: String?, destination: String ->
         navController.navigate(destination) {
-            popUpTo(current) {
-                inclusive = true
+            if (current != null) {
+                popUpTo(current) {
+                    inclusive = true
+                }
             }
         }
     }
@@ -74,18 +76,10 @@ fun NavGraph(
                 EntryScreen(
                     viewModel = hiltViewModel(),
                     onNavigateToUserIntro = {
-                        navController.navigate(Screen.UserIntro.route) {
-                            popUpTo(Screen.Entry.route) {
-                                inclusive = true
-                            }
-                        }
+                        poppedOriginAndNavigateTo(route, Screen.UserIntro.route)
                     },
                     onNavigateToMain = {
-                        navController.navigate(Screen.LessonListScreen.route) {
-                            popUpTo(Screen.Entry.route) {
-                                inclusive = true
-                            }
-                        }
+                        poppedOriginAndNavigateTo(route, Screen.HomeScreen.route)
                     }
                 )
             }
@@ -101,11 +95,7 @@ fun NavGraph(
                 UserIntroScreen(
                     viewModel = hiltViewModel(),
                     onNavigateToDevsIntro = {
-                        navController.navigate(Screen.DevsIntro.route) {
-                            popUpTo(Screen.UserIntro.route) {
-                                inclusive = true
-                            }
-                        }
+                        poppedOriginAndNavigateTo(route, Screen.DevsIntro.route)
                     }
                 )
 
