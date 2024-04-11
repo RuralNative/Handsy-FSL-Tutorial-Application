@@ -23,6 +23,7 @@ import com.ruralnative.handsy.navigation.data.NavGraphTransitions.SCAFFOLD_ENTER
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.SCAFFOLD_EXIT_TRANSITION
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.TAG
 import com.ruralnative.handsy.navigation.data.Screen
+import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.components.HandsyScaffold
 import com.ruralnative.handsy.ui.dev_intro.DevsIntroScreen
 import com.ruralnative.handsy.ui.entry.EntryScreen
@@ -50,35 +51,33 @@ fun NavGraph(
         exitTransition = { ExitTransition.None }
     ) {
 
-        /**
-         * Entry Screen
-         */
+        // Entry Route
         composable(
             route = Screen.Entry.route,
             exitTransition = PRELIMINARY_EXIT_TRANSITION
         ) {
-            EntryScreen(
-                viewModel = hiltViewModel(),
-                onNavigateToUserIntro = {
-                    navController.navigate(Screen.UserIntro.route) {
-                        popUpTo(Screen.Entry.route) {
-                            inclusive = true
+            HandsyTheme {
+                EntryScreen(
+                    viewModel = hiltViewModel(),
+                    onNavigateToUserIntro = {
+                        navController.navigate(Screen.UserIntro.route) {
+                            popUpTo(Screen.Entry.route) {
+                                inclusive = true
+                            }
+                        }
+                    },
+                    onNavigateToMain = {
+                        navController.navigate(Screen.LessonListScreen.route) {
+                            popUpTo(Screen.Entry.route) {
+                                inclusive = true
+                            }
                         }
                     }
-                },
-                onNavigateToMain = {
-                    navController.navigate(Screen.LessonListScreen.route) {
-                        popUpTo(Screen.Entry.route) {
-                            inclusive = true
-                        }
-                    }
-                }
-            )
+                )
+            }
         }
 
-        /**
-         * User Intro
-         */
+        // User Intro Route
         composable(
             route = Screen.UserIntro.route,
             enterTransition = PRELIMINARY_ENTER_TRANSITION,

@@ -25,27 +25,43 @@ import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
 
+/**
+ * EntryScreen is the main entry point of the application.
+ * It checks the user count from the database and decides to which screen to navigate to after.
+ * If there is no user, it will navigate to the UserIntro screen.
+ * If there is at least one, it will navigate to the Home screen.
+ * Either navigation must pop this screen from the backstack to disable users in navigating to this screen
+ * if system back button is pressed.
+ *
+ * @param viewModel The ViewModel for the EntryScreen.
+ * @param onNavigateToUserIntro A lambda function to navigate to the user introduction screen.
+ * @param onNavigateToMain A lambda function to navigate to the main screen.
+ */
 @Composable
 fun EntryScreen(
     viewModel: EntryViewModel = hiltViewModel(),
     onNavigateToUserIntro: () -> Unit,
     onNavigateToMain: () -> Unit
 ) {
-    HandsyTheme {
-        EntryScreenUI()
-        LaunchedEffect(Unit) {
-            viewModel.checkUserCountAndNavigate(
-                navigateToInitial = {
-                    onNavigateToUserIntro()
-                },
-                navigateToMain = {
-                    onNavigateToMain()
-                }
-            )
-        }
+    EntryScreenUI()
+    LaunchedEffect(Unit) {
+        viewModel.checkUserCountAndNavigate(
+            navigateToInitial = {
+                onNavigateToUserIntro()
+            },
+            navigateToMain = {
+                onNavigateToMain()
+            }
+        )
     }
 }
 
+/**
+ * EntryScreenUI is the UI component for the EntryScreen.
+ * It displays the application's header text.
+ *
+ * @param modifier Modifier to apply to the UI component.
+ */
 @Preview(showBackground = true)
 @Composable
 private fun EntryScreenUI(modifier: Modifier = Modifier) {
@@ -81,7 +97,12 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
     }
 }
 
-
+/**
+ * HeaderText displays the application's header text.
+ *
+ * @param modifier Modifier to apply to the Text component.
+ * @param fontColor The color of the font.
+ */
 @Composable
 private fun HeaderText(
     modifier: Modifier = Modifier,
