@@ -42,89 +42,101 @@ import com.ruralnative.handsy.ui.NunitoFontFamily
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+/**
+ * UserIntroScreen is the entry screen for new users.
+ * It displays in an animated manner a greeting, a mascot, and a text field for the user to enter their name.
+ *
+ * @param viewModel The ViewModel for the UserIntroScreen.
+ * @param onNavigateToDevsIntro A lambda function to navigate to the developers introduction screen.
+ */
 @Composable
 fun UserIntroScreen(
-    onNavigateToDevsIntro: () -> Unit,
-    viewModel: UserIntroViewModel = hiltViewModel()
+    viewModel: UserIntroViewModel,
+    onNavigateToDevsIntro: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val userNameState = uiState.userNameState
 
-    HandsyTheme {
-        ConstraintLayout(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .background(MaterialTheme.colorScheme.background)
-                .padding(16.dp)
-                .imePadding()
-        ) {
-            val (headerContainer, mascotContainer, inputContainer) = createRefs()
-            val headerAnimation = remember { Animatable(0f) }
-            val mascotAnimation = remember { Animatable(0f) }
-            val textBoxAnimation = remember { Animatable(0f) }
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .background(MaterialTheme.colorScheme.background)
+            .padding(16.dp)
+            .imePadding()
+    ) {
+        val (headerContainer, mascotContainer, inputContainer) = createRefs()
+        val headerAnimation = remember { Animatable(0f) }
+        val mascotAnimation = remember { Animatable(0f) }
+        val textBoxAnimation = remember { Animatable(0f) }
 
-            LaunchedEffect("animationKey") {
-                launch {
-                    delay(600)
-                    headerAnimation.animateTo(1f, animationSpec = tween(1000))
-                }
-                launch {
-                    delay(300)
-                    mascotAnimation.animateTo(1f, animationSpec = tween(1500))
-                }
-                launch {
-                    delay(900)
-                    textBoxAnimation.animateTo(1f, animationSpec = tween(1000))
-                }
+        LaunchedEffect("animationKey") {
+            launch {
+                delay(600)
+                headerAnimation.animateTo(1f, animationSpec = tween(1000))
             }
-
-            HeaderText(
-                Modifier
-                    .constrainAs(headerContainer) {
-                        start.linkTo(parent.start, margin = 16.dp)
-                        top.linkTo(parent.top, margin = 16.dp)
-                        end.linkTo(parent.end, margin = 16.dp)
-                        bottom.linkTo(mascotContainer.top)
-                    }
-                    .padding(start = 16.dp, end = 16.dp)
-                    .graphicsLayer { alpha = headerAnimation.value }
-            )
-            MascotIcon(
-                Modifier
-                    .fillMaxWidth()
-                    .constrainAs(mascotContainer) {
-                        start.linkTo(parent.start)
-                        top.linkTo(parent.top)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
-                    }
-                    .graphicsLayer { alpha = mascotAnimation.value }
-            )
-            NameInputField(
-                value = userNameState,
-                onValueChange = { newValue ->
-                    viewModel.updateUserNameState(newValue)
-                },
-                onDone = {
-                    viewModel.saveUserNameInDatabase(it)
-                    onNavigateToDevsIntro()
-                         },
-                Modifier
-                    .height(56.dp)
-                    .constrainAs(inputContainer) {
-                        start.linkTo(parent.start, margin = 32.dp)
-                        top.linkTo(mascotContainer.bottom)
-                        end.linkTo(parent.end, margin = 32.dp)
-                        bottom.linkTo(parent.bottom)
-                    }
-                    .background(color = MaterialTheme.colorScheme.surface)
-                    .graphicsLayer { alpha = textBoxAnimation.value }
-            )
+            launch {
+                delay(300)
+                mascotAnimation.animateTo(1f, animationSpec = tween(1500))
+            }
+            launch {
+                delay(900)
+                textBoxAnimation.animateTo(1f, animationSpec = tween(1000))
+            }
         }
+
+        HeaderText(
+            Modifier
+                .constrainAs(headerContainer) {
+                    start.linkTo(parent.start, margin = 16.dp)
+                    top.linkTo(parent.top, margin = 16.dp)
+                    end.linkTo(parent.end, margin = 16.dp)
+                    bottom.linkTo(mascotContainer.top)
+                }
+                .padding(start = 16.dp, end = 16.dp)
+                .graphicsLayer { alpha = headerAnimation.value }
+        )
+
+        MascotIcon(
+            Modifier
+                .fillMaxWidth()
+                .constrainAs(mascotContainer) {
+                    start.linkTo(parent.start)
+                    top.linkTo(parent.top)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                }
+                .graphicsLayer { alpha = mascotAnimation.value }
+        )
+
+        NameInputField(
+            value = userNameState,
+            onValueChange = { newValue ->
+                viewModel.updateUserNameState(newValue)
+            },
+            onDone = {
+                viewModel.saveUserNameInDatabase(it)
+                onNavigateToDevsIntro()
+            },
+            Modifier
+                .height(56.dp)
+                .constrainAs(inputContainer) {
+                    start.linkTo(parent.start, margin = 32.dp)
+                    top.linkTo(mascotContainer.bottom)
+                    end.linkTo(parent.end, margin = 32.dp)
+                    bottom.linkTo(parent.bottom)
+                }
+                .background(color = MaterialTheme.colorScheme.surface)
+                .graphicsLayer { alpha = textBoxAnimation.value }
+        )
     }
 }
 
+/**
+ * HeaderText displays the greeting text for the UserIntroScreen.
+ *
+ * @param modifier Modifier to apply to the Text component.
+ */
 @Composable
 private fun HeaderText(
     modifier: Modifier
@@ -151,6 +163,11 @@ private fun HeaderText(
     }
 }
 
+/**
+ * MascotIcon displays the mascot image for the UserIntroScreen.
+ *
+ * @param modifier Modifier to apply to the Image component.
+ */
 @Composable
 private fun MascotIcon(modifier: Modifier) {
     Box(
@@ -166,6 +183,15 @@ private fun MascotIcon(modifier: Modifier) {
     }
 }
 
+/**
+ * NameInputField is a TextField for the user to enter their name.
+ * It handles text changes and the "Done" action on the keyboard.
+ *
+ * @param value The current value of the TextField.
+ * @param onValueChange A lambda function to handle text changes.
+ * @param onDone A lambda function to handle the "Done" action on the keyboard.
+ * @param modifier Modifier to apply to the TextField component.
+ */
 @Composable
 private fun NameInputField(
     value: String,

@@ -83,16 +83,19 @@ fun NavGraph(
             enterTransition = PRELIMINARY_ENTER_TRANSITION,
             exitTransition = PRELIMINARY_EXIT_TRANSITION
         ) {
-            Log.d(TAG, "UserIntroScreen INITIALIZED")
-            UserIntroScreen(
-                onNavigateToDevsIntro = {
-                    navController.navigate(Screen.DevsIntro.route) {
-                        popUpTo(Screen.UserIntro.route) {
-                            inclusive = true
+            HandsyTheme {
+                UserIntroScreen(
+                    viewModel = hiltViewModel(),
+                    onNavigateToDevsIntro = {
+                        navController.navigate(Screen.DevsIntro.route) {
+                            popUpTo(Screen.UserIntro.route) {
+                                inclusive = true
+                            }
                         }
                     }
-                }
-            )
+                )
+
+            }
         }
 
         /**
