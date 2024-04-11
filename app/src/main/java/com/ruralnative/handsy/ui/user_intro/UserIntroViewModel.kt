@@ -13,25 +13,36 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * UserIntroViewModel manages the state and logic for the [UserIntroScreen].
+ */
 @HiltViewModel
 class UserIntroViewModel @Inject constructor(
     private val repository: UserRepository
 ): ViewModel() {
 
-    //Mutable StateFlow for ViewModel access only
     private val _uiState = MutableStateFlow(UserIntroState())
-    //Backing property for State for outside access
     val uiState: StateFlow<UserIntroState> = _uiState.asStateFlow()
 
-    //Update State with real-time keyboard typing task
+    /**
+     * Updates the user name state in the UI state.
+     *
+     * @param newNameState The new user name state to update with.
+     */
     fun updateUserNameState(newNameState: String) {
         _uiState.value = _uiState.value.copy(userNameState = newNameState)
     }
 
-    //Receive String from TextField and send to Database, then Navigate to Main Screen
-    fun saveUserNameInDatabase(nameInput: String) {
+    /**
+     * Saves the user name to the database.
+     *
+     * @param nameInput The user name input to save.
+     */
+    fun saveUserNameInDatabase(
+        nameInput: String,
+        onNavigateToHome: () -> Unit
+        ) {
         viewModelScope.launch {
-            Log.d("CheckUserTable", "Before Save ${repository.isThereNoUser()}")
             repository.insertUser(
                 User(
                     id = 1,
@@ -40,6 +51,7 @@ class UserIntroViewModel @Inject constructor(
                     progressionLevel = 1
                 )
             )
+            onNavigateToHome()
         }
     }
 }
