@@ -46,6 +46,18 @@ import com.ruralnative.handsy.ui.lesson_list_screen.LessonListScreen
 fun NavGraph(
     navController: NavHostController
 ) {
+
+    val poppedOriginAndNavigateTo: (
+        currentRoute: String,
+        destinationRoute: String
+            ) -> Unit = { current: String, destination: String ->
+        navController.navigate(destination) {
+            popUpTo(current) {
+                inclusive = true
+            }
+        }
+    }
+
     NavHost(
         navController = navController,
         startDestination = "entry_screen",
