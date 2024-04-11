@@ -20,9 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.ruralnative.handsy.R
-import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
 
 /**
@@ -39,17 +37,17 @@ import com.ruralnative.handsy.ui.NunitoFontFamily
  */
 @Composable
 fun EntryScreen(
-    viewModel: EntryViewModel = hiltViewModel(),
+    viewModel: EntryViewModel,
     onNavigateToUserIntro: () -> Unit,
     onNavigateToMain: () -> Unit
 ) {
     EntryScreenUI()
     LaunchedEffect(Unit) {
         viewModel.checkUserCountAndNavigate(
-            navigateToInitial = {
+            navigateToUserIntro = {
                 onNavigateToUserIntro()
             },
-            navigateToMain = {
+            navigateToHome = {
                 onNavigateToMain()
             }
         )
