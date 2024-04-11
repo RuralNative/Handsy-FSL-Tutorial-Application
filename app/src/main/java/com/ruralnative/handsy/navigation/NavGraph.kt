@@ -47,6 +47,17 @@ fun NavGraph(
     navController: NavHostController
 ) {
 
+    /**
+     * Navigates to a specified destination route, optionally popping the back stack up to a current route.
+     * This is specifically made for navigations requiring origin to be popped from the backstack,
+     * despite having an optional currentRoute as a parameter.
+     * currentRoute is optional/nullable to allow convenient use of provided 'route'
+     * within the composable() where this value is used.
+     *
+     * @param currentRoute The current route to pop up to before navigating. Despite its nullable nature,
+     * this parameter is recommended to be filled in as this is necessary for its proper call
+     * @param destinationRoute The destination route to navigate to.
+     */
     val poppedOriginAndNavigateTo: (
         currentRoute: String?,
         destinationRoute: String
@@ -60,6 +71,11 @@ fun NavGraph(
         }
     }
 
+    /**
+     * Navigates to a specified destination route without modifying the back stack.
+     *
+     * @param destinationRoute The destination route to navigate to.
+     */
     val backStackedOriginAndNavigate: (
         destinationRoute: String
     ) -> Unit = {
