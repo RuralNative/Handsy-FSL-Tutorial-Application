@@ -115,8 +115,7 @@ fun UserIntroScreen(
                 viewModel.updateUserNameState(newValue)
             },
             onDone = {
-                viewModel.saveUserNameInDatabase(it)
-                onNavigateToDevsIntro()
+                viewModel.saveUserNameInDatabase(it, onNavigateToDevsIntro)
             },
             Modifier
                 .height(56.dp)

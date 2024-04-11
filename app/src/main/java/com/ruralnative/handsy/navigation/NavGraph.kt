@@ -98,9 +98,7 @@ fun NavGraph(
             }
         }
 
-        /**
-         * Devs Intro composable
-         */
+        // Devs Intro
         composable(
             route = Screen.DevsIntro.route,
             enterTransition = PRELIMINARY_ENTER_TRANSITION,
@@ -108,7 +106,7 @@ fun NavGraph(
         ) {
             DevsIntroScreen(
                 onButtonClick = {
-                    navController.navigate(Screen.LessonListScreen.route) {
+                    navController.navigate(Screen.HomeScreen.route) {
                         popUpTo(Screen.DevsIntro.route) {
                             inclusive = true
                         }
@@ -117,20 +115,15 @@ fun NavGraph(
             )
         }
 
-        /*
-         * Home Screen
-         */
+        // HomeScreen
         composable(
             route = Screen.HomeScreen.route,
             enterTransition = SCAFFOLD_ENTER_TRANSITION,
             exitTransition = SCAFFOLD_EXIT_TRANSITION
         ) {
-            Log.d(TAG, "HomeScreen INITIALIZED")
         }
 
-        /*
-         * LessonList Screen
-         */
+        // LessonListScreen
         composable(
             route = Screen.LessonListScreen.route,
             enterTransition = SCAFFOLD_ENTER_TRANSITION,
@@ -158,6 +151,17 @@ fun NavGraph(
         }
 
         /*
+         * CameraSetup Screen
+         */
+        composable(
+            route = Screen.CameraSetupScreen.route,
+            enterTransition = SCAFFOLD_ENTER_TRANSITION,
+            exitTransition = SCAFFOLD_EXIT_TRANSITION
+        ) {
+            Log.d(TAG, "CameraSetup Screen INITIALIZED")
+        }
+
+        /*
          * Lesson Screen
          */
         composable(
@@ -173,17 +177,6 @@ fun NavGraph(
         ) { backStackEntry ->
             val viewModel: LessonViewModel = hiltViewModel(backStackEntry)
             LessonScreen(viewModel)
-        }
-
-        /*
-         * CameraSetup Screen
-         */
-        composable(
-            route = Screen.CameraSetupScreen.route,
-            enterTransition = SCAFFOLD_ENTER_TRANSITION,
-            exitTransition = SCAFFOLD_EXIT_TRANSITION
-        ) {
-            Log.d(TAG, "CameraSetup Screen INITIALIZED")
         }
 
         /*
