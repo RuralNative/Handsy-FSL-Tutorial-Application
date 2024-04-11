@@ -29,88 +29,93 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ruralnative.handsy.R
-import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+/**
+ * DevsIntroScreen is the main entry point for developers.
+ * It displays an introduction screen with a header, an image, and a button to start the journey.
+ *
+ * @param viewModel The ViewModel for the DevsIntroScreen.
+ * @param onNavigateToHome A lambda function to be called when the start button is clicked.
+ */
 @Composable
 fun DevsIntroScreen(
     viewModel: DevsIntroViewModel = hiltViewModel(),
-    onButtonClick: () -> Unit
+    onNavigateToHome: () -> Unit
 ) {
-    val onStartButtonClick = {
-        viewModel.navigateToMain(onButtonClick)
-    }
-
-    HandsyTheme(
-        dynamicColor = false
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth()
+            .systemBarsPadding()
+            .background(MaterialTheme.colorScheme.background)
     ) {
-        ConstraintLayout(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-                .systemBarsPadding()
-                .background(MaterialTheme.colorScheme.background)
-        ) {
-            val (headerContainer, imageContainer, buttonContainer) = createRefs()
 
-            val headerAnimation = remember { Animatable(0f) }
-            val imageAnimation = remember { Animatable(0f) }
-            val buttonAnimation = remember { Animatable(0f) }
-            LaunchedEffect("animationKey") {
-                launch {
-                    delay(600)
-                    headerAnimation.animateTo(1f, animationSpec = tween(1000))
-                }
-                launch {
-                    delay(300)
-                    imageAnimation.animateTo(1f, animationSpec = tween(1500))
-                }
-                launch {
-                    delay(3000)
-                    buttonAnimation.animateTo(1f, animationSpec = tween(1000))
-                }
+        val (headerContainer, imageContainer, buttonContainer) = createRefs()
+        val headerAnimation = remember { Animatable(0f) }
+        val imageAnimation = remember { Animatable(0f) }
+        val buttonAnimation = remember { Animatable(0f) }
+
+        LaunchedEffect("animationKey") {
+            launch {
+                delay(600)
+                headerAnimation.animateTo(1f, animationSpec = tween(1000))
             }
-
-            HeaderText(
-                modifier = Modifier
-                    .constrainAs(headerContainer) {
-                        start.linkTo(parent.start)
-                        top.linkTo(parent.top)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(imageContainer.top)
-                    }
-                    .padding(32.dp)
-                    .graphicsLayer { alpha = headerAnimation.value }
-            )
-            DevsIntroImage(
-                modifier = Modifier
-                    .constrainAs(imageContainer) {
-                        start.linkTo(parent.start)
-                        top.linkTo(parent.top)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
-                    }
-                    .graphicsLayer { alpha = imageAnimation.value }
-            )
-            MainScreenButton(
-                modifier = Modifier
-                    .fillMaxWidth(0.8f)
-                    .constrainAs(buttonContainer) {
-                        start.linkTo(parent.start)
-                        top.linkTo(imageContainer.bottom)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
-                    }
-                    .graphicsLayer { alpha = buttonAnimation.value },
-                onStartButtonClick
-            )
+            launch {
+                delay(300)
+                imageAnimation.animateTo(1f, animationSpec = tween(1500))
+            }
+            launch {
+                delay(3000)
+                buttonAnimation.animateTo(1f, animationSpec = tween(1000))
+            }
         }
-    }
 
+        HeaderText(
+            modifier = Modifier
+                .constrainAs(headerContainer) {
+                    start.linkTo(parent.start)
+                    top.linkTo(parent.top)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(imageContainer.top)
+                }
+                .padding(32.dp)
+                .graphicsLayer { alpha = headerAnimation.value }
+        )
+
+        DevsIntroImage(
+            modifier = Modifier
+                .constrainAs(imageContainer) {
+                    start.linkTo(parent.start)
+                    top.linkTo(parent.top)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                }
+                .graphicsLayer { alpha = imageAnimation.value }
+        )
+
+        MainScreenButton(
+            modifier = Modifier
+                .fillMaxWidth(0.8f)
+                .constrainAs(buttonContainer) {
+                    start.linkTo(parent.start)
+                    top.linkTo(imageContainer.bottom)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                }
+                .graphicsLayer { alpha = buttonAnimation.value }
+        ) { viewModel.navigateToMain(onNavigateToHome) }
+
+    }
 }
 
+/**
+ * HeaderText displays the header text for composable screen.
+ *
+ * @param modifier Modifier to apply to the Text component.
+ */
 @Composable
 private fun HeaderText(modifier: Modifier) {
     Column(
@@ -137,6 +142,11 @@ private fun HeaderText(modifier: Modifier) {
     }
 }
 
+/**
+ * DevsIntroImage displays image for the composable screen.
+ *
+ * @param modifier Modifier to apply to the Image component.
+ */
 @Composable
 private fun DevsIntroImage(modifier: Modifier) {
     Box(
@@ -151,6 +161,12 @@ private fun DevsIntroImage(modifier: Modifier) {
     }
 }
 
+/**
+ * MainScreenButton is the button that users click to confirm message is read and navigate to HomeScreen.
+ *
+ * @param modifier Modifier to apply to the ExtendedFloatingActionButton component.
+ * @param onButtonClick A lambda function to be called when the button is clicked.
+ */
 @Composable
 private fun MainScreenButton(
     modifier: Modifier,

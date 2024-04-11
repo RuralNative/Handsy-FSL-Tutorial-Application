@@ -104,15 +104,17 @@ fun NavGraph(
             enterTransition = PRELIMINARY_ENTER_TRANSITION,
             exitTransition = PRELIMINARY_EXIT_TRANSITION
         ) {
-            DevsIntroScreen(
-                onButtonClick = {
-                    navController.navigate(Screen.HomeScreen.route) {
-                        popUpTo(Screen.DevsIntro.route) {
-                            inclusive = true
+            HandsyTheme {
+                DevsIntroScreen(
+                    onNavigateToHome = {
+                        navController.navigate(Screen.HomeScreen.route) {
+                            popUpTo(Screen.DevsIntro.route) {
+                                inclusive = true
+                            }
                         }
                     }
-                }
-            )
+                )
+            }
         }
 
         // HomeScreen
