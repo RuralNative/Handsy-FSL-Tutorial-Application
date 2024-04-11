@@ -50,7 +50,7 @@ fun NavGraph(
     val poppedOriginAndNavigateTo: (
         currentRoute: String?,
         destinationRoute: String
-            ) -> Unit = { current: String?, destination: String ->
+    ) -> Unit = { current: String?, destination: String ->
         navController.navigate(destination) {
             if (current != null) {
                 popUpTo(current) {
@@ -58,6 +58,12 @@ fun NavGraph(
                 }
             }
         }
+    }
+
+    val backStackedOriginAndNavigate: (
+        destinationRoute: String
+    ) -> Unit = {
+        navController.navigate(it)
     }
 
     NavHost(
@@ -111,11 +117,7 @@ fun NavGraph(
             HandsyTheme {
                 DevsIntroScreen(
                     onNavigateToHome = {
-                        navController.navigate(Screen.HomeScreen.route) {
-                            popUpTo(Screen.DevsIntro.route) {
-                                inclusive = true
-                            }
-                        }
+                        poppedOriginAndNavigateTo(route, Screen.HomeScreen.route)
                     }
                 )
             }
@@ -129,9 +131,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { navController.navigate(Screen.LessonListScreen.route) },
-                { navController.navigate(Screen.HomeScreen.route) },
-                { navController.navigate(Screen.CameraSetupScreen.route) }
+                { backStackedOriginAndNavigate(Screen.LessonListScreen.route) },
+                { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
+                { backStackedOriginAndNavigate(Screen.CameraSetupScreen.route) }
             ) {
                 Surface(
                     modifier = Modifier
@@ -151,9 +153,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { navController.navigate(Screen.LessonListScreen.route) },
-                { navController.navigate(Screen.HomeScreen.route) },
-                { navController.navigate(Screen.CameraSetupScreen.route) }
+                { poppedOriginAndNavigateTo(route, Screen.LessonListScreen.route) },
+                { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
+                { poppedOriginAndNavigateTo(route, Screen.CameraSetupScreen.route) }
             ) {
                 Surface(
                     modifier = Modifier
@@ -179,9 +181,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { navController.navigate(Screen.LessonListScreen.route) },
-                { navController.navigate(Screen.HomeScreen.route) },
-                { navController.navigate(Screen.CameraSetupScreen.route) }
+                { poppedOriginAndNavigateTo(route, Screen.LessonListScreen.route) },
+                { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
+                { poppedOriginAndNavigateTo(route, Screen.CameraSetupScreen.route) }
             ) {
                 Surface(
                     modifier = Modifier
