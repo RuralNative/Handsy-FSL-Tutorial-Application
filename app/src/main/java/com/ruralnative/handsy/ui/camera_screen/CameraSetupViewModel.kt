@@ -19,4 +19,9 @@ class CameraPermissionViewModel @Inject constructor() : ViewModel() {
     fun setCameraPermissionState(state: PermissionState?) {
         _uiState.value = _uiState.value.copy(cameraPermissionState = state)
     }
+
+    @OptIn(ExperimentalPermissionsApi::class)
+    fun requestCameraPermission(state: PermissionState): () -> Unit {
+        return { state?.launchPermissionRequest() }
+    }
 }
