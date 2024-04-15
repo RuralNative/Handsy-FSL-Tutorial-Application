@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.camera_screen.components
+package com.ruralnative.handsy.ui.camera_screen.components.camera_livestream
 
 import android.Manifest
 import android.content.Context

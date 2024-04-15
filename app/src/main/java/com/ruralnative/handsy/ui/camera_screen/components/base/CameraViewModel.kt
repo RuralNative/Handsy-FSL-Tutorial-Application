@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.camera_screen.components
+package com.ruralnative.handsy.ui.camera_screen.components.base
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
