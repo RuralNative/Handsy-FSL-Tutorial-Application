@@ -29,7 +29,7 @@ import com.ruralnative.handsy.ui.NunitoFontFamily
 
 @Composable
 @OptIn(ExperimentalPermissionsApi::class)
-fun CameraPermissionRequest(
+fun CameraSetup(
     viewModel: CameraPermissionViewModel = hiltViewModel(),
     onNavigateToDefaultScreen: () -> Unit,
     onNavigateToRationaleScreen: () -> Unit,
