@@ -78,7 +78,7 @@ private fun DefaultDialog(
         dismissButton = {
             TextButton(
                 onClick = {
-                    dialogState = false
+                    val dialogStates = false
                 }
             ) {
                 Text(stringResource(R.string.dialog_dismiss))

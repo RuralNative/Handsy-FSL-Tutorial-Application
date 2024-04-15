@@ -106,7 +106,7 @@ fun DevsIntroScreen(
                     bottom.linkTo(parent.bottom)
                 }
                 .graphicsLayer { alpha = buttonAnimation.value }
-        ) { viewModel.navigateToMain(onNavigateToHome) }
+        ) { viewModel.navigateToHome(onNavigateToHome) }
 
     }
 }
