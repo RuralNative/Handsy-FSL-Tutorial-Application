@@ -34,6 +34,7 @@ import com.google.accompanist.permissions.shouldShowRationale
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
+import com.ruralnative.handsy.ui.camera_screen.components.Rationale
 import com.ruralnative.handsy.ui.camera_screen.components.camera_livestream.CameraLiveStream
 
 @Composable

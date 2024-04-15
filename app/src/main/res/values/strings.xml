@@ -23,6 +23,7 @@
     <string name="camera_permission_header">We need Camera Access.</string>
     <string name="camera_permission_description_one">Handsy utilizes your phone\'s camera for its gesture recognition feature. Please confirm the permission request.</string>
     <string name="camera_permission_description_two">Do not worry about your data, we can\'t store it.</string>
+    <string name="camera_permission_button">Confirm</string>
 
     <!-- ALPHABET LESSONS -->
     <string name="alphabet_a_description">Make a fist with your thumb touching the side of your index finger. Hold your hand in front of your chest, palm facing inward.</string>
