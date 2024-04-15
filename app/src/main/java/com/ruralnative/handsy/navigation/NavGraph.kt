@@ -24,7 +24,7 @@ import com.ruralnative.handsy.navigation.data.NavGraphTransitions.SCAFFOLD_EXIT_
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.TAG
 import com.ruralnative.handsy.navigation.data.Screen
 import com.ruralnative.handsy.ui.HandsyTheme
-import com.ruralnative.handsy.ui.camera_screen.components.CameraScreen
+import com.ruralnative.handsy.ui.camera_screen.components.base.CameraScreen
 import com.ruralnative.handsy.ui.components.HandsyScaffold
 import com.ruralnative.handsy.ui.dev_intro.DevsIntroScreen
 import com.ruralnative.handsy.ui.entry.EntryScreen

@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,48 +27,44 @@ import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.NunitoFontFamily
+import com.ruralnative.handsy.ui.camera_screen.components.camera_livestream.CameraLiveStream
 
 @Composable
 @OptIn(ExperimentalPermissionsApi::class)
 fun CameraSetup(
     viewModel: CameraPermissionViewModel = hiltViewModel(),
-    onNavigateToDefaultScreen: () -> Unit,
-    onNavigateToRationaleScreen: () -> Unit,
     onNavigateToCameraScreen: () -> Unit
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
-    ScreenContent()
 
     val cameraPermissionState = rememberPermissionState(
         android.Manifest.permission.CAMERA
     )
 
     LaunchedEffect(cameraPermissionState) {
-        when (cameraPermissionState.status) {
-            is PermissionStatus.Granted -> {
-                viewModel.setCameraPermissionKey(2)
-            }
-            is PermissionStatus.Denied -> {
-                if (cameraPermissionState.status.shouldShowRationale) {
-                    viewModel.setCameraPermissionKey(1)
-                } else {
-                    viewModel.setCameraPermissionKey(0)
-                }
+        viewModel.setCameraPermissionState(cameraPermissionState)
+    }
+
+    when (cameraPermissionState.status) {
+        is PermissionStatus.Granted -> {
+            LaunchedEffect(Unit) {
+                onNavigateToCameraScreen()
             }
         }
-        viewModel.initializeCameraScreen(
-            onNavigateToDefaultScreen,
-            onNavigateToRationaleScreen,
-            onNavigateToCameraScreen
-        )
+        is PermissionStatus.Denied -> {
+            if (cameraPermissionState.status.shouldShowRationale) {
+                Rationale()
+            } else {
+                NoRationale()
+            }
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun ScreenContent() {
+private fun Rationale() {
     ConstraintLayout (
         modifier = Modifier
             .fillMaxSize()
@@ -90,7 +87,42 @@ private fun ScreenContent() {
                 contentDescription = null
             )
             Text(
-                text = stringResource(R.string.camera_permission_init),
+                text = stringResource(R.string.camera_permission_header),
+                color = MaterialTheme.colorScheme.onBackground,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = NunitoFontFamily
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun NoRationale() {
+    ConstraintLayout (
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = MaterialTheme.colorScheme.background)
+    ) {
+        val container = createRef()
+        Column(
+            modifier = Modifier
+                .constrainAs(container) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                },
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.mascot),
+                contentDescription = null
+            )
+            Text(
+                text = stringResource(R.string.camera_permission_header),
                 color = MaterialTheme.colorScheme.onBackground,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Normal,
