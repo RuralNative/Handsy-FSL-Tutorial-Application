@@ -13,6 +13,15 @@ import com.google.accompanist.permissions.shouldShowRationale
 import com.ruralnative.handsy.ui.camera_screen.components.NoRationale
 import com.ruralnative.handsy.ui.camera_screen.components.Rationale
 
+/**
+ * A composable screen that sets up the camera responsible for gesture recognition.
+ *
+ * This composable checks the camera permission status and displays the appropriate UI
+ * based on whether the permission is granted, denied, or if a rationale should be shown.
+ *
+ * @param onNavigateToCameraScreen A lambda function to be called when the camera permission is granted,
+ *                                 triggering navigation to the CameraGestureRecognition screen.
+ */
 @Composable
 @OptIn(ExperimentalPermissionsApi::class)
 fun CameraSetup(

@@ -25,6 +25,11 @@ import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
 
+/**
+ * A composable function that displays a UI for CameraSetup when no rationale is needed for requesting camera permission.
+ *
+ * @param buttonFunction A lambda function to be called when the user clicks the request permission button.
+ */
 @Composable
 fun NoRationale(
     buttonFunction: () -> Unit
