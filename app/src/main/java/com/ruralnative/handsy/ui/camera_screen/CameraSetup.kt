@@ -3,6 +3,7 @@ package com.ruralnative.handsy.ui.camera_screen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -21,6 +22,7 @@ fun CameraSetup(
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+    val context = LocalContext.current
     val cameraPermissionState = rememberPermissionState(
         android.Manifest.permission.CAMERA
     )
@@ -39,7 +41,7 @@ fun CameraSetup(
             if (cameraPermissionState.status.shouldShowRationale) {
                 Rationale(viewModel.requestCameraPermission(cameraPermissionState))
             } else {
-                NoRationale()
+                NoRationale { viewModel.openApplicationSettings(context) }
             }
         }
     }

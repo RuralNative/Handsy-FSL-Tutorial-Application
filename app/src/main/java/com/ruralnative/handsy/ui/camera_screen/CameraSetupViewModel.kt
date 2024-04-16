@@ -1,5 +1,9 @@
 package com.ruralnative.handsy.ui.camera_screen
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -23,5 +27,13 @@ class CameraPermissionViewModel @Inject constructor() : ViewModel() {
     @OptIn(ExperimentalPermissionsApi::class)
     fun requestCameraPermission(state: PermissionState): () -> Unit {
         return { state?.launchPermissionRequest() }
+    }
+
+    fun openApplicationSettings(context: Context) {
+        val settingsIntent = Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.fromParts("package", context.packageName, null)
+        )
+        return context.startActivity(settingsIntent)
     }
 }
