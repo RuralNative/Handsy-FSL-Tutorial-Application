@@ -1,6 +1,8 @@
 package com.ruralnative.handsy
 
+import android.content.Intent
 import  android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -30,6 +32,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             navHostController = rememberNavController()
             NavGraph(navController = navHostController)
+            val intent = Intent(
+                Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+            )
         }
     }
 

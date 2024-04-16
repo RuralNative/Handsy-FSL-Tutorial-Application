@@ -77,7 +77,7 @@ private fun TextContent(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .padding(start = 24.dp, end = 24.dp),
-            text = stringResource(R.string.camera_permission_description_one),
+            text = stringResource(R.string.camera_permission_description_three),
             color = MaterialTheme.colorScheme.onBackground,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily,
