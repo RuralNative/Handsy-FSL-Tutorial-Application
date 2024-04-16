@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.camera_screen.components.camera_livestream
+package com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition
 
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
 

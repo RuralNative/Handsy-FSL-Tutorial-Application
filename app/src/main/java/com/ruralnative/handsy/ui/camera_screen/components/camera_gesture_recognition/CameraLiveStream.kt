@@ -1,7 +1,7 @@
-package com.ruralnative.handsy.ui.camera_screen.components.base
+package com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition
 
 import android.Manifest
-import androidx.camera.core.CameraSelector
+import android.content.Context
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.PreviewView
 import androidx.compose.foundation.layout.Box
@@ -11,48 +11,78 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
-import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureRecognizerClassifier
+import com.ruralnative.handsy.ui.components.TopBar
 
-/**
- * Builds a Composable Screen with a built-in CameraX object and MediaPipe integration
- * @param viewModel Hilt-injected ViewModel object responsible for preparing and managing the data for the Composable screen
- */
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun CameraScreen(
-    viewModel: CameraViewModel = hiltViewModel()
+fun CameraLiveStream(
+    viewModel: CameraLiveStreamViewModel = hiltViewModel()
 ) {
+
     val permissionState = rememberPermissionState(
         permission = Manifest.permission.CAMERA
     )
-    CameraPermission(permissionState)
+    LivestreamCameraPermission(
+        permissionState,
+        viewModel
+    )
     LaunchedEffect(Unit) {
         permissionState.launchPermissionRequest()
     }
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+
+    val gestureAnalyzer = viewModel.initializeAnalyzer(context)
+    val controller = viewModel.initializeCameraController(context, gestureAnalyzer)
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    TopBar()
+    DisposableEffect(Unit) {
+        onDispose {
+            controller.unbind()
+        }
+    }
+
+    AndroidView(
+        factory = {
+            createPreviewView(
+                context = it,
+                controller = controller,
+                lifecycleOwner = lifecycleOwner
+            )
+        }
+    )
 }
 
 /**
  * Initializes permission request event for camera use and creates and builds a CameraX composable. Depending on whether the application is granted permission to use the device camera by the user, the CameraX can either show or instead revert to a black screen
- * @param permissionState PermissionState object hoisted to observe permission status provided by user
  */
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-private fun CameraPermission(
-    permissionState: PermissionState
+private fun LivestreamCameraPermission(
+    permissionState: PermissionState,
+    viewModel: CameraLiveStreamViewModel
 ) {
     if (permissionState.status.isGranted) {
-        CameraComponent(modifier = Modifier)
+        CameraComponent(
+            modifier = Modifier,
+            viewModel = hiltViewModel()
+        )
     } else {
         Column {
             val textToShow = if (permissionState.status.shouldShowRationale) {
@@ -78,18 +108,39 @@ private fun CameraPermission(
  */
 @Composable
 private fun CameraComponent(
-    modifier: Modifier
+    modifier: Modifier,
+    viewModel: CameraLiveStreamViewModel
 ) {
     val context = LocalContext.current
-    val gestureRecognizerClassifier = GestureRecognizerClassifier(context)
-    val previewView: PreviewView = remember { PreviewView(context) }
-    val cameraController = remember { LifecycleCameraController(context) }
+    val gestureAnalyzer = viewModel.initializeAnalyzer(context)
+    val controller = viewModel.initializeCameraController(context, gestureAnalyzer)
     val lifecycleOwner = LocalLifecycleOwner.current
-    cameraController.bindToLifecycle(lifecycleOwner)
-    cameraController.cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
-    previewView.controller = cameraController
 
     Box(modifier) {
-        AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
+        TopBar()
+        AndroidView(
+            factory = {
+                createPreviewView(
+                    context = it,
+                    controller = controller,
+                    lifecycleOwner = lifecycleOwner
+                )
+            },
+            modifier = Modifier
+                .fillMaxSize()
+        )
+    }
+
+
+}
+
+private fun createPreviewView(
+    context: Context,
+    controller: LifecycleCameraController,
+    lifecycleOwner: LifecycleOwner
+): PreviewView {
+    return PreviewView(context).apply {
+        this.controller = controller
+        controller.bindToLifecycle(lifecycleOwner)
     }
 }

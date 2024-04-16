@@ -1,6 +1,5 @@
-package com.ruralnative.handsy.util
+package com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai
 
-import android.graphics.Bitmap
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 
