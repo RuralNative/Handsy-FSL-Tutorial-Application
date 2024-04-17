@@ -46,7 +46,10 @@ class CameraGestureRecognitionViewModel @Inject constructor(
                 {
                     val cameraProvider = cameraProviderFuture.get()
 
-                    val preview = Preview.Builder().build()
+                    val preview =
+                        Preview.Builder()
+                            .setTargetRotation(determineScreenConfiguration(currentConfiguration))
+                            .build()
 
                     val imageAnalysis =
                         ImageAnalysis.Builder()
@@ -64,6 +67,8 @@ class CameraGestureRecognitionViewModel @Inject constructor(
                         .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
                         .build()
 
+                    cameraProvider.unbindAll()
+
                     cameraProvider.bindToLifecycle(
                         currentLifecycleOwner, cameraSelector, preview, imageAnalysis
                     )
@@ -77,13 +82,6 @@ class CameraGestureRecognitionViewModel @Inject constructor(
         }
     }
 
-    private fun setupGestureRecognizerAnalyzer(
-        context: Context
-    ): GestureAnalysisAnalyzer {
-        val gestureRecognizer = GestureRecognizerHelper(context)
-        return GestureAnalysisAnalyzer(gestureRecognizer)
-    }
-
     private fun determineScreenConfiguration(
         currentConfiguration: Configuration
     ): Int {
@@ -93,5 +91,12 @@ class CameraGestureRecognitionViewModel @Inject constructor(
             Surface.ROTATION_0
         }
         return targetRotation
+    }
+
+    private fun setupGestureRecognizerAnalyzer(
+        context: Context
+    ): GestureAnalysisAnalyzer {
+        val gestureRecognizer = GestureRecognizerHelper(context)
+        return GestureAnalysisAnalyzer(gestureRecognizer)
     }
 }
