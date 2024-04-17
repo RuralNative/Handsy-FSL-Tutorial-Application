@@ -80,7 +80,6 @@ private fun CameraComponent(
     modifier: Modifier
 ) {
     val context = LocalContext.current
-    val gestureRecognizerClassifier = GestureRecognizerClassifier(context)
     val previewView: PreviewView = remember { PreviewView(context) }
     val cameraController = remember { LifecycleCameraController(context) }
     val lifecycleOwner = LocalLifecycleOwner.current
