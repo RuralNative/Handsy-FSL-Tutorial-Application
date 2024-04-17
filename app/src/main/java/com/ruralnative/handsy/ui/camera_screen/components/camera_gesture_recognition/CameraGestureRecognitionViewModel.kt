@@ -14,6 +14,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureAnalysisAnalyzer
+import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureRecognizerHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -39,6 +40,7 @@ class CameraGestureRecognitionViewModel @Inject constructor(
         currentLifecycleOwner: LifecycleOwner
     ) {
         viewModelScope.launch {
+            val gestureAnalyzer = setupGestureRecognizerAnalyzer(context)
             val cameraProviderFuture = ProcessCameraProvider.getInstance(context)
             cameraProviderFuture.addListener(
                 {
@@ -52,9 +54,9 @@ class CameraGestureRecognitionViewModel @Inject constructor(
                             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                             .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
                             .build()
-                            .also {
+                            .also { it ->
                                 it.setAnalyzer(backgroundExecutor) {
-                                    GestureAnalysisAnalyzer()
+                                    gestureAnalyzer.analyze(it)
                                 }
                             }
 
@@ -73,6 +75,13 @@ class CameraGestureRecognitionViewModel @Inject constructor(
                 ContextCompat.getMainExecutor(context)
             )
         }
+    }
+
+    private fun setupGestureRecognizerAnalyzer(
+        context: Context
+    ): GestureAnalysisAnalyzer {
+        val gestureRecognizer = GestureRecognizerHelper(context)
+        return GestureAnalysisAnalyzer(gestureRecognizer)
     }
 
     private fun determineScreenConfiguration(
