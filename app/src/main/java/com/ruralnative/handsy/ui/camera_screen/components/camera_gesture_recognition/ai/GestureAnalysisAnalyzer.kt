@@ -4,9 +4,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 
 class GestureAnalysisAnalyzer (
-    private val gestureRecognizerHelper: GestureRecognizerHelper,
-    private val outputImageFormat: Int,
-    private val backpressureStrategy: Int
+    private val gestureRecognizerHelper: GestureRecognizerHelper
 ) : ImageAnalysis.Analyzer {
 
     override fun analyze(imageProxy: ImageProxy) {
