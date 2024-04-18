@@ -21,10 +21,10 @@ import com.ruralnative.handsy.navigation.data.NavGraphTransitions.PRELIMINARY_EN
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.PRELIMINARY_EXIT_TRANSITION
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.SCAFFOLD_ENTER_TRANSITION
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.SCAFFOLD_EXIT_TRANSITION
-import com.ruralnative.handsy.navigation.data.NavGraphTransitions.TAG
 import com.ruralnative.handsy.navigation.data.Screen
 import com.ruralnative.handsy.ui.HandsyTheme
-import com.ruralnative.handsy.ui.camera_screen.components.base.CameraScreen
+import com.ruralnative.handsy.ui.camera_screen.CameraSetup
+import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.CameraGestureRecognition
 import com.ruralnative.handsy.ui.components.HandsyScaffold
 import com.ruralnative.handsy.ui.dev_intro.DevsIntroScreen
 import com.ruralnative.handsy.ui.entry.EntryScreen
@@ -206,7 +206,11 @@ fun NavGraph(
                         .consumeWindowInsets(it)
                         .fillMaxSize()
                 ) {
-                    CameraScreen()
+                    CameraSetup(
+                        onNavigateToCameraScreen = {
+                            poppedOriginAndNavigateTo(route, Screen.LiveStreamCameraScreen.route)
+                        }
+                    )
                 }
             }
         }
@@ -230,28 +234,6 @@ fun NavGraph(
         }
 
         /*
-         * DefaultCamera Screen
-         */
-        composable(
-            route = Screen.DefaultCameraScreen.route,
-            enterTransition = MISCELLANEOUS_ENTER_TRANSITION,
-            exitTransition = MISCELLANEOUS_EXIT_TRANSITION
-        ) {
-            Log.d(TAG, "DefaultCamera Screen INITIALIZED")
-        }
-
-        /*
-         * CameraRationale Screen
-         */
-        composable(
-            route = Screen.CameraRationaleScreen.route,
-            enterTransition = MISCELLANEOUS_ENTER_TRANSITION,
-            exitTransition = MISCELLANEOUS_EXIT_TRANSITION
-        ) {
-            Log.d(TAG, "CameraRationale Screen INITIALIZED")
-        }
-
-        /*
          * LiveStreamCamera Screen
          */
         composable(
@@ -259,7 +241,7 @@ fun NavGraph(
             enterTransition = MISCELLANEOUS_ENTER_TRANSITION,
             exitTransition = MISCELLANEOUS_EXIT_TRANSITION
         ) {
-            Log.d(TAG, "LiveStreamCamera Screen INITIALIZED")
+            CameraGestureRecognition()
         }
     }
 }

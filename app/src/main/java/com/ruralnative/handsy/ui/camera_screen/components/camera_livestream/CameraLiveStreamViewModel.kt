@@ -45,9 +45,7 @@ class CameraLiveStreamViewModel @Inject constructor(
 
     fun initializeAnalyzer(context: Context): GestureAnalysisAnalyzer {
         return GestureAnalysisAnalyzer(
-            GestureRecognizerHelper(context),
-            ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888,
-            ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST
+            GestureRecognizerHelper(context)
         )
     }
 

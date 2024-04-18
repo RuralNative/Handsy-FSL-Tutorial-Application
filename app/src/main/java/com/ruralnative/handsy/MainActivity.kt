@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var navHostController: NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         Log.d(TAG, "OnCreate() EXECUTED")
         enableEdgeToEdge()
@@ -32,9 +32,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             navHostController = rememberNavController()
             NavGraph(navController = navHostController)
-            val intent = Intent(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-            )
         }
     }
 
