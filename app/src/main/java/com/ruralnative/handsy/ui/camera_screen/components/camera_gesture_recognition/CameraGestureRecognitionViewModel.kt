@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureAnalysisAnalyzer
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureRecognizerHelper
+import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureRecognizerListener
+import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.ResultBundle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,7 +29,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CameraGestureRecognitionViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
-): ViewModel() {
+): ViewModel(), GestureRecognizerListener {
 
     private val _uiState = MutableStateFlow(CameraGestureRecognitionState(results = emptyList()))
     val uiState: StateFlow<CameraGestureRecognitionState> = _uiState.asStateFlow()
@@ -99,5 +101,20 @@ class CameraGestureRecognitionViewModel @Inject constructor(
     ): GestureAnalysisAnalyzer {
         val gestureRecognizer = GestureRecognizerHelper(context)
         return GestureAnalysisAnalyzer(gestureRecognizer)
+    }
+
+    override fun onError(error: String, errorCode: Int) {
+        //Empty
+    }
+
+    override fun onResults(resultBundle: ResultBundle) {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(
+                results = resultBundle.results,
+                inferenceTime = resultBundle.inferenceTime,
+                inputImageHeight = resultBundle.inputImageHeight,
+                inputImageWidth = resultBundle.inputImageWidth
+            )
+        }
     }
 }

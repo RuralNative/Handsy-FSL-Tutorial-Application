@@ -10,6 +10,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus
+import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import com.ruralnative.handsy.ui.HandsyTheme
@@ -45,21 +46,14 @@ fun CameraSetup(
     }
 
     Surface(modifier = modifier) {
-        when (cameraPermissionState.status) {
-            is PermissionStatus.Granted -> {
-                LaunchedEffect(Unit) {
-                    onNavigateToCameraScreen()
-                }
+        if (cameraPermissionState.status.isGranted) {
+            LaunchedEffect(Unit) {
+                onNavigateToCameraScreen()
             }
-            is PermissionStatus.Denied -> {
-                if (!cameraPermissionState.status.shouldShowRationale) {
-                    NoRationale { viewModel.openApplicationSettings(context) }
-                } else {
-                    Rationale(viewModel.requestCameraPermission(cameraPermissionState))
-                }
-            }
+        } else if (cameraPermissionState.status.shouldShowRationale) {
+            Rationale(viewModel.requestCameraPermission(cameraPermissionState))
+        } else {
+            NoRationale { viewModel.openApplicationSettings(context) }
         }
     }
-
-
 }
