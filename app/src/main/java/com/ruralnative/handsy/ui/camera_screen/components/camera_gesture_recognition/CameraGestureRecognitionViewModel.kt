@@ -37,7 +37,8 @@ class CameraGestureRecognitionViewModel @Inject constructor(
     fun setupCameraProvider(
         context: Context,
         currentConfiguration: Configuration,
-        currentLifecycleOwner: LifecycleOwner
+        currentLifecycleOwner: LifecycleOwner,
+        cameraView: PreviewView
     ) {
         viewModelScope.launch {
             val gestureAnalyzer = setupGestureRecognizerAnalyzer(context)
@@ -74,7 +75,7 @@ class CameraGestureRecognitionViewModel @Inject constructor(
                     )
 
                     preview.setSurfaceProvider(
-                        PreviewView(context).surfaceProvider
+                        cameraView.surfaceProvider
                     )
                 },
                 ContextCompat.getMainExecutor(context)
