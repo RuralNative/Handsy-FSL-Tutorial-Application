@@ -7,11 +7,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.ruralnative.handsy.ui.components.LessonCardList
 
 @Composable
 fun LessonListScreen(
-    modifier: Modifier
+    modifier: Modifier,
     viewModel: LessonListViewModel = hiltViewModel(),
     navigateToLessonScreen: (id: Int) -> Unit
 ) {

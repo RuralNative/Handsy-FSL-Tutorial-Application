@@ -8,3 +8,4 @@ data class CameraGestureRecognitionState(
     val inputImageHeight: Int = 0,
     val inputImageWidth: Int = 0
 )
+

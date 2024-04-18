@@ -1,4 +1,4 @@
-package com.ruralnative.handsy.ui.components
+package com.ruralnative.handsy.ui.lesson_list_screen
 
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.NunitoFontFamily
-import com.ruralnative.handsy.ui.lesson_list_screen.LessonCardState
 
 /**
  * Displays a LazyColumn of clickable Cards containing description of Lesson.

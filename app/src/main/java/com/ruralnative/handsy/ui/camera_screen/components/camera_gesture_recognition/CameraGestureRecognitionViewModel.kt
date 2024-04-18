@@ -115,6 +115,7 @@ class CameraGestureRecognitionViewModel @Inject constructor(
                 inputImageHeight = resultBundle.inputImageHeight,
                 inputImageWidth = resultBundle.inputImageWidth
             )
+            _uiState.value.results.first().gestures().first().first().displayName()
         }
     }
 }
