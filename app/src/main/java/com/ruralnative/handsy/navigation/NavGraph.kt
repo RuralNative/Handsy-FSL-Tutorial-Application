@@ -6,6 +6,7 @@ import androidx.compose.animation.ExitTransition
 import androidx.navigation.compose.composable
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -175,6 +176,7 @@ fun NavGraph(
             ) {
                 LessonListScreen(
                     modifier = Modifier
+                        .padding(it)
                         .consumeWindowInsets(it)
                         .fillMaxSize(),
                     navigateToLessonScreen = { id ->
@@ -200,7 +202,9 @@ fun NavGraph(
             ) {
                 HandsyTheme {
                     CameraSetup(
-                        modifier = Modifier.consumeWindowInsets(it),
+                        modifier = Modifier
+                            .padding(it)
+                            .consumeWindowInsets(it),
                         onNavigateToCameraScreen = {
                             poppedOriginAndNavigateTo(route, Screen.LiveStreamCameraScreen.route)
                         }
