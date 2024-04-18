@@ -11,7 +11,7 @@ import com.ruralnative.handsy.ui.components.LessonCardList
 
 @Composable
 fun LessonListScreen(
-    modifier: Modifier,
+    modifier: Modifier
     viewModel: LessonListViewModel = hiltViewModel(),
     navigateToLessonScreen: (id: Int) -> Unit
 ) {

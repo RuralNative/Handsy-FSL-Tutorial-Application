@@ -34,7 +34,6 @@ fun TopBar() {
             BarContent()
         },
         modifier = Modifier
-            .height(64.dp)
             .fillMaxWidth(),
         windowInsets = WindowInsets.statusBars,
         colors = TopAppBarDefaults.topAppBarColors(),

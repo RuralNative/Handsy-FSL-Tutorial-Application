@@ -15,6 +15,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.MISCELLANEOUS_ENTER_TRANSITION
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.MISCELLANEOUS_EXIT_TRANSITION
@@ -206,7 +207,7 @@ fun NavGraph(
                             .padding(it)
                             .consumeWindowInsets(it),
                         onNavigateToCameraScreen = {
-                            poppedOriginAndNavigateTo(route, Screen.LiveStreamCameraScreen.route)
+                            backStackedOriginAndNavigate(Screen.LiveStreamCameraScreen.route)
                         }
                     )
                 }

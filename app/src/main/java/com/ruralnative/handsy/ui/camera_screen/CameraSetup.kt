@@ -52,10 +52,10 @@ fun CameraSetup(
                 }
             }
             is PermissionStatus.Denied -> {
-                if (cameraPermissionState.status.shouldShowRationale) {
-                    Rationale(viewModel.requestCameraPermission(cameraPermissionState))
-                } else {
+                if (!cameraPermissionState.status.shouldShowRationale) {
                     NoRationale { viewModel.openApplicationSettings(context) }
+                } else {
+                    Rationale(viewModel.requestCameraPermission(cameraPermissionState))
                 }
             }
         }
