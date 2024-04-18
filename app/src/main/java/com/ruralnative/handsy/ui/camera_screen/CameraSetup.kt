@@ -1,8 +1,10 @@
 package com.ruralnative.handsy.ui.camera_screen
 
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -10,6 +12,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
+import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.camera_screen.components.NoRationale
 import com.ruralnative.handsy.ui.camera_screen.components.Rationale
 
@@ -25,6 +28,7 @@ import com.ruralnative.handsy.ui.camera_screen.components.Rationale
 @Composable
 @OptIn(ExperimentalPermissionsApi::class)
 fun CameraSetup(
+    modifier: Modifier,
     viewModel: CameraPermissionViewModel = hiltViewModel(),
     onNavigateToCameraScreen: () -> Unit
 ) {
@@ -40,18 +44,22 @@ fun CameraSetup(
         viewModel.setCameraPermissionState(cameraPermissionState)
     }
 
-    when (cameraPermissionState.status) {
-        is PermissionStatus.Granted -> {
-            LaunchedEffect(Unit) {
-                onNavigateToCameraScreen()
+    Surface(modifier = modifier) {
+        when (cameraPermissionState.status) {
+            is PermissionStatus.Granted -> {
+                LaunchedEffect(Unit) {
+                    onNavigateToCameraScreen()
+                }
             }
-        }
-        is PermissionStatus.Denied -> {
-            if (cameraPermissionState.status.shouldShowRationale) {
-                Rationale(viewModel.requestCameraPermission(cameraPermissionState))
-            } else {
-                NoRationale { viewModel.openApplicationSettings(context) }
+            is PermissionStatus.Denied -> {
+                if (cameraPermissionState.status.shouldShowRationale) {
+                    Rationale(viewModel.requestCameraPermission(cameraPermissionState))
+                } else {
+                    NoRationale { viewModel.openApplicationSettings(context) }
+                }
             }
         }
     }
+
+
 }

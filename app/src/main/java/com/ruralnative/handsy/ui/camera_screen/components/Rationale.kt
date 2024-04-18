@@ -34,44 +34,42 @@ import com.ruralnative.handsy.ui.NunitoFontFamily
 fun Rationale(
     permissionRequestFunction: () -> Unit
 ) {
-    HandsyTheme {
-        ConstraintLayout (
+    ConstraintLayout (
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = MaterialTheme.colorScheme.background)
+    ) {
+        val (image, text, button) = createRefs()
+        Image(
             modifier = Modifier
-                .fillMaxSize()
-                .background(color = MaterialTheme.colorScheme.background)
-        ) {
-            val (image, text, button) = createRefs()
-            Image(
-                modifier = Modifier
-                    .constrainAs(image) {
-                        start.linkTo(parent.start)
-                        top.linkTo(parent.top, margin = 24.dp)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(text.bottom)
-                    }
-                    .padding(12.dp),
-                painter = painterResource(id = R.drawable.mascot),
-                contentDescription = null
-            )
-            TextContent(
-                modifier = Modifier
-                    .constrainAs(text) {
-                        start.linkTo(parent.start)
-                        top.linkTo(parent.top, margin = 48.dp)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
-                    }
-            )
-            RequestPermissionButton(
-                modifier = Modifier
-                    .constrainAs(button) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom, margin = 24.dp)
-                    },
-                onClick = { permissionRequestFunction() }
-            )
-        }
+                .constrainAs(image) {
+                    start.linkTo(parent.start)
+                    top.linkTo(parent.top, margin = 24.dp)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(text.bottom)
+                }
+                .padding(12.dp),
+            painter = painterResource(id = R.drawable.mascot),
+            contentDescription = null
+        )
+        TextContent(
+            modifier = Modifier
+                .constrainAs(text) {
+                    start.linkTo(parent.start)
+                    top.linkTo(parent.top, margin = 48.dp)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
+                }
+        )
+        RequestPermissionButton(
+            modifier = Modifier
+                .constrainAs(button) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom, margin = 24.dp)
+                },
+            onClick = { permissionRequestFunction() }
+        )
     }
 }
 

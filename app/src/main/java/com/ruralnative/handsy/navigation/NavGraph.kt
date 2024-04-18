@@ -173,17 +173,14 @@ fun NavGraph(
                 { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
                 { poppedOriginAndNavigateTo(route, Screen.CameraSetupScreen.route) }
             ) {
-                Surface(
+                LessonListScreen(
                     modifier = Modifier
                         .consumeWindowInsets(it)
-                        .fillMaxSize()
-                ) {
-                    LessonListScreen(
-                        navigateToLessonScreen = { id ->
-                            navController.navigate("lesson_screen/$id")
-                        }
-                    )
-                }
+                        .fillMaxSize(),
+                    navigateToLessonScreen = { id ->
+                        navController.navigate("lesson_screen/$id")
+                    }
+                )
             }
         }
 
@@ -201,12 +198,9 @@ fun NavGraph(
                 { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
                 { poppedOriginAndNavigateTo(route, Screen.CameraSetupScreen.route) }
             ) {
-                Surface(
-                    modifier = Modifier
-                        .consumeWindowInsets(it)
-                        .fillMaxSize()
-                ) {
+                HandsyTheme {
                     CameraSetup(
+                        modifier = Modifier.consumeWindowInsets(it),
                         onNavigateToCameraScreen = {
                             poppedOriginAndNavigateTo(route, Screen.LiveStreamCameraScreen.route)
                         }
