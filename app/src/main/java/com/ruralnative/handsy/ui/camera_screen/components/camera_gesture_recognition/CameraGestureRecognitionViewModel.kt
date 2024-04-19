@@ -139,18 +139,20 @@ class CameraGestureRecognitionViewModel @Inject constructor(
     }
 
     override fun onResults(resultBundle: ResultBundle) {
-        _uiState.value = _uiState.value.copy(
-            resultName = extractGesturesList(resultBundle.results).first(),
-            resultScore = extractGesturesList(resultBundle.results).last(),
-            inferenceTime = resultBundle.inferenceTime,
-            inputImageHeight = resultBundle.inputImageHeight,
-            inputImageWidth = resultBundle.inputImageWidth
-        )
-        Log.d("AI_Gesture", "onResult()")
-        Log.d("AI_Gesture", "Result: + ${extractGesturesList(resultBundle.results).first()}")
-        Log.d("AI_Gesture", "Score: + ${extractGesturesList(resultBundle.results).last()}")
-        Log.d("AI_Gesture", "Inference Time: + ${resultBundle.inferenceTime}")
-        Log.d("AI_Gesture", "Input ImageWidth: + ${resultBundle.inputImageWidth}")
-        Log.d("AI_Gesture", "Input ImageHeight : + ${resultBundle.inputImageHeight}")
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(
+                resultName = extractGesturesList(resultBundle.results).first(),
+                resultScore = extractGesturesList(resultBundle.results).last(),
+                inferenceTime = resultBundle.inferenceTime,
+                inputImageHeight = resultBundle.inputImageHeight,
+                inputImageWidth = resultBundle.inputImageWidth
+            )
+            Log.d("AI_Gesture", "onResult()")
+            Log.d("AI_Gesture", "Result: + ${extractGesturesList(resultBundle.results).first()}")
+            Log.d("AI_Gesture", "Score: + ${extractGesturesList(resultBundle.results).last()}")
+            Log.d("AI_Gesture", "Inference Time: + ${resultBundle.inferenceTime}")
+            Log.d("AI_Gesture", "Input ImageWidth: + ${resultBundle.inputImageWidth}")
+            Log.d("AI_Gesture", "Input ImageHeight : + ${resultBundle.inputImageHeight}")
+        }
     }
 }
