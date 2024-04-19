@@ -106,11 +106,31 @@ class CameraGestureRecognitionViewModel @Inject constructor(
         return GestureAnalysisAnalyzer(gestureRecognizer)
     }
 
-    private fun extractGesturesList(list: List<GestureRecognizerResult>): List<Category> {
-        val gestures = list.first().gestures().first().sortedByDescending { it.score() }
-        Log.d("AI_Gesture", gestures.first().categoryName())
-        Log.d("AI_Gesture", gestures.first().displayName())
-        return gestures
+    private fun extractGesturesList(list: List<GestureRecognizerResult>): List<String> {
+        val extractedCategoryList: List<Category>
+
+        val rawGesturesList = list.first().gestures()
+        extractedCategoryList = if (rawGesturesList.isNotEmpty()) {
+            rawGesturesList.first().sortedByDescending { it.score() }
+        } else {
+            emptyList()
+        }
+
+        val categoryResult: String = if (extractedCategoryList.isNotEmpty()) {
+            extractedCategoryList.first().categoryName()
+        } else {
+            "-"
+        }
+
+        val categoryScore: String = if (extractedCategoryList.isNotEmpty()) {
+            extractedCategoryList.first().score().toString()
+        } else {
+            "0.00"
+        }
+
+        Log.d("AI_Gesture", "extractGesturesList() : Category = $categoryResult")
+        Log.d("AI_Gesture", "extractGesturesList() : Score = $categoryScore")
+        return listOf(categoryResult, categoryResult)
     }
 
     override fun onError(error: String, errorCode: Int) {
@@ -120,14 +140,15 @@ class CameraGestureRecognitionViewModel @Inject constructor(
     override fun onResults(resultBundle: ResultBundle) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(
-                results = extractGesturesList(resultBundle.results),
-                resultName = extractGesturesList(resultBundle.results).first().displayName(),
+                resultName = extractGesturesList(resultBundle.results).first(),
+                resultScore = extractGesturesList(resultBundle.results).last(),
                 inferenceTime = resultBundle.inferenceTime,
                 inputImageHeight = resultBundle.inputImageHeight,
                 inputImageWidth = resultBundle.inputImageWidth
             )
-
             Log.d("AI_Gesture", "onResult()")
+            Log.d("AI_Gesture", "Result: + ${extractGesturesList(resultBundle.results).first()}")
+            Log.d("AI_Gesture", "Score: + ${extractGesturesList(resultBundle.results).last()}")
             Log.d("AI_Gesture", "Inference Time: + ${resultBundle.inferenceTime}")
             Log.d("AI_Gesture", "Input ImageWidth: + ${resultBundle.inputImageWidth}")
             Log.d("AI_Gesture", "Input ImageHeight : + ${resultBundle.inputImageHeight}")

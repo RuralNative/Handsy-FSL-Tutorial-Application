@@ -171,7 +171,6 @@ class GestureRecognizerHelper(
         )
         // Convert the input Bitmap object to an MPImage object to run inference
         val mpImage = BitmapImageBuilder(rotatedBitmap).build()
-        Log.d("AI_Gesture", "recognizeLiveStream()")
         recognizeAsync(mpImage, frameTime)
     }
 
@@ -192,7 +191,6 @@ class GestureRecognizerHelper(
         // As we're using running mode LIVE_STREAM, the recognition result will
         // be returned in returnLivestreamResult function
         gestureRecognizer?.recognizeAsync(mpImage, frameTime)
-        Log.d("AI_Gesture", "recognizeAsync()")
     }
 
     /**
@@ -221,15 +219,26 @@ class GestureRecognizerHelper(
     private fun returnLivestreamResult(
         result: GestureRecognizerResult, input: MPImage
     ) {
+        val isResultEmpty = result.gestures().isEmpty()
+        val firstGestureResultScore = if (!isResultEmpty) {
+            result.gestures().first().sortedByDescending { it.score() }.first().score()
+        } else {
+            "NO SCORE"
+        }
+        val firstGestureResultCategory = if (!isResultEmpty) {
+            result.gestures().first().sortedByDescending { it.score() }.first().categoryName()
+        } else {
+            "NO SCORE"
+        }
         val finishTimeMs = SystemClock.uptimeMillis()
         val inferenceTime = finishTimeMs - result.timestampMs()
-
         gestureRecognizerListener?.onResults(
             ResultBundle(
                 listOf(result), inferenceTime, input.height, input.width
             )
         )
-        Log.d("AI_Gesture", "returnLiveStreamResult()")
+        Log.d("AI_Gesture", "returnLiveStreamResult() : Category = $firstGestureResultCategory")
+        Log.d("AI_Gesture", "returnLiveStreamResult() : Score = $firstGestureResultScore")
     }
 
     private fun returnLivestreamError(error: RuntimeException) {
