@@ -28,7 +28,7 @@ fun CameraGestureRecognition(
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val userNameState = uiState.results.first().gestures()
+    val result = uiState.resultName
 
     val currentContext = LocalContext.current
     val currentConfiguration = LocalConfiguration.current
@@ -57,18 +57,19 @@ fun CameraGestureRecognition(
             },
             modifier = Modifier.fillMaxSize()
         )
+        ResultContainer(result)
     }
 }
 
 @Composable
-private fun ResultContainer() {
+private fun ResultContainer(result: String) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Hello",
+            text = result,
             modifier = Modifier.fillMaxWidth(),
             color = MaterialTheme.colorScheme.onTertiary,
             style = MaterialTheme.typography.displaySmall

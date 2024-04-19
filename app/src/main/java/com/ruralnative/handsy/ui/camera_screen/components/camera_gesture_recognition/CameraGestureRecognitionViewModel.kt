@@ -13,6 +13,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.mediapipe.tasks.components.containers.Category
+import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureAnalysisAnalyzer
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureRecognizerHelper
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureRecognizerListener
@@ -103,6 +105,10 @@ class CameraGestureRecognitionViewModel @Inject constructor(
         return GestureAnalysisAnalyzer(gestureRecognizer)
     }
 
+    private fun extractGesturesList(list: List<GestureRecognizerResult>): List<Category> {
+        return list.first().gestures().first().sortedByDescending { it.score() }
+    }
+
     override fun onError(error: String, errorCode: Int) {
         //Empty
     }
@@ -110,12 +116,12 @@ class CameraGestureRecognitionViewModel @Inject constructor(
     override fun onResults(resultBundle: ResultBundle) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(
-                results = resultBundle.results,
+                results = extractGesturesList(resultBundle.results),
+                resultName = extractGesturesList(resultBundle.results).first().displayName(),
                 inferenceTime = resultBundle.inferenceTime,
                 inputImageHeight = resultBundle.inputImageHeight,
                 inputImageWidth = resultBundle.inputImageWidth
             )
-            _uiState.value.results.first().gestures().first().first().displayName()
         }
     }
 }
