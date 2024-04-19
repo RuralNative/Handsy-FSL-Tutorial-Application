@@ -34,7 +34,7 @@ class CameraGestureRecognitionViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ): ViewModel(), GestureRecognizerListener {
 
-    private val _uiState = MutableStateFlow(CameraGestureRecognitionState(results = emptyList()))
+    private val _uiState = MutableStateFlow(CameraGestureRecognitionState())
     val uiState: StateFlow<CameraGestureRecognitionState> = _uiState.asStateFlow()
 
     private val backgroundExecutor = Executors.newSingleThreadExecutor()
@@ -134,24 +134,23 @@ class CameraGestureRecognitionViewModel @Inject constructor(
     }
 
     override fun onError(error: String, errorCode: Int) {
-        //Empty
+        print(error)
+        print(errorCode.toString())
     }
 
     override fun onResults(resultBundle: ResultBundle) {
-        viewModelScope.launch {
-            _uiState.value = _uiState.value.copy(
-                resultName = extractGesturesList(resultBundle.results).first(),
-                resultScore = extractGesturesList(resultBundle.results).last(),
-                inferenceTime = resultBundle.inferenceTime,
-                inputImageHeight = resultBundle.inputImageHeight,
-                inputImageWidth = resultBundle.inputImageWidth
-            )
-            Log.d("AI_Gesture", "onResult()")
-            Log.d("AI_Gesture", "Result: + ${extractGesturesList(resultBundle.results).first()}")
-            Log.d("AI_Gesture", "Score: + ${extractGesturesList(resultBundle.results).last()}")
-            Log.d("AI_Gesture", "Inference Time: + ${resultBundle.inferenceTime}")
-            Log.d("AI_Gesture", "Input ImageWidth: + ${resultBundle.inputImageWidth}")
-            Log.d("AI_Gesture", "Input ImageHeight : + ${resultBundle.inputImageHeight}")
-        }
+        _uiState.value = _uiState.value.copy(
+            resultName = extractGesturesList(resultBundle.results).first(),
+            resultScore = extractGesturesList(resultBundle.results).last(),
+            inferenceTime = resultBundle.inferenceTime,
+            inputImageHeight = resultBundle.inputImageHeight,
+            inputImageWidth = resultBundle.inputImageWidth
+        )
+        Log.d("AI_Gesture", "onResult()")
+        Log.d("AI_Gesture", "Result: + ${extractGesturesList(resultBundle.results).first()}")
+        Log.d("AI_Gesture", "Score: + ${extractGesturesList(resultBundle.results).last()}")
+        Log.d("AI_Gesture", "Inference Time: + ${resultBundle.inferenceTime}")
+        Log.d("AI_Gesture", "Input ImageWidth: + ${resultBundle.inputImageWidth}")
+        Log.d("AI_Gesture", "Input ImageHeight : + ${resultBundle.inputImageHeight}")
     }
 }
