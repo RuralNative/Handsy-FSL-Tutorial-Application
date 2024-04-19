@@ -126,8 +126,11 @@ class CameraGestureRecognitionViewModel @Inject constructor(
                 inputImageHeight = resultBundle.inputImageHeight,
                 inputImageWidth = resultBundle.inputImageWidth
             )
-            Log.d("AI_Gesture", "Result + ${_uiState.value.resultName}")
+
             Log.d("AI_Gesture", "onResult()")
+            Log.d("AI_Gesture", "Inference Time: + ${resultBundle.inferenceTime}")
+            Log.d("AI_Gesture", "Input ImageWidth: + ${resultBundle.inputImageWidth}")
+            Log.d("AI_Gesture", "Input ImageHeight : + ${resultBundle.inputImageHeight}")
         }
     }
 }

@@ -9,6 +9,7 @@ class GestureAnalysisAnalyzer (
 ) : ImageAnalysis.Analyzer {
 
     override fun analyze(imageProxy: ImageProxy) {
+        Log.d("AI_Gesture", "GestureAnalysisAnalyzer.analyze()")
         gestureRecognizerHelper.recognizeLiveStream(imageProxy)
         imageProxy.close()
     }

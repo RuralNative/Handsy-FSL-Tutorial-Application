@@ -132,45 +132,6 @@ class GestureRecognizerHelper(
     }
 
     /**
-     * Runs gesture recognition on a single image and returns the results.
-     *
-     * This function accepts a `Bitmap` object representing an image, converts it to an `MPImage` object, and then runs the gesture recognizer on it. The recognition results are encapsulated in a `ResultBundle` and returned to the caller.
-     *
-     * @param image The `Bitmap` object containing the image data to be analyzed.
-     * @return A `ResultBundle` containing the recognition results, or `null` if an error occurs during the recognition process.
-     * @throws IllegalArgumentException if the running mode is not set to `RunningMode.IMAGE`.
-     */
-    fun recognizeImage(image: Bitmap): ResultBundle? {
-        if (currentRunningMode != RunningMode.IMAGE) {
-            throw IllegalArgumentException(
-                "Attempting to call detectImage" +
-                        " while not using RunningMode.IMAGE"
-            )
-        }
-        // Inference time is the difference between the system time at the
-        // start and finish of the process
-        val startTime = SystemClock.uptimeMillis()
-        // Convert the input Bitmap object to an MPImage object to run inference
-        val mpImage = BitmapImageBuilder(image).build()
-        // Run gesture recognizer using MediaPipe Gesture Recognizer API
-        gestureRecognizer?.recognize(mpImage)?.also { recognizerResult ->
-            val inferenceTimeMs = SystemClock.uptimeMillis() - startTime
-            return ResultBundle(
-                listOf(recognizerResult),
-                inferenceTimeMs,
-                image.height,
-                image.width
-            )
-        }
-        // If gestureRecognizer?.recognize() returns null, this is likely an error. Returning null
-        // to indicate this.
-        gestureRecognizerListener?.onError(
-            "Gesture Recognizer failed to recognize."
-        )
-        return null
-    }
-
-    /**
      * Converts an `ImageProxy` to an `MPImage` and feeds it to the GestureRecognizer for live stream gesture recognition.
      *
      * This function processes a frame from the camera, converts it into a bitmap, applies necessary transformations
@@ -210,6 +171,7 @@ class GestureRecognizerHelper(
         )
         // Convert the input Bitmap object to an MPImage object to run inference
         val mpImage = BitmapImageBuilder(rotatedBitmap).build()
+        Log.d("AI_Gesture", "recognizeLiveStream()")
         recognizeAsync(mpImage, frameTime)
     }
 
@@ -230,6 +192,7 @@ class GestureRecognizerHelper(
         // As we're using running mode LIVE_STREAM, the recognition result will
         // be returned in returnLivestreamResult function
         gestureRecognizer?.recognizeAsync(mpImage, frameTime)
+        Log.d("AI_Gesture", "recognizeAsync()")
     }
 
     /**
