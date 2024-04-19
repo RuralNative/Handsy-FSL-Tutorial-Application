@@ -127,9 +127,6 @@ class CameraGestureRecognitionViewModel @Inject constructor(
         } else {
             "0.00"
         }
-
-        Log.d("AI_Gesture", "extractGesturesList() : Category = $categoryResult")
-        Log.d("AI_Gesture", "extractGesturesList() : Score = $categoryScore")
         return listOf(categoryResult, categoryResult)
     }
 
