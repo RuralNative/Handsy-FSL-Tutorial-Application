@@ -30,9 +30,11 @@ import com.google.mediapipe.tasks.core.Delegate
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizer
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
+import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.CameraGestureRecognitionViewModel
 
 class GestureRecognizerHelper(
-    val context: Context
+    val context: Context,
+    viewModel: CameraGestureRecognitionViewModel
 ) {
 
     /**
@@ -57,7 +59,7 @@ class GestureRecognizerHelper(
     private var minHandDetectionConfidence: Float = DEFAULT_HAND_DETECTION_CONFIDENCE
     private var minHandTrackingConfidence: Float = DEFAULT_HAND_TRACKING_CONFIDENCE
     private var minHandPresenceConfidence: Float = DEFAULT_HAND_PRESENCE_CONFIDENCE
-    private val gestureRecognizerListener: GestureRecognizerListener? = null
+    private val gestureRecognizerListener: CameraGestureRecognitionViewModel = viewModel
     private var currentDelegate: Int = DELEGATE_CPU
     private val currentRunningMode: RunningMode = RunningMode.LIVE_STREAM
     private var gestureRecognizer: GestureRecognizer? = null
@@ -112,7 +114,7 @@ class GestureRecognizerHelper(
             gestureRecognizer =
                 GestureRecognizer.createFromOptions(context, options)
         } catch (e: IllegalStateException) {
-            gestureRecognizerListener?.onError(
+            gestureRecognizerListener.onError(
                 "Gesture recognizer failed to initialize. See error logs for " + "details"
             )
             Log.e(
@@ -120,7 +122,7 @@ class GestureRecognizerHelper(
                 "MP Task Vision failed to load the task with error: " + e.message
             )
         } catch (e: RuntimeException) {
-            gestureRecognizerListener?.onError(
+            gestureRecognizerListener.onError(
                 "Gesture recognizer failed to initialize. See error logs for " + "details",
                 GPU_ERROR
             )
@@ -232,7 +234,7 @@ class GestureRecognizerHelper(
         }
         val finishTimeMs = SystemClock.uptimeMillis()
         val inferenceTime = finishTimeMs - result.timestampMs()
-        gestureRecognizerListener?.onResults(
+        gestureRecognizerListener.onResults(
             ResultBundle(
                 listOf(result), inferenceTime, input.height, input.width
             )
@@ -242,7 +244,7 @@ class GestureRecognizerHelper(
     }
 
     private fun returnLivestreamError(error: RuntimeException) {
-        gestureRecognizerListener?.onError(
+        gestureRecognizerListener.onError(
             error.message ?: "An unknown error has occurred"
         )
     }

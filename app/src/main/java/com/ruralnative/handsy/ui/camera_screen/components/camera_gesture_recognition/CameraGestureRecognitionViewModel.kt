@@ -32,7 +32,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CameraGestureRecognitionViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
-): ViewModel(), GestureRecognizerListener {
+): ViewModel() {
 
     private val _uiState = MutableStateFlow(CameraGestureRecognitionState())
     val uiState: StateFlow<CameraGestureRecognitionState> = _uiState.asStateFlow()
@@ -102,7 +102,7 @@ class CameraGestureRecognitionViewModel @Inject constructor(
     private fun setupGestureRecognizerAnalyzer(
         context: Context
     ): GestureAnalysisAnalyzer {
-        val gestureRecognizer = GestureRecognizerHelper(context)
+        val gestureRecognizer = GestureRecognizerHelper(context, this)
         return GestureAnalysisAnalyzer(gestureRecognizer)
     }
 
@@ -133,12 +133,12 @@ class CameraGestureRecognitionViewModel @Inject constructor(
         return listOf(categoryResult, categoryResult)
     }
 
-    override fun onError(error: String, errorCode: Int) {
+    fun onError(error: String, errorCode: Int = GestureRecognizerHelper.OTHER_ERROR) {
         print(error)
         print(errorCode.toString())
     }
 
-    override fun onResults(resultBundle: ResultBundle) {
+    fun onResults(resultBundle: ResultBundle) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(
                 resultName = extractGesturesList(resultBundle.results).first(),
