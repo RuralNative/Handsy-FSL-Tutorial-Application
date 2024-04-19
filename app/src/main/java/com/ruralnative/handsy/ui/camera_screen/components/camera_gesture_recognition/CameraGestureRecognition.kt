@@ -38,7 +38,8 @@ import java.util.concurrent.Executors
 
 @Composable
 fun CameraGestureRecognition(
-    viewModel: CameraGestureRecognitionViewModel = hiltViewModel()
+    viewModel: CameraGestureRecognitionViewModel = hiltViewModel(),
+    modifier: Modifier
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -63,7 +64,7 @@ fun CameraGestureRecognition(
 
 
     Box(
-        modifier = Modifier
+        modifier = modifier
     ) {
         AndroidView(
             factory = {

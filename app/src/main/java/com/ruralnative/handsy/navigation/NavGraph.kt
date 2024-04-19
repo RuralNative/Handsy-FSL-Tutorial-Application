@@ -240,7 +240,20 @@ fun NavGraph(
             enterTransition = MISCELLANEOUS_ENTER_TRANSITION,
             exitTransition = MISCELLANEOUS_EXIT_TRANSITION
         ) {
-            CameraGestureRecognition()
+            HandsyScaffold(
+                navController.currentBackStackEntryAsState().value?.destination,
+                { poppedOriginAndNavigateTo(route, Screen.LessonListScreen.route) },
+                { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
+                { poppedOriginAndNavigateTo(route, Screen.CameraSetupScreen.route) }
+            ) {
+                HandsyTheme {
+                    CameraGestureRecognition(
+                        modifier = Modifier
+                            .padding(it)
+                            .consumeWindowInsets(it)
+                    )
+                }
+            }
         }
     }
 }
