@@ -2,6 +2,7 @@ package com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recogn
 
 import android.content.Context
 import android.content.res.Configuration
+import android.util.Log
 import android.view.Surface
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -106,7 +107,10 @@ class CameraGestureRecognitionViewModel @Inject constructor(
     }
 
     private fun extractGesturesList(list: List<GestureRecognizerResult>): List<Category> {
-        return list.first().gestures().first().sortedByDescending { it.score() }
+        val gestures = list.first().gestures().first().sortedByDescending { it.score() }
+        Log.d("AI_Gesture", gestures.first().categoryName())
+        Log.d("AI_Gesture", gestures.first().displayName())
+        return gestures
     }
 
     override fun onError(error: String, errorCode: Int) {
@@ -122,6 +126,8 @@ class CameraGestureRecognitionViewModel @Inject constructor(
                 inputImageHeight = resultBundle.inputImageHeight,
                 inputImageWidth = resultBundle.inputImageWidth
             )
+            Log.d("AI_Gesture", "Result + ${_uiState.value.resultName}")
+            Log.d("AI_Gesture", "onResult()")
         }
     }
 }

@@ -266,6 +266,7 @@ class GestureRecognizerHelper(
                 listOf(result), inferenceTime, input.height, input.width
             )
         )
+        Log.d("AI_Gesture", "returnLiveStreamResult()")
     }
 
     private fun returnLivestreamError(error: RuntimeException) {
