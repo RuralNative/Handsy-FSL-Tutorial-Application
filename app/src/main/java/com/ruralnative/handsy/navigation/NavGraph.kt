@@ -60,28 +60,18 @@ fun NavGraph(
     val navigateSingleInstanceOf: (destinationRoute: String) -> Unit = {
         navController.navigate(it) {
             this.launchSingleTop = true
-            this.popUpToRoute
         }
     }
 
-    val poppedOriginAndNavigateTo: (
-        currentRoute: String?,
-        destinationRoute: String
-    ) -> Unit = { current: String?, destination: String ->
-        navController.navigate(destination) {
-            if (current != null) {
-                popUpTo(current) {
-                    inclusive = true
-                }
+    val popCurrentAndNavigateSingleInstanceOf: (destinationRoute: String) -> Unit = {
+        navController.navigate(it) {
+            this.launchSingleTop = true
+            popUpTo(Screen.HomeScreen.route) {
+                this.inclusive = false
             }
         }
     }
 
-    /**
-     * Navigates to a specified destination route without modifying the back stack.
-     *
-     * @param destinationRoute The destination route to navigate to.
-     */
     val backStackedOriginAndNavigate: (
         destinationRoute: String
     ) -> Unit = {
@@ -153,9 +143,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { backStackedOriginAndNavigate(Screen.LessonListScreen.route) },
-                { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
-                { backStackedOriginAndNavigate(Screen.CameraSetupScreen.route) }
+                { navigateSingleInstanceOf(Screen.LessonListScreen.route) },
+                { navigateSingleInstanceOf(Screen.HomeScreen.route) },
+                { navigateSingleInstanceOf(Screen.CameraSetupScreen.route) }
             ) {
                 Surface(
                     modifier = Modifier
@@ -175,9 +165,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { poppedOriginAndNavigateTo(route, Screen.LessonListScreen.route) },
-                { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
-                { poppedOriginAndNavigateTo(route, Screen.CameraSetupScreen.route) }
+                { navigateSingleInstanceOf(Screen.LessonListScreen.route) },
+                { navigateSingleInstanceOf(Screen.HomeScreen.route) },
+                { navigateSingleInstanceOf(Screen.CameraSetupScreen.route) }
             ) {
                 LessonListScreen(
                     modifier = Modifier
@@ -201,9 +191,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { poppedOriginAndNavigateTo(route, Screen.LessonListScreen.route) },
-                { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
-                { poppedOriginAndNavigateTo(route, Screen.CameraSetupScreen.route) }
+                { navigateSingleInstanceOf(Screen.LessonListScreen.route) },
+                { navigateSingleInstanceOf(Screen.HomeScreen.route) },
+                { navigateSingleInstanceOf(Screen.CameraSetupScreen.route) }
             ) {
                 HandsyTheme {
                     CameraSetup(
@@ -211,7 +201,7 @@ fun NavGraph(
                             .padding(it)
                             .consumeWindowInsets(it),
                         onNavigateToCameraScreen = {
-                            backStackedOriginAndNavigate(Screen.LiveStreamCameraScreen.route)
+                            popCurrentAndNavigateSingleInstanceOf(Screen.LiveStreamCameraScreen.route)
                         }
                     )
                 }
@@ -246,9 +236,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { poppedOriginAndNavigateTo(route, Screen.LessonListScreen.route) },
-                { poppedOriginAndNavigateTo(route, Screen.HomeScreen.route) },
-                { poppedOriginAndNavigateTo(route, Screen.CameraSetupScreen.route) }
+                { navigateSingleInstanceOf(Screen.LessonListScreen.route) },
+                { navigateSingleInstanceOf(Screen.HomeScreen.route) },
+                { navigateSingleInstanceOf(Screen.LiveStreamCameraScreen.route) }
             ) {
                 HandsyTheme {
                     CameraGestureRecognition(
