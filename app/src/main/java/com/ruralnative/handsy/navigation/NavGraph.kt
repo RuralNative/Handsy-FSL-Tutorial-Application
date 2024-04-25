@@ -143,9 +143,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { navigateSingleInstanceOf(Screen.LessonListScreen.route) },
-                { navigateSingleInstanceOf(Screen.HomeScreen.route) },
-                { navigateSingleInstanceOf(Screen.CameraSetupScreen.route) }
+                { popCurrentAndNavigateSingleInstanceOf(Screen.LessonListScreen.route) },
+                { popCurrentAndNavigateSingleInstanceOf(Screen.HomeScreen.route) },
+                { popCurrentAndNavigateSingleInstanceOf(Screen.CameraSetupScreen.route) }
             ) {
                 Surface(
                     modifier = Modifier
@@ -165,9 +165,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { navigateSingleInstanceOf(Screen.LessonListScreen.route) },
-                { navigateSingleInstanceOf(Screen.HomeScreen.route) },
-                { navigateSingleInstanceOf(Screen.CameraSetupScreen.route) }
+                { popCurrentAndNavigateSingleInstanceOf(Screen.LessonListScreen.route) },
+                { popCurrentAndNavigateSingleInstanceOf(Screen.HomeScreen.route) },
+                { popCurrentAndNavigateSingleInstanceOf(Screen.CameraSetupScreen.route) }
             ) {
                 LessonListScreen(
                     modifier = Modifier
@@ -191,9 +191,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { navigateSingleInstanceOf(Screen.LessonListScreen.route) },
-                { navigateSingleInstanceOf(Screen.HomeScreen.route) },
-                { navigateSingleInstanceOf(Screen.CameraSetupScreen.route) }
+                { popCurrentAndNavigateSingleInstanceOf(Screen.LessonListScreen.route) },
+                { popCurrentAndNavigateSingleInstanceOf(Screen.HomeScreen.route) },
+                { popCurrentAndNavigateSingleInstanceOf(Screen.CameraSetupScreen.route) }
             ) {
                 HandsyTheme {
                     CameraSetup(
@@ -236,9 +236,9 @@ fun NavGraph(
         ) {
             HandsyScaffold(
                 navController.currentBackStackEntryAsState().value?.destination,
-                { navigateSingleInstanceOf(Screen.LessonListScreen.route) },
-                { navigateSingleInstanceOf(Screen.HomeScreen.route) },
-                { navigateSingleInstanceOf(Screen.LiveStreamCameraScreen.route) }
+                { popCurrentAndNavigateSingleInstanceOf(Screen.LessonListScreen.route) },
+                { popCurrentAndNavigateSingleInstanceOf(Screen.HomeScreen.route) },
+                { popCurrentAndNavigateSingleInstanceOf(Screen.LiveStreamCameraScreen.route) }
             ) {
                 HandsyTheme {
                     CameraGestureRecognition(
