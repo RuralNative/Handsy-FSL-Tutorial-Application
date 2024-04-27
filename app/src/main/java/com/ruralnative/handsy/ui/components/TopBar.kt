@@ -23,22 +23,25 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ruralnative.handsy.R
+import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun TopBar() {
-    TopAppBar(
-        title = {
-            BarContent()
-        },
-        modifier = Modifier
-            .fillMaxWidth(),
-        windowInsets = WindowInsets.statusBars,
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
-        scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    )
+    HandsyTheme {
+        TopAppBar(
+            title = {
+                BarContent()
+            },
+            modifier = Modifier
+                .fillMaxWidth(),
+            windowInsets = WindowInsets.statusBars,
+            colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+            scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+        )
+    }
 }
 
 @Composable
