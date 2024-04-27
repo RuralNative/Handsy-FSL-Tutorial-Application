@@ -50,7 +50,7 @@ fun HomeScreen(
             modifier = Modifier
                 .constrainAs(text) {
                     start.linkTo(parent.start)
-                    top.linkTo(image.bottom, margin = 24.dp)
+                    top.linkTo(image.bottom)
                     end.linkTo(parent.end)
                 },
             user
