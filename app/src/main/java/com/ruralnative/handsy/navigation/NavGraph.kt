@@ -129,7 +129,7 @@ fun NavGraph(
             HandsyTheme {
                 DevsIntroScreen(
                     onNavigateToHome = {
-                        clearBackStackAndNavigate(Screen.DevsIntro.route)
+                        clearBackStackAndNavigate(Screen.HomeScreen.route)
                     }
                 )
             }
@@ -152,7 +152,7 @@ fun NavGraph(
                         .consumeWindowInsets(it)
                         .fillMaxSize()
                 ) {
-                    HomeScreen()
+                    HomeScreen(viewModel = hiltViewModel())
                 }
             }
         }
