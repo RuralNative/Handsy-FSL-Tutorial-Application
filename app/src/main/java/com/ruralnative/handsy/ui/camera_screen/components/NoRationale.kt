@@ -42,9 +42,9 @@ fun NoRationale(
             modifier = Modifier
                 .constrainAs(image) {
                     start.linkTo(parent.start)
-                    top.linkTo(parent.top, margin = 24.dp)
+                    top.linkTo(parent.top)
                     end.linkTo(parent.end)
-                    bottom.linkTo(text.bottom)
+                    bottom.linkTo(parent.bottom, margin = 24.dp)
                 }
                 .padding(12.dp),
             painter = painterResource(id = R.drawable.mascot),
@@ -54,9 +54,8 @@ fun NoRationale(
             modifier = Modifier
                 .constrainAs(text) {
                     start.linkTo(parent.start)
-                    top.linkTo(parent.top, margin = 48.dp)
+                    top.linkTo(image.bottom)
                     end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom)
                 }
         )
         RequestPermissionButton(
