@@ -38,7 +38,7 @@ fun TopBar() {
             modifier = Modifier
                 .fillMaxWidth(),
             windowInsets = WindowInsets.statusBars,
-            colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+            colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
             scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
         )
     }

@@ -40,7 +40,7 @@ fun HomeScreen(
                     start.linkTo(parent.start)
                     top.linkTo(parent.top)
                     end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom)
+                    bottom.linkTo(parent.bottom, margin = 48.dp)
                 }
                 .padding(12.dp),
             painter = painterResource(id = R.drawable.mascot),
