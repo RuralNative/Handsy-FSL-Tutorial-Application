@@ -45,19 +45,23 @@ class UserIntroViewModel @Inject constructor(
         onNavigateToDevsIntro: () -> Unit
         ) {
         viewModelScope.launch {
-            repository.insertUser(
-                User(
-                    id = 1,
-                    userName = nameInput,
-                    isNewUser = 0,
-                    progressionLevel = 1
+            if (nameInput.isNotEmpty() && nameInput.length <= 10) {
+                repository.insertUser(
+                    User(
+                        id = 1,
+                        userName = nameInput,
+                        isNewUser = 0,
+                        progressionLevel = 1
+                    )
                 )
-            )
-            setHeaderVisibilty(false)
-            setImageVisibility(false)
-            setTextFieldVisibility(false)
-            delay(500)
-            onNavigateToDevsIntro()
+                setHeaderVisibilty(false)
+                setImageVisibility(false)
+                setTextFieldVisibility(false)
+                delay(500)
+                onNavigateToDevsIntro()
+            } else {
+
+            }
         }
     }
 

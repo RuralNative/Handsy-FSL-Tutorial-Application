@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -132,6 +134,7 @@ fun UserIntroScreen(
             onDone = {
                 viewModel.saveUserNameInDatabase(it, onNavigateToDevsIntro)
             },
+            SupportingText(isError = )
         )
     }
 }
@@ -219,6 +222,7 @@ private fun NameInputField(
     value: String,
     onValueChange: (String) -> Unit,
     onDone: (String) -> Unit,
+    supportingText: @Composable () -> Unit
 ) {
     AnimatedVisibility(
         visible = visibility,
@@ -234,6 +238,7 @@ private fun NameInputField(
                     text = stringResource(R.string.name_input_label)
                 )
             },
+            supportingText = supportingText,
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Words,
                 imeAction = ImeAction.Done,
@@ -243,6 +248,26 @@ private fun NameInputField(
                 onDone = { onDone(value) }
             ),
             singleLine = true
+        )
+    }
+}
+
+@Composable
+private fun SupportingText(isError: Boolean) {
+    if (isError) {
+        Text(
+            text = stringResource(R.string.supporting_text_error),
+            fontWeight = FontWeight.Normal,
+            fontFamily = NunitoFontFamily,
+            style = MaterialTheme.typography.bodySmall
+        )
+    } else {
+        Text(
+            text = stringResource(R.string.supporting_text_neutral),
+            color = MaterialTheme.colorScheme.onError,
+            fontWeight = FontWeight.Normal,
+            fontFamily = NunitoFontFamily,
+            style = MaterialTheme.typography.bodySmall
         )
     }
 }
