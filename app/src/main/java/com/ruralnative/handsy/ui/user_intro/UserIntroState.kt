@@ -10,7 +10,7 @@ import androidx.compose.animation.core.AnimationState
  * @property userNameState The current state of the user name input. Defaults to a single space.
  */
 data class UserIntroState(
-    val userNameState: String = " "
+    val userNameState: String = " ",
     val headerVisibility: Boolean = false,
     val imageVisibility: Boolean = false,
     val textFieldVisibility: Boolean = false

@@ -3,6 +3,7 @@ package com.ruralnative.handsy.ui.user_intro
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ruralnative.handsy.data.entities.User
 import com.ruralnative.handsy.data.repository.UserRepository
 import com.ruralnative.handsy.ui.user_intro.UserIntroState
@@ -56,14 +57,20 @@ class UserIntroViewModel @Inject constructor(
     }
 
     fun setHeaderVisibilty(isVisible: Boolean) {
-        _uiState.value = _uiState.value.copy(headerVisibility = isVisible)
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(headerVisibility = isVisible)
+        }
     }
 
     fun setImageVisibility(isVisible: Boolean) {
-        _uiState.value = _uiState.value.copy(imageVisibility = isVisible)
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(imageVisibility = isVisible)
+        }
     }
 
     fun setTextFieldVisibility(isVisible: Boolean) {
-        _uiState.value = _uiState.value.copy(textFieldVisibility = isVisible)
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(textFieldVisibility = isVisible)
+        }
     }
 }
