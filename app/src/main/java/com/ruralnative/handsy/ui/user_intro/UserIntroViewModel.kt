@@ -32,7 +32,14 @@ class UserIntroViewModel @Inject constructor(
      * @param newNameState The new user name state to update with.
      */
     fun updateUserNameState(newNameState: String) {
-        _uiState.value = _uiState.value.copy(userNameState = newNameState)
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(userNameState = newNameState)
+            if (newNameState.length <= 10) {
+                _uiState.value = _uiState.value.copy(isNameIncompatible = true)
+            } else {
+                _uiState.value = _uiState.value.copy(isNameIncompatible = false)
+            }
+        }
     }
 
     /**

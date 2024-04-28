@@ -1,7 +1,6 @@
 package com.ruralnative.handsy.ui.user_intro
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -25,15 +24,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -41,10 +36,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
-import com.ruralnative.handsy.ui.HandsyTheme
 import com.ruralnative.handsy.ui.NunitoFontFamily
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -63,6 +56,7 @@ fun UserIntroScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val userNameState = uiState.userNameState
+    val supportingTextState = uiState.isNameIncompatible
     val headerVisibility = uiState.headerVisibility
     val imageVisibility = uiState.imageVisibility
     val textFieldVisibility = uiState.textFieldVisibility
@@ -71,7 +65,7 @@ fun UserIntroScreen(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.primary)
             .padding(16.dp)
             .imePadding()
     ) {
@@ -134,7 +128,7 @@ fun UserIntroScreen(
             onDone = {
                 viewModel.saveUserNameInDatabase(it, onNavigateToDevsIntro)
             },
-            SupportingText(isError = )
+            { SupportingText(isError = supportingTextState) }
         )
     }
 }
@@ -161,14 +155,14 @@ private fun HeaderText(
         ) {
             Text(
                 text = stringResource(R.string.intro_greeting_header),
-                color = MaterialTheme.colorScheme.primary,
+                color = MaterialTheme.colorScheme.onPrimary,
                 fontSize = 36.sp,
                 fontWeight = FontWeight.ExtraBold,
                 fontFamily = NunitoFontFamily
             )
             Text(
                 text = stringResource(R.string.intro_greeting_subtitle),
-                color = MaterialTheme.colorScheme.onBackground,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Normal,
                 fontFamily = NunitoFontFamily
