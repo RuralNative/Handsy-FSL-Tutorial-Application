@@ -1,7 +1,11 @@
 package com.ruralnative.handsy.ui.dev_intro
 
-import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -17,10 +21,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -28,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ruralnative.handsy.R
 import com.ruralnative.handsy.ui.NunitoFontFamily
 import kotlinx.coroutines.delay
@@ -45,6 +49,11 @@ fun DevsIntroScreen(
     viewModel: DevsIntroViewModel = hiltViewModel(),
     onNavigateToHome: () -> Unit
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val headerVisibility = uiState.headerVisibility
+    val imageVisibility = uiState.imageVisibility
+    val buttonVisibility = uiState.buttonVisibility
+
     ConstraintLayout(
         modifier = Modifier
             .fillMaxHeight()
@@ -52,24 +61,20 @@ fun DevsIntroScreen(
             .systemBarsPadding()
             .background(MaterialTheme.colorScheme.background)
     ) {
-
         val (headerContainer, imageContainer, buttonContainer) = createRefs()
-        val headerAnimation = remember { Animatable(0f) }
-        val imageAnimation = remember { Animatable(0f) }
-        val buttonAnimation = remember { Animatable(0f) }
 
         LaunchedEffect("animationKey") {
             launch {
                 delay(600)
-                headerAnimation.animateTo(1f, animationSpec = tween(1000))
+                viewModel.setHeaderVisibility(true)
             }
             launch {
                 delay(300)
-                imageAnimation.animateTo(1f, animationSpec = tween(1500))
+                viewModel.setImageVisibility(true)
             }
             launch {
                 delay(3000)
-                buttonAnimation.animateTo(1f, animationSpec = tween(1000))
+                viewModel.setButtonVisibility(true)
             }
         }
 
@@ -81,8 +86,8 @@ fun DevsIntroScreen(
                     end.linkTo(parent.end)
                     bottom.linkTo(imageContainer.top)
                 }
-                .padding(32.dp)
-                .graphicsLayer { alpha = headerAnimation.value }
+                .padding(32.dp),
+            visibility = headerVisibility
         )
 
         DevsIntroImage(
@@ -92,8 +97,8 @@ fun DevsIntroScreen(
                     top.linkTo(parent.top)
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
-                }
-                .graphicsLayer { alpha = imageAnimation.value }
+                },
+            visibility = imageVisibility
         )
 
         MainScreenButton(
@@ -104,8 +109,8 @@ fun DevsIntroScreen(
                     top.linkTo(imageContainer.bottom)
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
-                }
-                .graphicsLayer { alpha = buttonAnimation.value }
+                },
+            visibility = buttonVisibility
         ) { viewModel.navigateToHome(onNavigateToHome) }
 
     }
@@ -117,28 +122,37 @@ fun DevsIntroScreen(
  * @param modifier Modifier to apply to the Text component.
  */
 @Composable
-private fun HeaderText(modifier: Modifier) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.Top
+private fun HeaderText(
+    modifier: Modifier,
+    visibility: Boolean
+) {
+    AnimatedVisibility(
+        visible = visibility,
+        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
+        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
     ) {
-        Text(
-            text = stringResource(R.string.author_message_one),
-            color = MaterialTheme.colorScheme.primary,
-            fontSize = 32.sp,
-            fontWeight = FontWeight.ExtraBold,
-            fontFamily = NunitoFontFamily
-        )
-        Text(
-            modifier = Modifier
-                .padding(top = 8.dp),
-            text = stringResource(R.string.author_message_two),
-            color = MaterialTheme.colorScheme.onBackground,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Normal,
-            fontFamily = NunitoFontFamily
-        )
+        Column(
+            modifier = modifier,
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.Top
+        ) {
+            Text(
+                text = stringResource(R.string.author_message_one),
+                color = MaterialTheme.colorScheme.primary,
+                fontSize = 32.sp,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = NunitoFontFamily
+            )
+            Text(
+                modifier = Modifier
+                    .padding(top = 8.dp),
+                text = stringResource(R.string.author_message_two),
+                color = MaterialTheme.colorScheme.onBackground,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = NunitoFontFamily
+            )
+        }
     }
 }
 
@@ -148,16 +162,25 @@ private fun HeaderText(modifier: Modifier) {
  * @param modifier Modifier to apply to the Image component.
  */
 @Composable
-private fun DevsIntroImage(modifier: Modifier) {
-    Box(
-        modifier = modifier
+private fun DevsIntroImage(
+    modifier: Modifier,
+    visibility: Boolean
+) {
+    AnimatedVisibility(
+        visible = visibility,
+        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
+        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.author_message_media),
-            contentDescription = null,
-            modifier = Modifier
-                .size(360.dp)
-        )
+        Box(
+            modifier = modifier
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.author_message_media),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(360.dp)
+            )
+        }
     }
 }
 
@@ -170,16 +193,23 @@ private fun DevsIntroImage(modifier: Modifier) {
 @Composable
 private fun MainScreenButton(
     modifier: Modifier,
+    visibility: Boolean,
     onButtonClick: () -> Unit
 ) {
-    ExtendedFloatingActionButton(
-        onClick = { onButtonClick() },
-        modifier = modifier,
-        content = {
-            Text(
-                text = "Start Journey",
-                modifier = Modifier
-            )
-        }
-    )
+    AnimatedVisibility(
+        visible = visibility,
+        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
+        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
+    ) {
+        ExtendedFloatingActionButton(
+            onClick = { onButtonClick() },
+            modifier = modifier,
+            content = {
+                Text(
+                    text = "Start Journey",
+                    modifier = Modifier
+                )
+            }
+        )
+    }
 }
