@@ -56,6 +56,9 @@ fun UserIntroScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val userNameState = uiState.userNameState
+    val headerVisibility = uiState.headerVisibility
+    val imageVisibility = uiState.imageVisibility
+    val textFieldVisibility = uiState.textFieldVisibility
 
     ConstraintLayout(
         modifier = Modifier
@@ -94,7 +97,8 @@ fun UserIntroScreen(
                     bottom.linkTo(mascotContainer.top)
                 }
                 .padding(start = 16.dp, end = 16.dp)
-                .graphicsLayer { alpha = headerAnimation.value }
+                .graphicsLayer { alpha = headerAnimation.value },
+            headerVisibility
         )
 
         MascotIcon(
@@ -106,17 +110,11 @@ fun UserIntroScreen(
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
                 }
-                .graphicsLayer { alpha = mascotAnimation.value }
+                .graphicsLayer { alpha = mascotAnimation.value },
+            imageVisibility
         )
 
         NameInputField(
-            value = userNameState,
-            onValueChange = { newValue ->
-                viewModel.updateUserNameState(newValue)
-            },
-            onDone = {
-                viewModel.saveUserNameInDatabase(it, onNavigateToDevsIntro)
-            },
             Modifier
                 .height(56.dp)
                 .constrainAs(inputContainer) {
@@ -126,7 +124,15 @@ fun UserIntroScreen(
                     bottom.linkTo(parent.bottom)
                 }
                 .background(color = MaterialTheme.colorScheme.surface)
-                .graphicsLayer { alpha = textBoxAnimation.value }
+                .graphicsLayer { alpha = textBoxAnimation.value },
+            textFieldVisibility,
+            value = userNameState,
+            onValueChange = { newValue ->
+                viewModel.updateUserNameState(newValue)
+            },
+            onDone = {
+                viewModel.saveUserNameInDatabase(it, onNavigateToDevsIntro)
+            },
         )
     }
 }
@@ -138,7 +144,8 @@ fun UserIntroScreen(
  */
 @Composable
 private fun HeaderText(
-    modifier: Modifier
+    modifier: Modifier,
+    visibility: Boolean
 ) {
     Column(
         modifier = modifier,
@@ -168,7 +175,10 @@ private fun HeaderText(
  * @param modifier Modifier to apply to the Image component.
  */
 @Composable
-private fun MascotIcon(modifier: Modifier) {
+private fun MascotIcon(
+    modifier: Modifier,
+    visibility: Boolean
+) {
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
@@ -193,10 +203,11 @@ private fun MascotIcon(modifier: Modifier) {
  */
 @Composable
 private fun NameInputField(
+    modifier: Modifier,
+    visibility: Boolean,
     value: String,
     onValueChange: (String) -> Unit,
     onDone: (String) -> Unit,
-    modifier: Modifier
 ) {
     TextField(
         value = value,

@@ -8,6 +8,7 @@ import com.ruralnative.handsy.data.entities.User
 import com.ruralnative.handsy.data.repository.UserRepository
 import com.ruralnative.handsy.ui.user_intro.UserIntroState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -52,6 +53,10 @@ class UserIntroViewModel @Inject constructor(
                     progressionLevel = 1
                 )
             )
+            setHeaderVisibilty(false)
+            setImageVisibility(false)
+            setTextFieldVisibility(false)
+            delay(500)
             onNavigateToDevsIntro()
         }
     }
