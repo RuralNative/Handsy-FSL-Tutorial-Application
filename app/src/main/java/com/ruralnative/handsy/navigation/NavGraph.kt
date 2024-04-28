@@ -112,7 +112,10 @@ fun NavGraph(
             enterTransition = PRELIMINARY_ENTER_TRANSITION,
             exitTransition = PRELIMINARY_EXIT_TRANSITION
         ) {
-            HandsyTheme {
+            HandsyTheme(
+                darkTheme = false,
+                dynamicColor = false
+            ) {
                 UserIntroScreen(
                     viewModel = hiltViewModel(),
                     onNavigateToDevsIntro = {
