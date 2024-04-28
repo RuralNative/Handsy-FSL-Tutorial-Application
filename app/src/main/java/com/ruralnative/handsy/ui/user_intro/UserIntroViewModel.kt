@@ -54,4 +54,16 @@ class UserIntroViewModel @Inject constructor(
             onNavigateToDevsIntro()
         }
     }
+
+    fun setHeaderVisibilty(isVisible: Boolean) {
+        _uiState.value = _uiState.value.copy(headerVisibility = isVisible)
+    }
+
+    fun setImageVisibility(isVisible: Boolean) {
+        _uiState.value = _uiState.value.copy(imageVisibility = isVisible)
+    }
+
+    fun setTextFieldVisibility(isVisible: Boolean) {
+        _uiState.value = _uiState.value.copy(textFieldVisibility = isVisible)
+    }
 }

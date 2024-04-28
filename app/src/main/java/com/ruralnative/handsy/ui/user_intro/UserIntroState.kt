@@ -11,4 +11,7 @@ import androidx.compose.animation.core.AnimationState
  */
 data class UserIntroState(
     val userNameState: String = " "
+    val headerVisibility: Boolean = false,
+    val imageVisibility: Boolean = false,
+    val textFieldVisibility: Boolean = false
 )
