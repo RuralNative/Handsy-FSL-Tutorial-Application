@@ -133,11 +133,7 @@ fun UserIntroScreen(
     }
 }
 
-/**
- * HeaderText displays the greeting text for the UserIntroScreen.
- *
- * @param modifier Modifier to apply to the Text component.
- */
+
 @Composable
 private fun HeaderText(
     modifier: Modifier,
@@ -171,11 +167,6 @@ private fun HeaderText(
     }
 }
 
-/**
- * MascotIcon displays the mascot image for the UserIntroScreen.
- *
- * @param modifier Modifier to apply to the Image component.
- */
 @Composable
 private fun MascotIcon(
     modifier: Modifier,
@@ -200,15 +191,6 @@ private fun MascotIcon(
     }
 }
 
-/**
- * NameInputField is a TextField for the user to enter their name.
- * It handles text changes and the "Done" action on the keyboard.
- *
- * @param value The current value of the TextField.
- * @param onValueChange A lambda function to handle text changes.
- * @param onDone A lambda function to handle the "Done" action on the keyboard.
- * @param modifier Modifier to apply to the TextField component.
- */
 @Composable
 private fun NameInputField(
     modifier: Modifier,

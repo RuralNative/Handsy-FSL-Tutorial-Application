@@ -17,6 +17,7 @@ import javax.inject.Inject
 
 /**
  * UserIntroViewModel manages the state and logic for the [UserIntroScreen].
+ * It interacts with the [UserRepository] to perform operations related to user data.
  */
 @HiltViewModel
 class UserIntroViewModel @Inject constructor(
@@ -46,6 +47,7 @@ class UserIntroViewModel @Inject constructor(
      * Saves the user name to the database.
      *
      * @param nameInput The user name input to save.
+     * @param onNavigateToDevsIntro A lambda function to navigate to the developers introduction screen.
      */
     fun saveUserNameInDatabase(
         nameInput: String,
@@ -67,23 +69,38 @@ class UserIntroViewModel @Inject constructor(
                 delay(500)
                 onNavigateToDevsIntro()
             } else {
-
+                _uiState.value = _uiState.value.copy(userNameState = "INVALID USER NAME")
             }
         }
     }
 
+    /**
+     * Sets the visibility of the header in the UI state.
+     *
+     * @param isVisible Determines if the header should be visible.
+     */
     fun setHeaderVisibilty(isVisible: Boolean) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(headerVisibility = isVisible)
         }
     }
 
+    /**
+     * Sets the visibility of the mascot image in the UI state.
+     *
+     * @param isVisible Determines if the mascot image should be visible.
+     */
     fun setImageVisibility(isVisible: Boolean) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(imageVisibility = isVisible)
         }
     }
 
+    /**
+     * Sets the visibility of the name input field in the UI state.
+     *
+     * @param isVisible Determines if the name input field should be visible.
+     */
     fun setTextFieldVisibility(isVisible: Boolean) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(textFieldVisibility = isVisible)
