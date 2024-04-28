@@ -2,7 +2,6 @@ package com.ruralnative.handsy.ui.dev_intro
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ruralnative.handsy.ui.user_intro.UserIntroState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
