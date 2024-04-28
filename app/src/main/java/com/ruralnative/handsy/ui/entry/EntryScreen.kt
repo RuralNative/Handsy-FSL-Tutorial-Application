@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -65,8 +66,6 @@ fun EntryScreen(
 private fun EntryScreenUI(modifier: Modifier = Modifier) {
 
     val context = LocalContext.current
-    val backgroundColor = Color(ContextCompat.getColor(context, R.color.primary_light))
-    val headerColor = Color(ContextCompat.getColor(context, R.color.white))
 
     BackHandler (enabled = true) {
         // Renders System Back Button unusable for the user during Screen duration
@@ -75,12 +74,12 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
     ConstraintLayout (
         modifier = Modifier
             .fillMaxSize()
-            .background(color = backgroundColor)
+            .background(color = MaterialTheme.colorScheme.primary)
     ) {
         val container = createRef()
         Column(
             modifier = Modifier
-                .background(color = backgroundColor)
+                .background(color = MaterialTheme.colorScheme.primary)
                 .constrainAs(container) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
@@ -90,7 +89,7 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            HeaderText(Modifier, headerColor)
+            HeaderText(Modifier)
         }
     }
 }
@@ -103,8 +102,7 @@ private fun EntryScreenUI(modifier: Modifier = Modifier) {
  */
 @Composable
 private fun HeaderText(
-    modifier: Modifier = Modifier,
-    fontColor: Color
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier,
@@ -113,7 +111,7 @@ private fun HeaderText(
     ) {
         Text(
             text = stringResource(R.string.handsy_capitalized),
-            color = fontColor,
+            color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.Center,
             style = TextStyle(
                 fontSize = 45.sp,
@@ -123,7 +121,7 @@ private fun HeaderText(
         )
         Text(
             text = stringResource(R.string.fsl_sentence_case),
-            color = fontColor,
+            color = MaterialTheme.colorScheme.onSecondary,
             textAlign = TextAlign.Center,
             style = TextStyle(
                 fontSize = 17.7.sp,

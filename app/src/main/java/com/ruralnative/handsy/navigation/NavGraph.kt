@@ -90,7 +90,10 @@ fun NavGraph(
             route = Screen.Entry.route,
             exitTransition = PRELIMINARY_EXIT_TRANSITION
         ) {
-            HandsyTheme {
+            HandsyTheme(
+                darkTheme = false,
+                dynamicColor = false
+            ) {
                 EntryScreen(
                     viewModel = hiltViewModel(),
                     onNavigateToUserIntro = {
