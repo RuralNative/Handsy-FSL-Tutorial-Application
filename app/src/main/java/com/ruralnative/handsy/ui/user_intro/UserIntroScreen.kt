@@ -1,7 +1,12 @@
 package com.ruralnative.handsy.ui.user_intro
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -69,22 +74,19 @@ fun UserIntroScreen(
             .imePadding()
     ) {
         val (headerContainer, mascotContainer, inputContainer) = createRefs()
-        val headerAnimation = remember { Animatable(0f) }
-        val mascotAnimation = remember { Animatable(0f) }
-        val textBoxAnimation = remember { Animatable(0f) }
 
         LaunchedEffect("animationKey") {
             launch {
                 delay(600)
-                headerAnimation.animateTo(1f, animationSpec = tween(1000))
+                viewModel.setHeaderVisibilty(true)
             }
             launch {
                 delay(300)
-                mascotAnimation.animateTo(1f, animationSpec = tween(1500))
+                viewModel.setImageVisibility(true)
             }
             launch {
                 delay(900)
-                textBoxAnimation.animateTo(1f, animationSpec = tween(1000))
+                viewModel.setTextFieldVisibility(true)
             }
         }
 
@@ -96,8 +98,7 @@ fun UserIntroScreen(
                     end.linkTo(parent.end, margin = 16.dp)
                     bottom.linkTo(mascotContainer.top)
                 }
-                .padding(start = 16.dp, end = 16.dp)
-                .graphicsLayer { alpha = headerAnimation.value },
+                .padding(start = 16.dp, end = 16.dp),
             headerVisibility
         )
 
@@ -109,8 +110,7 @@ fun UserIntroScreen(
                     top.linkTo(parent.top)
                     end.linkTo(parent.end)
                     bottom.linkTo(parent.bottom)
-                }
-                .graphicsLayer { alpha = mascotAnimation.value },
+                },
             imageVisibility
         )
 
@@ -123,8 +123,7 @@ fun UserIntroScreen(
                     end.linkTo(parent.end, margin = 32.dp)
                     bottom.linkTo(parent.bottom)
                 }
-                .background(color = MaterialTheme.colorScheme.surface)
-                .graphicsLayer { alpha = textBoxAnimation.value },
+                .background(color = MaterialTheme.colorScheme.surface),
             textFieldVisibility,
             value = userNameState,
             onValueChange = { newValue ->
@@ -147,25 +146,31 @@ private fun HeaderText(
     modifier: Modifier,
     visibility: Boolean
 ) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.Top
+    AnimatedVisibility(
+        visible = visibility,
+        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
+        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
     ) {
-        Text(
-            text = stringResource(R.string.intro_greeting_header),
-            color = MaterialTheme.colorScheme.primary,
-            fontSize = 36.sp,
-            fontWeight = FontWeight.ExtraBold,
-            fontFamily = NunitoFontFamily
-        )
-        Text(
-            text = stringResource(R.string.intro_greeting_subtitle),
-            color = MaterialTheme.colorScheme.onBackground,
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Normal,
-            fontFamily = NunitoFontFamily
-        )
+        Column(
+            modifier = modifier,
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.Top
+        ) {
+            Text(
+                text = stringResource(R.string.intro_greeting_header),
+                color = MaterialTheme.colorScheme.primary,
+                fontSize = 36.sp,
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = NunitoFontFamily
+            )
+            Text(
+                text = stringResource(R.string.intro_greeting_subtitle),
+                color = MaterialTheme.colorScheme.onBackground,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = NunitoFontFamily
+            )
+        }
     }
 }
 
@@ -179,16 +184,22 @@ private fun MascotIcon(
     modifier: Modifier,
     visibility: Boolean
 ) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ){
-        Image(
-            painter = painterResource(id = R.drawable.mascot),
-            contentDescription = stringResource(id = R.string.mascot_content_description),
-            modifier = Modifier
-                .size(270.dp)
-        )
+    AnimatedVisibility(
+        visible = visibility,
+        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
+        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
+    ) {
+        Box(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
+        ){
+            Image(
+                painter = painterResource(id = R.drawable.mascot),
+                contentDescription = stringResource(id = R.string.mascot_content_description),
+                modifier = Modifier
+                    .size(270.dp)
+            )
+        }
     }
 }
 
@@ -209,23 +220,29 @@ private fun NameInputField(
     onValueChange: (String) -> Unit,
     onDone: (String) -> Unit,
 ) {
-    TextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        label = {
-            Text(
-                text = stringResource(R.string.name_input_label)
-            )
-        },
-        keyboardOptions = KeyboardOptions(
-            capitalization = KeyboardCapitalization.Words,
-            imeAction = ImeAction.Done,
-            keyboardType = KeyboardType.Text,
-        ),
-        keyboardActions = KeyboardActions(
-            onDone = { onDone(value) }
-        ),
-        singleLine = true
-    )
+    AnimatedVisibility(
+        visible = visibility,
+        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
+        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
+    ) {
+        TextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier,
+            label = {
+                Text(
+                    text = stringResource(R.string.name_input_label)
+                )
+            },
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Words,
+                imeAction = ImeAction.Done,
+                keyboardType = KeyboardType.Text,
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = { onDone(value) }
+            ),
+            singleLine = true
+        )
+    }
 }
