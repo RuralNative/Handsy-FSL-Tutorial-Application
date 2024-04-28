@@ -138,7 +138,7 @@ private fun HeaderText(
         ) {
             Text(
                 text = stringResource(R.string.author_message_one),
-                color = MaterialTheme.colorScheme.primary,
+                color = MaterialTheme.colorScheme.onPrimary,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.ExtraBold,
                 fontFamily = NunitoFontFamily
@@ -147,7 +147,7 @@ private fun HeaderText(
                 modifier = Modifier
                     .padding(top = 8.dp),
                 text = stringResource(R.string.author_message_two),
-                color = MaterialTheme.colorScheme.onBackground,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Normal,
                 fontFamily = NunitoFontFamily
