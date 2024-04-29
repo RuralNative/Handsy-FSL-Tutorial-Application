@@ -154,3 +154,15 @@ Below is the flow representing how the user is navigated through different scree
 Below is the flow representing how a single image frame from the camera's feed is processed by the AI model for recognition.
 
 ![Gesture Recognition Runtime View](media/gesture_logic.drawio.svg)
+
+The figure above shows the overall logic of the gesture recognition feature of the application.
+
+To begin with, the CameraX component contained within the CameraGestureRecognition Composable provides an ImageProxy - an interface that handles image frames captured by the camera - to an ImageAnalysis.Analyzer named GestureAnalysisAnalyzer to begin analysis and recognition. 
+
+The GestureAnalysisAnalyzer serves only as a bridge between the CameraX Image Analysis use case and the actual Kotlin class that handles recognition using MediaPipe Tasks API, and its function analyze() passes this ImageProxy to the GestureRecognizerHelper for recognition.
+
+The GestureRecognizerHelper is responsible for the actual role of transforming the ImageProxy to readable format for the model to interpret with. It utilizes the MediaPipe Tasks API to achieve this. Its function recognizeLiveStream() is responsible for performing transformation and manipulation of the ImageProxy into a readable MPImage compatible for the AI model to recognize. It passes this MPImage to recognizeAsync() which runs this format through the model for recognition. returnLiveStreamResult() extracts the result returned by the AI model and passes this as a ResultBundle to the ViewModel for transformation into something the Screen UI can interpret.
+
+The ViewModel's onResult() transform the ResultBundle into different information with the help of extractGesturesList() and update the State of the Composable screen. Note that the actual gesture is a collection of a specific type that requires different operations before a String format info can be extracted from it. This is due to the fact that the raw result is actually a list of detected gestures and each gesture contains first an outer list of different hands detected, and its inner list containing the actual information for the gesture.
+
+The State, adhering to the principle of Modern Android Development of Unidirectional Flow is passed as a StateFlow through the ViewModel to the CameraGestureRecognition Composable screen to be used to update the ResultContainer within it.
