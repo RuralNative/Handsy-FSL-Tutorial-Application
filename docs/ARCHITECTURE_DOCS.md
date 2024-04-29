@@ -2,7 +2,7 @@
 
 This documentation is a compiled information of the architecture of the Handsy application for the benefit of development and maintenance efforts, formatted based from [arc42 template](https://www.workingsoftware.dev/software-architecture-documentation-the-ultimate-guide/) standards, complemented with guidelines provided by [c4 model](https://c4model.com/?ref=workingsoftware.dev) for abstraction visualization.
 
-## Introduction and Goals
+## 1. Introduction and Goals
 
 This section introduces the task and outlines the objectives pursued by Handsy: Filipino Sign Language
 
@@ -34,7 +34,7 @@ The codebase of the application must be reasonably tested to prevent unhandled e
 
 The application's user interface/user experience must abide to reasonable extents to the concepts and principles provided in Material Design 3 design language to ensure that it is looks and feels user-friendly for the end users. It must also integrate an onboarding section in its application for new users to provide a good impression for them.
 
-## Architectural Constraints
+## 2. Architectural Constraints
 
 At the beginning of the project various constraints had to be respected within the design of Handsy. They still affect the solution. This section represents this restrictions and explains - where necessary - the motivations
 
@@ -48,12 +48,28 @@ At the beginning of the project various constraints had to be respected within t
 
 ### 2.2 Conventions
 
-**Material 3 as Design Langauge** - 
+**Material 3 as Design Langauge** - Utilized the concepts and principles for the design of the User Interface/User Experience of the application
+
+**Modern Android Development Guidelines** - Utilized the concepts and principles of the Modern Android Development provided by Google for ease of development and ensure the utilization of established and well-maintained technologies and tools for future development.
 
 These are requirement constrains for design and implementation decisions for the application.
 
 * Operates on an Android OS with a minimum version of 8.1
 * Offline-first operation with no support for online utilization
+
+## 3. Context
+
+This section describes the environment of Handsy, especially its end users.
+
+### 3.1 Business Context
+
+### Learners (users)
+
+Handsy is built for the use of people who has interest in learning the Filipino Sign Language especially the proper signing of it. All features integrated within the application is designed to meet that purpose.
+
+## 4. Solution Strategy
+
+This section contains a highly compact architecture overview of the application, with a contrast of the most important goals and approaches.
 
 ## Solution Strategy 
 
