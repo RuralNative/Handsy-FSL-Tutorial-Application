@@ -2,9 +2,24 @@
 
 This documentation is a compiled information of the architecture of the Handsy application for the benefit of development and maintenance efforts, formatted based from [arc42 template](https://www.workingsoftware.dev/software-architecture-documentation-the-ultimate-guide/) standards, complemented with guidelines provided by [c4 model](https://c4model.com/?ref=workingsoftware.dev) for abstraction visualization.
 
-## Introduction
+## Introduction and Goals
+
+This section introduces the task and outlines the objectives pursued by Handsy: Filipino Sign Language
+
+### 1.1 Requirements Overview
+
+#### What is Handsy?
 
 Handsy is an Android-based mobile application aiming to be one of the catalysts towards a more inclusive community for people with hearing and/or speaking disability here in the Philippines, achieved through an accessible hand sign tutorial mobile application powered by Artifical Intelligence.
+
+#### Essential Features
+
+- Visualized lessons for Filipino Sign Language (FSL) through pictures
+- AI Gesture recognition through in-built device camera for learning assessment
+
+### 1.2 Quality Goals
+
+The following quality goals listed below with its description are the 
 
 ### Requirements Overview
 1. Offline-based Android application usable within areas of no or low internet connection
