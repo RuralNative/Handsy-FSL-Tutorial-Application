@@ -26,7 +26,7 @@ The following goals listed below with its description are the benchmarks to dete
 
 The application's gesture recognition feature, built with AI, is expected to consume the most of the resources of the user's device. It must be designed and developed in a manner that the resources needed for it to run properly without noticeable visual lags is minimal and low-spec phones could still reasonably operate it.
 
-### Stability
+#### Stability
 
 The application's codebase must be built upon well-established and well-maintained tools and libraries to ensure its performance stability and ease of development due to support from such tool's creators/authors.
 
@@ -83,7 +83,7 @@ The following information below contrasts the quality goals of Handsy (-> [Secti
 
 The application will combine the light-weight features provided by the MediaPipe Solutions frameworks with its complementary MediaPipe Model Maker and Tasks API, and CameraX of Jetpack Compose for the design and development of the Camera component with AI-powered Gesture Recognition feature.
 
-### Stability
+#### Stability
 
 The application will be built upon the Jetpack Compose libraries and toolings for its entire codebase as it provides performance stability, long-term support, and well-documented examples to derive from the various components of the application and ensure future developments can be done with ease.
 
@@ -138,6 +138,8 @@ Below are its categorical components:
 * ViewModel : Handles logic of the UI Layer. It leverages the Data Layer and state (and in some occassion, Utility classes within the UI Layer) to ensure they are stateless and focused on UI render roles.
 
 * Composables : Composable functions responsible for rendering UI to screen
+
+### 5.2. Gesture Recognition Model
 
 ## 6. Runtime View
 
