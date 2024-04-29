@@ -6,7 +6,7 @@ This documentation is a compiled information of the architecture of the Handsy a
 
 This section introduces the task and outlines the objectives pursued by Handsy: Filipino Sign Language
 
-### 1.1 Requirements Overview
+### 1.1. Requirements Overview
 
 #### What is Handsy?
 
@@ -18,13 +18,17 @@ Handsy is an Android-based mobile application aiming to be one of the catalysts 
 - Visualized lessons for Filipino Sign Language (FSL) through pictures
 - AI Gesture recognition through in-built device camera for learning assessment
 
-### 1.2 Quality Goals
+### 1.2. Quality Goals
 
 The following goals listed below with its description are the benchmarks to determine the application was built in the highest quality and on par with industry-grade applications built by professionals.
 
 #### Performance
 
 The application's gesture recognition feature, built with AI, is expected to consume the most of the resources of the user's device. It must be designed and developed in a manner that the resources needed for it to run properly without noticeable visual lags is minimal and low-spec phones could still reasonably operate it.
+
+### Stability
+
+The application's codebase must be built upon well-established and well-maintained tools and libraries to ensure its performance stability and ease of development due to support from such tool's creators/authors.
 
 #### Testing
 
@@ -38,7 +42,7 @@ The application's user interface/user experience must abide to reasonable extent
 
 At the beginning of the project various constraints had to be respected within the design of Handsy. They still affect the solution. This section represents this restrictions and explains - where necessary - the motivations
 
-### 2.1 Technical Constraints
+### 2.1. Technical Constraints
 
 **Use of Mobile Devices** - Application is limited to the use of mobile devices as it presents as the most accessible platform for the end users.
 
@@ -46,7 +50,7 @@ At the beginning of the project various constraints had to be respected within t
 
 **Preference towards Jetpack Compose and Kotlin** - Application is built upon the Jetpack Compose library with Kotlin as programming language of choice as it is the current standard in the Android development.
 
-### 2.2 Conventions
+### 2.2. Conventions
 
 **Material 3 as Design Langauge** - Utilized the concepts and principles for the design of the User Interface/User Experience of the application
 
@@ -61,7 +65,7 @@ These are requirement constrains for design and implementation decisions for the
 
 This section describes the environment of Handsy, especially its end users.
 
-### 3.1 Business Context
+### 3.1. Business Context
 
 ### Learners (users)
 
@@ -71,30 +75,39 @@ Handsy is built for the use of people who has interest in learning the Filipino 
 
 This section contains a highly compact architecture overview of the application, with a contrast of the most important goals and approaches.
 
-## Solution Strategy 
+### 4.1. Introduction
 
-The architectural design and development of the application is built in a philosophy that focuses towards functionality, maintainability, and readability, rather than the inclusion of modern technologies or tools for the sake of it.
+The following information below contrasts the quality goals of Handsy (-> [Section 1.2](#12-quality-goals)).
 
-Due to this, the project will utilize the standards, libraries, and frameworks stipulated within the [Modern Android Development](https://developer.android.com/topic/architecture/intro) built by Google as it offers long-term support and extensive documentation and examples future development efforts can rely upon. 
+#### Performance
 
-Below are the technological solutions utilized for the various application functionality:
+The application will combine the light-weight features provided by the MediaPipe Solutions frameworks with its complementary MediaPipe Model Maker and Tasks API, and CameraX of Jetpack Compose for the design and development of the Camera component with AI-powered Gesture Recognition feature.
 
-* **Keras and MediaPipe** as preferred tools for AI gesture recognition model
-* **Room Database** as preferred library for data management, persistence, and storage
-* **Dagger Hilt** as preferred library for automated dependency injection
-* **CameraX** as preferred API for utilzing native camera functionality
-* **Jetpack Compose** as preferred libraries for building user interface
-* **Material Design 3** as preferred primary design language for UI/UX design 
-* **Compose Navigation** as preferred library for navigating between screens
-* **Accompanist** as preferred library to complement Android functionalities non-existent for Jetpack Compose - such as requesting permissions
+### Stability
 
-This architectural approaches and solutions are also effectively utilized to achieved the stipulated quality goals stated on the [Introduction](#quality-goals) section.
+The application will be built upon the Jetpack Compose libraries and toolings for its entire codebase as it provides performance stability, long-term support, and well-documented examples to derive from the various components of the application and ensure future developments can be done with ease.
 
-## Building Blocks
+#### Testing
+
+For the Android application, the Data Layer will be rigorously tested to ensure it properly functions.
+
+For the ML model, proper tests are made during its training to ensure it is as accurate as possible.
+
+#### Usability
+
+The user interface / user experience will be based upon the concepts and principles of Material Design 3.
+
+### 4.2. Structure
+
+Handsy is implemented as a Kotlin program leveraging Jetpack Compose libraries for its codebase, Material Design 3 as its design language, and MediaPipe Solutions with complementary MediaPipe Model Maker and MediaPipe Tasks API for the gesture recognition model.
+
+It utilizes the concepts and principles discussed within the official documentation of Modern Android Development, such as the utilization of MVVM design pattern and the use of a multi-layered architecture consisting of the Data Layer and the UI Layer.
+
+## 5. Building Blocks
 
 This section describes the abstract and visualized decomposition of the project codebase, as represented by the packaging within. 
 
-### Architectural Overview
+### 5.1 Architectural Overview
 
 ![High Level Architecture](media/high-level-architecture.svg)
 
@@ -125,3 +138,17 @@ Below are its categorical components:
 * ViewModel : Handles logic of the UI Layer. It leverages the Data Layer and state (and in some occassion, Utility classes within the UI Layer) to ensure they are stateless and focused on UI render roles.
 
 * Composables : Composable functions responsible for rendering UI to screen
+
+## 6. Runtime View
+
+This section provides a visualization of how the different components of the application operates together to achieve its different roles.
+
+### 6.1. Screen Navigation
+
+Below is the flow representing how the user is navigated through different screens depending on which screen is shown and their actions within it.
+
+![Navigation View](media/runtime-view.drawio.svg)
+
+### 6.2. Gesture Recognition with Camera
+
+Below is the flow representing how a single image frame from the camera's feed is processed by the AI model for recognition.

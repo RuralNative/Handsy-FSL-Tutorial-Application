@@ -18,14 +18,12 @@ import com.google.mediapipe.tasks.components.containers.Category
 import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureAnalysisAnalyzer
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureRecognizerHelper
-import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.GestureRecognizerListener
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.ai.ResultBundle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
