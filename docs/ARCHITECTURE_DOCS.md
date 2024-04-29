@@ -141,6 +141,8 @@ Below are its categorical components:
 
 ### 5.2. Gesture Recognition Model
 
+The Jupyter Notebook for the development of the AI model were originally developed within the Google Colabs. For competition reasons as mandated by the rules, the source code - including the dataset - is contained within the repository. Due to this, adjustments for the code is made to mimic what model training would look like within a local machine. Please check ![AI Directory](/ai) for the source code and dataset.
+
 ## 6. Runtime View
 
 This section provides a visualization of how the different components of the application operates together to achieve its different roles.
