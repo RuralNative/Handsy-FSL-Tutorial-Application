@@ -147,8 +147,10 @@ This section provides a visualization of how the different components of the app
 
 Below is the flow representing how the user is navigated through different screens depending on which screen is shown and their actions within it.
 
-![Navigation View](media/runtime-view.drawio.svg)
+![Navigation Runtime View](media/runtime-view.drawio.svg)
 
 ### 6.2. Gesture Recognition with Camera
 
 Below is the flow representing how a single image frame from the camera's feed is processed by the AI model for recognition.
+
+![Gesture Recognition Runtime View](media/gesture_logic.drawio.svg)
