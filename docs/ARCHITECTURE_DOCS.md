@@ -141,7 +141,7 @@ Below are its categorical components:
 
 ### 5.2. Gesture Recognition Model
 
-The Jupyter Notebook for the development of the AI model were originally written and trained within the Google Colabs. For competition reasons as mandated by the rules, the source code - including the dataset - is contained within the repository. Due to this, adjustments for the code is made to mimic what model training would look like within a local machine. Please check ![AI Directory](/ai) for the source code and dataset.
+The Jupyter Notebook for the development of the AI model were originally written and trained within the Google Colabs. For competition reasons as mandated by the rules, the source code - including the dataset - is contained within the repository. Due to this, adjustments for the code is made to mimic what model training would look like within a local machine. Please check [AI Directory](/ai) for the source code and dataset.
 
 During the training development, MediaPipe and its Model Maker were utilized for the development of the model. This was the preferred main tool for training since it has an available pre-trained model - the Gesture Recognition model - already available which can be easily tuned to our use case which is the Filipino Sign Language with a dataset of our own through transfer learning. Each cell within the Notebook has a markdown description for explanation. Please refer to it for the explanation of the steps.
 
@@ -174,3 +174,13 @@ The GestureRecognizerHelper is responsible for the actual role of transforming t
 The ViewModel's onResult() transform the ResultBundle into different information with the help of extractGesturesList() and update the State of the Composable screen. Note that the actual gesture is a collection of a specific type that requires different operations before a String format info can be extracted from it. This is due to the fact that the raw result is actually a list of detected gestures and each gesture contains first an outer list of different hands detected, and its inner list containing the actual information for the gesture.
 
 The State, adhering to the principle of Modern Android Development of Unidirectional Flow is passed as a StateFlow through the ViewModel to the CameraGestureRecognition Composable screen to be used to update the ResultContainer within it.
+
+## 7. Conclusion
+
+Handsy is built upon the concepts and principles of the [Modern Android Development](https://developer.android.com/modern-android-development) documentation provided by Google with the modern [Jetpack Compose](https://developer.android.com/develop/ui/compose) libraries to build the application's codebase. 
+
+[MediaPipe Solutions](https://developers.google.com/mediapipe/solutions) was used as the preferred tool for the ML model training and development togehter with TensorFlow and Keras. 
+
+These tools are used to ensure that developers that will work on this will find it easy to understand the codebase for future development, and for our case, analysis for competition. I hope this architectural documentation provided the necessary information for the review of the project for our judges.
+
+Thank you for this opportunity provided to work on this passion project.
