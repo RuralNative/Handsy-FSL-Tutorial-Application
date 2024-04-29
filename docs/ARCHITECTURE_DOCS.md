@@ -141,7 +141,11 @@ Below are its categorical components:
 
 ### 5.2. Gesture Recognition Model
 
-The Jupyter Notebook for the development of the AI model were originally developed within the Google Colabs. For competition reasons as mandated by the rules, the source code - including the dataset - is contained within the repository. Due to this, adjustments for the code is made to mimic what model training would look like within a local machine. Please check ![AI Directory](/ai) for the source code and dataset.
+The Jupyter Notebook for the development of the AI model were originally written and trained within the Google Colabs. For competition reasons as mandated by the rules, the source code - including the dataset - is contained within the repository. Due to this, adjustments for the code is made to mimic what model training would look like within a local machine. Please check ![AI Directory](/ai) for the source code and dataset.
+
+During the training development, MediaPipe and its Model Maker were utilized for the development of the model. This was the preferred main tool for training since it has an available pre-trained model - the Gesture Recognition model - already available which can be easily tuned to our use case which is the Filipino Sign Language with a dataset of our own through transfer learning. Each cell within the Notebook has a markdown description for explanation. Please refer to it for the explanation of the steps.
+
+To re-enact the model training, simply run through all the cells within the Python notebook. Ensure the Python SDK of version 3.11 and above is properly installed within local system you are training to ensure it runs properly.
 
 ## 6. Runtime View
 
