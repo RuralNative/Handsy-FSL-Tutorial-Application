@@ -14,35 +14,41 @@ Handsy is an Android-based mobile application aiming to be one of the catalysts 
 
 #### Essential Features
 
+- Offline-access application to ensure accessibility for users in remote areas
 - Visualized lessons for Filipino Sign Language (FSL) through pictures
 - AI Gesture recognition through in-built device camera for learning assessment
 
 ### 1.2 Quality Goals
 
-The following quality goals listed below with its description are the 
+The following goals listed below with its description are the benchmarks to determine the application was built in the highest quality and on par with industry-grade applications built by professionals.
 
-### Requirements Overview
-1. Offline-based Android application usable within areas of no or low internet connection
-2. Accurate and visualized tutorials for Filipino Sign Language alphabet
-3. Camera functionality for hand sign recognition via AI model with acceptable recognition accuracy 
+#### Performance
 
-### Quality Goals
+The application's gesture recognition feature, built with AI, is expected to consume the most of the resources of the user's device. It must be designed and developed in a manner that the resources needed for it to run properly without noticeable visual lags is minimal and low-spec phones could still reasonably operate it.
 
-Three architectural goals of high importance for the stated purpose of the project
+#### Testing
 
-#### Functional Suitability
-
-Application offers visualized lessons for the Filipino Sign Language alphabet and a functional camera component for recognizing hand signs shown by the user on phone's camera.
+The codebase of the application must be reasonably tested to prevent unhandled errors and catch issues during development. This ensures that the application can operate with no fear of crashes/bugs occurring when used by the end users. 
 
 #### Usability
 
-Application has an accessible and quality user interface and user experience.
-
-#### Performance Efficiency
-
-Application utilizes the available resources offer by the native device to the best of its ability to ensure acceptable performance at worst for the end users.
+The application's user interface/user experience must abide to reasonable extents to the concepts and principles provided in Material Design 3 design language to ensure that it is looks and feels user-friendly for the end users. It must also integrate an onboarding section in its application for new users to provide a good impression for them.
 
 ## Architectural Constraints
+
+At the beginning of the project various constraints had to be respected within the design of Handsy. They still affect the solution. This section represents this restrictions and explains - where necessary - the motivations
+
+### 2.1 Technical Constraints
+
+**Use of Mobile Devices** - Application is limited to the use of mobile devices as it presents as the most accessible platform for the end users.
+
+**Use of Android as OS of Choice** - Application is limited to the use of mobile devices operating under the Android operating system as it presents the largest share of mobile users
+
+**Preference towards Jetpack Compose and Kotlin** - Application is built upon the Jetpack Compose library with Kotlin as programming language of choice as it is the current standard in the Android development.
+
+### 2.2 Conventions
+
+**Material 3 as Design Langauge** - 
 
 These are requirement constrains for design and implementation decisions for the application.
 
