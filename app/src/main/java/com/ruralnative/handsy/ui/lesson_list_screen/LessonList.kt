@@ -1,5 +1,6 @@
 package com.ruralnative.handsy.ui.lesson_list_screen
 
+import android.util.Log
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -54,6 +55,13 @@ fun LessonCardList(
     onLessonCardClicked: (id: Int) -> Unit
 ) {
     val state: LazyListState = rememberLazyListState(firstListItem)
+
+    LaunchedEffect(state.isScrollInProgress) {
+        val position = derivedStateOf { state.firstVisibleItemIndex }
+        onFirstItemIndexUpdate(position.value)
+        Log.d("lazyList", position.value.toString())
+    }
+
     LazyColumn(
         modifier = modifier,
         state = state,
