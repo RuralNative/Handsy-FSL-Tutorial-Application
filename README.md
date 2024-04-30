@@ -4,29 +4,38 @@
 
 Handsy is an Android-based mobile application that aims to provide an accessible reference of learning for people to learn how to use the Filipino Sign Language. With simple visual aids to learn how to read and sign the Filipino alphabet and basic phrases for communication and an additional AI-assisted feature of assessing the learnings of the user by letting them show their hand signals through their phone's camera and checking what hand sign, it aims to revolutionize how we can make our communities increasingly inclusive towards people that do not have the ability to communicate through verbal words.
 
-## Pre-requisites
+## Development Pre-requisites
 
-*The following are the necessary pre-requisites for the development environment of the Android project. Take note that the project MAY NOT be workable if the following pre-requisites are not met. Configure your Android Studio/Gradle build with the information listed below:*
+Below are the necessary development tools and supporting software for the proper setup of the development environment.
 
-### Top-level Gradle Build Script
-A Gradle build script that defines the common versions of plug-ins used by all modules in the project
-- **Android Application/Library Plugins**: Version 8.2.0
-- **Kotlin for Android Plugin**: Version 1.9.20
-- **Kotlin Symbol Processing Plugin**: Version 1.9.20-1.0.13
-- **Room Plugin**: Version 2.6.1
-- **Dagger Hilt**: Version 2.44
+### Android Development
 
-- **Gradle**: Version 3.2.0
-- **JVM**: JDK 17
-- **Gradle JDK**: JetBrains Runtime JDK Version 17
+- Java Development Kit 17 and above
+- Android Studio Iguana (2023.2.1) and above
 
-- **Android Gradle Plugin for Android Application**: Version 3.2.0
-- **Android Gradle Plugin for Android Library**: Version 3.2.0
-- **Kotlin Gradle Plugin**: Version 1.9.20
+### ML Model Development
 
-- **Target Android SDK**: Android 14 (API 34)
-- **Minimum Android SDK**: Android 8.1 (API 27)
-- **Target Android SDK**: Android 14 (API 34)
+- Python SDK v3.12.3
+- JupyterLab v4.1.8
+- MediaPipe Model Maker 0.10.11
 
-- **Room Database**: Version 2.6.1
-- **Dagger Hilt**: Version 2.44
+Take note that the actual development of the model was done within Google Colabs, due to the fact that developer's laptop is incapable of heavy operations such as this model training.
+
+### Project Dependencies
+
+The version control of dependencies for the project are already taken care by a [Central Dependency Management file](/gradle/libs.versions.toml) found within the Gradle directory - refer to it to the specifics of the project's dependencies - and Gradle build scripts within the project takes care of its importation and other relevant duties.
+
+## Developer's Guide
+
+The project's codebase is built with adherence to the concepts and principles of Clean Code and Modern Android Development guides to ensure it adheres to industry standards, familiar to professional developers. 
+
+To serve as a guide for developer for future development if considered by OTIS Inc., a centralized project architecture file named as [ARCHITECTURE_DOCS](/docs/ARCHITECTURE_DOCS.md) is provided within the Docs directory. It is based upon the concepts and principles provided by [arc42 Documentation](https://arc42.org/?ref=workingsoftware.dev) and [c4model Documentation](https://c4model.com/?ref=workingsoftware.dev) for proper architectural documentation
+
+## Credits
+
+This project will not be achieved without the support of the following individuals, and open-sourced resources from the listed individuals.
+
+- **TecPerson with Sign Language MNIST (American Sign Language) Dataset from Kaggle**
+  - The ML model utilized several resources for various letter provided within the dataset due to the similarity of it to Filipino Sign Language
+- **John Gabriel Porton with FSL Dataset from Kaggle**
+  - This serves as the primary dataset of use for the development of the AI model
