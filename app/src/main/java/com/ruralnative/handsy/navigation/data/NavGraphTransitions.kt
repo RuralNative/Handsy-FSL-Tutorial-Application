@@ -24,9 +24,6 @@ object NavGraphTransitions {
             animationSpec = tween(
                 150, easing = LinearEasing
             )
-        ) + slideIntoContainer(
-            animationSpec = tween(150, easing = EaseIn),
-            towards = AnimatedContentTransitionScope.SlideDirection.Start
         )
     }
 
@@ -40,9 +37,6 @@ object NavGraphTransitions {
             animationSpec = tween(
                 150, easing = LinearEasing
             )
-        ) + slideOutOfContainer(
-            animationSpec = tween(150, easing = EaseOut),
-            towards = AnimatedContentTransitionScope.SlideDirection.End
         )
     }
 

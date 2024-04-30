@@ -49,7 +49,7 @@ class CameraPermissionViewModel @Inject constructor() : ViewModel() {
      */
     @OptIn(ExperimentalPermissionsApi::class)
     fun requestCameraPermission(state: PermissionState): () -> Unit {
-        return { state?.launchPermissionRequest() }
+        return { state.launchPermissionRequest() }
     }
 
     /**

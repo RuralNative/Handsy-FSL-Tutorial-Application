@@ -51,9 +51,9 @@ fun CameraSetup(
                 onNavigateToCameraScreen()
             }
         } else if (cameraPermissionState.status.shouldShowRationale) {
-            Rationale(viewModel.requestCameraPermission(cameraPermissionState))
-        } else {
             NoRationale { viewModel.openApplicationSettings(context) }
+        } else {
+            NoRationale {cameraPermissionState.launchPermissionRequest()}
         }
     }
 }

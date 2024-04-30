@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -42,10 +43,10 @@ fun NoRationale(
             modifier = Modifier
                 .constrainAs(image) {
                     start.linkTo(parent.start)
-                    top.linkTo(parent.top)
                     end.linkTo(parent.end)
-                    bottom.linkTo(parent.bottom, margin = 24.dp)
+                    bottom.linkTo(text.top)
                 }
+                .size(240.dp)
                 .padding(12.dp),
             painter = painterResource(id = R.drawable.mascot),
             contentDescription = null
@@ -54,8 +55,9 @@ fun NoRationale(
             modifier = Modifier
                 .constrainAs(text) {
                     start.linkTo(parent.start)
-                    top.linkTo(image.bottom)
+                    top.linkTo(parent.top, margin = 48.dp)
                     end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
                 }
         )
         RequestPermissionButton(

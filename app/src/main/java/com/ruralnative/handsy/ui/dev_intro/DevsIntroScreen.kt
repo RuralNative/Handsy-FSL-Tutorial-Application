@@ -27,6 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -59,7 +61,7 @@ fun DevsIntroScreen(
             .fillMaxHeight()
             .fillMaxWidth()
             .systemBarsPadding()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.primary)
     ) {
         val (headerContainer, imageContainer, buttonContainer) = createRefs()
 
@@ -126,32 +128,43 @@ private fun HeaderText(
     modifier: Modifier,
     visibility: Boolean
 ) {
-    AnimatedVisibility(
-        visible = visibility,
-        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
-        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
-    ) {
-        Column(
-            modifier = modifier,
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Top
+    Box(modifier = modifier) {
+        AnimatedVisibility(
+            visible = visibility,
+            enter = fadeIn(animationSpec = tween(1000)) + slideInHorizontally(animationSpec = tween(1000)),
+            exit = fadeOut(animationSpec = tween(1000)) + slideOutHorizontally(animationSpec = tween(1000))
         ) {
-            Text(
-                text = stringResource(R.string.author_message_one),
-                color = MaterialTheme.colorScheme.onPrimary,
-                fontSize = 32.sp,
-                fontWeight = FontWeight.ExtraBold,
-                fontFamily = NunitoFontFamily
-            )
-            Text(
-                modifier = Modifier
-                    .padding(top = 8.dp),
-                text = stringResource(R.string.author_message_two),
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Normal,
-                fontFamily = NunitoFontFamily
-            )
+            Column(
+                modifier = modifier,
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Text(
+                    text = "Welcome to",
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontFamily = NunitoFontFamily,
+                )
+                Text(
+                    modifier = Modifier
+                        .padding(top = 8.dp),
+                    text = "Handsy",
+                    color = MaterialTheme.colorScheme.background,
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontFamily = NunitoFontFamily,
+                )
+                Text(
+                    modifier = Modifier
+                        .padding(top = 8.dp),
+                    text = stringResource(R.string.author_message_two),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Normal,
+                    fontFamily = NunitoFontFamily
+                )
+            }
         }
     }
 }
@@ -166,20 +179,22 @@ private fun DevsIntroImage(
     modifier: Modifier,
     visibility: Boolean
 ) {
-    AnimatedVisibility(
-        visible = visibility,
-        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
-        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
-    ) {
-        Box(
-            modifier = modifier
+    Box(modifier = modifier) {
+        AnimatedVisibility(
+            visible = visibility,
+            enter = fadeIn(animationSpec = tween(1000)) + slideInHorizontally(animationSpec = tween(1000)),
+            exit = fadeOut(animationSpec = tween(1000)) + slideOutHorizontally(animationSpec = tween(1000))
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.author_message_media),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(360.dp)
-            )
+            Box(
+                modifier = modifier
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.author_message_media),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(360.dp)
+                )
+            }
         }
     }
 }
@@ -196,20 +211,24 @@ private fun MainScreenButton(
     visibility: Boolean,
     onButtonClick: () -> Unit
 ) {
-    AnimatedVisibility(
-        visible = visibility,
-        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
-        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
-    ) {
-        ExtendedFloatingActionButton(
-            onClick = { onButtonClick() },
-            modifier = modifier,
-            content = {
-                Text(
-                    text = "Start Journey",
-                    modifier = Modifier
-                )
-            }
-        )
+    Box(modifier = modifier) {
+        AnimatedVisibility(
+            visible = visibility,
+            enter = fadeIn(animationSpec = tween(1000)) + slideInHorizontally(animationSpec = tween(1000)),
+            exit = fadeOut(animationSpec = tween(1000)) + slideOutHorizontally(animationSpec = tween(1000))
+        ) {
+            ExtendedFloatingActionButton(
+                onClick = { onButtonClick() },
+                modifier = Modifier.fillMaxWidth(1f),
+                containerColor = MaterialTheme.colorScheme.surface,
+                contentColor = MaterialTheme.colorScheme.onSurface,
+                content = {
+                    Text(
+                        text = "Start Journey",
+                        modifier = Modifier
+                    )
+                }
+            )
+        }
     }
 }
