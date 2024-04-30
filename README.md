@@ -35,7 +35,7 @@ To serve as a guide for developer for future development if considered by OTIS I
 
 This project will not be achieved without the support of the following individuals, and open-sourced resources from the listed individuals.
 
-- **TecPerson with Sign Language MNIST (American Sign Language) Dataset from Kaggle**
-  - The ML model utilized several resources for various letter provided within the dataset due to the similarity of it to Filipino Sign Language
+- **Jackelyn Hernaez with Lesson Portraits**
+  - For her voluntary assistance and support to the Developer and her partner, John Berlin, during the development of the application.
 - **John Gabriel Porton with FSL Dataset from Kaggle**
   - This serves as the primary dataset of use for the development of the AI model
