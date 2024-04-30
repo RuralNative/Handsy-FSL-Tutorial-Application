@@ -37,8 +37,10 @@ class UserIntroViewModel @Inject constructor(
             _uiState.value = _uiState.value.copy(userNameState = newNameState)
             if (newNameState.length <= 10) {
                 _uiState.value = _uiState.value.copy(isNameIncompatible = true)
-            } else {
-                _uiState.value = _uiState.value.copy(isNameIncompatible = false)
+            } else if (newNameState.length > 10) {
+                _uiState.value = _uiState.value.copy(
+                    isNameIncompatible = false
+                )
             }
         }
     }
@@ -68,7 +70,7 @@ class UserIntroViewModel @Inject constructor(
                 setTextFieldVisibility(false)
                 delay(500)
                 onNavigateToDevsIntro()
-            } else {
+            } else if (nameInput.isEmpty() || nameInput.length > 10) {
                 _uiState.value = _uiState.value.copy(userNameState = "INVALID USER NAME")
             }
         }

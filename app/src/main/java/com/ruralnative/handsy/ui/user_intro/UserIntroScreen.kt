@@ -112,14 +112,12 @@ fun UserIntroScreen(
 
         NameInputField(
             Modifier
-                .height(56.dp)
                 .constrainAs(inputContainer) {
                     start.linkTo(parent.start, margin = 32.dp)
                     top.linkTo(mascotContainer.bottom)
                     end.linkTo(parent.end, margin = 32.dp)
                     bottom.linkTo(parent.bottom)
-                }
-                .background(color = MaterialTheme.colorScheme.surface),
+                },
             textFieldVisibility,
             value = userNameState,
             onValueChange = { newValue ->
@@ -139,32 +137,34 @@ private fun HeaderText(
     modifier: Modifier,
     visibility: Boolean
 ) {
-    AnimatedVisibility(
-        visible = visibility,
-        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
-        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
-    ) {
-        Column(
-            modifier = modifier,
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Top
+    Box(modifier = modifier) {
+        AnimatedVisibility(
+            visible = visibility,
+            enter = fadeIn(animationSpec = tween(1000)) + slideInHorizontally(animationSpec = tween(1000)),
+            exit = fadeOut(animationSpec = tween(1000)) + slideOutHorizontally(animationSpec = tween(1000))
         ) {
-            Text(
-                text = stringResource(R.string.intro_greeting_header),
-                color = MaterialTheme.colorScheme.onPrimary,
-                fontSize = 36.sp,
-                fontWeight = FontWeight.ExtraBold,
-                fontFamily = NunitoFontFamily
-            )
-            Text(
-                text = stringResource(R.string.intro_greeting_subtitle),
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Normal,
-                fontFamily = NunitoFontFamily
-            )
+            Column(
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Text(
+                    text = stringResource(R.string.intro_greeting_header),
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    fontSize = 36.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontFamily = NunitoFontFamily
+                )
+                Text(
+                    text = stringResource(R.string.intro_greeting_subtitle),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Normal,
+                    fontFamily = NunitoFontFamily
+                )
+            }
         }
     }
+
 }
 
 @Composable
@@ -172,21 +172,23 @@ private fun MascotIcon(
     modifier: Modifier,
     visibility: Boolean
 ) {
-    AnimatedVisibility(
-        visible = visibility,
-        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
-        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
-    ) {
-        Box(
-            modifier = modifier,
-            contentAlignment = Alignment.Center
-        ){
-            Image(
-                painter = painterResource(id = R.drawable.mascot),
-                contentDescription = stringResource(id = R.string.mascot_content_description),
-                modifier = Modifier
-                    .size(270.dp)
-            )
+    Box(modifier = modifier) {
+        AnimatedVisibility(
+            visible = visibility,
+            enter = fadeIn(animationSpec = tween(1000)) + slideInHorizontally(animationSpec = tween(1000)),
+            exit = fadeOut(animationSpec = tween(1000)) + slideOutHorizontally(animationSpec = tween(1000))
+        ) {
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                Image(
+                    painter = painterResource(id = R.drawable.mascot),
+                    contentDescription = stringResource(id = R.string.mascot_content_description),
+                    modifier = Modifier
+                        .size(270.dp)
+                )
+            }
         }
     }
 }
@@ -200,39 +202,42 @@ private fun NameInputField(
     onDone: (String) -> Unit,
     supportingText: @Composable () -> Unit
 ) {
-    AnimatedVisibility(
-        visible = visibility,
-        enter = fadeIn(animationSpec = tween(300)) + slideInHorizontally(animationSpec = tween(300)),
-        exit = fadeOut(animationSpec = tween(300)) + slideOutHorizontally(animationSpec = tween(300))
-    ) {
-        TextField(
-            value = value,
-            onValueChange = onValueChange,
-            modifier = modifier,
-            label = {
-                Text(
-                    text = stringResource(R.string.name_input_label)
-                )
-            },
-            supportingText = supportingText,
-            keyboardOptions = KeyboardOptions(
-                capitalization = KeyboardCapitalization.Words,
-                imeAction = ImeAction.Done,
-                keyboardType = KeyboardType.Text,
-            ),
-            keyboardActions = KeyboardActions(
-                onDone = { onDone(value) }
-            ),
-            singleLine = true
-        )
+    Box(modifier = modifier) {
+        AnimatedVisibility(
+            visible = visibility,
+            enter = fadeIn(animationSpec = tween(1000)) + slideInHorizontally(animationSpec = tween(1000)),
+            exit = fadeOut(animationSpec = tween(1000)) + slideOutHorizontally(animationSpec = tween(1000))
+        ) {
+            TextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = Modifier.height(72.dp),
+                label = {
+                    Text(
+                        text = stringResource(R.string.name_input_label)
+                    )
+                },
+                supportingText = supportingText,
+                keyboardOptions = KeyboardOptions(
+                    capitalization = KeyboardCapitalization.Words,
+                    imeAction = ImeAction.Done,
+                    keyboardType = KeyboardType.Text,
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = { onDone(value) }
+                ),
+                singleLine = true
+            )
+        }
     }
 }
 
 @Composable
 private fun SupportingText(isError: Boolean) {
-    if (isError) {
+    if (!isError) {
         Text(
             text = stringResource(R.string.supporting_text_error),
+            color = MaterialTheme.colorScheme.error,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily,
             style = MaterialTheme.typography.bodySmall
@@ -240,7 +245,7 @@ private fun SupportingText(isError: Boolean) {
     } else {
         Text(
             text = stringResource(R.string.supporting_text_neutral),
-            color = MaterialTheme.colorScheme.onError,
+            color = MaterialTheme.colorScheme.onPrimary,
             fontWeight = FontWeight.Normal,
             fontFamily = NunitoFontFamily,
             style = MaterialTheme.typography.bodySmall

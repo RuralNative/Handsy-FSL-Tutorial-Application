@@ -13,8 +13,8 @@
     <string name="intro_greeting_header">Hello Stranger,</string>
     <string name="intro_greeting_subtitle">May I know your name?</string>
     <string name="name_input_label">Insert Name</string>
-    <string name="supporting_text_neutral">Insert your Name</string>
-    <string name="supporting_text_error">Limit Name to 10 characters</string>
+    <string name="supporting_text_neutral">Limit to 10 characters only</string>
+    <string name="supporting_text_error">Oops…</string>
 
     <!-- AUTHOR_MESSAGE Specific -->
     <string name="author_message_one">Welcome to Handsy</string>
