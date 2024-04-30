@@ -21,6 +21,10 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -43,11 +47,13 @@ import com.ruralnative.handsy.ui.NunitoFontFamily
 @Composable
 fun LessonCardList(
     modifier: Modifier,
+    firstListItem: Int,
     lessonHeader: String,
     lessonList: List<LessonCardState>,
+    onFirstItemIndexUpdate: (index: Int) -> Unit,
     onLessonCardClicked: (id: Int) -> Unit
 ) {
-    val state: LazyListState = rememberLazyListState()
+    val state: LazyListState = rememberLazyListState(firstListItem)
     LazyColumn(
         modifier = modifier,
         state = state,
@@ -71,6 +77,10 @@ fun LessonCardList(
                 lesson
             )
         }
+    }
+
+    LaunchedEffect(remember { derivedStateOf { state.firstVisibleItemIndex } }) {
+        onFirstItemIndexUpdate(state.firstVisibleItemIndex)
     }
 }
 

@@ -1,6 +1,7 @@
 package com.ruralnative.handsy.ui.lesson_list_screen
 
 import android.util.Log
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -24,9 +25,10 @@ class LessonListViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(
         LessonListState(
-        alphabetLessons = emptyList(),
-        phrasesLesson = emptyList()
-    )
+            listState = null,
+            alphabetLessons = emptyList(),
+            phrasesLesson = emptyList()
+        )
     )
     val uiState: StateFlow<LessonListState> = _uiState.asStateFlow()
 
@@ -41,6 +43,12 @@ class LessonListViewModel @Inject constructor(
                 _uiState.value = _uiState.value.copy(phrasesLesson = setPhraseLessonCards(lessons))
                 Log.d("LessonList", "phrasesLessons = ${lessons.size}")
             }
+        }
+    }
+
+    fun setFirstItemIndex(itemIndex: Int) {
+        viewModelScope.launch {
+            _uiState.value =  _uiState.value.copy(firstVisibleListItem = itemIndex)
         }
     }
 
