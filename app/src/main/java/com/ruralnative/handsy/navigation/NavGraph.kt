@@ -25,6 +25,8 @@ import com.ruralnative.handsy.navigation.data.NavGraphTransitions.SCAFFOLD_ENTER
 import com.ruralnative.handsy.navigation.data.NavGraphTransitions.SCAFFOLD_EXIT_TRANSITION
 import com.ruralnative.handsy.navigation.data.Screen
 import com.ruralnative.handsy.ui.HandsyTheme
+import com.ruralnative.handsy.ui.assessment_screen.AssessmentScreen
+import com.ruralnative.handsy.ui.assessment_screen.AssessmentState
 import com.ruralnative.handsy.ui.camera_screen.CameraSetup
 import com.ruralnative.handsy.ui.camera_screen.components.camera_gesture_recognition.CameraGestureRecognition
 import com.ruralnative.handsy.ui.components.HandsyScaffold
@@ -161,7 +163,11 @@ fun NavGraph(
                         .consumeWindowInsets(it)
                         .fillMaxSize()
                 ) {
-                    HomeScreen(viewModel = hiltViewModel())
+                    HomeScreen(
+                        viewModel = hiltViewModel(),
+                        onNavigateToAssessment = { popCurrentAndNavigateSingleInstanceOf(Screen.AssessmentScreen.route) }
+                    )
+
                 }
             }
         }
@@ -188,6 +194,16 @@ fun NavGraph(
                     }
                 )
             }
+        }
+
+        composable(
+            route = Screen.AssessmentScreen.route,
+            enterTransition = MISCELLANEOUS_ENTER_TRANSITION,
+            exitTransition = MISCELLANEOUS_EXIT_TRANSITION
+        ) {
+            AssessmentScreen(
+                onNavigateToHome = { popCurrentAndNavigateSingleInstanceOf(Screen.HomeScreen.route) }
+            )
         }
 
         /*
