@@ -6,7 +6,9 @@ Handsy is an Android-based mobile application that aims to provide an accessible
 
 ## Sample
 
-<img src="/docs/media/Handsy - CUT.gif" alt="Handsy Demo" width="9" height="16">
+**Demo with Hand Recognition Feature Displayed**
+
+![Handsy Demo](https://github.com/RuralNative/Handsy-FSL-Tutorial-Application/blob/main/docs/media/Handsy%20-%20CUT.gif)
 
 ## Features
 
